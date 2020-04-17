@@ -8,7 +8,6 @@ import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
 public class Gui {
     private Arena arena;
@@ -38,13 +37,13 @@ public class Gui {
         graphics.setBackgroundColor(TextColor.Factory.fromString("#336699"));
         graphics.setForegroundColor(TextColor.Factory.fromString("#FF0000"));
 
-        graphics.putString(10, 10, "X");
-        graphics.putString(10, 15, "Y");
+        drawPlayer(arena.getPlayer());
+        drawEnenmy(arena.getEnemy());
 
         screen.refresh();
     }
 
-    public void drawBackground(){
+    private void drawBackground(){
         TextGraphics graphics = screen.newTextGraphics();
         graphics.setBackgroundColor(TextColor.Factory.fromString("#336699"));
         graphics.fillRectangle(
@@ -53,4 +52,36 @@ public class Gui {
                 ' '
         );
     }
+
+    private void drawPlayer(Player player){
+        drawCard(1, 19, player.getDraw_deck().get(0), true);
+
+
+    }
+
+    private void drawEnenmy(Enemy enemy){
+        drawCard(1, 0, enemy.getDraw_deck().get(0), false);
+    }
+
+    private void drawCard(int x, int y, Card card, boolean player){
+        TextGraphics graphics = screen.newTextGraphics();
+        graphics.setBackgroundColor(TextColor.Factory.fromString("#336699"));
+        graphics.setForegroundColor(TextColor.Factory.fromString("#FF0000"));
+
+        graphics.putString(x+1, y+3, "_");
+        graphics.putString(x+2, y+3, "_");
+        graphics.putString(x+3, y+3, "_");
+        graphics.putString(x+1, y, "_");
+        graphics.putString(x+2, y, "_");
+        graphics.putString(x+3, y, "_");
+        graphics.putString(x, y+3, "|");
+        graphics.putString(x, y+2, "|");
+        graphics.putString(x, y+1, "|");
+        graphics.putString(x+4, y+3, "|");
+        graphics.putString(x+4, y+2, "|");
+        graphics.putString(x+4, y+1, "|");
+        if (player) graphics.putString(3, 21, card.getValueString()); //change later -> separate functions
+    }
+
+
 }

@@ -22,7 +22,7 @@ public class Game {
         List<SpecialCard> player_special = new ArrayList<>();
         player_special.add(new SpecialCard(2));
         player_special.add(new SpecialCard(7));
-        Player player = new Player(player_card, player_special);
+        Player player = new Player(player_card, player_special, 10, 10);
 
         List<Card> enemy_card = new ArrayList<>();
         enemy_card.add(new Card(2));
@@ -30,9 +30,9 @@ public class Game {
         List<SpecialCard> enemy_special = new ArrayList<>();
         enemy_special.add(new SpecialCard(2));
         enemy_special.add(new SpecialCard(7));
-        Enemy enemy = new Enemy(enemy_card, enemy_special);
+        Enemy enemy = new Enemy(enemy_card, enemy_special, 10, 10);
 
-        Arena arena = new Arena(player, enemy, 50, 20);
+        Arena arena = new Arena(player, enemy, 1000, 500);
         gui = new Gui(arena);
         gui.draw();
     }

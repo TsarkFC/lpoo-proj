@@ -6,4 +6,10 @@ public class Card {
     }
 
 
+    public int getValue() {
+        return value;
+    }
+    public String getValueString(){
+        return String.valueOf(value);
+    }
 }

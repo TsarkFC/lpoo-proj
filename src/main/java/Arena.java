@@ -22,4 +22,12 @@ public class Arena {
     public int getHeight() {
         return height;
     }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public Enemy getEnemy() {
+        return enemy;
+    }
 }
