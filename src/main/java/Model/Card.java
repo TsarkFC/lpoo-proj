@@ -1,4 +1,6 @@
-public class Card {
+package Model;
+
+public class Card implements AnyCard{
     private int value;
 
     public Card(int value){

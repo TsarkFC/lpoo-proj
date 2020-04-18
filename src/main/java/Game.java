@@ -1,8 +1,5 @@
-import com.googlecode.lanterna.TextCharacter;
-import com.googlecode.lanterna.screen.Screen;
-import com.googlecode.lanterna.screen.TerminalScreen;
-import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
-import com.googlecode.lanterna.terminal.Terminal;
+import Model.*;
+import View.Gui;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,21 +13,23 @@ public class Game {
     }
 
     private void start() throws IOException, InterruptedException {
-        List<Card> player_card = new ArrayList<>();
-        player_card.add(new Card(2));
-        player_card.add(new Card(7));
-        List<SpecialCard> player_special = new ArrayList<>();
+        List<AnyCard> player_card = new ArrayList<>();
+        //player_card.add(new Card(2));
+        //player_card.add(new Card(7));
+        List<AnyCard> player_special = new ArrayList<>();
         player_special.add(new SpecialCard(2));
         player_special.add(new SpecialCard(7));
-        Player player = new Player(player_card, player_special, 10, 10);
+        Player player = new Player(player_card, player_special, 10, 10, 20, 20);
 
-        List<Card> enemy_card = new ArrayList<>();
+        List<AnyCard> enemy_card = new ArrayList<>();
         enemy_card.add(new Card(2));
         enemy_card.add(new Card(7));
-        List<SpecialCard> enemy_special = new ArrayList<>();
+        List<AnyCard> enemy_special = new ArrayList<>();
         enemy_special.add(new SpecialCard(2));
         enemy_special.add(new SpecialCard(7));
-        Enemy enemy = new Enemy(enemy_card, enemy_special, 10, 10);
+        Enemy enemy = new Enemy(enemy_card, enemy_special, 10, 10, 20, 20);
+
+
 
         Arena arena = new Arena(player, enemy, 1000, 500);
         gui = new Gui(arena);

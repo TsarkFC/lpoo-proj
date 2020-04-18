@@ -1,4 +1,4 @@
-import java.util.List;
+package Model;
 
 public class Arena {
     private int width;
