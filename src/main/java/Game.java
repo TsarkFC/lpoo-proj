@@ -1,3 +1,5 @@
+import Commands.ArenaObserver;
+import Commands.Command;
 import Model.*;
 import View.Gui;
 
@@ -5,7 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Game {
+public class Game implements ArenaObserver {
     private Gui gui;
     private Arena arena;
     public static void main(String[] args) throws IOException, InterruptedException {
@@ -14,8 +16,6 @@ public class Game {
 
     private void start() throws IOException, InterruptedException {
         List<AnyCard> player_card = new ArrayList<>();
-        //player_card.add(new Card(2));
-        //player_card.add(new Card(7));
         List<AnyCard> player_special = new ArrayList<>();
         player_special.add(new SpecialCard(2));
         player_special.add(new SpecialCard(7));
@@ -31,8 +31,23 @@ public class Game {
 
 
 
-        Arena arena = new Arena(player, enemy, 1000, 500);
+        Arena arena = new Arena(player, enemy, 50, 30);
+        arena.addObserver(this);
         gui = new Gui(arena);
         gui.draw();
+
+        while(!arena.isFinished()){
+            Command command = gui.getNextCommand();
+            command.execute();
+        }
+    }
+
+    @Override
+    public void arenaChanged() {
+        try{
+            gui.draw();
+        } catch (IOException e) {
+
+        }
     }
 }

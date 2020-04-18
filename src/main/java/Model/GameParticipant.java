@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class GameParticipant {
-    private List<AnyCard> draw_deck;
+    protected List<AnyCard> draw_deck;
     private List<AnyCard> play_deck;
     private int health;
     private int mana;
@@ -16,6 +16,9 @@ public class GameParticipant {
     private int playingValue; //Value to which basic cards' value is added to (cannot think of a better name)
 
     private List<AnyCard> default_draw_deck;
+
+    protected int points;
+    protected int max_points;
 
     public GameParticipant(List<AnyCard> draw_deck, List<AnyCard> play_deck, int health, int mana, int max_health, int max_mana){
         Collections.shuffle(draw_deck);
@@ -28,8 +31,8 @@ public class GameParticipant {
         this.playingValue = 0;
 
 
+        default_draw_deck = new ArrayList<>();
         if(draw_deck.isEmpty()) {
-            default_draw_deck = new ArrayList<>();
             for (int i = 1; i <= 24; i++) {
                 Card card = new Card(i / 4);
                 default_draw_deck.add(card);
@@ -37,10 +40,10 @@ public class GameParticipant {
             draw_deck.addAll(default_draw_deck);
         }
         else{
-            default_draw_deck = draw_deck;
+            this.default_draw_deck.addAll(draw_deck);
         }
         DeckShuffler deck_shuffler = new DeckShuffler(draw_deck);
-        deck_shuffler.shuffle();
+        deck_shuffler.execute();
     }
 
     public List<AnyCard> getDraw_deck() {
@@ -101,5 +104,19 @@ public class GameParticipant {
 
     public int getDeckSize(){
         return draw_deck.size();
+    }
+
+    public void resetDrawDeck(){
+        draw_deck.addAll(default_draw_deck);
+        DeckShuffler shuffle = new DeckShuffler(draw_deck);
+        shuffle.execute();
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
     }
 }

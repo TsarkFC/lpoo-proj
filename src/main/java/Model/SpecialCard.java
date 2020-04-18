@@ -6,4 +6,9 @@ public class SpecialCard implements AnyCard{
     public SpecialCard(int cost){
         this.cost = cost;
     }
+
+    @Override
+    public void effect(GameParticipant part) {
+
+    }
 }

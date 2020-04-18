@@ -1,5 +1,9 @@
 package View;
 
+import Commands.Command;
+import Commands.DoNothingCommand;
+import Commands.DrawCardCommand;
+import Commands.QuitCommand;
 import Model.Arena;
 import Model.Card;
 import Model.Enemy;
@@ -8,6 +12,8 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
+import com.googlecode.lanterna.input.KeyStroke;
+import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
@@ -20,7 +26,7 @@ public class Gui {
 
     public Gui(Arena arena) throws IOException {
         try {
-            Terminal terminal = new DefaultTerminalFactory().createTerminal();
+            Terminal terminal = new DefaultTerminalFactory().setInitialTerminalSize(new TerminalSize(arena.getWidth(), arena.getHeight())).createTerminal();
             screen = new TerminalScreen(terminal);
 
             screen.setCursorPosition(null);   // we don't need a cursor
@@ -58,9 +64,9 @@ public class Gui {
     private void drawPlayer(Player player){
         drawCard(1, 19, player.getDraw_deck().size());
         //drawHealthBar(15, 3, player.getHealth(), player.getMaxHealth());
-        drawHealthBar(15, 3, player.getHealth(), player.getMaxHealth());
-        drawManaBar(15, 4, player.getMana(), player.getMaxMana());
-        drawPointBar(15, 12, 12, 12);
+        drawHealthBar(15, 21, player.getHealth(), player.getMaxHealth());
+        drawManaBar(15, 22, player.getMana(), player.getMaxMana());
+        drawPointBar(15, 12, player.getPoints(), 12);
 
     }
 
@@ -69,7 +75,7 @@ public class Gui {
         //drawHealthBar(15, 1, enemy.getHealth(), enemy.getMaxHealth());
         drawHealthBar(15, 1, enemy.getHealth(), enemy.getMaxHealth());
         drawManaBar(15, 2, enemy.getMana(), enemy.getMaxMana());
-        drawPointBar(15, 8, 0, 12);
+        drawPointBar(15, 8, enemy.getPoints(), 12);
 
     }
 
@@ -245,4 +251,22 @@ public class Gui {
 
         pointNumber.putString(x - 5, y, "Mana:");
     }
+
+
+
+
+    public Command getNextCommand() throws IOException {
+        KeyStroke input = screen.readInput();
+
+        if (input.getKeyType() == KeyType.EOF) return new QuitCommand(arena, screen);
+        if (input.getKeyType() == KeyType.Character && input.getCharacter() == 'q') return new QuitCommand(arena, screen);
+        if (input.getKeyType() == KeyType.Character && input.getCharacter() == 'd') return new DrawCardCommand(arena);
+        //if (input.getKeyType() == KeyType.ArrowDown) return new MoveHeroDownCommand(arena);
+        //if (input.getKeyType() == KeyType.ArrowUp) return new MoveHeroUpCommand(arena);
+        //if (input.getKeyType() == KeyType.ArrowLeft) return new MoveHeroLeftCommand(arena);
+       // if (input.getKeyType() == KeyType.ArrowRight) return new MoveHeroRightCommand(arena);
+
+        return new DoNothingCommand();
+    }
+
 }
