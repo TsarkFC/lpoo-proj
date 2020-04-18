@@ -34,7 +34,7 @@ public class GameParticipant {
                 Card card = new Card(i / 4);
                 default_draw_deck.add(card);
             }
-            this.draw_deck = default_draw_deck;
+            draw_deck.addAll(default_draw_deck);
         }
         else{
             default_draw_deck = draw_deck;
