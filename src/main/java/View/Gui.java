@@ -14,6 +14,7 @@ import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
+import org.w3c.dom.Text;
 
 import java.io.IOException;
 
@@ -103,23 +104,8 @@ public class Gui {
             filled_point.setBackgroundColor(TextColor.Factory.fromString("#FFEECC"));
             filled_point.setForegroundColor(TextColor.Factory.fromString("#FF0000"));
         }
-        for(int i = 0; i <= 16; i+=4) {
-                if((i / 4) * 3 <= point_val) {
-                    filled_point.putString(x + i, y, "|");
-                }
-                else{
-                    unfilled_point.putString(x + i, y, "|");
-                }
 
-        }
-        for(int j = 0; j <= 11; j++){
-            if(j < point_val){
-                filled_point.putString(x + j + j / 3 + 1, y, "_");
-            }
-            else{
-                unfilled_point.putString(x + j + j / 3 + 1, y, "_");
-            }
-        }
+        fillBar(x, y, filled_point, unfilled_point, point_val, max_point_val);
 
         TextGraphics pointNumber = screen.newTextGraphics();
         pointNumber.setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
@@ -144,35 +130,13 @@ public class Gui {
         filled_point.setBackgroundColor(TextColor.Factory.fromString("#BB1111"));
         filled_point.setForegroundColor(TextColor.Factory.fromString("#AA5555"));
 
-
-        for(int i = 0; i <= 16; i+=4) {
-            if((i / 4) * 3 <= (health / (float) max_health) * 12) {
-                filled_point.putString(x + i, y, "|");
-            }
-            else{
-                unfilled_point.putString(x + i, y, "|");
-            }
-
-        }
-
-        for(int j = 0; j <= 11; j++){
-            if(j < (health / (float) max_health) * 12){
-                filled_point.putString(x + j + j / 3 + 1, y, "_");
-            }
-            else{
-                unfilled_point.putString(x + j + j / 3 + 1, y, "_");
-            }
-        }
+        fillBar(x, y, filled_point, unfilled_point, health, max_health);
 
         TextGraphics pointNumber = screen.newTextGraphics();
         pointNumber.setBackgroundColor(TextColor.Factory.fromString("#BB1111"));
         pointNumber.setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
 
-        pointNumber.putString(x + 19, y, " ");
-        pointNumber.putString(x + 20, y, " ");
-        pointNumber.putString(x + 18, y, String.valueOf(health));
-        pointNumber.putString(x + 21, y, "/");
-        pointNumber.putString(x + 22, y, String.valueOf(max_health));
+        headerBar(x, y, pointNumber, health, max_health);
 
         pointNumber.putString(x - 3, y, "HP:");
 
@@ -187,10 +151,29 @@ public class Gui {
         TextGraphics filled_point = screen.newTextGraphics();
         filled_point.setBackgroundColor(TextColor.Factory.fromString("#3D84CC"));
         filled_point.setForegroundColor(TextColor.Factory.fromString("#5555AA"));
+        
+        fillBar(x, y, filled_point, unfilled_point, mana, max_mana);
 
+        TextGraphics pointNumber = screen.newTextGraphics();
+        pointNumber.setBackgroundColor(TextColor.Factory.fromString("#3D84CC"));
+        pointNumber.setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
 
+        headerBar(x, y, pointNumber, mana, max_mana);
+
+        pointNumber.putString(x - 5, y, "Mana:");
+    }
+
+    private void headerBar(int x, int y, TextGraphics pointNumber, int value, int max_value){
+        pointNumber.putString(x + 19, y, " ");
+        pointNumber.putString(x + 20, y, " ");
+        pointNumber.putString(x + 18, y, String.valueOf(value));
+        pointNumber.putString(x + 21, y, "/");
+        pointNumber.putString(x + 22, y, String.valueOf(max_value));
+    }
+
+    private void fillBar(int x, int y, TextGraphics filled_point, TextGraphics unfilled_point, int value, int max_value){
         for(int i = 0; i <= 16; i+=4) {
-            if((i / 4) * 3 <= (mana / (float) max_mana) * 12) {
+            if((i / 4) * 3 <= (value / (float) max_value) * 12) {
                 filled_point.putString(x + i, y, "|");
             }
             else{
@@ -200,25 +183,13 @@ public class Gui {
         }
 
         for(int j = 0; j <= 11; j++){
-            if(j < (mana / (float) max_mana) * 12){
+            if(j < (value / (float) max_value) * 12){
                 filled_point.putString(x + j + j / 3 + 1, y, "_");
             }
             else{
                 unfilled_point.putString(x + j + j / 3 + 1, y, "_");
             }
         }
-
-        TextGraphics pointNumber = screen.newTextGraphics();
-        pointNumber.setBackgroundColor(TextColor.Factory.fromString("#3D84CC"));
-        pointNumber.setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
-
-        pointNumber.putString(x + 19, y, " ");
-        pointNumber.putString(x + 20, y, " ");
-        pointNumber.putString(x + 18, y, String.valueOf(mana));
-        pointNumber.putString(x + 21, y, "/");
-        pointNumber.putString(x + 22, y, String.valueOf(max_mana));
-
-        pointNumber.putString(x - 5, y, "Mana:");
     }
 
     private void drawSpecialCard(int x, SpecialCard specialCard){
