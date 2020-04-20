@@ -11,8 +11,6 @@ public class DrawCardCommand implements Command{
 
     @Override
     public void execute() {
-
-
         arena.drawCard();
     }
 }
