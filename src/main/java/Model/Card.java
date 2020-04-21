@@ -18,10 +18,12 @@ public class Card implements AnyCard{
     @Override
     public void effect(GameParticipant part) {
         part.points += value;
-        /*if(part.points >= part.max_points){
-            EndTurn();
-            ou
-            player.turn_over = true;
+        /*
+        if(part.points == part.max_points){
+
+        }
+        else if(part.points > part.max_points){
+            //EndTurn();
         }*/
     }
 }

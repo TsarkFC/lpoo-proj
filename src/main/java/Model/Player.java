@@ -7,7 +7,7 @@ public class Player extends GameParticipant{
         super(draw_deck, play_deck, health, mana, max_health, max_mana, max_points);
     }
 
-    public boolean drawCard(){ //-> Boolean verifies if overflow occured
+    /*public boolean drawCard(){ //-> Boolean verifies if overflow occured
         if(draw_deck.size() == 0){
             //Throw something?
             return false;
@@ -30,5 +30,5 @@ public class Player extends GameParticipant{
         }else if (points == max_points) return true;
 
         return false;
-    }
+    }*/
 }

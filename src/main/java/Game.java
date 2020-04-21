@@ -1,5 +1,6 @@
 import Commands.ArenaObserver;
 import Commands.Command;
+import Commands.TurnChecker;
 import Model.*;
 import View.Gui;
 

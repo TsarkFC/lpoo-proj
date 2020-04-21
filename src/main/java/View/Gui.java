@@ -248,15 +248,17 @@ public class Gui {
 
         if (input.getKeyType() == KeyType.EOF) return new QuitCommand(arena, screen);
         if (input.getKeyType() == KeyType.Character && input.getCharacter() == 'q') return new QuitCommand(arena, screen);
-        if (input.getKeyType() == KeyType.Character && input.getCharacter() == 'd') return new DrawCardCommand(arena);
         if (input.getKeyType() == KeyType.Character && input.getCharacter() == '1') DrawCardInfo(0);
         if (input.getKeyType() == KeyType.Character && input.getCharacter() == '2') DrawCardInfo(1);
         if (input.getKeyType() == KeyType.Character && input.getCharacter() == '3') DrawCardInfo(2);
         if (input.getKeyType() == KeyType.Character && input.getCharacter() == '4') DrawCardInfo(3);
-        if (input.getKeyType() == KeyType.Enter) return new SwitchPlayerCommand(arena);
-        //if (input.getKeyType() == KeyType.ArrowUp) return new MoveHeroUpCommand(arena);
-        //if (input.getKeyType() == KeyType.ArrowLeft) return new MoveHeroLeftCommand(arena);
-       // if (input.getKeyType() == KeyType.ArrowRight) return new MoveHeroRightCommand(arena);
+
+
+        if(arena.getCurrent()) {
+            if (input.getKeyType() == KeyType.Character && input.getCharacter() == 'd')
+                return new DrawCardCommand(arena, arena.getPlayer());
+            if (input.getKeyType() == KeyType.Enter) return new SwitchPlayerCommand(arena);
+        }
 
         return new DoNothingCommand();
     }

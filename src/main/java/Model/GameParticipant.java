@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class GameParticipant {
+public abstract class GameParticipant {
     protected List<AnyCard> draw_deck;
     private List<SpecialCard> play_deck;
     private int health;
@@ -19,6 +19,8 @@ public class GameParticipant {
     protected int points;
     protected int max_points;
 
+    protected boolean turn_over;
+
     public GameParticipant(List<AnyCard> draw_deck, List<SpecialCard> play_deck, int health, int mana, int max_health, int max_mana, int max_points){
         Collections.shuffle(draw_deck);
         this.draw_deck = draw_deck;
@@ -29,6 +31,7 @@ public class GameParticipant {
         this.max_mana = max_mana;
         this.max_points = max_points;
         this.points = 0;
+        this.turn_over = false;
 
         default_draw_deck = new ArrayList<>();
         if(draw_deck.isEmpty()) {
@@ -43,6 +46,31 @@ public class GameParticipant {
         }
         DeckShuffler deck_shuffler = new DeckShuffler(draw_deck);
         deck_shuffler.execute();
+    }
+
+    public void drawCard(){ //-> Boolean verifies if overflow occured
+        if(draw_deck.size() == 0){
+            //Throw something?
+            return;
+        }
+        AnyCard a = draw_deck.get(0);
+
+        //Bad thing here, SOLID principle broken
+        //TODO: Unbreak first SOLID principle
+
+        //setPoints(getPoints() + ((Card) a).getValue());
+        a.effect(this);
+        draw_deck.remove(0);
+        if(draw_deck.size() == 0){
+            resetDrawDeck();
+        }
+
+        /*if(points > max_points){
+            points = 6;
+            return true;
+        }else if (points == max_points) return true;
+*/
+        return;
     }
 
     public List<AnyCard> getDraw_deck() {
@@ -113,5 +141,12 @@ public class GameParticipant {
 
     public int getMax_points() {
         return max_points;
+    }
+
+    public boolean getTurnOver(){
+        return turn_over;
+    }
+    public void setTurnOver(boolean turn_over){
+        this.turn_over = turn_over;
     }
 }

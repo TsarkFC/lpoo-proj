@@ -1,9 +1,12 @@
 package Model;
 
 import Commands.ArenaObserver;
+import Commands.TurnChecker;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static java.lang.Integer.min;
 
 public class Arena {
     private int width;
@@ -53,14 +56,27 @@ public class Arena {
         observers.add(observer);
     }
 
-    public void drawCard(){ //Aqui podia se receber um game participant que seria o current e fazia-se gameparticipant.drawCard() (drawCard() seria um método abstrato)
+    public void drawCard(GameParticipant part){
 
-        if (current){
-            if (player.drawCard()) switchPlayer();
+
+
+        part.drawCard();
+        if(part.points > part.max_points){
+            int a = min(player.points, 6);
+            a = min(a, enemy.points);
+            part.points = a;
+            //TODO: End turn for both players function
+            //TODO: Make variable with overdraw, normal and guarding states for ending the turn
+            player.setTurnOver(true);
+            enemy.setTurnOver(true);
+        }
+        if(part.points == part.max_points){
+            part.setTurnOver(true);
         }
 
-        //Coisas dos inimigos
-
+        //TODO: Use turn_over variables to check if they player's turn is over (using a command?)
+        TurnChecker checker = new TurnChecker(this);
+        checker.execute();
 
         notifyObservers();
     }
@@ -76,4 +92,11 @@ public class Arena {
         }
     }
 
+    public boolean getCurrent(){
+        return current;
+    }
+
+    public void setCurrent(boolean current){
+        this.current = current;
+    }
 }
