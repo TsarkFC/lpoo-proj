@@ -53,14 +53,21 @@ public class Arena {
         observers.add(observer);
     }
 
-    public void drawCard(){
+    public void drawCard(){ //Aqui podia se receber um game participant que seria o current e fazia-se gameparticipant.drawCard() (drawCard() seria um método abstrato)
 
-        player.drawCard();
+        if (current){
+            if (player.drawCard()) switchPlayer();
+        }
 
         //Coisas dos inimigos
 
 
         notifyObservers();
+    }
+
+    public void switchPlayer(){ //->Current podia passar a ser um GameParticipant em vez de boolean (evitava verificações de if(current))
+        if (!current) return; //-> Possibly print a message saying that enemy is playing its turn
+        current = false;
     }
 
     public void notifyObservers() {

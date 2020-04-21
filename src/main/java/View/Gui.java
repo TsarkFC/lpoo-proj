@@ -1,9 +1,6 @@
 package View;
 
-import Commands.Command;
-import Commands.DoNothingCommand;
-import Commands.DrawCardCommand;
-import Commands.QuitCommand;
+import Commands.*;
 import Model.*;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
@@ -65,10 +62,10 @@ public class Gui {
         drawManaBar(15, 22, player.getMana(), player.getMaxMana());
         drawPointBar(15, 12, player.getPoints(), 12);
 
-        drawSpecialCard(12, (SpecialCard) (player.getPlay_deck().get(0))); //TODO: Fix cast problem (related to AnyCard)
-        drawSpecialCard(19, (SpecialCard) (player.getPlay_deck().get(1)));
-        drawSpecialCard(26, (SpecialCard) (player.getPlay_deck().get(2)));
-        drawSpecialCard(33, (SpecialCard) (player.getPlay_deck().get(3)));
+        drawSpecialCard(12, player.getPlay_deck().get(0));
+        drawSpecialCard(19, player.getPlay_deck().get(1));
+        drawSpecialCard(26, player.getPlay_deck().get(2));
+        drawSpecialCard(33, player.getPlay_deck().get(3));
     }
 
     private void drawEnemy(Enemy enemy){
@@ -240,7 +237,7 @@ public class Gui {
         graphics.setBackgroundColor(TextColor.Factory.fromString("#336699"));
         graphics.setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
         graphics.putString(20, 24, "Card Info:");
-        graphics.putString(20, 25, ((SpecialCard)(arena.getPlayer().getPlay_deck().get(cardno))).getCardInfo()); //TODO: Solve problem with (AnyCard)
+        graphics.putString(20, 25, (arena.getPlayer().getPlay_deck().get(cardno)).getCardInfo()); //TODO: Solve problem with (AnyCard)
         screen.refresh();
     }
 
@@ -256,7 +253,7 @@ public class Gui {
         if (input.getKeyType() == KeyType.Character && input.getCharacter() == '2') DrawCardInfo(1);
         if (input.getKeyType() == KeyType.Character && input.getCharacter() == '3') DrawCardInfo(2);
         if (input.getKeyType() == KeyType.Character && input.getCharacter() == '4') DrawCardInfo(3);
-        //if (input.getKeyType() == KeyType.ArrowDown) return new MoveHeroDownCommand(arena);
+        if (input.getKeyType() == KeyType.Enter) return new SwitchPlayerCommand(arena);
         //if (input.getKeyType() == KeyType.ArrowUp) return new MoveHeroUpCommand(arena);
         //if (input.getKeyType() == KeyType.ArrowLeft) return new MoveHeroLeftCommand(arena);
        // if (input.getKeyType() == KeyType.ArrowRight) return new MoveHeroRightCommand(arena);
