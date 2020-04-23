@@ -8,11 +8,5 @@ public class Enemy extends GameParticipant{
         super(draw_deck, play_deck, health, mana, max_health, max_mana, max_points);
     }
 
-    public void playTurn(){
-        if(this.points < 8) {
-            this.drawCard();
-        }
-    }
-
 
 }

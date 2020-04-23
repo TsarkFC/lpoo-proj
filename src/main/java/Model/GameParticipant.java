@@ -50,31 +50,6 @@ public abstract class GameParticipant {
         deck_shuffler.execute();
     }
 
-    public void drawCard(){ //-> Boolean verifies if overflow occured
-        if(draw_deck.size() == 0){
-            //Throw something?
-            return;
-        }
-        Card a = draw_deck.get(0);
-
-        //Bad thing here, SOLID principle broken
-        //TODO: Unbreak first SOLID principle
-
-        cardController = new CardController(a);
-        cardController.effect(this);
-        draw_deck.remove(0);
-        if(draw_deck.size() == 0){
-            resetDrawDeck();
-        }
-
-        /*if(points > max_points){
-            points = 6;
-            return true;
-        }else if (points == max_points) return true;
-*/
-        return;
-    }
-
     public List<Card> getDraw_deck() {
         return draw_deck;
     }
