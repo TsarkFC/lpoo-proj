@@ -1,27 +1,29 @@
 package Model;
 
 import Commands.DeckShuffler;
+import Controller.CardController;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public abstract class GameParticipant {
-    protected List<AnyCard> draw_deck;
+    protected List<Card> draw_deck;
     private List<SpecialCard> play_deck;
     private int health;
     private int mana;
     private int max_health;
     private int max_mana;
 
-    private List<AnyCard> default_draw_deck;
+    private List<Card> default_draw_deck;
 
     protected int points;
     protected int max_points;
 
     protected boolean turn_over;
+    protected CardController cardController;
 
-    public GameParticipant(List<AnyCard> draw_deck, List<SpecialCard> play_deck, int health, int mana, int max_health, int max_mana, int max_points){
+    public GameParticipant(List<Card> draw_deck, List<SpecialCard> play_deck, int health, int mana, int max_health, int max_mana, int max_points){
         Collections.shuffle(draw_deck);
         this.draw_deck = draw_deck;
         this.play_deck = play_deck;
@@ -53,13 +55,13 @@ public abstract class GameParticipant {
             //Throw something?
             return;
         }
-        AnyCard a = draw_deck.get(0);
+        Card a = draw_deck.get(0);
 
         //Bad thing here, SOLID principle broken
         //TODO: Unbreak first SOLID principle
 
-        //setPoints(getPoints() + ((Card) a).getValue());
-        a.effect(this);
+        cardController = new CardController(a);
+        cardController.effect(this);
         draw_deck.remove(0);
         if(draw_deck.size() == 0){
             resetDrawDeck();
@@ -73,11 +75,11 @@ public abstract class GameParticipant {
         return;
     }
 
-    public List<AnyCard> getDraw_deck() {
+    public List<Card> getDraw_deck() {
         return draw_deck;
     }
 
-    public void setDraw_deck(List<AnyCard> draw_deck) {
+    public void setDraw_deck(List<Card> draw_deck) {
         this.draw_deck = draw_deck;
     }
 

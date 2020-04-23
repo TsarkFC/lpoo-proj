@@ -57,9 +57,6 @@ public class Arena {
     }
 
     public void drawCard(GameParticipant part){
-
-
-
         part.drawCard();
         if(part.points > part.max_points){
             int a = min(player.points, 6);

@@ -1,15 +1,15 @@
 package Commands;
 
-import Model.AnyCard;
+import Model.Card;
 
 import java.util.Collections;
 import java.util.List;
 
 public class DeckShuffler implements Command{
 
-    List<AnyCard> deck;
+    List<Card> deck;
 
-    public DeckShuffler(List<AnyCard> deck){
+    public DeckShuffler(List<Card> deck){
         this.deck = deck;
     }
 
