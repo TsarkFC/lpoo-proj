@@ -39,15 +39,16 @@ public abstract class GameParticipant {
                 Card card = new Card((i / 4) + 1);
                 default_draw_deck.add(card);
             }
-            draw_deck.addAll(default_draw_deck);
+            this.draw_deck.addAll(default_draw_deck);
         }
         else{
             this.default_draw_deck.addAll(draw_deck);
         }
-        DeckShuffler deck_shuffler = new DeckShuffler(draw_deck);
+        DeckShuffler deck_shuffler = new DeckShuffler(this.draw_deck);
         deck_shuffler.execute();
     }
 
+<<<<<<< Updated upstream
     public void drawCard(){ //-> Boolean verifies if overflow occured
         if(draw_deck.size() == 0){
             //Throw something?
@@ -74,6 +75,22 @@ public abstract class GameParticipant {
     }
 
     public List<AnyCard> getDraw_deck() {
+=======
+    public void setBoth_draw_decks(List<Card> draw_deck) {
+        this.draw_deck = draw_deck;
+        this.default_draw_deck = draw_deck;
+    }
+
+    public List<Card> getDefault_draw_deck() {
+        return default_draw_deck;
+    }
+
+    public void setDefault_draw_deck(List<Card> draw_deck) {
+        this.default_draw_deck = draw_deck;
+    }
+
+    public List<Card> getDraw_deck() {
+>>>>>>> Stashed changes
         return draw_deck;
     }
 

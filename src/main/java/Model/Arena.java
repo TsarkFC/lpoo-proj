@@ -1,7 +1,6 @@
 package Model;
 
 import Commands.ArenaObserver;
-import Commands.TurnChecker;
 
 import java.util.ArrayList;
 import java.util.List;

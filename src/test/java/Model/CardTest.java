@@ -1,5 +1,6 @@
 package Model;
 
+import Controller.CardController;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -19,7 +20,8 @@ public class CardTest {
     public void testEffect() {
         Player player = new Player(new ArrayList<>(), new ArrayList<>(), 12, 0, 12, 12, 12);
         Card card = new Card(5);
-        card.effect(player);
+        CardController controller = new CardController(card);
+        controller.effect(player);
 
         assertEquals(5, player.getPoints());
     }
