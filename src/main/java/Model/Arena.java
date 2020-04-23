@@ -56,28 +56,6 @@ public class Arena {
         observers.add(observer);
     }
 
-    public void drawCard(GameParticipant part){
-        part.drawCard();
-        if(part.points > part.max_points){
-            int a = min(player.points, 6);
-            a = min(a, enemy.points);
-            part.points = a;
-            //TODO: End turn for both players function
-            //TODO: Make variable with overdraw, normal and guarding states for ending the turn
-            player.setTurnOver(true);
-            enemy.setTurnOver(true);
-        }
-        if(part.points == part.max_points){
-            part.setTurnOver(true);
-        }
-
-        //TODO: Use turn_over variables to check if they player's turn is over (using a command?)
-        TurnChecker checker = new TurnChecker(this);
-        checker.execute();
-
-        notifyObservers();
-    }
-
     public void switchPlayer(){ //->Current podia passar a ser um GameParticipant em vez de boolean (evitava verificações de if(current))
         if (!current) return; //-> Possibly print a message saying that enemy is playing its turn
         current = false;

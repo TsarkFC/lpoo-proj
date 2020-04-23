@@ -12,12 +12,5 @@ public class CardController {
 
     public void effect(GameParticipant part){
         part.setPoints(part.getPoints() + card.getValue());
-        /*
-        if(part.points == part.max_points){
-
-        }
-        else if(part.points > part.max_points){
-            //EndTurn();
-        }*/
     }
 }

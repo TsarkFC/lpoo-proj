@@ -1,5 +1,6 @@
 package Commands;
 
+import Controller.ArenaController;
 import Model.Arena;
 
 public class TurnChecker {
@@ -11,7 +12,10 @@ public class TurnChecker {
     public void execute(){
         boolean current = this.arena.getCurrent();
         if(current){
-            arena.getEnemy().playTurn(); //TODO: Complete playTurn function with proper-ish AI
+            this.arena.setCurrent(false);
+            ArenaController controller = new ArenaController(arena);
+            controller.playEnemyTurn();
+            this.arena.setCurrent(true);
         }
 
 
