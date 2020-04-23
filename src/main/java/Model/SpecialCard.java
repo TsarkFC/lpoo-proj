@@ -1,6 +1,6 @@
 package Model;
 
-public class SpecialCard implements AnyCard{
+public class SpecialCard {
     private int cost;
     private char symbol;
     private String cardInfo;
@@ -9,11 +9,6 @@ public class SpecialCard implements AnyCard{
         this.cost = cost;
         this.symbol = symbol;
         this.cardInfo = cardInfo;
-    }
-
-    @Override
-    public void effect(GameParticipant part) {
-
     }
 
     public int getCost() {
