@@ -1,12 +1,9 @@
 package Model;
 
 import Commands.ArenaObserver;
-import Commands.TurnChecker;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static java.lang.Integer.min;
 
 public class Arena {
     private int width;

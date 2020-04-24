@@ -1,7 +1,6 @@
 package Model;
 
 import Commands.DeckShuffler;
-import Controller.CardController;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -21,7 +20,6 @@ public abstract class GameParticipant {
     protected int max_points;
 
     protected boolean turn_over;
-    protected CardController cardController;
 
     public GameParticipant(List<Card> draw_deck, List<SpecialCard> play_deck, int health, int mana, int max_health, int max_mana, int max_points){
         Collections.shuffle(draw_deck);
@@ -41,13 +39,26 @@ public abstract class GameParticipant {
                 Card card = new Card((i / 4) + 1);
                 default_draw_deck.add(card);
             }
-            draw_deck.addAll(default_draw_deck);
+            this.draw_deck.addAll(default_draw_deck);
         }
         else{
             this.default_draw_deck.addAll(draw_deck);
         }
-        DeckShuffler deck_shuffler = new DeckShuffler(draw_deck);
+        DeckShuffler deck_shuffler = new DeckShuffler(this.draw_deck);
         deck_shuffler.execute();
+    }
+
+    public void setBoth_draw_decks(List<Card> draw_deck) {
+        this.draw_deck = draw_deck;
+        this.default_draw_deck = draw_deck;
+    }
+
+    public List<Card> getDefault_draw_deck() {
+        return default_draw_deck;
+    }
+
+    public void setDefault_draw_deck(List<Card> draw_deck) {
+        this.default_draw_deck = draw_deck;
     }
 
     public List<Card> getDraw_deck() {
