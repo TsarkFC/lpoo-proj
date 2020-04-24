@@ -1,5 +1,6 @@
 package Creator;
 
+import Controller.GameParticipantController;
 import Model.*;
 
 import java.util.ArrayList;
@@ -14,7 +15,11 @@ public class ArenaCreator {
         player_special.add(new SpecialCard(7, '+', "card no 7"));
         player_special.add(new SpecialCard(4, '-', "card no 4"));
         player_special.add(new SpecialCard(5, '/', "card no 5"));
-        return new Player(player_card, player_special, 10, 10, 20, 20, 12);
+
+        Player player = new Player(player_card, player_special, 10, 10, 20, 20, 12);
+        GameParticipantController controller = new GameParticipantController(player);
+        controller.setDefaultDeck();
+        return player;
     }
 
     private Enemy createEnemy(){

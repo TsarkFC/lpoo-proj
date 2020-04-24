@@ -1,6 +1,7 @@
 package Commands;
 
 import Controller.CardController;
+import Controller.GameParticipantController;
 import Model.Arena;
 import Model.Card;
 import Model.GameParticipant;
@@ -12,10 +13,12 @@ import static java.lang.Integer.min;
 
 public class DrawCardCommand implements Command{
     private final Arena arena;
-    private final GameParticipant part;
+    private GameParticipant part;
+    private final GameParticipantController controller;
     public DrawCardCommand(Arena arena, GameParticipant part){
         this.arena = arena;
         this.part = part;
+        this.controller = new GameParticipantController(part);
     }
 
     @Override
@@ -23,25 +26,13 @@ public class DrawCardCommand implements Command{
 
 
         Card card = part.getDraw_deck().get(0);
-
-        //Bad thing here, SOLID principle broken
-        //TODO: Unbreak first SOLID principle
-
-
         CardController c = new CardController(card);
         c.effect(part);
 
-        List<Card> deckCopy = new ArrayList<Card>();
-        deckCopy.addAll(part.getDraw_deck());
-        deckCopy.remove(0);
-        part.setDraw_deck(deckCopy);
+        controller.removeDeckTop();
 
-        if(part.getDraw_deck().size() == 0){
-            part.resetDrawDeck();
-        }
-
-
-
+        if(part.getDraw_deck().size() == 0)
+            controller.resetDrawDeck();
 
         if(part.getPoints() > part.getMax_points()){
             int a = min(arena.getPlayer().getPoints(), 6);
@@ -52,6 +43,7 @@ public class DrawCardCommand implements Command{
             arena.getPlayer().setTurnOver(true);
             arena.getEnemy().setTurnOver(true);
         }
+
         if(part.getPoints() == part.getMax_points()){
             part.setTurnOver(true);
         }
