@@ -5,20 +5,20 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.TerminalScreen;
 
 public class BarViewer {
-    private TerminalScreen screen;
+    private TextGraphics unfilled_point;
+    private TextGraphics filled_point;
+    private TextGraphics pointNumber;
 
     public BarViewer(TerminalScreen screen){
-        this.screen = screen;
+        unfilled_point = screen.newTextGraphics();
+        filled_point = screen.newTextGraphics();
+        pointNumber = screen.newTextGraphics();
     }
 
     public void drawPointBar(int x, int y, int point_val, int max_point_val){ //TODO: Variable maximum
-
-        TextGraphics unfilled_point = screen.newTextGraphics();
         unfilled_point.setBackgroundColor(TextColor.Factory.fromString("#AA8855"));
         unfilled_point.setForegroundColor(TextColor.Factory.fromString("#FF0000"));
 
-
-        TextGraphics filled_point = screen.newTextGraphics();
         filled_point.setBackgroundColor(TextColor.Factory.fromString("#EECC88"));
         filled_point.setForegroundColor(TextColor.Factory.fromString("#FF0000"));
 
@@ -29,7 +29,6 @@ public class BarViewer {
 
         fillBar(x, y, filled_point, unfilled_point, point_val, max_point_val);
 
-        TextGraphics pointNumber = screen.newTextGraphics();
         pointNumber.setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
         pointNumber.setBackgroundColor(TextColor.Factory.fromString("#AA8855"));
 
@@ -40,18 +39,14 @@ public class BarViewer {
     }
 
     public void drawHealthBar(int x, int y, int health, int max_health){
-        TextGraphics unfilled_point = screen.newTextGraphics();
         unfilled_point.setBackgroundColor(TextColor.Factory.fromString("#775555"));
         unfilled_point.setForegroundColor(TextColor.Factory.fromString("#777777"));
 
-
-        TextGraphics filled_point = screen.newTextGraphics();
         filled_point.setBackgroundColor(TextColor.Factory.fromString("#BB1111"));
         filled_point.setForegroundColor(TextColor.Factory.fromString("#AA5555"));
 
         fillBar(x, y, filled_point, unfilled_point, health, max_health);
 
-        TextGraphics pointNumber = screen.newTextGraphics();
         pointNumber.setBackgroundColor(TextColor.Factory.fromString("#BB1111"));
         pointNumber.setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
 
@@ -62,18 +57,14 @@ public class BarViewer {
     }
 
     public void drawManaBar(int x, int y, int mana, int max_mana){
-        TextGraphics unfilled_point = screen.newTextGraphics();
         unfilled_point.setBackgroundColor(TextColor.Factory.fromString("#6688AA"));
         unfilled_point.setForegroundColor(TextColor.Factory.fromString("#777777"));
 
-
-        TextGraphics filled_point = screen.newTextGraphics();
         filled_point.setBackgroundColor(TextColor.Factory.fromString("#3D84CC"));
         filled_point.setForegroundColor(TextColor.Factory.fromString("#5555AA"));
 
         fillBar(x, y, filled_point, unfilled_point, mana, max_mana);
 
-        TextGraphics pointNumber = screen.newTextGraphics();
         pointNumber.setBackgroundColor(TextColor.Factory.fromString("#3D84CC"));
         pointNumber.setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
 
@@ -97,7 +88,6 @@ public class BarViewer {
             } else {
                 unfilled_point.putString(x + i, y, "|");
             }
-
         }
 
         for (int j = 0; j <= 11; j++) {

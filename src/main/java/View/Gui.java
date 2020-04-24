@@ -11,7 +11,6 @@ import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
-import org.w3c.dom.Text;
 
 import java.io.IOException;
 
@@ -36,7 +35,7 @@ public class Gui {
         }
 
         this.arena = arena;
-        this.cardViewer = new CardViewer();
+        this.cardViewer = new CardViewer(screen);
         this.gameParticipantViewer = new GameParticipantViewer(screen, cardViewer);
     }
 

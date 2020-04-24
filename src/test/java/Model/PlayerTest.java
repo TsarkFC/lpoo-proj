@@ -11,7 +11,7 @@ public class PlayerTest {
     @Test
     public void testConstructor(){ //TODO: Use stub for creating cards and create multiple cards
         List<SpecialCard> play_deck = new ArrayList<>();
-        List<AnyCard> normal_deck = new ArrayList<>();
+        List<Card> normal_deck = new ArrayList<>();
 
         Player player = new Player(normal_deck, play_deck, 2, 5, 12, 12, 12);
 

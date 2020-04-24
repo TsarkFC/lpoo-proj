@@ -1,7 +1,6 @@
 package Model;
 
 import Commands.DeckShuffler;
-import Controller.CardController;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -21,7 +20,6 @@ public abstract class GameParticipant {
     protected int max_points;
 
     protected boolean turn_over;
-    protected CardController cardController;
 
     public GameParticipant(List<Card> draw_deck, List<SpecialCard> play_deck, int health, int mana, int max_health, int max_mana, int max_points){
         Collections.shuffle(draw_deck);
