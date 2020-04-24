@@ -16,13 +16,13 @@ public class CardViewer {
     }
 
     public void drawCard(int x, int y, int deck_size){
-        setGraphics("#EECC88", "#FF0000");
+        setGraphicsSettings("#EECC88", "#FF0000");
         drawCardStructure(x, y, graphics);
         graphics.putString(x + 2, y + 1, String.valueOf(deck_size));
     }
 
     public void drawSpecialCard(int x, SpecialCard specialCard){
-        setGraphics("#EECC88", "#FF0000");
+        setGraphicsSettings("#EECC88", "#FF0000");
         drawCardStructure(x, 15, graphics);
         graphics.putString(x + 2, 16, String.valueOf(specialCard.getCost()));
         graphics.putString(x + 2, 17, String.valueOf(specialCard.getSymbol()));
@@ -43,13 +43,13 @@ public class CardViewer {
     }
 
     public void drawCardInfo(int cardno, TerminalScreen screen, Player player) throws IOException {
-        setGraphics("#336699", "#FFFFFF");
+        setGraphicsSettings("#336699", "#FFFFFF");
         graphics.putString(20, 24, "Card Info:");
         graphics.putString(20, 25, (player.getPlay_deck().get(cardno)).getCardInfo());
         screen.refresh();
     }
 
-    private void setGraphics(String back, String fore){
+    public void setGraphicsSettings(String back, String fore){
         graphics.setBackgroundColor(TextColor.Factory.fromString(back));
         graphics.setForegroundColor(TextColor.Factory.fromString(fore));
     }
@@ -57,4 +57,5 @@ public class CardViewer {
     public TextGraphics getGraphics(){
         return graphics;
     }
+    public void setGraphics(TextGraphics graphics){this.graphics = graphics;}
 }
