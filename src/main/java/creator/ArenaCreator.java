@@ -38,8 +38,6 @@ public class ArenaCreator {
         enemyController.setDefaultDeck();
 
         Arena arena = new Arena(player, enemy, 50, 30);
-        arena.setEnemyController(enemyController);
-        arena.setPlayerController(playerController);
 
         return arena;
     }

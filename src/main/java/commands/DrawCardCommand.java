@@ -6,19 +6,16 @@ import model.Arena;
 import model.Card;
 import model.GameParticipant;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static java.lang.Integer.min;
 
 public class DrawCardCommand implements Command{
     private Arena arena;
     private GameParticipant part;
     private GameParticipantController controller;
-    public DrawCardCommand(Arena arena, GameParticipant controller){
+    public DrawCardCommand(Arena arena, GameParticipant part){
         this.arena = arena;
-        this.controller = new GameParticipantController(controller);
-        this.part = controller;
+        this.controller = new GameParticipantController(part);
+        this.part = part;
     }
 
     @Override

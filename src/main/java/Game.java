@@ -1,13 +1,10 @@
-import commands.ArenaObserver;
+import observer.ArenaObserver;
 import commands.Command;
-import commands.TurnChecker;
 import creator.ArenaCreator;
 import model.*;
 import view.Gui;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Game implements ArenaObserver {
     private Gui gui;

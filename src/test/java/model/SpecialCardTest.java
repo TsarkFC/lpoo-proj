@@ -13,9 +13,4 @@ public class SpecialCardTest {
         assertEquals('+', card.getSymbol());
         assertEquals("Testing card info", card.getCardInfo());
     }
-
-    @Test
-    public void listSetterTest(){
-
-    }
 }
