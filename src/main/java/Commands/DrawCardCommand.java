@@ -12,19 +12,17 @@ import java.util.List;
 import static java.lang.Integer.min;
 
 public class DrawCardCommand implements Command{
-    private final Arena arena;
+    private Arena arena;
     private GameParticipant part;
-    private final GameParticipantController controller;
-    public DrawCardCommand(Arena arena, GameParticipant part){
+    private GameParticipantController controller;
+    public DrawCardCommand(Arena arena, GameParticipant controller){
         this.arena = arena;
-        this.part = part;
-        this.controller = new GameParticipantController(part);
+        this.controller = new GameParticipantController(controller);
+        this.part = controller;
     }
 
     @Override
     public void execute() {
-
-
         Card card = part.getDraw_deck().get(0);
         CardController c = new CardController(card);
         c.effect(part);

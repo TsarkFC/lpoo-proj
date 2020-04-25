@@ -16,16 +16,11 @@ public class ArenaCreator {
         player_special.add(new SpecialCard(4, '-', "card no 4"));
         player_special.add(new SpecialCard(5, '/', "card no 5"));
 
-        Player player = new Player(player_card, player_special, 10, 10, 20, 20, 12);
-        GameParticipantController controller = new GameParticipantController(player);
-        controller.setDefaultDeck();
-        return player;
+        return new Player(player_card, player_special, 10, 10, 20, 20, 12);
     }
 
     private Enemy createEnemy(){
         List<Card> enemy_card = new ArrayList<>();
-        enemy_card.add(new Card(2));
-        enemy_card.add(new Card(7));
         List<SpecialCard> enemy_special = new ArrayList<>();
         enemy_special.add(new SpecialCard(2, '*', "card no 2"));
         enemy_special.add(new SpecialCard(7, '+', "card no 7"));
@@ -35,7 +30,18 @@ public class ArenaCreator {
     }
 
     public Arena create(){
-        return new Arena(createPlayer(), createEnemy(), 50, 30);
+        Player player = createPlayer();
+        GameParticipantController playerController = new GameParticipantController(player);
+        playerController.setDefaultDeck();
+        Enemy enemy = createEnemy();
+        GameParticipantController enemyController = new GameParticipantController(enemy);
+        enemyController.setDefaultDeck();
+
+        Arena arena = new Arena(player, enemy, 50, 30);
+        arena.setEnemyController(enemyController);
+        arena.setPlayerController(playerController);
+
+        return arena;
     }
 
 }

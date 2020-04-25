@@ -1,6 +1,7 @@
 package Model;
 
 import Commands.ArenaObserver;
+import Controller.GameParticipantController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,8 +13,11 @@ public class Arena {
     private Enemy enemy;     //to fix
     private boolean current; //to fix  true->player | false -> enemy
 
-    private boolean isFinished = false;
+    private boolean isFinished;
     private List<ArenaObserver> observers;
+
+    private GameParticipantController playerController;
+    private GameParticipantController enemyController;
 
     public Arena(Player player, Enemy enemy, int width, int height){
         this.player = player;
@@ -70,5 +74,21 @@ public class Arena {
 
     public void setCurrent(boolean current){
         this.current = current;
+    }
+
+    public GameParticipantController getPlayerController() {
+        return playerController;
+    }
+
+    public void setPlayerController(GameParticipantController playerController) {
+        this.playerController = playerController;
+    }
+
+    public GameParticipantController getEnemyController() {
+        return enemyController;
+    }
+
+    public void setEnemyController(GameParticipantController enemyController) {
+        this.enemyController = enemyController;
     }
 }

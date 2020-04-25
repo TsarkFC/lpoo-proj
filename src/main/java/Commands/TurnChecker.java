@@ -17,8 +17,5 @@ public class TurnChecker {
             controller.playEnemyTurn();
             this.arena.setCurrent(true);
         }
-
-
-
     }
 }

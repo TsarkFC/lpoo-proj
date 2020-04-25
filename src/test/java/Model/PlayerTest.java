@@ -1,5 +1,7 @@
 package Model;
 
+import Controller.GameParticipantController;
+import View.GameParticipantViewer;
 import org.junit.Test;
 
 import java.lang.reflect.Array;
@@ -23,23 +25,6 @@ public class PlayerTest {
         assertEquals(12, player.getMaxHealth());
         assertEquals(12, player.getMaxMana());
         assertEquals(12, player.getMaxHealth());
-    }
-
-    @Test
-    public void testEmptyDeckController(){
-        List<SpecialCard> play_deck = new ArrayList<>();
-        List<Card> normal_deck = new ArrayList<>();
-
-        Player player = new Player(normal_deck, play_deck, 2, 5, 12, 12, 12);
-
-        assertEquals(player.getDraw_deck().size(), 24);
-
-        int a = 0;
-        for(int i = 0; i < 24; i++){
-            a += player.getDraw_deck().get(i).getValue();
-        }
-
-        assertEquals(a, 4 + 8 + 12 + 16 + 20 + 24);
     }
 
     @Test

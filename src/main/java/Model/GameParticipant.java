@@ -1,7 +1,5 @@
 package Model;
 
-import Commands.DeckShuffler;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -21,6 +19,7 @@ public abstract class GameParticipant {
 
     protected boolean turn_over;
 
+    //TODO: Simplify constructor
     public GameParticipant(List<Card> draw_deck, List<SpecialCard> play_deck, int health, int mana, int max_health, int max_mana, int max_points){
         Collections.shuffle(draw_deck);
         this.draw_deck = draw_deck;

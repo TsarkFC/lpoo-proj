@@ -5,16 +5,16 @@ import Model.Arena;
 import Model.GameParticipant;
 
 public class ArenaController {
-    private Arena arena;
+    private Arena model;
 
     public ArenaController(Arena arena){
-        this.arena = arena;
+        this.model = arena;
     }
 
     public void playEnemyTurn(){ //TODO: Complete playTurn function with proper-ish AI
-        if(arena.getEnemy().getPoints() < 8){
+        if(model.getEnemy().getPoints() < 8){
 
-            DrawCardCommand command = new DrawCardCommand(arena, arena.getEnemy());
+            DrawCardCommand command = new DrawCardCommand(model, model.getEnemy());
             command.execute();
         }
     }
