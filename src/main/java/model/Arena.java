@@ -16,9 +16,7 @@ public class Arena {
     private boolean isFinished;
     private List<ArenaObserver> observers;
 
-    public Arena(Player player, Enemy enemy, int width, int height){
-        this.player = player;
-        this.enemy = enemy;
+    public Arena(int width, int height){
         this.width = width;
         this.height = height;
         this.current = true;
@@ -71,5 +69,13 @@ public class Arena {
 
     public void setCurrent(boolean current){
         this.current = current;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    public void setEnemy(Enemy enemy) {
+        this.enemy = enemy;
     }
 }

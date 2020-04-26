@@ -1,3 +1,4 @@
+import controller.ArenaController;
 import observer.ArenaObserver;
 import commands.Command;
 import creator.ArenaCreator;
@@ -6,33 +7,17 @@ import view.Gui;
 
 import java.io.IOException;
 
-public class Game implements ArenaObserver {
+public class Game {
     private Gui gui;
     private Arena arena;
     public static void main(String[] args) throws IOException {
-        new Game().start();
-    }
+        Arena arena = new Arena(50, 30);
+        Gui gui = new Gui(arena);
+        arena.addObserver(gui);
 
-    private void start() throws IOException {
-        ArenaCreator creator = new ArenaCreator();
-
-        Arena arena = creator.create();
-        arena.addObserver(this);
-        gui = new Gui(arena);
-        gui.draw();
-
-        while(!arena.isFinished()){
-            Command command = gui.getNextCommand();
-            command.execute();
-        }
-    }
-
-    @Override
-    public void arenaChanged() {
-        try{
-            gui.draw();
-        } catch (IOException e) {
-
-        }
+        ArenaController controller = new ArenaController(gui, arena);
+        ArenaCreator creator = new ArenaCreator(controller);
+        creator.create();
+        controller.start();
     }
 }

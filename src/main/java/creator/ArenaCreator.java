@@ -1,12 +1,17 @@
 package creator;
 
-import controller.GameParticipantController;
+import controller.ArenaController;
 import model.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ArenaCreator {
+    private ArenaController controller;
+
+    public ArenaCreator(ArenaController controller){
+        this.controller = controller;
+    }
 
     private Player createPlayer(){
         List<Card> player_card = new ArrayList<>();
@@ -29,17 +34,12 @@ public class ArenaCreator {
         return new Enemy(enemy_card, enemy_special, 10, 10, 20, 20, 12);
     }
 
-    public Arena create(){
+    public void create(){
         Player player = createPlayer();
-        GameParticipantController playerController = new GameParticipantController(player);
-        playerController.setDefaultDeck();
         Enemy enemy = createEnemy();
-        GameParticipantController enemyController = new GameParticipantController(enemy);
-        enemyController.setDefaultDeck();
 
-        Arena arena = new Arena(player, enemy, 50, 30);
-
-        return arena;
+        controller.setPlayerController(player);
+        controller.setEnemyController(enemy);
     }
 
 }
