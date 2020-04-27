@@ -15,15 +15,15 @@ public class BarViewer {
         pointNumber = screen.newTextGraphics();
     }
 
+    private void setGraphicsValues(TextGraphics graphics, String fore, String back){
+        graphics.setBackgroundColor(TextColor.Factory.fromString(back));
+        graphics.setForegroundColor(TextColor.Factory.fromString(fore));
+    }
+
     private void setAllGraphicsValues(String fBack, String fFore, String uBack, String uFore, String pBack, String pFore){
         setGraphicsValues(unfilled_point, uFore, uBack);
         setGraphicsValues(filled_point, fFore, fBack);
         setGraphicsValues(pointNumber, pFore, pBack);
-    }
-
-    private void setGraphicsValues(TextGraphics graphics, String fore, String back){
-        graphics.setBackgroundColor(TextColor.Factory.fromString(back));
-        graphics.setForegroundColor(TextColor.Factory.fromString(fore));
     }
 
     public void drawPointBar(int x, int y, int point_val, int max_point_val){
@@ -64,19 +64,17 @@ public class BarViewer {
 
     public void fillBar(int x, int y, TextGraphics filled_point, TextGraphics unfilled_point, int value, int max_value) {
         for (int i = 0; i <= 16; i += 4) {
-            if ((i / 4) * 3 <= (value / (float) max_value) * 12) {
+            if ((i / 4) * 3 <= (value / (float) max_value) * 12)
                 filled_point.putString(x + i, y, "|");
-            } else {
+            else
                 unfilled_point.putString(x + i, y, "|");
-            }
         }
-
         for (int j = 0; j <= 11; j++) {
-            if (j < (value / (float) max_value) * 12) {
+            if (j < (value / (float) max_value) * 12)
                 filled_point.putString(x + j + j / 3 + 1, y, "_");
-            } else {
+            else
                 unfilled_point.putString(x + j + j / 3 + 1, y, "_");
-            }
+
         }
     }
 }

@@ -16,8 +16,8 @@ public class Game {
         arena.addObserver(gui);
 
         ArenaController controller = new ArenaController(gui, arena);
-        ArenaCreator creator = new ArenaCreator(controller);
-        creator.create();
+        ArenaCreator creator = new ArenaCreator();
+        creator.create(controller);
         controller.start();
     }
 }
