@@ -1,6 +1,5 @@
 package view;
 
-import commands.*;
 import model.Arena;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
@@ -14,7 +13,6 @@ import com.googlecode.lanterna.terminal.Terminal;
 import observer.ArenaObserver;
 
 import java.io.IOException;
-import java.util.Observer;
 
 public class Gui implements ArenaObserver {
     private TerminalScreen screen;

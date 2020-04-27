@@ -1,10 +1,6 @@
 package model;
 
-import controller.GameParticipantController;
-import view.GameParticipantViewer;
 import org.junit.Test;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,7 +1,6 @@
 package model;
 
 import observer.ArenaObserver;
-import controller.GameParticipantController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,9 +8,9 @@ import java.util.List;
 public class Arena {
     private int width;
     private int height;
-    private GameParticipant player;   //to fix
-    private GameParticipant enemy;     //to fix
-    private boolean current; //to fix  true->player | false -> enemy
+    private GameParticipant player;
+    private GameParticipant enemy;
+    private boolean current; //true->player | false -> enemy
 
     private boolean isFinished;
     private List<ArenaObserver> observers;
