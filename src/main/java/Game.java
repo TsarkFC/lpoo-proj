@@ -1,4 +1,5 @@
 import controller.ArenaController;
+import creator.ParticipantCreator;
 import observer.ArenaObserver;
 import commands.Command;
 import creator.ArenaCreator;
@@ -17,7 +18,8 @@ public class Game {
 
         ArenaController controller = new ArenaController(gui, arena);
         ArenaCreator creator = new ArenaCreator();
-        creator.create(controller);
+        ParticipantCreator pcreator = new ParticipantCreator();
+        creator.create(controller, pcreator);
         controller.start();
     }
 }
