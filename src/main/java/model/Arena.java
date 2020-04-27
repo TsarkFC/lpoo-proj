@@ -9,8 +9,8 @@ import java.util.List;
 public class Arena {
     private int width;
     private int height;
-    private Player player;   //to fix
-    private Enemy enemy;     //to fix
+    private GameParticipant player;   //to fix
+    private GameParticipant enemy;     //to fix
     private boolean current; //to fix  true->player | false -> enemy
 
     private boolean isFinished;
@@ -32,11 +32,11 @@ public class Arena {
         return height;
     }
 
-    public Player getPlayer() {
+    public GameParticipant getPlayer() {
         return player;
     }
 
-    public Enemy getEnemy() {
+    public GameParticipant getEnemy() {
         return enemy;
     }
 
@@ -71,11 +71,11 @@ public class Arena {
         this.current = current;
     }
 
-    public void setPlayer(Player player) {
+    public void setPlayer(GameParticipant player) {
         this.player = player;
     }
 
-    public void setEnemy(Enemy enemy) {
+    public void setEnemy(GameParticipant enemy) {
         this.enemy = enemy;
     }
 }

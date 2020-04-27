@@ -16,7 +16,7 @@ public class PlayerTest {
         List<SpecialCard> play_deck = new ArrayList<>();
         List<Card> normal_deck = new ArrayList<>();
 
-        Player player = new Player(normal_deck, play_deck, 2, 5, 12, 12, 12);
+        GameParticipant player = new GameParticipant(normal_deck, play_deck, 2, 5, 12, 12, 12);
 
         assertEquals(normal_deck, player.getDraw_deck());
         assertEquals(play_deck, player.getPlay_deck());
@@ -32,7 +32,7 @@ public class PlayerTest {
         List<SpecialCard> play_deck = new ArrayList<>();
         List<Card> normal_deck = new ArrayList<>();
 
-        Player player = new Player(normal_deck, play_deck, 2, 5, 12, 12, 12);
+        GameParticipant player = new GameParticipant(normal_deck, play_deck, 2, 5, 12, 12, 12);
 
         List<Card> normal_deck2 = new ArrayList<>();
         Card a = new Card(1);

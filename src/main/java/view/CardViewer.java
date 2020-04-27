@@ -1,6 +1,6 @@
 package view;
 
-import model.Player;
+import model.GameParticipant;
 import model.SpecialCard;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
@@ -42,7 +42,7 @@ public class CardViewer {
         }
     }
 
-    public void drawCardInfo(int cardno, TerminalScreen screen, Player player) throws IOException {
+    public void drawCardInfo(int cardno, TerminalScreen screen, GameParticipant player) throws IOException {
         setGraphics("#336699", "#FFFFFF");
         graphics.putString(20, 24, "Card Info:");
         graphics.putString(20, 25, (player.getPlay_deck().get(cardno)).getCardInfo());

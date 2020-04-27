@@ -13,7 +13,7 @@ public class ArenaCreator {
         this.controller = controller;
     }
 
-    private Player createPlayer(){
+    private GameParticipant createParticipant(){
         List<Card> player_card = new ArrayList<>();
         List<SpecialCard> player_special = new ArrayList<>();
         player_special.add(new SpecialCard(2, '*', "card no 2"));
@@ -21,22 +21,12 @@ public class ArenaCreator {
         player_special.add(new SpecialCard(4, '-', "card no 4"));
         player_special.add(new SpecialCard(5, '/', "card no 5"));
 
-        return new Player(player_card, player_special, 10, 10, 20, 20, 12);
-    }
-
-    private Enemy createEnemy(){
-        List<Card> enemy_card = new ArrayList<>();
-        List<SpecialCard> enemy_special = new ArrayList<>();
-        enemy_special.add(new SpecialCard(2, '*', "card no 2"));
-        enemy_special.add(new SpecialCard(7, '+', "card no 7"));
-        enemy_special.add(new SpecialCard(4, '-', "card no 4"));
-        enemy_special.add(new SpecialCard(5, '/', "card no 5"));
-        return new Enemy(enemy_card, enemy_special, 10, 10, 20, 20, 12);
+        return new GameParticipant(player_card, player_special, 10, 10, 20, 20, 12);
     }
 
     public void create(){
-        Player player = createPlayer();
-        Enemy enemy = createEnemy();
+        GameParticipant player = createParticipant();
+        GameParticipant enemy = createParticipant();
 
         controller.setPlayerController(player);
         controller.setEnemyController(enemy);

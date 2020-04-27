@@ -2,8 +2,7 @@ package controller;
 
 import commands.DrawCardCommand;
 import model.Arena;
-import model.Enemy;
-import model.Player;
+import model.GameParticipant;
 import view.Gui;
 
 import java.io.IOException;
@@ -38,16 +37,11 @@ public class ArenaController {
         }
     }
 
-    public void setControllers(GameParticipantController c1, GameParticipantController c2){
-        playerController = c1;
-        enemyController = c2;
-    }
-
     public int getWidth(){ return model.getWidth(); }
     public int getHeight(){ return model.getHeight(); }
 
-    public Player getPlayer() {return model.getPlayer();}
-    public Enemy getEnemy() {return model.getEnemy();}
+    public GameParticipant getPlayer() {return model.getPlayer();}
+    public GameParticipant getEnemy() {return model.getEnemy();}
     public Arena getModel() {return model;}
 
     public boolean getCurrent() {return model.getCurrent();}
@@ -56,7 +50,7 @@ public class ArenaController {
         return playerController;
     }
 
-    public void setPlayerController(Player player) {
+    public void setPlayerController(GameParticipant player) {
         this.playerController = new GameParticipantController(player);
         model.setPlayer(player);
         playerController.setDefaultDeck();
@@ -66,7 +60,7 @@ public class ArenaController {
         return enemyController;
     }
 
-    public void setEnemyController(Enemy enemy) {
+    public void setEnemyController(GameParticipant enemy) {
         this.enemyController = new GameParticipantController(enemy);
         model.setEnemy(enemy);
         enemyController.setDefaultDeck();

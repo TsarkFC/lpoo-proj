@@ -1,7 +1,6 @@
 package view;
 
-import model.Enemy;
-import model.Player;
+import model.GameParticipant;
 import com.googlecode.lanterna.screen.TerminalScreen;
 
 public class GameParticipantViewer {
@@ -13,7 +12,7 @@ public class GameParticipantViewer {
         this.barViewer = new BarViewer(screen);
     }
 
-    public void drawPlayer(Player player){
+    public void drawPlayer(GameParticipant player){
         cardViewer.drawCard(1, 19, player.getDraw_deck().size());
         barViewer.drawHealthBar(15, 21, player.getHealth(), player.getMaxHealth());
         barViewer.drawManaBar(15, 22, player.getMana(), player.getMaxMana());
@@ -25,7 +24,7 @@ public class GameParticipantViewer {
         cardViewer.drawSpecialCard(33, player.getPlay_deck().get(3));
     }
 
-    public void drawEnemy(Enemy enemy){
+    public void drawEnemy(GameParticipant enemy){
         cardViewer.drawCard(1, 0, enemy.getDraw_deck().size());
         barViewer.drawHealthBar(15, 1, enemy.getHealth(), enemy.getMaxHealth());
         barViewer.drawManaBar(15, 2, enemy.getMana(), enemy.getMaxMana());

@@ -48,6 +48,5 @@ public class DrawCardCommand implements Command{
         //TODO: Use turn_over variables to check if they player's turn is over (using a command?)
         TurnChecker checker = new TurnChecker(controller);
         checker.execute();
-        controller.getModel().notifyObservers();
     }
 }

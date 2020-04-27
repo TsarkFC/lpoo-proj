@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public abstract class GameParticipant {
+public class GameParticipant {
     protected List<Card> draw_deck;
     private List<SpecialCard> play_deck;
     private int health;
