@@ -3,6 +3,7 @@ package controller;
 import commands.DrawCardCommand;
 import model.Arena;
 import model.GameParticipant;
+import observer.ArenaObserver;
 import view.Gui;
 
 import java.io.IOException;
@@ -24,12 +25,12 @@ public class ArenaController {
         while(!model.isFinished()){
             Gui.COMMAND command = view.getNextCommand();
             if (command == Gui.COMMAND.SWITCH)
-                model.switchPlayer();
+                model.setCurrent(false);
 
             if (command == Gui.COMMAND.DRAW){
                 DrawCardCommand drawCmd = new DrawCardCommand(this, playerController, enemyController);
                 drawCmd.execute();
-                model.notifyObservers();
+                notifyObservers();
             }
             if (command == Gui.COMMAND.QUIT){
                 model.finish();
@@ -70,6 +71,12 @@ public class ArenaController {
         if(getEnemy().getPoints() < 8){
             DrawCardCommand command = new DrawCardCommand(this, enemyController, playerController);
             command.execute();
+        }
+    }
+
+    public void notifyObservers() {
+        for (ArenaObserver observer : model.getObservers()) {
+            observer.arenaChanged();
         }
     }
 }

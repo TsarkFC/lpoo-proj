@@ -51,17 +51,6 @@ public class Arena {
         observers.add(observer);
     }
 
-    public void switchPlayer(){ //->Current podia passar a ser um GameParticipant em vez de boolean (evitava verificações de if(current))
-        if (!current) return; //-> Possibly print a message saying that enemy is playing its turn
-        current = false;
-    }
-
-    public void notifyObservers() {
-        for (ArenaObserver observer : observers) {
-            observer.arenaChanged();
-        }
-    }
-
     public boolean getCurrent(){
         return current;
     }
@@ -77,4 +66,6 @@ public class Arena {
     public void setEnemy(GameParticipant enemy) {
         this.enemy = enemy;
     }
+
+    public List<ArenaObserver> getObservers(){return observers;};
 }

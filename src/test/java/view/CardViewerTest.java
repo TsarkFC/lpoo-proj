@@ -19,7 +19,5 @@ public class CardViewerTest {
         TerminalScreen screen = Mockito.mock(TerminalScreen.class);
 
         CardViewer cardViewer = new CardViewer(screen);
-
-
     }
 }

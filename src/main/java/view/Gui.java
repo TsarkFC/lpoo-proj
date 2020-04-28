@@ -17,6 +17,7 @@ import java.io.IOException;
 public class Gui implements ArenaObserver {
     private TerminalScreen screen;
     private CardViewer cardViewer;
+    private BarViewer barViewer;
     private GameParticipantViewer gameParticipantViewer;
     private Arena arena;
 
@@ -43,7 +44,8 @@ public class Gui implements ArenaObserver {
         }
 
         this.cardViewer = new CardViewer(screen);
-        this.gameParticipantViewer = new GameParticipantViewer(screen, cardViewer);
+        this.barViewer = new BarViewer(screen);
+        this.gameParticipantViewer = new GameParticipantViewer(barViewer, cardViewer);
     }
 
     public void draw() throws IOException {

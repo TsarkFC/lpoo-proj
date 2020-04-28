@@ -17,18 +17,18 @@ public class CardViewer {
 
     public void drawCard(int x, int y, int deck_size){
         setGraphics("#EECC88", "#FF0000");
-        drawCardStructure(x, y, graphics);
+        drawCardStructure(x, y);
         graphics.putString(x + 2, y + 1, String.valueOf(deck_size));
     }
 
     public void drawSpecialCard(int x, SpecialCard specialCard){
         setGraphics("#EECC88", "#FF0000");
-        drawCardStructure(x, 15, graphics);
+        drawCardStructure(x, 15);
         graphics.putString(x + 2, 16, String.valueOf(specialCard.getCost()));
         graphics.putString(x + 2, 17, String.valueOf(specialCard.getSymbol()));
     }
 
-    private void drawCardStructure(int x, int y, TextGraphics graphics){
+    private void drawCardStructure(int x, int y){
         for (int i = 0; i <= 5; i++){
             for (int j = 0; j <= 3; j++){
                 graphics.putString(x+i, y+j, " ");

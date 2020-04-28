@@ -5,23 +5,27 @@ import model.Arena;
 import model.GameParticipant;
 import org.junit.Test;
 import org.mockito.Mockito;
+import view.Gui;
 
-import java.util.ArrayList;
+import static org.junit.Assert.assertEquals;
 
 public class ArenaCreatorTest {
 
     @Test
-    public void testCreate(){
-        ArenaController controller = Mockito.mock(ArenaController.class);
-        ParticipantCreator part_creator = Mockito.mock(ParticipantCreator.class);
+    public void testCreation(){
+        Gui gui = Mockito.mock(Gui.class);
+        Arena arena = new Arena(10, 10);
+        ArenaController controller = new ArenaController(gui, arena);
         ArenaCreator creator = new ArenaCreator();
 
-        GameParticipant part = new GameParticipant(new ArrayList<>(),0,0,0,0,0);
+        GameParticipant part = creator.createParticipant();
 
-        Mockito.when(part_creator.createParticipant()).thenReturn(part);
-        creator.create(controller, part_creator);
+        creator.create(controller);
 
-        Mockito.verify(controller, Mockito.times(1)).setPlayerController(part);
-        Mockito.verify(controller, Mockito.times(1)).setEnemyController(part);
+        assertEquals(part.getMana(), controller.getEnemy().getMana());
+        assertEquals(part.getMana(), controller.getPlayer().getMana());
+        assertEquals(part.getHealth(), controller.getEnemy().getHealth());
+        assertEquals(part.getHealth(), controller.getPlayer().getHealth());
+        assertEquals(part.getPlay_deck().size(), controller.getEnemy().getPlay_deck().size());
     }
 }
