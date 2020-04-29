@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public abstract class GameParticipant {
+public class GameParticipant {
     protected List<Card> draw_deck;
     private List<SpecialCard> play_deck;
     private int health;
@@ -19,10 +19,8 @@ public abstract class GameParticipant {
 
     protected boolean turn_over;
 
-    //TODO: Simplify constructor
-    public GameParticipant(List<Card> draw_deck, List<SpecialCard> play_deck, int health, int mana, int max_health, int max_mana, int max_points){
-        Collections.shuffle(draw_deck);
-        this.draw_deck = draw_deck;
+    //TODO: Simplify constructor -> Play deck can be removed once working on special cards effects
+    public GameParticipant(List<SpecialCard> play_deck, int health, int mana, int max_health, int max_mana, int max_points){
         this.play_deck = play_deck;
         this.health = health;
         this.mana = mana;
@@ -30,7 +28,6 @@ public abstract class GameParticipant {
         this.max_mana = max_mana;
         this.max_points = max_points;
         this.points = 0;
-        this.default_draw_deck = new ArrayList<>();
         this.turn_over = false;
     }
 

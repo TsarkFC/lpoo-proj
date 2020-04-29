@@ -13,4 +13,11 @@ public class CardViewerTest {
 
         Mockito.verify(screen, Mockito.times(1)).newTextGraphics();
     }
+
+    @Test
+    public void drawCardTest(){
+        TerminalScreen screen = Mockito.mock(TerminalScreen.class);
+
+        CardViewer cardViewer = new CardViewer(screen);
+    }
 }

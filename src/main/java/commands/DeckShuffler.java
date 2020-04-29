@@ -1,5 +1,6 @@
 package commands;
 
+import controller.ArenaController;
 import model.Card;
 
 import java.util.Collections;

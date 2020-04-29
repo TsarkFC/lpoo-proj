@@ -1,31 +1,27 @@
 package view;
 
-import model.Enemy;
-import model.Player;
-import com.googlecode.lanterna.screen.TerminalScreen;
+import model.GameParticipant;
 
 public class GameParticipantViewer {
     private BarViewer barViewer;
     private CardViewer cardViewer;
 
-    public GameParticipantViewer(TerminalScreen screen, CardViewer cardViewer){
+    public GameParticipantViewer(BarViewer barViewer, CardViewer cardViewer){
         this.cardViewer = cardViewer;
-        this.barViewer = new BarViewer(screen);
+        this.barViewer = barViewer;
     }
 
-    public void drawPlayer(Player player){
+    public void drawPlayer(GameParticipant player){
         cardViewer.drawCard(1, 19, player.getDraw_deck().size());
         barViewer.drawHealthBar(15, 21, player.getHealth(), player.getMaxHealth());
         barViewer.drawManaBar(15, 22, player.getMana(), player.getMaxMana());
         barViewer.drawPointBar(15, 12, player.getPoints(), 12);
 
-        cardViewer.drawSpecialCard(12, player.getPlay_deck().get(0));
-        cardViewer.drawSpecialCard(19, player.getPlay_deck().get(1));
-        cardViewer.drawSpecialCard(26, player.getPlay_deck().get(2));
-        cardViewer.drawSpecialCard(33, player.getPlay_deck().get(3));
+        for (int i = 0; i < 4*7 && i/7 < player.getPlay_deck().size(); i+=7)
+            cardViewer.drawSpecialCard(i+12, player.getPlay_deck().get(i/7));
     }
 
-    public void drawEnemy(Enemy enemy){
+    public void drawEnemy(GameParticipant enemy){
         cardViewer.drawCard(1, 0, enemy.getDraw_deck().size());
         barViewer.drawHealthBar(15, 1, enemy.getHealth(), enemy.getMaxHealth());
         barViewer.drawManaBar(15, 2, enemy.getMana(), enemy.getMaxMana());

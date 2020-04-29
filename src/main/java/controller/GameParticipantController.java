@@ -42,4 +42,28 @@ public class GameParticipantController {
         deckCopy.remove(0);
         gameParticipant.setDraw_deck(deckCopy);
     }
+
+    public List<Card> getDraw_deck(){
+        return gameParticipant.getDraw_deck();
+    }
+
+    public GameParticipant getParticipant(){
+        return gameParticipant;
+    }
+
+    public int getPoints(){
+        return gameParticipant.getPoints();
+    }
+
+    public int getMax_points(){
+        return gameParticipant.getMax_points();
+    }
+
+    public void setPoints(int points){
+        gameParticipant.setPoints(points);
+    }
+
+    public void setTurnOver(boolean value){
+        gameParticipant.setTurnOver(value);
+    }
 }

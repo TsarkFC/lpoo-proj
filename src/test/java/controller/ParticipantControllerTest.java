@@ -1,7 +1,7 @@
 package controller;
 
 import model.Card;
-import model.Player;
+import model.GameParticipant;
 import model.SpecialCard;
 import org.junit.Test;
 
@@ -14,9 +14,8 @@ public class ParticipantControllerTest {
     @Test
     public void testEmptyDeckController(){
         List<SpecialCard> play_deck = new ArrayList<>();
-        List<Card> normal_deck = new ArrayList<>();
 
-        Player player = new Player(normal_deck, play_deck, 2, 5, 12, 12, 12);
+        GameParticipant player = new GameParticipant(play_deck, 2, 5, 12, 12, 12);
         GameParticipantController controller = new GameParticipantController(player);
         controller.setDefaultDeck();
 

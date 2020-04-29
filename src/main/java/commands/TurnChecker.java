@@ -1,21 +1,19 @@
 package commands;
 
 import controller.ArenaController;
-import model.Arena;
 
-public class TurnChecker {
-    private final Arena arena;
-    public TurnChecker(Arena arena){
-        this.arena = arena;
+public class TurnChecker implements Command{
+    private ArenaController controller;
+    public TurnChecker(ArenaController controller){
+        this.controller = controller;
     }
 
     public void execute(){
-        boolean current = this.arena.getCurrent();
+        boolean current = this.controller.getCurrent();
         if(current){
-            this.arena.setCurrent(false);
-            ArenaController controller = new ArenaController(arena);
+            controller.getModel().setCurrent(false);
             controller.playEnemyTurn();
-            this.arena.setCurrent(true);
+            controller.getModel().setCurrent(true);
         }
     }
 }
