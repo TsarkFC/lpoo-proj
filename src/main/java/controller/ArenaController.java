@@ -1,7 +1,6 @@
 package controller;
 
 import controller.commands.DrawCardCommand;
-import controller.strategies.AgressivePlayStrategy;
 import controller.strategies.PlayStrategy;
 import model.Arena;
 import model.Enemy;
@@ -27,13 +26,23 @@ public class ArenaController {
 
         while(!model.isFinished()){
             Gui.COMMAND command = view.getNextCommand();
-            if (command == Gui.COMMAND.SWITCH)
-                model.setCurrent(false);
+            if (command == Gui.COMMAND.SWITCH) {
+                model.getPlayer().setTurnOver(true);
+            }
 
             if (command == Gui.COMMAND.DRAW){
-                DrawCardCommand drawCmd = new DrawCardCommand(this, playerController, enemyController);
-                drawCmd.execute();
+                if(!model.getPlayer().getTurnOver()) {
+                    DrawCardCommand drawCmd = new DrawCardCommand(this, playerController, enemyController);
+                    drawCmd.execute();
+                }
+                //TODO: Use turn_over variables to check if they player's turn is over (using a command?)
+                if(!this.getModel().getEnemy().getTurnOver()) {
+
+                    this.playEnemyTurn();
+                }
+
                 notifyObservers();
+
             }
             if (command == Gui.COMMAND.QUIT){
                 model.finish();
@@ -72,9 +81,15 @@ public class ArenaController {
 
     public void playEnemyTurn(){ //DONE: Un hard-code the PlayStrategy
 
-        //DONE: Complete playTurn function with proper-ish AI - Done with strategy design pattern
-        PlayStrategy strategy = getEnemy().getPlayStrategy();
-        strategy.playTurn(this);
+        //if(model.getEnemy().getTurnOver() == false) {
+            //DONE: Complete playTurn function with proper-ish AI - Done with strategy design pattern
+            PlayStrategy strategy = getEnemy().getPlayStrategy();
+            if (!strategy.playTurn(this)) {
+                //Acabar a ronda do inimigo
+                model.getEnemy().setTurnOver(true);
+            }
+        //}
+
     }
 
     public void notifyObservers() {

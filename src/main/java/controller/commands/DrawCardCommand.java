@@ -20,6 +20,8 @@ public class DrawCardCommand implements Command{
 
     @Override
     public void execute() {
+
+
         Card card = current.getDraw_deck().get(0);
         CardController c = new CardController(card);
         c.effect(current.getParticipant());
@@ -30,8 +32,8 @@ public class DrawCardCommand implements Command{
             current.resetDrawDeck();
 
         if(current.getPoints() > current.getMax_points()){
-            int a = min(current.getPoints(), 6);
-            a = min(a, opposite.getPoints());
+            int a = min(current.getPoints() - 1, 6);
+            a = min(a, opposite.getPoints() - 1);
             current.setPoints(a);
             //TODO: End turn for both players function
             //TODO: Make variable with overdraw, normal and guarding states for ending the turn
@@ -40,11 +42,19 @@ public class DrawCardCommand implements Command{
         }
 
         if(current.getPoints() == current.getMax_points()){
+            current.setTurnOver(true);
+        }
+        if(opposite.getPoints() == opposite.getMax_points()){
             opposite.setTurnOver(true);
         }
 
+        /*
         //TODO: Use turn_over variables to check if they player's turn is over (using a command?)
-        TurnChecker checker = new TurnChecker(controller);
-        checker.execute();
+        if(!controller.getModel().getEnemy().getTurnOver()) {
+            TurnChecker checker = new TurnChecker(controller);
+            checker.execute();
+        }
+        */
+
     }
 }

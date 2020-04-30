@@ -18,11 +18,11 @@ public class NormalPlayStrategy implements PlayStrategy{
         boolean has_drawn = false;
 
         //Fazer draw?
-        if(arenaController.getEnemy().getPoints() <= arenaController.getEnemy().getMax_points() - 4){
+        //if(arenaController.getEnemy().getPoints() <= arenaController.getEnemy().getMax_points() - 4){
             DrawCardCommand command = new DrawCardCommand(arenaController, arenaController.getEnemyController(), arenaController.getPlayerController());
             command.execute();
             has_drawn = true;
-        }
+        //}
 
         //Vais querer fazer draw na próxima ronda?
         if(arenaController.getEnemy().getPoints() <= arenaController.getEnemy().getMax_points() - 4){
