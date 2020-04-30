@@ -1,6 +1,8 @@
 package controller;
 
 import commands.DrawCardCommand;
+import controller.strategies.NormalPlayStrategy;
+import controller.strategies.PlayStrategy;
 import model.Arena;
 import model.GameParticipant;
 import observer.ArenaObserver;
@@ -67,11 +69,11 @@ public class ArenaController {
         enemyController.setDefaultDeck();
     }
 
-    public void playEnemyTurn(){ //TODO: Complete playTurn function with proper-ish AI
-        if(getEnemy().getPoints() < 8){
-            DrawCardCommand command = new DrawCardCommand(this, enemyController, playerController);
-            command.execute();
-        }
+    public void playEnemyTurn(){ //TODO: Un hard-code the PlayStrategy
+
+        //DONE: Complete playTurn function with proper-ish AI - Done with strategy design pattern
+        PlayStrategy strategy = new NormalPlayStrategy();
+        strategy.playTurn(this);
     }
 
     public void notifyObservers() {

@@ -49,7 +49,7 @@ public class CardViewer {
         screen.refresh();
     }
 
-    private void setGraphics(String back, String fore){
+    public void setGraphics(String back, String fore){
         graphics.setBackgroundColor(TextColor.Factory.fromString(back));
         graphics.setForegroundColor(TextColor.Factory.fromString(fore));
     }
