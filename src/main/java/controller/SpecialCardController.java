@@ -1,6 +1,5 @@
 package controller;
 
-import model.GameParticipant;
 import model.SpecialCard;
 
 public class SpecialCardController {
@@ -10,7 +9,4 @@ public class SpecialCardController {
         this.card = card;
     }
 
-    public void effect(GameParticipant part){
-
-    }
 }

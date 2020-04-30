@@ -1,11 +1,9 @@
-package commands;
+package controller.commands;
 
 import controller.ArenaController;
 import controller.CardController;
 import controller.GameParticipantController;
-import model.Arena;
 import model.Card;
-import model.GameParticipant;
 
 import static java.lang.Integer.min;
 

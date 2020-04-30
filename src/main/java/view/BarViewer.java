@@ -2,8 +2,6 @@ package view;
 
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import com.googlecode.lanterna.screen.TerminalScreen;
-import org.w3c.dom.Text;
 
 public class BarViewer {
     private TextGraphics unfilled_point;
@@ -55,6 +53,10 @@ public class BarViewer {
         pointNumber.putString(x - 5, y, "Mana:");
     }
 
+    private void drawBar(){
+
+    }
+
     public void headerBar(int x, int y, int value, int max_value){
         pointNumber.putString(x + 19, y, " ");
         pointNumber.putString(x + 20, y, " ");
@@ -75,7 +77,6 @@ public class BarViewer {
                 filled_point.putString(x + j + j / 3 + 1, y, "_");
             else
                 unfilled_point.putString(x + j + j / 3 + 1, y, "_");
-
         }
     }
 }

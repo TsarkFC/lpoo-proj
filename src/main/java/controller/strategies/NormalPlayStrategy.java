@@ -1,8 +1,7 @@
 package controller.strategies;
 
-import commands.DrawCardCommand;
+import controller.commands.DrawCardCommand;
 import controller.ArenaController;
-import model.Arena;
 
 
 public class NormalPlayStrategy implements PlayStrategy{

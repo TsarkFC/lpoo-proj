@@ -1,6 +1,6 @@
 package controller;
 
-import commands.DrawCardCommand;
+import controller.commands.DrawCardCommand;
 import controller.strategies.NormalPlayStrategy;
 import controller.strategies.PlayStrategy;
 import model.Arena;
