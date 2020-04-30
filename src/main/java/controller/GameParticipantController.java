@@ -1,6 +1,6 @@
 package controller;
 
-import commands.DeckShuffler;
+import controller.commands.DeckShuffler;
 import model.Card;
 import model.GameParticipant;
 
@@ -25,7 +25,7 @@ public class GameParticipantController {
         DeckShuffler deck_shuffler = new DeckShuffler(defaultDeck);
         deck_shuffler.execute();
 
-        gameParticipant.setDraw_deck(defaultDeck);
+        setDraw_deck(defaultDeck);
     }
 
     public void resetDrawDeck(){
@@ -33,14 +33,14 @@ public class GameParticipantController {
         deck.addAll(gameParticipant.getDefault_draw_deck());
         DeckShuffler shuffle = new DeckShuffler(deck);
         shuffle.execute();
-        gameParticipant.setDraw_deck(deck);
+        setDraw_deck(deck);
     }
 
     public void removeDeckTop(){
         List<Card> deckCopy = new ArrayList<>();
-        deckCopy.addAll(gameParticipant.getDraw_deck());
+        deckCopy.addAll(getDraw_deck());
         deckCopy.remove(0);
-        gameParticipant.setDraw_deck(deckCopy);
+        setDraw_deck(deckCopy);
     }
 
     public List<Card> getDraw_deck(){
@@ -65,5 +65,9 @@ public class GameParticipantController {
 
     public void setTurnOver(boolean value){
         gameParticipant.setTurnOver(value);
+    }
+
+    public void setDraw_deck(List<Card> deck){
+        gameParticipant.setDraw_deck(deck);
     }
 }

@@ -1,7 +1,5 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class GameParticipant {
@@ -55,6 +53,8 @@ public class GameParticipant {
     public List<SpecialCard> getPlay_deck() {
         return play_deck;
     }
+
+    public String getCardInfo(int i){ return play_deck.get(i).getCardInfo(); }
 
     public void setPlay_deck(List<SpecialCard> play_deck) {
         this.play_deck = play_deck;

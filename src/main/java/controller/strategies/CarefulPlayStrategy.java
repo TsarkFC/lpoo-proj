@@ -1,8 +1,7 @@
 package controller.strategies;
 
-import commands.DrawCardCommand;
+import controller.commands.DrawCardCommand;
 import controller.ArenaController;
-import model.Arena;
 
 
 public class CarefulPlayStrategy implements PlayStrategy{
@@ -13,10 +12,15 @@ public class CarefulPlayStrategy implements PlayStrategy{
 
 
     @Override
-    public void playTurn(ArenaController arenaController) {
-        if(arenaController.getEnemy().getPoints() < 3){
+    public boolean playTurn(ArenaController arenaController) {
+        boolean has_drawn = false;
+        if(arenaController.getEnemy().getPoints() <= arenaController.getEnemy().getMax_points() - 6){
             DrawCardCommand command = new DrawCardCommand(arenaController, arenaController.getEnemyController(), arenaController.getPlayerController());
             command.execute();
+            has_drawn = true;
         }
+
+
+        return has_drawn;
     }
 }
