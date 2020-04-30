@@ -1,23 +1,58 @@
 package view;
 
+import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.TerminalScreen;
+import model.GameParticipant;
+import model.SpecialCard;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import java.io.IOException;
+
+import static org.junit.Assert.assertEquals;
+
 public class CardViewerTest {
     @Test
-    public void testConstructor() {
-        TerminalScreen screen = Mockito.mock(TerminalScreen.class);
+    public void testdrawCard() {
+        TextGraphics graphics = Mockito.mock(TextGraphics.class);
+        CardViewer viewer = new CardViewer(graphics);
 
-        new CardViewer(screen);
-
-        Mockito.verify(screen, Mockito.times(1)).newTextGraphics();
+        viewer.drawCard(5,5,10);
+        Mockito.verify(graphics, Mockito.times(1)).putString(5+2, 5+1, "10");
     }
 
     @Test
-    public void drawCardTest(){
-        TerminalScreen screen = Mockito.mock(TerminalScreen.class);
+    public void testdrawSpecialCard(){
+        SpecialCard card = Mockito.mock(SpecialCard.class);
+        Mockito.when(card.getCost()).thenReturn(5);
+        Mockito.when(card.getSymbol()).thenReturn('*');
 
-        CardViewer cardViewer = new CardViewer(screen);
+        TextGraphics graphics = Mockito.mock(TextGraphics.class);
+        CardViewer viewer = new CardViewer(graphics);
+
+        viewer.drawSpecialCard(5, card);
+
+        Mockito.verify(graphics, Mockito.times(1)).
+                putString(7, 16, String.valueOf(card.getCost()));
+        Mockito.verify(graphics, Mockito.times(1)).
+                putString(7, 17, String.valueOf(card.getSymbol()));
+    }
+
+    @Test
+    public void testdrawCardInfo() throws IOException {
+        TerminalScreen screen = Mockito.mock(TerminalScreen.class);
+        GameParticipant player = Mockito.mock(GameParticipant.class);
+        TextGraphics graphics = Mockito.mock(TextGraphics.class);
+        CardViewer viewer = new CardViewer(graphics);
+
+        Mockito.when(player.getCardInfo(0)).thenReturn("INFO");
+        viewer.drawCardInfo(0, screen, player);
+
+        Mockito.verify(graphics, Mockito.times(1)).
+                putString(20, 24, "Card Info:");
+        Mockito.verify(graphics, Mockito.times(1)).
+                putString(20, 25, "INFO");
+        Mockito.verify(screen, Mockito.times(1)).
+                refresh();
     }
 }

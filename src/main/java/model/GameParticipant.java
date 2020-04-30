@@ -56,6 +56,8 @@ public class GameParticipant {
         return play_deck;
     }
 
+    public String getCardInfo(int i){ return play_deck.get(i).getCardInfo(); }
+
     public void setPlay_deck(List<SpecialCard> play_deck) {
         this.play_deck = play_deck;
     }
