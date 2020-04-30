@@ -1,7 +1,7 @@
-package Controller;
+package controller;
 
-import Model.GameParticipant;
-import Model.SpecialCard;
+import model.GameParticipant;
+import model.SpecialCard;
 
 public class SpecialCardController {
     private SpecialCard card;

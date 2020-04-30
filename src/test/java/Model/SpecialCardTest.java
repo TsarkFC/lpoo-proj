@@ -1,4 +1,4 @@
-package Model;
+package model;
 
 import org.junit.Test;
 
@@ -12,10 +12,5 @@ public class SpecialCardTest {
         assertEquals(5, card.getCost());
         assertEquals('+', card.getSymbol());
         assertEquals("Testing card info", card.getCardInfo());
-    }
-
-    @Test
-    public void listSetterTest(){
-
     }
 }

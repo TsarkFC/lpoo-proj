@@ -1,6 +1,6 @@
-package Model;
+package model;
 
-import Commands.ArenaObserver;
+import observer.ArenaObserver;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,16 +8,14 @@ import java.util.List;
 public class Arena {
     private int width;
     private int height;
-    private Player player;   //to fix
-    private Enemy enemy;     //to fix
-    private boolean current; //to fix  true->player | false -> enemy
+    private GameParticipant player;
+    private GameParticipant enemy;
+    private boolean current; //true->player | false -> enemy
 
-    private boolean isFinished = false;
+    private boolean isFinished;
     private List<ArenaObserver> observers;
 
-    public Arena(Player player, Enemy enemy, int width, int height){
-        this.player = player;
-        this.enemy = enemy;
+    public Arena(int width, int height){
         this.width = width;
         this.height = height;
         this.current = true;
@@ -33,11 +31,11 @@ public class Arena {
         return height;
     }
 
-    public Player getPlayer() {
+    public GameParticipant getPlayer() {
         return player;
     }
 
-    public Enemy getEnemy() {
+    public GameParticipant getEnemy() {
         return enemy;
     }
 
@@ -53,17 +51,6 @@ public class Arena {
         observers.add(observer);
     }
 
-    public void switchPlayer(){ //->Current podia passar a ser um GameParticipant em vez de boolean (evitava verificações de if(current))
-        if (!current) return; //-> Possibly print a message saying that enemy is playing its turn
-        current = false;
-    }
-
-    public void notifyObservers() {
-        for (ArenaObserver observer : observers) {
-            observer.arenaChanged();
-        }
-    }
-
     public boolean getCurrent(){
         return current;
     }
@@ -71,4 +58,14 @@ public class Arena {
     public void setCurrent(boolean current){
         this.current = current;
     }
+
+    public void setPlayer(GameParticipant player) {
+        this.player = player;
+    }
+
+    public void setEnemy(GameParticipant enemy) {
+        this.enemy = enemy;
+    }
+
+    public List<ArenaObserver> getObservers(){return observers;};
 }

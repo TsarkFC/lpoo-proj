@@ -1,6 +1,7 @@
-package Commands;
+package commands;
 
-import Model.Card;
+import controller.ArenaController;
+import model.Card;
 
 import java.util.Collections;
 import java.util.List;

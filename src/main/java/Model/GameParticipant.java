@@ -1,12 +1,10 @@
-package Model;
-
-import Commands.DeckShuffler;
+package model;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public abstract class GameParticipant {
+public class GameParticipant {
     protected List<Card> draw_deck;
     private List<SpecialCard> play_deck;
     private int health;
@@ -21,9 +19,8 @@ public abstract class GameParticipant {
 
     protected boolean turn_over;
 
-    public GameParticipant(List<Card> draw_deck, List<SpecialCard> play_deck, int health, int mana, int max_health, int max_mana, int max_points){
-        Collections.shuffle(draw_deck);
-        this.draw_deck = draw_deck;
+    //TODO: Simplify constructor -> Play deck can be removed once working on special cards effects
+    public GameParticipant(List<SpecialCard> play_deck, int health, int mana, int max_health, int max_mana, int max_points){
         this.play_deck = play_deck;
         this.health = health;
         this.mana = mana;
@@ -32,20 +29,6 @@ public abstract class GameParticipant {
         this.max_points = max_points;
         this.points = 0;
         this.turn_over = false;
-
-        default_draw_deck = new ArrayList<>();
-        if(draw_deck.isEmpty()) {
-            for (int i = 0; i <= 23; i++) {
-                Card card = new Card((i / 4) + 1);
-                default_draw_deck.add(card);
-            }
-            this.draw_deck.addAll(default_draw_deck);
-        }
-        else{
-            this.default_draw_deck.addAll(draw_deck);
-        }
-        DeckShuffler deck_shuffler = new DeckShuffler(this.draw_deck);
-        deck_shuffler.execute();
     }
 
     public void setBoth_draw_decks(List<Card> draw_deck) {
@@ -111,12 +94,6 @@ public abstract class GameParticipant {
 
     public int getDeckSize(){
         return draw_deck.size();
-    }
-
-    public void resetDrawDeck(){
-        draw_deck.addAll(default_draw_deck);
-        DeckShuffler shuffle = new DeckShuffler(draw_deck);
-        shuffle.execute();
     }
 
     public int getPoints() {

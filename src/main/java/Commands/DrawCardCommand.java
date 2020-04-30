@@ -1,64 +1,52 @@
-package Commands;
+package commands;
 
-import Controller.CardController;
-import Model.Arena;
-import Model.Card;
-import Model.GameParticipant;
-
-import java.util.ArrayList;
-import java.util.List;
+import controller.ArenaController;
+import controller.CardController;
+import controller.GameParticipantController;
+import model.Arena;
+import model.Card;
+import model.GameParticipant;
 
 import static java.lang.Integer.min;
 
 public class DrawCardCommand implements Command{
-    private final Arena arena;
-    private final GameParticipant part;
-    public DrawCardCommand(Arena arena, GameParticipant part){
-        this.arena = arena;
-        this.part = part;
+    private ArenaController controller;
+    private GameParticipantController current;
+    private GameParticipantController opposite;
+
+    public DrawCardCommand(ArenaController controller, GameParticipantController currentController, GameParticipantController oppositeController){
+        this.controller = controller;
+        this.current = currentController;
+        this.opposite = oppositeController;
     }
 
     @Override
     public void execute() {
-
-
-        Card card = part.getDraw_deck().get(0);
-
-        //Bad thing here, SOLID principle broken
-        //TODO: Unbreak first SOLID principle
-
-
+        Card card = current.getDraw_deck().get(0);
         CardController c = new CardController(card);
-        c.effect(part);
+        c.effect(current.getParticipant());
 
-        List<Card> deckCopy = new ArrayList<Card>();
-        deckCopy.addAll(part.getDraw_deck());
-        deckCopy.remove(0);
-        part.setDraw_deck(deckCopy);
+        current.removeDeckTop();
 
-        if(part.getDraw_deck().size() == 0){
-            part.resetDrawDeck();
-        }
+        if(current.getDraw_deck().size() == 0)
+            current.resetDrawDeck();
 
-
-
-
-        if(part.getPoints() > part.getMax_points()){
-            int a = min(arena.getPlayer().getPoints(), 6);
-            a = min(a, arena.getEnemy().getPoints());
-            part.setPoints(a);
+        if(current.getPoints() > current.getMax_points()){
+            int a = min(current.getPoints(), 6);
+            a = min(a, opposite.getPoints());
+            current.setPoints(a);
             //TODO: End turn for both players function
             //TODO: Make variable with overdraw, normal and guarding states for ending the turn
-            arena.getPlayer().setTurnOver(true);
-            arena.getEnemy().setTurnOver(true);
+            current.setTurnOver(true);
+            opposite.setTurnOver(true);
         }
-        if(part.getPoints() == part.getMax_points()){
-            part.setTurnOver(true);
+
+        if(current.getPoints() == current.getMax_points()){
+            opposite.setTurnOver(true);
         }
 
         //TODO: Use turn_over variables to check if they player's turn is over (using a command?)
-        TurnChecker checker = new TurnChecker(arena);
+        TurnChecker checker = new TurnChecker(controller);
         checker.execute();
-        arena.notifyObservers();
     }
 }
