@@ -7,6 +7,6 @@ import model.GameParticipant;
 
 public interface PlayStrategy {
 
-    public void playTurn(ArenaController arenaController);
+    public boolean playTurn(ArenaController arenaController);
 
 }
