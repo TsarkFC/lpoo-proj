@@ -9,7 +9,7 @@ public class Arena {
     private int width;
     private int height;
     private GameParticipant player;
-    private GameParticipant enemy;
+    private Enemy enemy;
     private boolean current; //true->player | false -> enemy
 
     private boolean isFinished;
@@ -35,7 +35,7 @@ public class Arena {
         return player;
     }
 
-    public GameParticipant getEnemy() {
+    public Enemy getEnemy() {
         return enemy;
     }
 
@@ -63,7 +63,7 @@ public class Arena {
         this.player = player;
     }
 
-    public void setEnemy(GameParticipant enemy) {
+    public void setEnemy(Enemy enemy) {
         this.enemy = enemy;
     }
 

@@ -4,6 +4,7 @@ import controller.commands.DrawCardCommand;
 import controller.strategies.AgressivePlayStrategy;
 import controller.strategies.PlayStrategy;
 import model.Arena;
+import model.Enemy;
 import model.GameParticipant;
 import observer.ArenaObserver;
 import view.Gui;
@@ -44,7 +45,7 @@ public class ArenaController {
     public int getHeight(){ return model.getHeight(); }
 
     public GameParticipant getPlayer() {return model.getPlayer();}
-    public GameParticipant getEnemy() {return model.getEnemy();}
+    public Enemy getEnemy() {return model.getEnemy();}
     public Arena getModel() {return model;}
 
     public boolean getCurrent() {return model.getCurrent();}
@@ -63,16 +64,16 @@ public class ArenaController {
         return enemyController;
     }
 
-    public void setEnemyController(GameParticipant enemy) {
+    public void setEnemyController(Enemy enemy) {
         this.enemyController = new GameParticipantController(enemy);
         model.setEnemy(enemy);
         enemyController.setDefaultDeck();
     }
 
-    public void playEnemyTurn(){ //TODO: Un hard-code the PlayStrategy
+    public void playEnemyTurn(){ //DONE: Un hard-code the PlayStrategy
 
         //DONE: Complete playTurn function with proper-ish AI - Done with strategy design pattern
-        PlayStrategy strategy = new AgressivePlayStrategy();
+        PlayStrategy strategy = getEnemy().getPlayStrategy();
         strategy.playTurn(this);
     }
 
