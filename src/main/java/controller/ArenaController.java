@@ -1,7 +1,7 @@
 package controller;
 
 import controller.commands.DrawCardCommand;
-import controller.strategies.NormalPlayStrategy;
+import controller.strategies.AgressivePlayStrategy;
 import controller.strategies.PlayStrategy;
 import model.Arena;
 import model.GameParticipant;
@@ -72,7 +72,7 @@ public class ArenaController {
     public void playEnemyTurn(){ //TODO: Un hard-code the PlayStrategy
 
         //DONE: Complete playTurn function with proper-ish AI - Done with strategy design pattern
-        PlayStrategy strategy = new NormalPlayStrategy();
+        PlayStrategy strategy = new AgressivePlayStrategy();
         strategy.playTurn(this);
     }
 
