@@ -41,7 +41,7 @@ public class CardViewer {
             }
         }
     }
-    
+
     public void drawCardInfo(int cardno, TerminalScreen screen, GameParticipant player) throws IOException {
         setGraphics("#336699", "#FFFFFF");
         graphics.putString(20, 24, "Card Info:");
