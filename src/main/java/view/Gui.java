@@ -43,8 +43,8 @@ public class Gui implements ArenaObserver {
             e.printStackTrace();
         }
 
-        this.cardViewer = new CardViewer(screen);
-        this.barViewer = new BarViewer(screen);
+        this.cardViewer = new CardViewer(screen.newTextGraphics());
+        this.barViewer = new BarViewer(screen.newTextGraphics(), screen.newTextGraphics(), screen.newTextGraphics());
         this.gameParticipantViewer = new GameParticipantViewer(barViewer, cardViewer);
     }
 

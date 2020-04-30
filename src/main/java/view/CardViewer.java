@@ -11,8 +11,8 @@ import java.io.IOException;
 public class CardViewer {
     private TextGraphics graphics;
 
-    public CardViewer(TerminalScreen screen){
-        graphics = screen.newTextGraphics();
+    public CardViewer(TextGraphics graphics){
+        this.graphics = graphics;
     }
 
     public void drawCard(int x, int y, int deck_size){
@@ -26,6 +26,13 @@ public class CardViewer {
         drawCardStructure(x, 15);
         graphics.putString(x + 2, 16, String.valueOf(specialCard.getCost()));
         graphics.putString(x + 2, 17, String.valueOf(specialCard.getSymbol()));
+    }
+
+    public void drawCardInfo(int cardno, TerminalScreen screen, GameParticipant player) throws IOException {
+        setGraphics("#336699", "#FFFFFF");
+        graphics.putString(20, 24, "Card Info:");
+        graphics.putString(20, 25, player.getCardInfo(cardno));
+        screen.refresh();
     }
 
     private void drawCardStructure(int x, int y){
@@ -42,19 +49,8 @@ public class CardViewer {
         }
     }
 
-    public void drawCardInfo(int cardno, TerminalScreen screen, GameParticipant player) throws IOException {
-        setGraphics("#336699", "#FFFFFF");
-        graphics.putString(20, 24, "Card Info:");
-        graphics.putString(20, 25, (player.getPlay_deck().get(cardno)).getCardInfo());
-        screen.refresh();
-    }
-
-    public void setGraphics(String back, String fore){
+    private void setGraphics(String back, String fore){
         graphics.setBackgroundColor(TextColor.Factory.fromString(back));
         graphics.setForegroundColor(TextColor.Factory.fromString(fore));
-    }
-
-    public TextGraphics getGraphics(){
-        return graphics;
     }
 }
