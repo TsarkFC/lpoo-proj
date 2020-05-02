@@ -2,6 +2,7 @@ package com.g13.controller;
 
 import com.g13.controller.strategies.PlayStrategy;
 import com.g13.controller.commands.DrawCardCommand;
+import com.g13.controller.commands.SkipTurnCommand;
 import com.g13.model.Arena;
 import com.g13.model.Enemy;
 import com.g13.model.GameParticipant;
@@ -27,7 +28,8 @@ public class ArenaController {
         while(!model.isFinished()){
             Gui.COMMAND command = view.getNextCommand();
             if (command == Gui.COMMAND.SWITCH) {
-                model.getPlayer().setTurnOver(true);
+                SkipTurnCommand skipTurnCommand = new SkipTurnCommand(playerController);
+                skipTurnCommand.execute();
             }
 
             if (command == Gui.COMMAND.DRAW){
@@ -86,7 +88,8 @@ public class ArenaController {
             PlayStrategy strategy = getEnemy().getPlayStrategy();
             if (!strategy.playTurn(this)) {
                 //Acabar a ronda do inimigo
-                model.getEnemy().setTurnOver(true);
+                SkipTurnCommand skipTurnCommand = new SkipTurnCommand(enemyController);
+                skipTurnCommand.execute();
             }
         //}
 

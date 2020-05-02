@@ -34,6 +34,9 @@ public class DrawCardCommand implements Command{
         if(current.getPoints() > current.getMax_points()){
             int a = min(current.getPoints() - 1, 6);
             a = min(a, opposite.getPoints() - 1);
+            if(a < 0){
+                a = 0;
+            }
             current.setPoints(a);
             //TODO: End turn for both players function
             //TODO: Make variable with overdraw, normal and guarding states for ending the turn

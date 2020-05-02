@@ -38,12 +38,37 @@ A ser desenvolvido por [João Cardoso](https://github.com/joaoalc) (up201806531@
 
 ## Design Patterns
  
- - Observer
+ ####Observer
 
- - Command
+ ####Command
  
- - Strategy
-
+ **Problema:**
+ 
+ No nosso código, existem certas ações que são genéricas (Exemplo: Fazer draw de cartas ou shuffle de um dos decks). Estas ações podem acontecer em várias situações. (Ambos o jogador e o inimigo podem fazer draw, o deck faz shuffle quando as cartas acabam ou, no futuro, possivelmente pelo efeito de alguma carta)
+ 
+ Isto envolve repetição desnecessária de código.
+ 
+ **Design pattern/ solução:**
+ 
+ Este design pattern permite fazermos um comando genérico que faz a ação que queremos. Quando precisarmos de executar a ação, chamamos a classe do comando e depois chamamos a função execute.
+ 
+ No nosso código, existe a interface Command, que é implementada pelo DeskShuffler e o DrawCardCommand
+ 
+ ####Strategy
+ 
+ **Problema:**
+ 
+  Após implementarmos a possibilidade do inimigo fazer draw do seu deck principal, achamos que seria mais interessante se diferentes inimigos reagissem a certas situações de maneiras diferentes.
+  
+  Isso envolve ter um conjunto expansível de códigos diferentes, todos relativamente complicados, para todas as estratégias. Todos esses códigos são aplicados nas mesmas circunstâncias (No turno do oponente). Se colocassemos um switch case para as diferentes estratégias, acabariamos com um método extremamente "bloated".
+  
+ **Design Pattern:**
+ 
+ Podemos usar o padrão "Strategy" para corrigir o problema.
+  
+  Este padrão envolve termos uma interface, que tem uma função para "executar" a função da estratégia. Quando se quer adicionar uma estratégia, cria-se uma classe que implementa essa função. Sendo assim, pode-se associar uma estratégia de jogo a um inimigo e executá-la quando for necessário (Neste caso, no turno do inimigo).
+  
+  
 ## Code Smells
 
  Large class
