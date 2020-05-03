@@ -32,13 +32,13 @@ A ser desenvolvido por [João Cardoso](https://github.com/joaoalc) (up201806531@
 
  - Cálculo do dano feito/recebido no final de cada turno, dependendo dos pontos e cartas do jogador e inimigo.
 
- - Existência de vários níveis, onde o computador teria diferentes comportamentos a jogar (mais agressivo, equilibrado passivo).
+ - Existência de vários níveis, onde o computador teria diferentes comportamentos a jogar (mais agressivo, equilibrado, passivo, etc.).
  
  - O jogador vai desbloqueando novas cartas à medida que vai derrotando inimigos.
 
 ## Design Patterns
 
- ####Command
+ #### Command
  
  **Problema:**
  
@@ -52,7 +52,7 @@ A ser desenvolvido por [João Cardoso](https://github.com/joaoalc) (up201806531@
  
  No nosso código, existe a interface Command, que é implementada pelo DeskShuffler, o DrawCardCommand, entre outros. Onde é necessário executar uma dessas ações comuns, cria-se e executa-se o comando respetivo.
  
- ####Strategy
+ #### Strategy
  
  **Problema:**
  
@@ -74,9 +74,11 @@ A ser desenvolvido por [João Cardoso](https://github.com/joaoalc) (up201806531@
   
   Reduzimos exponencialmente o número de classes necessárias para os inimigos. Isto acontece pois já não é necessária uma subclasse do inimigo para cada estratégia diferente por cada tipo de inimigo. O código também fica mais legível e mais facilmente expansível.
   
-## Code Smells
+## Code Smells e possíveis Refactorings
 
- Large class
+ ### Long parameter list
+ 
+ - O [construtor de GameParticipant](../src/main/java/com/g13/model/GameParticipant.java)
 
  Large method
 

@@ -38,17 +38,14 @@ public class ArenaController {
                     drawCmd.execute();
                 }
                 //TODO: Use turn_over variables to check if they player's turn is over (using a command?)
-                if(!this.getModel().getEnemy().getTurnOver()) {
-
+                if(!this.getModel().getEnemy().getTurnOver())
                     this.playEnemyTurn();
-                }
 
                 notifyObservers();
 
             }
-            if (command == Gui.COMMAND.QUIT){
+            if (command == Gui.COMMAND.QUIT)
                 model.finish();
-            }
         }
     }
 
@@ -81,18 +78,13 @@ public class ArenaController {
         enemyController.setDefaultDeck();
     }
 
-    public void playEnemyTurn(){ //DONE: Un hard-code the PlayStrategy
-
-        //if(model.getEnemy().getTurnOver() == false) {
-            //DONE: Complete playTurn function with proper-ish AI - Done with strategy design pattern
-            PlayStrategy strategy = getEnemy().getPlayStrategy();
-            if (!strategy.playTurn(this)) {
-                //Acabar a ronda do inimigo
-                SkipTurnCommand skipTurnCommand = new SkipTurnCommand(enemyController);
-                skipTurnCommand.execute();
-            }
-        //}
-
+    public void playEnemyTurn(){
+        PlayStrategy strategy = getEnemy().getPlayStrategy();
+        if (!strategy.playTurn(this)) {
+            //Acabar a ronda do inimigo
+            SkipTurnCommand skipTurnCommand = new SkipTurnCommand(enemyController);
+            skipTurnCommand.execute();
+        }
     }
 
     public void notifyObservers() {
