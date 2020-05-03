@@ -37,8 +37,6 @@ A ser desenvolvido por [João Cardoso](https://github.com/joaoalc) (up201806531@
  - O jogador vai desbloqueando novas cartas à medida que vai derrotando inimigos.
 
 ## Design Patterns
- 
- ####Observer
 
  ####Command
  
@@ -48,11 +46,11 @@ A ser desenvolvido por [João Cardoso](https://github.com/joaoalc) (up201806531@
  
  Isto envolve repetição desnecessária de código.
  
- **Design pattern/ solução:**
+ **Design pattern / solução:**
  
  Este design pattern permite fazermos um comando genérico que faz a ação que queremos. Quando precisarmos de executar a ação, chamamos a classe do comando e depois chamamos a função execute.
  
- No nosso código, existe a interface Command, que é implementada pelo DeskShuffler e o DrawCardCommand
+ No nosso código, existe a interface Command, que é implementada pelo DeskShuffler, o DrawCardCommand, entre outros. Onde é necessário executar uma dessas ações comuns, cria-se e executa-se o comando respetivo.
  
  ####Strategy
  
@@ -68,6 +66,13 @@ A ser desenvolvido por [João Cardoso](https://github.com/joaoalc) (up201806531@
   
   Este padrão envolve termos uma interface, que tem uma função para "executar" a função da estratégia. Quando se quer adicionar uma estratégia, cria-se uma classe que implementa essa função. Sendo assim, pode-se associar uma estratégia de jogo a um inimigo e executá-la quando for necessário (Neste caso, no turno do inimigo).
   
+  **Implementação**
+  
+  ![](./Strategy_Pattern.png)
+  
+  **Consequências**
+  
+  Reduzimos exponencialmente o número de classes necessárias para os inimigos. Isto acontece pois já não é necessária uma subclasse do inimigo para cada estratégia diferente por cada tipo de inimigo. O código também fica mais legível e mais facilmente expansível.
   
 ## Code Smells
 
