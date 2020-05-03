@@ -1,4 +1,4 @@
-package com.g13.observer;
+package com.g13.controller.observer;
 
 public interface ArenaObserver {
     void arenaChanged();

@@ -1,4 +1,4 @@
-package com.g13.creator;
+package com.g13.controller.creator;
 
 import com.g13.controller.ArenaController;
 import com.g13.controller.strategies.NormalPlayStrategy;

@@ -6,7 +6,7 @@ import com.g13.controller.commands.SkipTurnCommand;
 import com.g13.model.Arena;
 import com.g13.model.Enemy;
 import com.g13.model.GameParticipant;
-import com.g13.observer.ArenaObserver;
+import com.g13.controller.observer.ArenaObserver;
 import com.g13.view.Gui;
 
 import java.io.IOException;

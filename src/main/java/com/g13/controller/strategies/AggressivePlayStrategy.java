@@ -3,9 +3,9 @@ package com.g13.controller.strategies;
 import com.g13.controller.ArenaController;
 import com.g13.controller.commands.DrawCardCommand;
 
-public class AgressivePlayStrategy implements PlayStrategy{
+public class AggressivePlayStrategy implements PlayStrategy{
 
-    public AgressivePlayStrategy(){
+    public AggressivePlayStrategy(){
     }
 
     @Override

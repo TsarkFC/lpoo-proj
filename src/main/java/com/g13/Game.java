@@ -1,7 +1,7 @@
 package com.g13;
 
 import com.g13.controller.ArenaController;
-import com.g13.creator.ArenaCreator;
+import com.g13.controller.creator.ArenaCreator;
 import com.g13.model.Arena;
 import com.g13.view.Gui;
 

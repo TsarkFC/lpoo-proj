@@ -38,6 +38,36 @@ A ser desenvolvido por [João Cardoso](https://github.com/joaoalc) (up201806531@
 
 ## Design Patterns
 
+ ### Observer
+ 
+ **Problema:**
+ 
+ Uma vez que o jogo apenas sofre alterações uma vez que o utilizador prima teclas do teclado, seria vantajoso apenas desenhar o jogo ([draw()](../src/main/java/com/g13/view/Gui.java))
+ caso a modelo da arena sofresse alterações.
+ 
+ **Design Pattern / Solução**
+ 
+ Uma possível solução seria aplicar o design pattern Observer. Neste design pattern estão presentes vários observadores que executam uma determinada ação apenas quando notificados 
+ para tal. 
+ 
+ **Implementação**
+ 
+  ![](./Observer_Pattern.png)
+  
+  Estas classes podem sem encontradas nos seguintes ficheiros:
+  
+  - [ArenaController](../src/main/java/com/g13/controller/ArenaController.java)
+  
+  - [ArenaObserver](../src/main/java/com/g13/controller/observer/ArenaObserver.java)
+  
+  - [Gui](../src/main/java/com/g13/view/Gui.java)
+  
+ 
+ **Consequências**
+ 
+ Apesar de neste momento apenas termos um observador ([Gui](../src/main/java/com/g13/view/Gui.java)), decidimos implementar o design pattern uma vez que será útil no futuro
+ quando o código for simplificado e novas componentes forem introduzidas na Arena, não sendo necessária uma atualização contínua de cada compenente da vista do jogo.
+ 
  #### Command
  
  **Problema:**
@@ -60,7 +90,7 @@ A ser desenvolvido por [João Cardoso](https://github.com/joaoalc) (up201806531@
   
   Isso envolve ter um conjunto expansível de códigos diferentes, todos relativamente complicados, para todas as estratégias. Todos esses códigos são aplicados nas mesmas circunstâncias (No turno do oponente). Se colocassemos um switch case para as diferentes estratégias, acabariamos com um método extremamente "bloated".
   
- **Design Pattern:**
+ **Design Pattern / solução:**
  
  Podemos usar o padrão "Strategy" para corrigir o problema.
   
@@ -68,7 +98,19 @@ A ser desenvolvido por [João Cardoso](https://github.com/joaoalc) (up201806531@
   
   **Implementação**
   
-  ![](./Strategy_Pattern.png)
+  ![](./Strategy_Pattern2.png)
+  
+  Estas classes podem sem encontradas nos seguintes ficheiros:
+  
+  - [NormalPlayStrategy](../src/main/java/com/g13/controller/strategies/NormalPlayStrategy.java)
+  
+  - [AggressivePlayStrategy](../src/main/java/com/g13/controller/strategies/AggressivePlayStrategy.java)
+  
+  - [CarefulPlayStrategy](../src/main/java/com/g13/controller/strategies/CarefulPlayStrategy.java)
+  
+  - [PlayStrategy](../src/main/java/com/g13/controller/strategies/PlayStrategy.java)
+  
+  - [ArenaController](../src/main/java/com/g13/controller/ArenaController.java)
   
   **Consequências**
   
@@ -88,8 +130,10 @@ A ser desenvolvido por [João Cardoso](https://github.com/joaoalc) (up201806531@
  
  - [CardController](../src/main/java/com/g13/controller/CardController.java) e [SpecialCardController](../src/main/java/com/g13/controller/SpecialCardController.java)
  não apresentam muita utilidade ao programa neste momento, uma vez que poucas instruções podem ser aplicadas a uma só carta. Deste modo no futuro poder-se-á criar
- um classe DeckController que manipulasse os baralhos dos jogadores, substituindo métodos de [GameParticipantController](../src/main/java/com/g13/controller/GameParticipantController.java).
+ um classe DeckController que manipulasse os baralhos dos jogadores, substituindo alguns dos métodos de [GameParticipantController](../src/main/java/com/g13/controller/GameParticipantController.java).
 ## Testes
 
- Estão desenvolvidos testes para algumas classes que fazem parte do modelo.
+ - Screenshot test coverage
+ 
+ - Mutation testing (pitest) link
 

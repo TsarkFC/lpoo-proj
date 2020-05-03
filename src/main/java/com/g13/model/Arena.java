@@ -1,6 +1,6 @@
 package com.g13.model;
 
-import com.g13.observer.ArenaObserver;
+import com.g13.controller.observer.ArenaObserver;
 
 import java.util.ArrayList;
 import java.util.List;

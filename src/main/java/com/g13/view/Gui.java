@@ -10,7 +10,7 @@ import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
-import com.g13.observer.ArenaObserver;
+import com.g13.controller.observer.ArenaObserver;
 
 import java.io.IOException;
 
