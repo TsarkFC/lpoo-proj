@@ -22,7 +22,9 @@ A ser desenvolvido por [João Cardoso](https://github.com/joaoalc) (up201806531@
  
  - O utilizador pode terminar o seu turno premindo ENTER.
  
- 
+ Início da ronda | Fim de uma ronda
+ :--------------:|:---------------:
+ ![](img/img1.png) | ![](img/img2.png)
 
 ## Features a implementar
 
@@ -35,6 +37,14 @@ A ser desenvolvido por [João Cardoso](https://github.com/joaoalc) (up201806531@
  - Existência de vários níveis, onde o computador teria diferentes comportamentos a jogar (mais agressivo, equilibrado, passivo, etc.).
  
  - O jogador vai desbloqueando novas cartas à medida que vai derrotando inimigos.
+ 
+ - Implementação de menus e de um mapa por onde o utilizador se pode deslocar, escolhendo com qual enimigo quer batalhar.
+ Só poderá enfrentar enimigos já derrotados ou o pŕoximo não derrotado.
+
+  Invocação de cartas especiais e atualização das barras de vida e mana | Mapa ilustrativo de como o utilizador se poderia movimentar (baseado no jogo SuperTux)
+  :--------------:|:---------------:
+  ![](img/img3.png) | ![](img/map.png)
+  
 
 ## Design Patterns
 
