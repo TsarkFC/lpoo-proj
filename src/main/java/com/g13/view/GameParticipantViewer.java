@@ -17,8 +17,10 @@ public class GameParticipantViewer {
         barViewer.drawManaBar(15, 22, player.getMana(), player.getMaxMana());
         barViewer.drawPointBar(15, 12, player.getPoints(), 12);
 
-        for (int i = 0; i < 4*7 && i/7 < player.getPlay_deck().size(); i+=7)
+        for (int i = 0; i < 4*7; i+=7){
+            if (i/7 >= player.getPlay_deck().size()) break;
             cardViewer.drawSpecialCard(i+12, player.getPlay_deck().get(i/7));
+        }
     }
 
     public void drawEnemy(GameParticipant enemy){

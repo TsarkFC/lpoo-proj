@@ -1,6 +1,7 @@
 package com.g13.view;
 
 import com.g13.view.CardViewer;
+import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.g13.model.GameParticipant;
@@ -20,6 +21,14 @@ public class CardViewerTest {
 
         viewer.drawCard(5,5,10);
         Mockito.verify(graphics, Mockito.times(1)).putString(5+2, 5+1, "10");
+        Mockito.verify(graphics, Mockito.times(1)).
+                setBackgroundColor(TextColor.Factory.fromString("#EECC88"));
+        Mockito.verify(graphics, Mockito.times(1)).
+                setForegroundColor(TextColor.Factory.fromString("#FF0000"));
+
+        for (int i = 0; i <= 5; i++)
+            for (int j = 0; j <= 3; j++)
+                Mockito.verify(graphics, Mockito.times(1)).putString(5+i, 5+j, " ");
     }
 
     @Test
@@ -33,10 +42,18 @@ public class CardViewerTest {
 
         viewer.drawSpecialCard(5, card);
 
+        for (int i = 0; i <= 5; i++)
+            for (int j = 0; j <= 3; j++)
+                Mockito.verify(graphics, Mockito.times(1)).putString(5+i, 15, " ");
+
         Mockito.verify(graphics, Mockito.times(1)).
                 putString(7, 16, String.valueOf(card.getCost()));
         Mockito.verify(graphics, Mockito.times(1)).
                 putString(7, 17, String.valueOf(card.getSymbol()));
+        Mockito.verify(graphics, Mockito.times(1)).
+                setBackgroundColor(TextColor.Factory.fromString("#EECC88"));
+        Mockito.verify(graphics, Mockito.times(1)).
+                setForegroundColor(TextColor.Factory.fromString("#FF0000"));
     }
 
     @Test
@@ -55,5 +72,9 @@ public class CardViewerTest {
                 putString(20, 25, "INFO");
         Mockito.verify(screen, Mockito.times(1)).
                 refresh();
+        Mockito.verify(graphics, Mockito.times(1)).
+                setBackgroundColor(TextColor.Factory.fromString("#336699"));
+        Mockito.verify(graphics, Mockito.times(1)).
+                setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
     }
 }

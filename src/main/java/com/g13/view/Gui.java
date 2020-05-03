@@ -91,12 +91,10 @@ public class Gui implements ArenaObserver {
         if (input.getKeyType() == KeyType.Character && input.getCharacter() == '3') cardViewer.drawCardInfo(2, screen, arena.getPlayer());
         if (input.getKeyType() == KeyType.Character && input.getCharacter() == '4') cardViewer.drawCardInfo(3, screen, arena.getPlayer());
 
-
-        if(arena.getCurrent()) {
-            if (input.getKeyType() == KeyType.Character && input.getCharacter() == 'd')
-                return COMMAND.DRAW;
-            if (input.getKeyType() == KeyType.Enter) return COMMAND.SWITCH;
-        }
+        if (input.getKeyType() == KeyType.Character && input.getCharacter() == 'd')
+            return COMMAND.DRAW;
+        if (input.getKeyType() == KeyType.Enter)
+            return COMMAND.SWITCH;
 
         return COMMAND.NOTHING;
     }

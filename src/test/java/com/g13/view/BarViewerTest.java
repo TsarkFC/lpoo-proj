@@ -1,60 +1,150 @@
 package com.g13.view;
 
-import com.g13.view.BarViewer;
+import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import org.junit.Test;
 import org.mockito.Mockito;
 
 public class BarViewerTest {
+
     @Test
-    public void testHeaderBar(){
+    public void testdrawPointBar(){
         TextGraphics unfilled_point = Mockito.mock(TextGraphics.class);
         TextGraphics filled_point = Mockito.mock(TextGraphics.class);
         TextGraphics point_number = Mockito.mock(TextGraphics.class);
-
         BarViewer barViewer = new BarViewer(unfilled_point, filled_point, point_number);
 
-        barViewer.headerBar(0, 0, 2, 12);
+        barViewer.drawPointBar(3, 3, 0, 6);
 
-        Mockito.verify(point_number, Mockito.times(1)).putString(19, 0, " ");
-        Mockito.verify(point_number, Mockito.times(1)).putString(20, 0, " ");
-        Mockito.verify(point_number, Mockito.times(1)).putString(18, 0, "2");
-        Mockito.verify(point_number, Mockito.times(1)).putString(21, 0, "/");
-        Mockito.verify(point_number, Mockito.times(1)).putString(22, 0, "12");
+        testEmptyFillBar(unfilled_point, filled_point);
+
+        Mockito.verify(unfilled_point, Mockito.times(1)).
+                setBackgroundColor(TextColor.Factory.fromString("#AA8855"));
+        Mockito.verify(unfilled_point, Mockito.times(1)).
+                setForegroundColor(TextColor.Factory.fromString("#FF0000"));
+
+        Mockito.verify(filled_point, Mockito.times(1)).
+                setBackgroundColor(TextColor.Factory.fromString("#EECC88"));
+        Mockito.verify(filled_point, Mockito.times(1)).
+                setForegroundColor(TextColor.Factory.fromString("#FF0000"));
+
+        Mockito.verify(point_number, Mockito.times(1)).
+                setBackgroundColor(TextColor.Factory.fromString("#AA8855"));
+        Mockito.verify(point_number, Mockito.times(1)).
+                setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
+
+        Mockito.verify(point_number, Mockito.times(1)).
+                putString(3 + 19, 3, " ");
+        Mockito.verify(point_number, Mockito.times(1)).
+                putString(3 + 18, 3, "0");
+        Mockito.verify(point_number, Mockito.times(1)).
+                putString(3 + 20, 3, "/");
+        Mockito.verify(point_number, Mockito.times(1)).
+                putString(3 + 21, 3, "6");
     }
 
     @Test
-    public void testEmptyFillBar(){
+    public void testFulldrawPointBar(){
         TextGraphics unfilled_point = Mockito.mock(TextGraphics.class);
         TextGraphics filled_point = Mockito.mock(TextGraphics.class);
         TextGraphics point_number = Mockito.mock(TextGraphics.class);
-
         BarViewer barViewer = new BarViewer(unfilled_point, filled_point, point_number);
 
-        barViewer.fillBar(0, 0, 0, 12);
+        barViewer.drawPointBar(3, 3, 6, 6);
 
-        Mockito.verify(filled_point, Mockito.times(1)).putString(0, 0, "|");
+        testFullFillBar(filled_point);
+
+        Mockito.verify(filled_point, Mockito.times(1)).
+                setBackgroundColor(TextColor.Factory.fromString("#FFEECC"));
+        Mockito.verify(filled_point, Mockito.times(2)).
+                setForegroundColor(TextColor.Factory.fromString("#FF0000"));
+    }
+
+    @Test
+    public void testdrawHealthBar(){
+        TextGraphics unfilled_point = Mockito.mock(TextGraphics.class);
+        TextGraphics filled_point = Mockito.mock(TextGraphics.class);
+        TextGraphics point_number = Mockito.mock(TextGraphics.class);
+        BarViewer barViewer = new BarViewer(unfilled_point, filled_point, point_number);
+
+        barViewer.drawHealthBar(3, 3, 6, 6);
+
+        testDrawBar(filled_point, point_number, "Hp:");
+
+        Mockito.verify(filled_point, Mockito.times(1)).
+                setBackgroundColor(TextColor.Factory.fromString("#BB1111"));
+        Mockito.verify(filled_point, Mockito.times(1)).
+                setForegroundColor(TextColor.Factory.fromString("#AA5555"));
+
+        Mockito.verify(unfilled_point, Mockito.times(1)).
+                setBackgroundColor(TextColor.Factory.fromString("#775555"));
+        Mockito.verify(unfilled_point, Mockito.times(1)).
+                setForegroundColor(TextColor.Factory.fromString("#777777"));
+
+        Mockito.verify(point_number, Mockito.times(1)).
+                setBackgroundColor(TextColor.Factory.fromString("#BB1111"));
+        Mockito.verify(point_number, Mockito.times(1)).
+                setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
+    }
+
+    @Test
+    public void testdrawManaBar(){
+        TextGraphics unfilled_point = Mockito.mock(TextGraphics.class);
+        TextGraphics filled_point = Mockito.mock(TextGraphics.class);
+        TextGraphics point_number = Mockito.mock(TextGraphics.class);
+        BarViewer barViewer = new BarViewer(unfilled_point, filled_point, point_number);
+
+        barViewer.drawManaBar(3, 3, 6, 6);
+
+        testDrawBar(filled_point, point_number, "Mana:");
+
+        Mockito.verify(filled_point, Mockito.times(1)).
+                setBackgroundColor(TextColor.Factory.fromString("#3D84CC"));
+        Mockito.verify(filled_point, Mockito.times(1)).
+                setForegroundColor(TextColor.Factory.fromString("#5555AA"));
+
+        Mockito.verify(unfilled_point, Mockito.times(1)).
+                setBackgroundColor(TextColor.Factory.fromString("#6688AA"));
+        Mockito.verify(unfilled_point, Mockito.times(1)).
+                setForegroundColor(TextColor.Factory.fromString("#777777"));
+
+        Mockito.verify(point_number, Mockito.times(1)).
+                setBackgroundColor(TextColor.Factory.fromString("#3D84CC"));
+        Mockito.verify(point_number, Mockito.times(1)).
+                setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
+    }
+
+    public void testEmptyFillBar(TextGraphics unfilled_point, TextGraphics filled_point){
+
+        Mockito.verify(filled_point, Mockito.times(1)).putString(3, 3, "|");
         for (int i = 4; i <= 16; i += 4)
-            Mockito.verify(unfilled_point, Mockito.times(1)).putString(i, 0, "|");
+            Mockito.verify(unfilled_point, Mockito.times(1)).putString(3+i, 3, "|");
 
         for (int j = 0; j <= 11; j++)
-            Mockito.verify(unfilled_point, Mockito.times(1)).putString(j + j / 3 + 1, 0, "_");
+            Mockito.verify(unfilled_point, Mockito.times(1)).putString(3 + j + j / 3 + 1, 3, "_");
     }
 
-    @Test
-    public void testFullFillBar(){
-        TextGraphics unfilled_point = Mockito.mock(TextGraphics.class);
-        TextGraphics filled_point = Mockito.mock(TextGraphics.class);
-        TextGraphics point_number = Mockito.mock(TextGraphics.class);
-
-        BarViewer barViewer = new BarViewer(unfilled_point, filled_point, point_number);
-
-        barViewer.fillBar(0, 0, 12, 12);
-
+    public void testFullFillBar(TextGraphics filled_point){
         for (int i = 0; i <= 16; i += 4)
-            Mockito.verify(filled_point, Mockito.times(1)).putString(i, 0, "|");
+            Mockito.verify(filled_point, Mockito.times(1)).putString(3 + i, 3, "|");
 
         for (int j = 0; j <= 11; j++)
-            Mockito.verify(filled_point, Mockito.times(1)).putString(j + j / 3 + 1, 0, "_");
+            Mockito.verify(filled_point, Mockito.times(1)).putString(3 + j + j / 3 + 1, 3, "_");
+    }
+
+    public void testHeaderBar(TextGraphics point_number){
+
+        Mockito.verify(point_number, Mockito.times(1)).putString(3+19, 3, " ");
+        Mockito.verify(point_number, Mockito.times(1)).putString(3+20, 3, " ");
+        Mockito.verify(point_number, Mockito.times(1)).putString(3+18, 3, "6");
+        Mockito.verify(point_number, Mockito.times(1)).putString(3+21, 3, "/");
+        Mockito.verify(point_number, Mockito.times(1)).putString(3+22, 3, "6");
+    }
+
+    public void testDrawBar(TextGraphics filled_point, TextGraphics point_number, String word){
+        testFullFillBar(filled_point);
+        testHeaderBar(point_number);
+        Mockito.verify(point_number, Mockito.times(1)).
+                putString(3-word.length(), 3, word);
     }
 }

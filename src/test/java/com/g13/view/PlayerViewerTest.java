@@ -19,6 +19,10 @@ public class PlayerViewerTest {
         player_special.add(new SpecialCard(7, '+', "card no 7"));
         player_special.add(new SpecialCard(4, '-', "card no 4"));
         player_special.add(new SpecialCard(5, '/', "card no 5"));
+        player_special.add(new SpecialCard(2, '*', "card no 2"));
+        player_special.add(new SpecialCard(7, '+', "card no 7"));
+        player_special.add(new SpecialCard(4, '-', "card no 4"));
+        player_special.add(new SpecialCard(5, '/', "card no 5"));
 
         GameParticipant player = new GameParticipant(player_special, 0, 0, 0, 0, 0);
         player.setDraw_deck(new ArrayList<>());

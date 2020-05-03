@@ -55,7 +55,7 @@ public class BarViewer {
         pointNumber.putString(x - word.length(), y, word);
     }
 
-    public void headerBar(int x, int y, int value, int max_value){
+    private void headerBar(int x, int y, int value, int max_value){
         pointNumber.putString(x + 19, y, " ");
         pointNumber.putString(x + 20, y, " ");
         pointNumber.putString(x + 18, y, String.valueOf(value));
@@ -63,7 +63,7 @@ public class BarViewer {
         pointNumber.putString(x + 22, y, String.valueOf(max_value));
     }
 
-    public void fillBar(int x, int y, int value, int max_value) {
+    private void fillBar(int x, int y, int value, int max_value) {
         for (int i = 0; i <= 16; i += 4) {
             if ((i / 4) * 3 <= (value / (float) max_value) * 12)
                 filled_point.putString(x + i, y, "|");

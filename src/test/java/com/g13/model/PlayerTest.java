@@ -23,6 +23,8 @@ public class PlayerTest {
         assertEquals(12, player.getMaxHealth());
         assertEquals(12, player.getMaxMana());
         assertEquals(12, player.getMaxHealth());
+        assertEquals(12, player.getMax_points());
+        assertEquals(false, player.getTurnOver());
     }
 
     @Test

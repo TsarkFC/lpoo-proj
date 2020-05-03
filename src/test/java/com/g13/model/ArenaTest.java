@@ -1,9 +1,8 @@
 package com.g13.model;
 
-import com.g13.model.Arena;
+import com.g13.view.Gui;
 import org.junit.Test;
 import org.mockito.Mockito;
-import com.g13.view.Gui;
 
 import java.util.ArrayList;
 
@@ -16,7 +15,6 @@ public class ArenaTest {
 
         assertEquals(10, arena.getHeight());
         assertEquals(10, arena.getWidth());
-        assertEquals(true, arena.getCurrent());
         assertEquals(false, arena.isFinished());
         assertEquals(new ArrayList<>().size(), arena.getObservers().size());
     }
@@ -38,12 +36,5 @@ public class ArenaTest {
         arena.addObserver(copy);
 
         assertEquals(2, arena.getObservers().size());
-    }
-
-    @Test
-    public void testCurrent(){
-        Arena arena = new Arena (10, 10);
-        arena.setCurrent(false);
-        assertEquals(false, arena.getCurrent());
     }
 }

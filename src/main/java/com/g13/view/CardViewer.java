@@ -36,17 +36,9 @@ public class CardViewer {
     }
 
     private void drawCardStructure(int x, int y){
-        for (int i = 0; i <= 5; i++){
-            for (int j = 0; j <= 3; j++){
+        for (int i = 0; i <= 5; i++)
+            for (int j = 0; j <= 3; j++)
                 graphics.putString(x+i, y+j, " ");
-            }
-        }
-
-        for (int i = 1; i <= 3; i++){
-            for (int j = 1; j <= 2; j++){
-                graphics.putString(x + i, y + j, " ");
-            }
-        }
     }
 
     private void setGraphics(String back, String fore){

@@ -10,7 +10,6 @@ public class Arena {
     private int height;
     private GameParticipant player;
     private Enemy enemy;
-    private boolean current; //true->player | false -> enemy
 
     private boolean isFinished;
     private List<ArenaObserver> observers;
@@ -18,7 +17,6 @@ public class Arena {
     public Arena(int width, int height){
         this.width = width;
         this.height = height;
-        this.current = true;
         this.isFinished = false;
         this.observers = new ArrayList<>();
     }
@@ -49,14 +47,6 @@ public class Arena {
 
     public void addObserver(ArenaObserver observer) {
         observers.add(observer);
-    }
-
-    public boolean getCurrent(){
-        return current;
-    }
-
-    public void setCurrent(boolean current){
-        this.current = current;
     }
 
     public void setPlayer(GameParticipant player) {
