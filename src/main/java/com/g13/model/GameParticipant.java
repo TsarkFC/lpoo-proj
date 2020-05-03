@@ -56,46 +56,21 @@ public class GameParticipant {
 
     public String getCardInfo(int i){ return play_deck.get(i).getCardInfo(); }
 
-    public void setPlay_deck(List<SpecialCard> play_deck) {
-        this.play_deck = play_deck;
-    }
-
     public int getHealth() {
         return health;
-    }
-
-    public void setHealth(int health) {
-        this.health = health;
     }
 
     public int getMaxHealth(){
         return max_health;
     }
 
-    public void setMaxHealth(int max_health){
-        this.max_health = max_health;
-    }
-
     public int getMana() {
         return mana;
-    }
-
-    public void setMana(int mana) {
-        this.mana = mana;
     }
 
     public int getMaxMana(){
         return max_mana;
     }
-
-    public void setMaxMana(int max_mana){
-        this.max_mana = max_mana;
-    }
-
-    public int getDeckSize(){
-        return draw_deck.size();
-    }
-
     public int getPoints() {
         return points;
     }

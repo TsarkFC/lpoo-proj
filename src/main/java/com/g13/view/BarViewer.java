@@ -41,20 +41,18 @@ public class BarViewer {
 
     public void drawHealthBar(int x, int y, int health, int max_health){
         setAllGraphicsValues("#BB1111", "#AA5555", "#775555", "#777777", "#BB1111", "#FFFFFF");
-        fillBar(x, y, health, max_health);
-        headerBar(x, y, health, max_health);
-        pointNumber.putString(x - 3, y, "HP:");
+        drawBar(x,y,health,max_health,"Hp:");
     }
 
     public void drawManaBar(int x, int y, int mana, int max_mana){
         setAllGraphicsValues("#3D84CC", "#5555AA", "#6688AA", "#777777", "#3D84CC", "#FFFFFF");
-        fillBar(x, y, mana, max_mana);
-        headerBar(x, y, mana, max_mana);
-        pointNumber.putString(x - 5, y, "Mana:");
+        drawBar(x,y,mana,max_mana,"Mana:");
     }
 
-    private void drawBar(){
-
+    private void drawBar(int x, int y, int value, int max_value, String word){
+        fillBar(x, y, value, max_value);
+        headerBar(x, y, value, max_value);
+        pointNumber.putString(x - word.length(), y, word);
     }
 
     public void headerBar(int x, int y, int value, int max_value){

@@ -78,18 +78,17 @@ A ser desenvolvido por [João Cardoso](https://github.com/joaoalc) (up201806531@
 
  ### Long parameter list
  
- - O [construtor de GameParticipant](../src/main/java/com/g13/model/GameParticipant.java)
+ - O [construtor de GameParticipant](../src/main/java/com/g13/model/GameParticipant.java) está neste momento longo comparado com o pretendido. O método de refactoring a utilizar seria *Introduce Parameter Object*, que poderia ser introduzido criando um objeto Bar que contesse os valores atuais e máximos.
+   Este objeto faria parte do modelo e no futuro viria a ter um controlador que o manipulasse. Já apresenta uma vista que no entanto é controlada pela vista do GameParticipant.
 
- Large method
+ - O mesmo acontece para alguns métodos presentes em [BarViewer](../src/main/java/com/g13/view/BarViewer.java). Muitos deles devem-se à razão apresentada em cima, mas por outro lado poder-se-ia também, recorrendo ao mesmo refactoring,
+   criar uma nova classe Position que evitasse a repetição dos parametros (int x, int y) não só neste momemnto, mas também ao longo de todo o programa.
 
-## Refactorings
-
- Extract class
+ ### Lazy Class
  
- Repalce method with method object
- 
- Extract method
-
+ - [CardController](../src/main/java/com/g13/controller/CardController.java) e [SpecialCardController](../src/main/java/com/g13/controller/SpecialCardController.java)
+ não apresentam muita utilidade ao programa neste momento, uma vez que poucas instruções podem ser aplicadas a uma só carta. Deste modo no futuro poder-se-á criar
+ um classe DeckController que manipulasse os baralhos dos jogadores, substituindo métodos de [GameParticipantController](../src/main/java/com/g13/controller/GameParticipantController.java).
 ## Testes
 
  Estão desenvolvidos testes para algumas classes que fazem parte do modelo.

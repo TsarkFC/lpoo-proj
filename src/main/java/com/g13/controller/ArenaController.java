@@ -49,14 +49,9 @@ public class ArenaController {
         }
     }
 
-    public int getWidth(){ return model.getWidth(); }
-    public int getHeight(){ return model.getHeight(); }
-
     public GameParticipant getPlayer() {return model.getPlayer();}
     public Enemy getEnemy() {return model.getEnemy();}
     public Arena getModel() {return model;}
-
-    public boolean getCurrent() {return model.getCurrent();}
 
     public GameParticipantController getPlayerController() {
         return playerController;

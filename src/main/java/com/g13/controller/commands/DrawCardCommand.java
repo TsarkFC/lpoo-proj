@@ -50,14 +50,5 @@ public class DrawCardCommand implements Command{
         if(opposite.getPoints() == opposite.getMax_points()){
             opposite.setTurnOver(true);
         }
-
-        /*
-        //TODO: Use turn_over variables to check if they player's turn is over (using a command?)
-        if(!controller.getModel().getEnemy().getTurnOver()) {
-            TurnChecker checker = new TurnChecker(controller);
-            checker.execute();
-        }
-        */
-
     }
 }

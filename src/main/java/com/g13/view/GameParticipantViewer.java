@@ -6,10 +6,9 @@ public class GameParticipantViewer {
     private BarViewer barViewer;
     private CardViewer cardViewer;
 
-    public GameParticipantViewer(BarViewer barViewer, CardViewer cardViewer/*, TerminalScreen screen*/){
+    public GameParticipantViewer(BarViewer barViewer, CardViewer cardViewer){
         this.cardViewer = cardViewer;
         this.barViewer = barViewer;
-        //this.screen = screen;
     }
 
     public void drawPlayer(GameParticipant player){
