@@ -1,0 +1,26 @@
+@startuml
+!define DARKBLUE
+!includeurl https://raw.githubusercontent.com/Drakemor/RedDress-PlantUML/master/style.puml
+
+interface ArenaObserver{
+    + void arenaChanged();
+}
+
+class ArenaController{
+    + void notifyObservers();
+}
+class Gui{
+    + void arenaChanged();
+}
+note left
+    @Override
+    public void arenaChanged() {
+        draw();
+    }
+end note
+
+ArenaObserver <-right-o ArenaController
+
+
+Gui ..|> ArenaObserver
+@enduml

@@ -1,0 +1,173 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: ArenaController</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.g13.controller</a> ]
+</div>
+
+<h1>Coverage Summary for Class: ArenaController (com.g13.controller)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ArenaController</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    63.6%
+  </span>
+  <span class="absValue">
+    (7/ 11)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    37.2%
+  </span>
+  <span class="absValue">
+    (16/ 43)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.g13.controller;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.g13.controller.strategies.PlayStrategy;
+<i>4</i>&nbsp;import com.g13.controller.commands.DrawCardCommand;
+<i>5</i>&nbsp;import com.g13.controller.commands.SkipTurnCommand;
+<i>6</i>&nbsp;import com.g13.model.Arena;
+<i>7</i>&nbsp;import com.g13.model.Enemy;
+<i>8</i>&nbsp;import com.g13.model.GameParticipant;
+<i>9</i>&nbsp;import com.g13.controller.observer.ArenaObserver;
+<i>10</i>&nbsp;import com.g13.view.Gui;
+<i>11</i>&nbsp;
+<i>12</i>&nbsp;import java.io.IOException;
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;public class ArenaController {
+<i>15</i>&nbsp;    private Arena model;
+<i>16</i>&nbsp;    private Gui view;
+<i>17</i>&nbsp;    private GameParticipantController playerController;
+<i>18</i>&nbsp;    private GameParticipantController enemyController;
+<i>19</i>&nbsp;
+<b class="fc"><i>20</i>&nbsp;    public ArenaController(Gui gui, Arena arena){</b>
+<b class="fc"><i>21</i>&nbsp;        this.view = gui;</b>
+<b class="fc"><i>22</i>&nbsp;        this.model = arena;</b>
+<b class="fc"><i>23</i>&nbsp;    }</b>
+<i>24</i>&nbsp;
+<i>25</i>&nbsp;    public void start() throws IOException {
+<b class="nc"><i>26</i>&nbsp;        view.draw();</b>
+<i>27</i>&nbsp;
+<b class="nc"><i>28</i>&nbsp;        while(!model.isFinished()){</b>
+<b class="nc"><i>29</i>&nbsp;            Gui.COMMAND command = view.getNextCommand();</b>
+<b class="nc"><i>30</i>&nbsp;            if (command == Gui.COMMAND.SWITCH) {</b>
+<b class="nc"><i>31</i>&nbsp;                SkipTurnCommand skipTurnCommand = new SkipTurnCommand(playerController);</b>
+<b class="nc"><i>32</i>&nbsp;                skipTurnCommand.execute();</b>
+<i>33</i>&nbsp;            }
+<i>34</i>&nbsp;
+<b class="nc"><i>35</i>&nbsp;            if (command == Gui.COMMAND.DRAW){</b>
+<b class="nc"><i>36</i>&nbsp;                if(!model.getPlayer().getTurnOver()) {</b>
+<b class="nc"><i>37</i>&nbsp;                    DrawCardCommand drawCmd = new DrawCardCommand(playerController, enemyController);</b>
+<b class="nc"><i>38</i>&nbsp;                    drawCmd.execute();</b>
+<i>39</i>&nbsp;                }
+<i>40</i>&nbsp;                //TODO: Use turn_over variables to check if they player&#39;s turn is over (using a command?)
+<b class="nc"><i>41</i>&nbsp;                if(!this.getModel().getEnemy().getTurnOver())</b>
+<b class="nc"><i>42</i>&nbsp;                    this.playEnemyTurn();</b>
+<i>43</i>&nbsp;
+<b class="nc"><i>44</i>&nbsp;                notifyObservers();</b>
+<i>45</i>&nbsp;
+<i>46</i>&nbsp;            }
+<b class="nc"><i>47</i>&nbsp;            if (command == Gui.COMMAND.QUIT)</b>
+<b class="nc"><i>48</i>&nbsp;                model.finish();</b>
+<b class="nc"><i>49</i>&nbsp;        }</b>
+<b class="nc"><i>50</i>&nbsp;    }</b>
+<i>51</i>&nbsp;
+<b class="fc"><i>52</i>&nbsp;    public GameParticipant getPlayer() {return model.getPlayer();}</b>
+<b class="fc"><i>53</i>&nbsp;    public Enemy getEnemy() {return model.getEnemy();}</b>
+<b class="nc"><i>54</i>&nbsp;    public Arena getModel() {return model;}</b>
+<i>55</i>&nbsp;
+<i>56</i>&nbsp;    public GameParticipantController getPlayerController() {
+<b class="fc"><i>57</i>&nbsp;        return playerController;</b>
+<i>58</i>&nbsp;    }
+<i>59</i>&nbsp;
+<i>60</i>&nbsp;    public void setPlayerController(GameParticipant player) {
+<b class="fc"><i>61</i>&nbsp;        this.playerController = new GameParticipantController(player);</b>
+<b class="fc"><i>62</i>&nbsp;        model.setPlayer(player);</b>
+<b class="fc"><i>63</i>&nbsp;        playerController.setDefaultDeck();</b>
+<b class="fc"><i>64</i>&nbsp;    }</b>
+<i>65</i>&nbsp;
+<i>66</i>&nbsp;    public GameParticipantController getEnemyController() {
+<b class="fc"><i>67</i>&nbsp;        return enemyController;</b>
+<i>68</i>&nbsp;    }
+<i>69</i>&nbsp;
+<i>70</i>&nbsp;    public void setEnemyController(Enemy enemy) {
+<b class="fc"><i>71</i>&nbsp;        this.enemyController = new GameParticipantController(enemy);</b>
+<b class="fc"><i>72</i>&nbsp;        model.setEnemy(enemy);</b>
+<b class="fc"><i>73</i>&nbsp;        enemyController.setDefaultDeck();</b>
+<b class="fc"><i>74</i>&nbsp;    }</b>
+<i>75</i>&nbsp;
+<i>76</i>&nbsp;    public void playEnemyTurn(){
+<b class="nc"><i>77</i>&nbsp;        PlayStrategy strategy = getEnemy().getPlayStrategy();</b>
+<b class="nc"><i>78</i>&nbsp;        if (!strategy.playTurn(this)) {</b>
+<i>79</i>&nbsp;            //Acabar a ronda do inimigo
+<b class="nc"><i>80</i>&nbsp;            SkipTurnCommand skipTurnCommand = new SkipTurnCommand(enemyController);</b>
+<b class="nc"><i>81</i>&nbsp;            skipTurnCommand.execute();</b>
+<i>82</i>&nbsp;        }
+<b class="nc"><i>83</i>&nbsp;    }</b>
+<i>84</i>&nbsp;
+<i>85</i>&nbsp;    public void notifyObservers() {
+<b class="nc"><i>86</i>&nbsp;        for (ArenaObserver observer : model.getObservers()) {</b>
+<b class="nc"><i>87</i>&nbsp;            observer.arenaChanged();</b>
+<b class="nc"><i>88</i>&nbsp;        }</b>
+<b class="nc"><i>89</i>&nbsp;    }</b>
+<i>90</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-05-03 20:08</div>
+</div>
+</body>
+</html>

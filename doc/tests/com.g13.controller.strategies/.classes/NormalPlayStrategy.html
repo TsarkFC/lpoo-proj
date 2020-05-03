@@ -1,0 +1,180 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: NormalPlayStrategy</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.g13.controller.strategies</a> ]
+</div>
+
+<h1>Coverage Summary for Class: NormalPlayStrategy (com.g13.controller.strategies)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">NormalPlayStrategy</td>
+<td class="coverageStat">
+  <span class="percent">
+    50%
+  </span>
+  <span class="absValue">
+    (1/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    10%
+  </span>
+  <span class="absValue">
+    (1/ 10)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">NormalPlayStrategy$MockitoMock$527025159</td>
+  </tr>
+  <tr>
+    <td class="name">NormalPlayStrategy$MockitoMock$527025159$auxiliary$25rEb84u</td>
+  </tr>
+  <tr>
+    <td class="name">NormalPlayStrategy$MockitoMock$527025159$auxiliary$54mMOmYz</td>
+  </tr>
+  <tr>
+    <td class="name">NormalPlayStrategy$MockitoMock$527025159$auxiliary$K1Rhmcng</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    50%
+  </span>
+  <span class="absValue">
+    (1/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    10%
+  </span>
+  <span class="absValue">
+    (1/ 10)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.g13.controller.strategies;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.g13.controller.commands.DrawCardCommand;
+<i>4</i>&nbsp;import com.g13.controller.ArenaController;
+<i>5</i>&nbsp;
+<i>6</i>&nbsp;
+<b class="fc"><i>7</i>&nbsp;public class NormalPlayStrategy implements PlayStrategy{</b>
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;    @Override
+<i>10</i>&nbsp;    public boolean playTurn(ArenaController arenaController) {
+<b class="nc"><i>11</i>&nbsp;        boolean draw_limit_reached = false;</b>
+<i>12</i>&nbsp;
+<b class="nc"><i>13</i>&nbsp;        boolean has_drawn = false;</b>
+<i>14</i>&nbsp;
+<i>15</i>&nbsp;        //Fazer draw?
+<b class="nc"><i>16</i>&nbsp;        if(arenaController.getEnemy().getPoints() &lt;= arenaController.getEnemy().getMax_points() - 4){</b>
+<b class="nc"><i>17</i>&nbsp;            DrawCardCommand command = new DrawCardCommand(arenaController.getEnemyController(), arenaController.getPlayerController());</b>
+<b class="nc"><i>18</i>&nbsp;            command.execute();</b>
+<b class="nc"><i>19</i>&nbsp;            has_drawn = true;</b>
+<i>20</i>&nbsp;        }
+<i>21</i>&nbsp;
+<i>22</i>&nbsp;        //Vais querer fazer draw na próxima ronda?
+<b class="nc"><i>23</i>&nbsp;        if(arenaController.getEnemy().getPoints() &lt;= arenaController.getEnemy().getMax_points() - 4){</b>
+<b class="nc"><i>24</i>&nbsp;            draw_limit_reached = true;</b>
+<i>25</i>&nbsp;        }
+<i>26</i>&nbsp;
+<i>27</i>&nbsp;        //Don&#39;t wanna draw but you&#39;re losing against the player?
+<i>28</i>&nbsp;        //if(arenaController.getEnemy().getPoints() &lt; arenaController.getPlayer().getPoints() &amp;&amp; limit_reached){
+<i>29</i>&nbsp;            /*
+<i>30</i>&nbsp;            Play special card if:
+<i>31</i>&nbsp;                -The card is a modifier. (check all)
+<i>32</i>&nbsp;                -You don&#39;t wanna draw anymore.
+<i>33</i>&nbsp;                -You don&#39;t overdraw from playing it.
+<i>34</i>&nbsp;                -You have enough mana for it.
+<i>35</i>&nbsp;                (
+<i>36</i>&nbsp;                    (
+<i>37</i>&nbsp;                    IF careful
+<i>38</i>&nbsp;                    AND
+<i>39</i>&nbsp;                    -You have enough mana +5 for careful?
+<i>40</i>&nbsp;                    )
+<i>41</i>&nbsp;                    OR
+<i>42</i>&nbsp;                    (
+<i>43</i>&nbsp;                    NOT careful
+<i>44</i>&nbsp;                    )
+<i>45</i>&nbsp;                AND
+<i>46</i>&nbsp;                -The opponent has more points than you.
+<i>47</i>&nbsp;                AND
+<i>48</i>&nbsp;                -You will have at least the same points as the player.
+<i>49</i>&nbsp;                )
+<i>50</i>&nbsp;                OR
+<i>51</i>&nbsp;                (
+<i>52</i>&nbsp;                -You will die from the player the damage he&#39;d do this turn.
+<i>53</i>&nbsp;                )
+<i>54</i>&nbsp;
+<i>55</i>&nbsp;                OR
+<i>56</i>&nbsp;                (
+<i>57</i>&nbsp;                    -(IF agressive)
+<i>58</i>&nbsp;                    AND
+<i>59</i>&nbsp;                    -You are tied with your opponent
+<i>60</i>&nbsp;                )
+<i>61</i>&nbsp;             */
+<i>62</i>&nbsp;
+<i>63</i>&nbsp;        //}
+<i>64</i>&nbsp;
+<i>65</i>&nbsp;        //Winning and don&#39;t wanna draw? Play a win-more card!
+<i>66</i>&nbsp;        //if(arenaController.getEnemy().getPoints() &gt; arenaController.getPlayer().getPoints() &amp;&amp; draw_limit_reached){
+<i>67</i>&nbsp;            //Play win more card
+<i>68</i>&nbsp;            //Careful only plays a win more card if the player has locked in too
+<i>69</i>&nbsp;        //}
+<i>70</i>&nbsp;
+<i>71</i>&nbsp;        //Losing and don&#39;t wanna draw and can&#39;t win? Play a defensive card!
+<i>72</i>&nbsp;        //if(arenaController.getEnemy().getPoints() &gt; arenaController.getPlayer().getPoints() &amp;&amp; draw_limit_reached){
+<i>73</i>&nbsp;            //Play defensive card if
+<i>74</i>&nbsp;            //
+<i>75</i>&nbsp;        //}
+<b class="nc"><i>76</i>&nbsp;        return has_drawn;</b>
+<i>77</i>&nbsp;    }
+<i>78</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-05-03 20:08</div>
+</div>
+</body>
+</html>

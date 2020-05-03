@@ -52,7 +52,7 @@ A ser desenvolvido por [João Cardoso](https://github.com/joaoalc) (up201806531@
  
  **Implementação**
  
-  ![](./Observer_Pattern.png)
+  ![](./uml/Observer_Pattern.png)
   
   Estas classes podem sem encontradas nos seguintes ficheiros:
   
@@ -67,20 +67,6 @@ A ser desenvolvido por [João Cardoso](https://github.com/joaoalc) (up201806531@
  
  Apesar de neste momento apenas termos um observador ([Gui](../src/main/java/com/g13/view/Gui.java)), decidimos implementar o design pattern uma vez que será útil no futuro
  quando o código for simplificado e novas componentes forem introduzidas na Arena, não sendo necessária uma atualização contínua de cada compenente da vista do jogo.
- 
- #### Command
- 
- **Problema:**
- 
- No nosso código, existem certas ações que são genéricas (Exemplo: Fazer draw de cartas ou shuffle de um dos decks). Estas ações podem acontecer em várias situações. (Ambos o jogador e o inimigo podem fazer draw, o deck faz shuffle quando as cartas acabam ou, no futuro, possivelmente pelo efeito de alguma carta)
- 
- Isto envolve repetição desnecessária de código.
- 
- **Design pattern / solução:**
- 
- Este design pattern permite fazermos um comando genérico que faz a ação que queremos. Quando precisarmos de executar a ação, chamamos a classe do comando e depois chamamos a função execute.
- 
- No nosso código, existe a interface Command, que é implementada pelo DeskShuffler, o DrawCardCommand, entre outros. Onde é necessário executar uma dessas ações comuns, cria-se e executa-se o comando respetivo.
  
  #### Strategy
  
@@ -98,7 +84,7 @@ A ser desenvolvido por [João Cardoso](https://github.com/joaoalc) (up201806531@
   
   **Implementação**
   
-  ![](./Strategy_Pattern2.png)
+  ![](uml/Strategy_Pattern.png)
   
   Estas classes podem sem encontradas nos seguintes ficheiros:
   
@@ -120,10 +106,10 @@ A ser desenvolvido por [João Cardoso](https://github.com/joaoalc) (up201806531@
 
  ### Long parameter list
  
- - O [construtor de GameParticipant](../src/main/java/com/g13/model/GameParticipant.java) está neste momento longo comparado com o pretendido. O método de refactoring a utilizar seria *Introduce Parameter Object*, que poderia ser introduzido criando um objeto Bar que contesse os valores atuais e máximos.
+ - O [construtor de GameParticipant](../src/main/java/com/g13/model/GameParticipant.java) está neste momento longo comparado com o pretendido. O método de refactoring a utilizar seria *Introduce Parameter Object*, que poderia ser introduzido criando um objeto Bar que contesse os valores atuais e máximos (health e max_health por exemplo).
    Este objeto faria parte do modelo e no futuro viria a ter um controlador que o manipulasse. Já apresenta uma vista que no entanto é controlada pela vista do GameParticipant.
 
- - O mesmo acontece para alguns métodos presentes em [BarViewer](../src/main/java/com/g13/view/BarViewer.java). Muitos deles devem-se à razão apresentada em cima, mas por outro lado poder-se-ia também, recorrendo ao mesmo refactoring,
+ - O mesmo acontece para alguns métodos presentes em [BarViewer](../src/main/java/com/g13/view/BarViewer.java). Muitos deles devem-se à razão apresentada em cima, mas por outro lado poder-se-ia também resolver recorrendo ao mesmo refactoring,
    criar uma nova classe Position que evitasse a repetição dos parametros (int x, int y) não só neste momemnto, mas também ao longo de todo o programa.
 
  ### Lazy Class
@@ -153,7 +139,27 @@ A ser desenvolvido por [João Cardoso](https://github.com/joaoalc) (up201806531@
 
 ## Testes
 
- - Screenshot test coverage
+ Na realização dos testes focámo-nos mais em classes que à partida sofrerão poucas ou nenhumas alterações (ex. modelo).
  
- - Mutation testing (pitest) link
+ Classes que fazem parte de strategies não possuem testes, uma vez que são features em desenvolvimento e recentemente implementadas.
+ 
+ ArenaController possui também poucos testes uma vez que irá sofrer algumas alterações
+ quando for implementada a transição entre turnos de jogo.
+ 
+ ### Coverage testing
+ 
+ ![](./tests/coverage.png)
+ 
+ - Coverage testing [link](./tests).
+ 
+ ### Mutation testing 
+ 
+ ![](./mutation/mutations.png)
+ 
+ - Mutation testing [link](./mutation).
+ 
+## Autoavaliação
+ Ambos os membros trabalharam de igual forma na execução do trabalho.
+ - João Cardoso: 50%
+ - João Romão: 50%
 
