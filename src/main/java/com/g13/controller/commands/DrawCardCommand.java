@@ -8,20 +8,16 @@ import com.g13.model.Card;
 import static java.lang.Integer.min;
 
 public class DrawCardCommand implements Command{
-    private ArenaController controller;
     private GameParticipantController current;
     private GameParticipantController opposite;
 
-    public DrawCardCommand(ArenaController controller, GameParticipantController currentController, GameParticipantController oppositeController){
-        this.controller = controller;
+    public DrawCardCommand(GameParticipantController currentController, GameParticipantController oppositeController){
         this.current = currentController;
         this.opposite = oppositeController;
     }
 
     @Override
     public void execute() {
-
-
         Card card = current.getDraw_deck().get(0);
         CardController c = new CardController(card);
         c.effect(current.getParticipant());

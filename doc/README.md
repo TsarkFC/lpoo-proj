@@ -1,5 +1,5 @@
 
-# LPOO_13 - VOYD TYRANT (card game)
+# LPOO_13 - VOID TYRANT (card game)
 
 Este projeto tem como inspiração o jogo "Void Tyrant", onde o utilizador tem como objetivo derrotar um enimigo, utilizando as cartas que tem ao seu dispor. 
 Ambos os participantes possuem dois baralhos: um baralho de cartas normais e um baralho de cartas especiais cujas habilidades poderão ser ativadas com o decorrer do jogo.
@@ -130,7 +130,27 @@ A ser desenvolvido por [João Cardoso](https://github.com/joaoalc) (up201806531@
  
  - [CardController](../src/main/java/com/g13/controller/CardController.java) e [SpecialCardController](../src/main/java/com/g13/controller/SpecialCardController.java)
  não apresentam muita utilidade ao programa neste momento, uma vez que poucas instruções podem ser aplicadas a uma só carta. Deste modo no futuro poder-se-á criar
- um classe DeckController que manipulasse os baralhos dos jogadores, substituindo alguns dos métodos de [GameParticipantController](../src/main/java/com/g13/controller/GameParticipantController.java).
+ um classe DeckController que manipulasse os baralhos dos jogadores, substituindo estas classes e alguns dos métodos de [GameParticipantController](../src/main/java/com/g13/controller/GameParticipantController.java).
+
+ ### Switch statement
+ 
+ - Numa fase inicial do desenvolvimento tínhamos implementado o design pattern Command, numa altura em que a arquitetura
+ MVC não era respeitada e o modelo possuía a capacidade de se modelar. A classe [Gui](../src/main/java/com/g13/view/Gui.java) 
+ era reponsável por enviar ao [ArenaController](../src/main/java/com/g13/controller/ArenaController.java) um comando 
+ dependendo da tecla que o utilizador premisse. 
+ 
+ - Isto passou a constituir problema quando os métodos que alteram o modelo foram
+ tranferidos para controladores, deixando a vista de ter acesso a métodos que moldam o modelo.
+ 
+ - Pensámos em aplicar o design pattern Singleton, numa fase inicial, mas relembrando o que nos foi transmitido
+ em diversas aulas, este design pattern poderia provocar mais problemas futuramente.
+ 
+ - Optou-se por criar uma enumeração em [Gui](../src/main/java/com/g13/view/Gui.java), onde cada atributo representa
+ um comando a ser executado por [start()](../src/main/java/com/g13/controller/CardController.java) em ArenaController.
+ Para reconhecer o atributo utiliza-se uma cadeia de ifs.
+ 
+ - Apesar de constituir um code smell, este apresenta-se neste caso como uma solução a um problema encontrado.
+
 ## Testes
 
  - Screenshot test coverage

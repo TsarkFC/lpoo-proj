@@ -1,6 +1,5 @@
 package com.g13.model;
 
-import com.g13.controller.strategies.NormalPlayStrategy;
 import com.g13.controller.strategies.PlayStrategy;
 
 import java.util.List;
@@ -15,9 +14,5 @@ public class Enemy extends GameParticipant{
 
     public PlayStrategy getPlayStrategy(){
         return playStrategy;
-    }
-
-    public void setPlayStrategy(PlayStrategy playStrategy){
-        this.playStrategy = playStrategy;
     }
 }

@@ -1,6 +1,5 @@
 package com.g13.controller;
 
-import com.g13.controller.GameParticipantController;
 import com.g13.model.GameParticipant;
 import com.g13.model.SpecialCard;
 import org.junit.Test;

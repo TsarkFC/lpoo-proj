@@ -6,11 +6,6 @@ import com.g13.controller.ArenaController;
 
 public class NormalPlayStrategy implements PlayStrategy{
 
-
-    public NormalPlayStrategy(){
-    }
-
-
     @Override
     public boolean playTurn(ArenaController arenaController) {
         boolean draw_limit_reached = false;
@@ -19,7 +14,7 @@ public class NormalPlayStrategy implements PlayStrategy{
 
         //Fazer draw?
         if(arenaController.getEnemy().getPoints() <= arenaController.getEnemy().getMax_points() - 4){
-            DrawCardCommand command = new DrawCardCommand(arenaController, arenaController.getEnemyController(), arenaController.getPlayerController());
+            DrawCardCommand command = new DrawCardCommand(arenaController.getEnemyController(), arenaController.getPlayerController());
             command.execute();
             has_drawn = true;
         }
@@ -67,8 +62,6 @@ public class NormalPlayStrategy implements PlayStrategy{
 
         //}
 
-
-
         //Winning and don't wanna draw? Play a win-more card!
         //if(arenaController.getEnemy().getPoints() > arenaController.getPlayer().getPoints() && draw_limit_reached){
             //Play win more card
@@ -76,13 +69,10 @@ public class NormalPlayStrategy implements PlayStrategy{
         //}
 
         //Losing and don't wanna draw and can't win? Play a defensive card!
-        if(arenaController.getEnemy().getPoints() > arenaController.getPlayer().getPoints() && draw_limit_reached){
+        //if(arenaController.getEnemy().getPoints() > arenaController.getPlayer().getPoints() && draw_limit_reached){
             //Play defensive card if
             //
-        }
-
-
-
+        //}
         return has_drawn;
     }
 }

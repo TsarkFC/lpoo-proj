@@ -34,7 +34,7 @@ public class ArenaController {
 
             if (command == Gui.COMMAND.DRAW){
                 if(!model.getPlayer().getTurnOver()) {
-                    DrawCardCommand drawCmd = new DrawCardCommand(this, playerController, enemyController);
+                    DrawCardCommand drawCmd = new DrawCardCommand(playerController, enemyController);
                     drawCmd.execute();
                 }
                 //TODO: Use turn_over variables to check if they player's turn is over (using a command?)
