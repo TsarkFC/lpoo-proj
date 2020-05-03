@@ -12,6 +12,6 @@ Durante cada ronda cada jogador pode ativar cartas especiais, desde que tenha ma
 
 O jogo termina quando a vida de um dos jogadores atingir o valor 0.
 
-![](./doc/img1.png)
+![](docs/img1.png)
 
-![](./doc/img2.png)
+![](docs/img2.png)
