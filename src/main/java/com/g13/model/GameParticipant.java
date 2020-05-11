@@ -47,7 +47,7 @@ public class GameParticipant {
     public int getHealth() {
         return barSet.getHealth();
     }
-
+    public void setHealth(int health) {barSet.setHealth(health);}
     public int getMaxHealth(){
         return barSet.getMaxHealth();
     }
@@ -55,18 +55,16 @@ public class GameParticipant {
     public int getMana() {
         return barSet.getMana();
     }
-
     public int getMaxMana(){
         return barSet.getMaxMana();
     }
+
     public int getPoints() {
         return barSet.getPoints();
     }
-
     public void setPoints(int points) {
         barSet.setPoints(points);
     }
-
     public int getMax_points() {
         return barSet.getMaxPoints();
     }

@@ -17,12 +17,15 @@ public class BarSet {
      public int getMaxHealth(){
         return healthBar.getMax_value();
      }
+     public void setHealth(int health){healthBar.setValue(health);}
+
     public int getMana(){
         return manaBar.getValue();
     }
     public int getMaxMana(){
         return manaBar.getMax_value();
     }
+
     public int getPoints(){
         return pointBar.getValue();
     }

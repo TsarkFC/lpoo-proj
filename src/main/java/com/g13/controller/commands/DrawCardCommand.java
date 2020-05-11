@@ -1,6 +1,5 @@
 package com.g13.controller.commands;
 
-import com.g13.controller.ArenaController;
 import com.g13.controller.CardController;
 import com.g13.controller.GameParticipantController;
 import com.g13.model.Card;
@@ -34,7 +33,6 @@ public class DrawCardCommand implements Command{
                 a = 0;
             }
             current.setPoints(a);
-            //TODO: End turn for both players function
             //TODO: Make variable with overdraw, normal and guarding states for ending the turn
             current.setTurnOver(true);
             opposite.setTurnOver(true);

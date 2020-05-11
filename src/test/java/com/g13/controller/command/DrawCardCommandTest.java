@@ -21,7 +21,7 @@ public class DrawCardCommandTest {
         Bar manaBar = new Bar(10, 20);
         Bar pointBar = new Bar(0, 12);
         BarSet barSet =  new BarSet(healthBar, manaBar, pointBar);
-        
+
         GameParticipant player = new GameParticipant(new ArrayList<>(), barSet);
         GameParticipant enemy = new GameParticipant(new ArrayList<>(), barSet);
         GameParticipantController playerController = new GameParticipantController(player);
