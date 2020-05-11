@@ -7,8 +7,8 @@ import java.util.List;
 public class Enemy extends GameParticipant{
     PlayStrategy playStrategy;
 
-    public Enemy(List<SpecialCard> play_deck, int health, int mana, int max_health, int max_mana, int max_points, PlayStrategy playStrategy) {
-        super(play_deck, health, mana, max_health, max_mana, max_points);
+    public Enemy(List<SpecialCard> play_deck, BarSet barSet, PlayStrategy playStrategy) {
+        super(play_deck, barSet);
         this.playStrategy = playStrategy;
     }
 

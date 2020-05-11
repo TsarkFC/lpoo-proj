@@ -1,8 +1,7 @@
 package com.g13.controller;
 
+import com.g13.controller.commands.*;
 import com.g13.controller.strategies.PlayStrategy;
-import com.g13.controller.commands.DrawCardCommand;
-import com.g13.controller.commands.SkipTurnCommand;
 import com.g13.model.Arena;
 import com.g13.model.Enemy;
 import com.g13.model.GameParticipant;
@@ -10,16 +9,25 @@ import com.g13.controller.observer.ArenaObserver;
 import com.g13.view.Gui;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
 
 public class ArenaController {
     private Arena model;
     private Gui view;
     private GameParticipantController playerController;
     private GameParticipantController enemyController;
+    private List<Command> commands;
+    private int cmdStage = 0;
 
     public ArenaController(Gui gui, Arena arena){
         this.view = gui;
         this.model = arena;
+        commands = new ArrayList<>();
+        commands.add(new PointDiffCommand(this));
+        commands.add(new ApplyDiffCommand(this));
     }
 
     public void start() throws IOException {
@@ -28,21 +36,25 @@ public class ArenaController {
         while(!model.isFinished()){
             Gui.COMMAND command = view.getNextCommand();
             if (command == Gui.COMMAND.SWITCH) {
-                SkipTurnCommand skipTurnCommand = new SkipTurnCommand(playerController);
-                skipTurnCommand.execute();
-            }
+                if (endOfRound()){
+                    interStageHandler();
+                }
+                else {
+                    SkipTurnCommand skipTurnCommand = new SkipTurnCommand(playerController);
+                    skipTurnCommand.execute();
+                }
 
+                notifyObservers();
+            }
             if (command == Gui.COMMAND.DRAW){
                 if(!model.getPlayer().getTurnOver()) {
                     DrawCardCommand drawCmd = new DrawCardCommand(playerController, enemyController);
                     drawCmd.execute();
                 }
-                //TODO: Use turn_over variables to check if they player's turn is over (using a command?)
-                if(!this.getModel().getEnemy().getTurnOver())
-                    this.playEnemyTurn();
+                if(!model.getEnemy().getTurnOver())
+                    playEnemyTurn();
 
                 notifyObservers();
-
             }
             if (command == Gui.COMMAND.QUIT)
                 model.finish();
@@ -80,6 +92,39 @@ public class ArenaController {
             SkipTurnCommand skipTurnCommand = new SkipTurnCommand(enemyController);
             skipTurnCommand.execute();
         }
+    }
+
+    private boolean endOfRound(){
+        return model.getPlayer().getTurnOver() && model.getEnemy().getTurnOver();
+    }
+
+    public GameParticipantController getLooser(){
+        return enemyController.getPoints() == 0 ? enemyController : playerController;
+    }
+
+    public GameParticipantController getWinner(){
+        return enemyController.getPoints() != 0 ? enemyController : playerController;
+    }
+
+    private void interStageHandler(){
+        commands.get(cmdStage).execute();
+        if (cmdStage != 1 && cmdStage != 0){
+           commands.remove(cmdStage);
+        }
+        else{
+            cmdStage++;
+            if (cmdStage == commands.size()) {
+                resetRound();
+                cmdStage = 0;
+            }
+        }
+    }
+
+    private void resetRound(){
+        playerController.setTurnOver(false);
+        enemyController.setTurnOver(false);
+        playerController.setPoints(0);
+        enemyController.setPoints(0);
     }
 
     public void notifyObservers() {

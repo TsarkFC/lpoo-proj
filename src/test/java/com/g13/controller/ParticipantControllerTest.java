@@ -1,8 +1,10 @@
 package com.g13.controller;
 
+import com.g13.model.BarSet;
 import com.g13.model.GameParticipant;
 import com.g13.model.SpecialCard;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,8 +56,9 @@ public class ParticipantControllerTest {
 
     private GameParticipantController createController(){
         List<SpecialCard> play_deck = new ArrayList<>();
+        BarSet barSet = Mockito.mock(BarSet.class);
 
-        GameParticipant player = new GameParticipant(play_deck, 2, 5, 12, 12, 12);
+        GameParticipant player = new GameParticipant(play_deck, barSet);
         GameParticipantController controller = new GameParticipantController(player);
         controller.setDefaultDeck();
 

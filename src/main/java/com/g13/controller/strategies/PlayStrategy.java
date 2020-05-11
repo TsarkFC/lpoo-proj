@@ -4,6 +4,6 @@ import com.g13.controller.ArenaController;
 
 public interface PlayStrategy {
 
-    public boolean playTurn(ArenaController arenaController);
+    boolean playTurn(ArenaController arenaController);
 
 }

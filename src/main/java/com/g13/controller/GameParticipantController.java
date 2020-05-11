@@ -63,6 +63,19 @@ public class GameParticipantController {
         gameParticipant.setPoints(points);
     }
 
+    public void subtractPoints(int points){
+        gameParticipant.setPoints(gameParticipant.getPoints() - points);
+    }
+
+    public int getHealth(){ return gameParticipant.getHealth();}
+    public void zeroHealth(){
+        if (gameParticipant.getPoints() < 0)
+            gameParticipant.setHealth(0);
+    }
+    public void subtractHealth(int value){
+        gameParticipant.setHealth(gameParticipant.getHealth() - value);
+    }
+
     public void setTurnOver(boolean value){
         gameParticipant.setTurnOver(value);
     }

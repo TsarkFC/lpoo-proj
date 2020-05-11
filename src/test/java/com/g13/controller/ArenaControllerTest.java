@@ -3,6 +3,7 @@ package com.g13.controller;
 import com.g13.controller.strategies.NormalPlayStrategy;
 import com.g13.controller.strategies.PlayStrategy;
 import com.g13.model.Arena;
+import com.g13.model.BarSet;
 import com.g13.model.Enemy;
 import com.g13.model.GameParticipant;
 import com.g13.view.Gui;
@@ -18,10 +19,10 @@ public class ArenaControllerTest {
     public void testsetPlayerController(){
         Gui gui = Mockito.mock(Gui.class);
         Arena arena = Mockito.mock(Arena.class);
+        BarSet barSet = Mockito.mock(BarSet.class);
 
         ArenaController controller = new ArenaController(gui, arena);
-        GameParticipant player = new GameParticipant(new ArrayList<>(), 10, 10, 20, 20, 12);
-        GameParticipant enemy = new GameParticipant(new ArrayList<>(), 10, 10, 20, 20, 12);
+        GameParticipant player = new GameParticipant(new ArrayList<>(), barSet);
 
         controller.setPlayerController(player);
 
@@ -33,11 +34,12 @@ public class ArenaControllerTest {
     public void testsetEnemyontroller(){
         Gui gui = Mockito.mock(Gui.class);
         Arena arena = Mockito.mock(Arena.class);
+        BarSet barSet = Mockito.mock(BarSet.class);
 
         ArenaController controller = new ArenaController(gui, arena);
 
         PlayStrategy strategy = Mockito.mock(NormalPlayStrategy.class);
-        Enemy enemy = new Enemy(new ArrayList<>(), 10, 10, 20, 20, 12, strategy);
+        Enemy enemy = new Enemy(new ArrayList<>(), barSet, strategy);
 
         controller.setEnemyController(enemy);
 
