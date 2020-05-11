@@ -4,28 +4,16 @@ import java.util.List;
 
 public class GameParticipant {
     protected List<Card> draw_deck;
-    private List<SpecialCard> play_deck;
-    private int health;
-    private int mana;
-    private int max_health;
-    private int max_mana;
+    protected List<SpecialCard> play_deck;
+    protected List<Card> default_draw_deck;
 
-    private List<Card> default_draw_deck;
-
-    protected int points;
-    protected int max_points;
+    protected BarSet barSet;
 
     protected boolean turn_over;
 
-    //TODO: Simplify constructor -> Play deck can be removed once working on special cards effects
-    public GameParticipant(List<SpecialCard> play_deck, int health, int mana, int max_health, int max_mana, int max_points){
+    public GameParticipant(List<SpecialCard> play_deck, BarSet barSet){
         this.play_deck = play_deck;
-        this.health = health;
-        this.mana = mana;
-        this.max_health = max_health;
-        this.max_mana = max_mana;
-        this.max_points = max_points;
-        this.points = 0;
+        this.barSet = barSet;
         this.turn_over = false;
     }
 
@@ -57,36 +45,34 @@ public class GameParticipant {
     public String getCardInfo(int i){ return play_deck.get(i).getCardInfo(); }
 
     public int getHealth() {
-        return health;
+        return barSet.getHealth();
     }
 
     public int getMaxHealth(){
-        return max_health;
+        return barSet.getMaxHealth();
     }
 
     public int getMana() {
-        return mana;
+        return barSet.getMana();
     }
 
     public int getMaxMana(){
-        return max_mana;
+        return barSet.getMaxMana();
     }
     public int getPoints() {
-        return points;
+        return barSet.getPoints();
     }
 
     public void setPoints(int points) {
-        this.points = points;
+        barSet.setPoints(points);
     }
 
     public int getMax_points() {
-        return max_points;
+        return barSet.getMaxPoints();
     }
 
     public boolean getTurnOver(){
         return turn_over;
     }
-    public void setTurnOver(boolean turn_over){
-        this.turn_over = turn_over;
-    }
+    public void setTurnOver(boolean turn_over){ this.turn_over = turn_over; }
 }

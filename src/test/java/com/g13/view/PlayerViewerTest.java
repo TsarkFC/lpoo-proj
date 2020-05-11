@@ -1,10 +1,9 @@
 package com.g13.view;
 
+import com.g13.model.Bar;
+import com.g13.model.BarSet;
 import com.g13.model.GameParticipant;
 import com.g13.model.SpecialCard;
-import com.g13.view.BarViewer;
-import com.g13.view.CardViewer;
-import com.g13.view.GameParticipantViewer;
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -23,8 +22,9 @@ public class PlayerViewerTest {
         player_special.add(new SpecialCard(7, '+', "card no 7"));
         player_special.add(new SpecialCard(4, '-', "card no 4"));
         player_special.add(new SpecialCard(5, '/', "card no 5"));
+        BarSet barSet = Mockito.mock(BarSet.class);
 
-        GameParticipant player = new GameParticipant(player_special, 0, 0, 0, 0, 0);
+        GameParticipant player = new GameParticipant(player_special, barSet);
         player.setDraw_deck(new ArrayList<>());
 
         BarViewer barViewer = Mockito.mock(BarViewer.class);
@@ -59,8 +59,9 @@ public class PlayerViewerTest {
         player_special.add(new SpecialCard(7, '+', "card no 7"));
         player_special.add(new SpecialCard(4, '-', "card no 4"));
         player_special.add(new SpecialCard(5, '/', "card no 5"));
+        BarSet barSet = Mockito.mock(BarSet.class);
 
-        GameParticipant enemy = new GameParticipant(player_special, 0, 0, 0, 0, 0);
+        GameParticipant enemy = new GameParticipant(player_special, barSet);
         enemy.setDraw_deck(new ArrayList<>());
 
         BarViewer barViewer = Mockito.mock(BarViewer.class);

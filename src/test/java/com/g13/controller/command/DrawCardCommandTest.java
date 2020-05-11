@@ -2,9 +2,12 @@ package com.g13.controller.command;
 
 import com.g13.controller.GameParticipantController;
 import com.g13.controller.commands.DrawCardCommand;
+import com.g13.model.Bar;
+import com.g13.model.BarSet;
 import com.g13.model.Card;
 import com.g13.model.GameParticipant;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,8 +17,13 @@ import static org.junit.Assert.assertEquals;
 public class DrawCardCommandTest {
     @Test
     public void testExecuteOverFlow(){
-        GameParticipant player = new GameParticipant(new ArrayList<>(), 10, 10, 20, 20, 12);
-        GameParticipant enemy = new GameParticipant(new ArrayList<>(), 10, 10, 20, 20, 12);
+        Bar healthBar = new Bar(10, 20);
+        Bar manaBar = new Bar(10, 20);
+        Bar pointBar = new Bar(0, 12);
+        BarSet barSet =  new BarSet(healthBar, manaBar, pointBar);
+        
+        GameParticipant player = new GameParticipant(new ArrayList<>(), barSet);
+        GameParticipant enemy = new GameParticipant(new ArrayList<>(), barSet);
         GameParticipantController playerController = new GameParticipantController(player);
         GameParticipantController enemyController = new GameParticipantController(enemy);
 
@@ -38,8 +46,9 @@ public class DrawCardCommandTest {
 
     @Test
     public void testExecuteBothMax(){
-        GameParticipant player = new GameParticipant(new ArrayList<>(), 10, 10, 20, 20, 12);
-        GameParticipant enemy = new GameParticipant(new ArrayList<>(), 10, 10, 20, 20, 12);
+        BarSet barSet = Mockito.mock(BarSet.class);
+        GameParticipant player = new GameParticipant(new ArrayList<>(), barSet);
+        GameParticipant enemy = new GameParticipant(new ArrayList<>(), barSet);
         GameParticipantController playerController = new GameParticipantController(player);
         GameParticipantController enemyController = new GameParticipantController(enemy);
 
@@ -61,8 +70,9 @@ public class DrawCardCommandTest {
 
     @Test
     public void testExecuteNegativeA(){
-        GameParticipant player = new GameParticipant(new ArrayList<>(), 10, 10, 20, 20, 12);
-        GameParticipant enemy = new GameParticipant(new ArrayList<>(), 10, 10, 20, 20, 12);
+        BarSet barSet = Mockito.mock(BarSet.class);
+        GameParticipant player = new GameParticipant(new ArrayList<>(), barSet);
+        GameParticipant enemy = new GameParticipant(new ArrayList<>(), barSet);
         GameParticipantController playerController = new GameParticipantController(player);
         GameParticipantController enemyController = new GameParticipantController(enemy);
 

@@ -1,8 +1,5 @@
 package com.g13.model;
 
-import com.g13.model.Card;
-import com.g13.model.GameParticipant;
-import com.g13.model.SpecialCard;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -15,12 +12,17 @@ public class PlayerTest {
     public void testConstructor(){ //TODO: Use stub for creating cards and create multiple cards
         List<SpecialCard> play_deck = new ArrayList<>();
 
-        GameParticipant player = new GameParticipant(play_deck, 2, 5, 12, 12, 12);
+        Bar healthBar = new Bar(2, 12);
+        Bar manaBar = new Bar(5, 12);
+        Bar pointBar = new Bar(0, 12);
+        BarSet barSet = new BarSet(healthBar, manaBar, pointBar);
+
+        GameParticipant player = new GameParticipant(play_deck, barSet);
 
         assertEquals(play_deck, player.getPlay_deck());
+        assertEquals(0, player.getPoints());
         assertEquals(2, player.getHealth());
         assertEquals(5, player.getMana());
-        assertEquals(12, player.getMaxHealth());
         assertEquals(12, player.getMaxMana());
         assertEquals(12, player.getMaxHealth());
         assertEquals(12, player.getMax_points());
@@ -31,7 +33,12 @@ public class PlayerTest {
     public void listSetterTest(){
         List<SpecialCard> play_deck = new ArrayList<>();
 
-        GameParticipant player = new GameParticipant(play_deck, 2, 5, 12, 12, 12);
+        Bar healthBar = new Bar(2, 12);
+        Bar manaBar = new Bar(5, 12);
+        Bar pointBar = new Bar(0, 12);
+        BarSet barSet = new BarSet(healthBar, manaBar, pointBar);
+
+        GameParticipant player = new GameParticipant(play_deck, barSet);
 
         List<Card> normal_deck2 = new ArrayList<>();
         Card a = new Card(1);
