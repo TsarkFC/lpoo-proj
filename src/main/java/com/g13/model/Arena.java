@@ -14,6 +14,8 @@ public class Arena {
     private boolean isFinished;
     private List<ArenaObserver> observers;
 
+    private boolean playersTurn = true;
+
     public Arena(int width, int height){
         this.width = width;
         this.height = height;
@@ -57,5 +59,13 @@ public class Arena {
         this.enemy = enemy;
     }
 
-    public List<ArenaObserver> getObservers(){return observers;};
+    public List<ArenaObserver> getObservers(){return observers;}
+
+    public boolean getPlayersTurn() {
+        return playersTurn;
+    }
+
+    public void setPlayersTurn(boolean playersTurn) {
+        this.playersTurn = playersTurn;
+    }
 }

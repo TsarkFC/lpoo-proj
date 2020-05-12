@@ -1,22 +1,32 @@
 package com.g13.controller.commands;
 
+import com.g13.controller.ArenaController;
 import com.g13.controller.CardController;
-import com.g13.controller.GameParticipantController;
+import com.g13.controller.ParticipantController;
 import com.g13.model.Card;
+import com.g13.model.GameParticipant;
 
 import static java.lang.Integer.min;
 
 public class DrawCardCommand implements Command{
-    private GameParticipantController current;
-    private GameParticipantController opposite;
+    private ArenaController arenaController;
 
-    public DrawCardCommand(GameParticipantController currentController, GameParticipantController oppositeController){
-        this.current = currentController;
-        this.opposite = oppositeController;
+    public DrawCardCommand(ArenaController arena){
+        this.arenaController = arena;
     }
 
     @Override
     public void execute() {
+        ParticipantController current;
+        ParticipantController opposite;
+        if(arenaController.getModel().getPlayersTurn()){
+            current = arenaController.getPlayerController();
+            opposite = arenaController.getEnemyController();
+        }
+        else{
+            current = arenaController.getEnemyController();
+            opposite = arenaController.getPlayerController();
+        }
         Card card = current.getDraw_deck().get(0);
         CardController c = new CardController(card);
         c.effect(current.getParticipant());
@@ -26,17 +36,17 @@ public class DrawCardCommand implements Command{
         if(current.getDraw_deck().size() == 0)
             current.resetDrawDeck();
 
-        if(current.getPoints() > current.getMax_points()){
+        /*if(current.getPoints() > current.getMax_points()){
             int a = min(current.getPoints() - 1, 6);
             a = min(a, opposite.getPoints() - 1);
-            if(a < 0){
+            if(a < 0)
                 a = 0;
-            }
             current.setPoints(a);
             //TODO: Make variable with overdraw, normal and guarding states for ending the turn
             current.setTurnOver(true);
             opposite.setTurnOver(true);
-        }
+        }*/
+        arenaController.checkControllerPoints();
 
         if(current.getPoints() == current.getMax_points()){
             current.setTurnOver(true);

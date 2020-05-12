@@ -1,5 +1,8 @@
 package com.g13.model;
 
+import com.g13.model.SpecialCardTypes.SpecialCard;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class GameParticipant {
@@ -11,34 +14,37 @@ public class GameParticipant {
 
     protected boolean turn_over;
 
+    protected List<SpecialCard> activeCards;
+
     public GameParticipant(List<SpecialCard> play_deck, BarSet barSet){
         this.play_deck = play_deck;
         this.barSet = barSet;
         this.turn_over = false;
+        this.activeCards = new ArrayList<>();
     }
 
-    public void setBoth_draw_decks(List<Card> draw_deck) {
+    public void setBothDrawDecks(List<Card> draw_deck) {
         this.draw_deck = draw_deck;
         this.default_draw_deck = draw_deck;
     }
 
-    public List<Card> getDefault_draw_deck() {
+    public List<Card> getDefaultDrawDeck() {
         return default_draw_deck;
     }
 
-    public void setDefault_draw_deck(List<Card> draw_deck) {
+    public void setDefaultDrawDeck(List<Card> draw_deck) {
         this.default_draw_deck = draw_deck;
     }
 
-    public List<Card> getDraw_deck() {
+    public List<Card> getDrawDeck() {
         return draw_deck;
     }
 
-    public void setDraw_deck(List<Card> draw_deck) {
+    public void setDrawDeck(List<Card> draw_deck) {
         this.draw_deck = draw_deck;
     }
 
-    public List<SpecialCard> getPlay_deck() {
+    public List<SpecialCard> getPlayDeck() {
         return play_deck;
     }
 
@@ -55,6 +61,7 @@ public class GameParticipant {
     public int getMana() {
         return barSet.getMana();
     }
+    public void setMana(int mana) { barSet.setMana(mana);}
     public int getMaxMana(){
         return barSet.getMaxMana();
     }
@@ -65,7 +72,7 @@ public class GameParticipant {
     public void setPoints(int points) {
         barSet.setPoints(points);
     }
-    public int getMax_points() {
+    public int getMaxPoints() {
         return barSet.getMaxPoints();
     }
 
@@ -73,4 +80,9 @@ public class GameParticipant {
         return turn_over;
     }
     public void setTurnOver(boolean turn_over){ this.turn_over = turn_over; }
+
+    public List<SpecialCard> getActiveCards(){return activeCards;}
+    public void setActiveCards(List<SpecialCard> activeCards){
+        this.activeCards = activeCards;
+    }
 }

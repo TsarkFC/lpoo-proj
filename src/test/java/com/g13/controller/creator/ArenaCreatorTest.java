@@ -1,10 +1,9 @@
 package com.g13.controller.creator;
 
 import com.g13.controller.ArenaController;
-import com.g13.controller.creator.ArenaCreator;
 import com.g13.model.Arena;
 import com.g13.model.GameParticipant;
-import com.g13.model.SpecialCard;
+import com.g13.model.SpecialCardTypes.SpecialCard;
 import org.junit.Test;
 import org.mockito.Mockito;
 import com.g13.view.Gui;
@@ -31,7 +30,7 @@ public class ArenaCreatorTest {
         GameParticipant part = Mockito.mock(GameParticipant.class);
         Mockito.when(part.getMana()).thenReturn(10);
         Mockito.when(part.getHealth()).thenReturn(10);
-        Mockito.when(part.getPlay_deck()).thenReturn(player_special);
+        Mockito.when(part.getPlayDeck()).thenReturn(player_special);
 
         creator.create(controller);
 
@@ -39,6 +38,6 @@ public class ArenaCreatorTest {
         assertEquals(part.getMana(), controller.getPlayer().getMana());
         assertEquals(part.getHealth(), controller.getEnemy().getHealth());
         assertEquals(part.getHealth(), controller.getPlayer().getHealth());
-        assertEquals(part.getPlay_deck().size(), controller.getEnemy().getPlay_deck().size());
+        assertEquals(part.getPlayDeck().size(), controller.getEnemy().getPlayDeck().size());
     }
 }

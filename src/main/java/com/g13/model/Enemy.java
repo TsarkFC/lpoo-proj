@@ -1,6 +1,7 @@
 package com.g13.model;
 
 import com.g13.controller.strategies.PlayStrategy;
+import com.g13.model.SpecialCardTypes.SpecialCard;
 
 import java.util.List;
 

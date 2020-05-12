@@ -1,7 +1,7 @@
 package com.g13.view;
 
 import com.g13.model.GameParticipant;
-import com.g13.model.SpecialCard;
+import com.g13.model.SpecialCardTypes.SpecialCard;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.TerminalScreen;
@@ -22,17 +22,24 @@ public class CardViewer {
     }
 
     public void drawSpecialCard(int x, SpecialCard specialCard){
-        setGraphics("#EECC88", "#FF0000");
-        drawCardStructure(x, 15);
-        graphics.putString(x + 2, 16, String.valueOf(specialCard.getCost()));
-        graphics.putString(x + 2, 17, String.valueOf(specialCard.getSymbol()));
+        int offset = 0;
+        if (!specialCard.getSelected())
+            setGraphics("#EECC88", "#FF0000");
+        else {
+            offset = 1;
+            drawCardInfo(specialCard.getCardInfo());
+            setGraphics("#AA8855", "#FF0000");
+        }
+
+        drawCardStructure(x, 15 - offset);
+        graphics.putString(x + 2, 16 - offset, String.valueOf(specialCard.getCost()));
+        graphics.putString(x + 2, 17 - offset, String.valueOf(specialCard.getSymbol()));
     }
 
-    public void drawCardInfo(int cardno, TerminalScreen screen, GameParticipant player) throws IOException {
+    public void drawCardInfo(String info){
         setGraphics("#336699", "#FFFFFF");
         graphics.putString(20, 24, "Card Info:");
-        graphics.putString(20, 25, player.getCardInfo(cardno));
-        screen.refresh();
+        graphics.putString(1, 25, info);
     }
 
     private void drawCardStructure(int x, int y){

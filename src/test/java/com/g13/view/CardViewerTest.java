@@ -1,11 +1,10 @@
 package com.g13.view;
 
-import com.g13.view.CardViewer;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.g13.model.GameParticipant;
-import com.g13.model.SpecialCard;
+import com.g13.model.SpecialCardTypes.SpecialCard;
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -63,15 +62,12 @@ public class CardViewerTest {
         TextGraphics graphics = Mockito.mock(TextGraphics.class);
         CardViewer viewer = new CardViewer(graphics);
 
-        Mockito.when(player.getCardInfo(0)).thenReturn("INFO");
-        viewer.drawCardInfo(0, screen, player);
+        viewer.drawCardInfo("INFO");
 
         Mockito.verify(graphics, Mockito.times(1)).
                 putString(20, 24, "Card Info:");
         Mockito.verify(graphics, Mockito.times(1)).
-                putString(20, 25, "INFO");
-        Mockito.verify(screen, Mockito.times(1)).
-                refresh();
+                putString(1, 25, "INFO");
         Mockito.verify(graphics, Mockito.times(1)).
                 setBackgroundColor(TextColor.Factory.fromString("#336699"));
         Mockito.verify(graphics, Mockito.times(1)).

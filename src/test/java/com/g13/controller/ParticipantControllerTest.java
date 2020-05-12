@@ -2,7 +2,7 @@ package com.g13.controller;
 
 import com.g13.model.BarSet;
 import com.g13.model.GameParticipant;
-import com.g13.model.SpecialCard;
+import com.g13.model.SpecialCardTypes.SpecialCard;
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -14,13 +14,13 @@ import static org.junit.Assert.assertEquals;
 public class ParticipantControllerTest {
     @Test
     public void testsetDefaultDrawDeck(){
-        GameParticipantController controller = createController();
+        ParticipantController controller = createController();
 
-        assertEquals(controller.getParticipant().getDraw_deck().size(), 24);
+        assertEquals(controller.getParticipant().getDrawDeck().size(), 24);
 
         int a = 0;
         for(int i = 0; i < 24; i++){
-            a += controller.getParticipant().getDraw_deck().get(i).getValue(); // fix
+            a += controller.getParticipant().getDrawDeck().get(i).getValue(); // fix
         }
 
         assertEquals(a, 4 + 8 + 12 + 16 + 20 + 24);
@@ -29,17 +29,17 @@ public class ParticipantControllerTest {
     @Test
     public void testresetDrawDeck(){
 
-        GameParticipantController controller = createController();
+        ParticipantController controller = createController();
 
-        controller.getParticipant().setDraw_deck(new ArrayList<>());
-        assertEquals(controller.getParticipant().getDraw_deck().size(), 0);
+        controller.getParticipant().setDrawDeck(new ArrayList<>());
+        assertEquals(controller.getParticipant().getDrawDeck().size(), 0);
 
         controller.resetDrawDeck();
-        assertEquals(controller.getParticipant().getDraw_deck().size(), 24);
+        assertEquals(controller.getParticipant().getDrawDeck().size(), 24);
 
         int a = 0;
         for(int i = 0; i < 24; i++){
-            a += controller.getParticipant().getDraw_deck().get(i).getValue();
+            a += controller.getParticipant().getDrawDeck().get(i).getValue();
         }
 
         assertEquals(a, 4 + 8 + 12 + 16 + 20 + 24);
@@ -47,19 +47,19 @@ public class ParticipantControllerTest {
 
     @Test
     public void testremoveDeckTop(){
-        GameParticipantController controller = createController();
+        ParticipantController controller = createController();
 
         for (int i = 0; i<7; i++)
             controller.removeDeckTop();
-        assertEquals(controller.getParticipant().getDraw_deck().size(), 17);
+        assertEquals(controller.getParticipant().getDrawDeck().size(), 17);
     }
 
-    private GameParticipantController createController(){
+    private ParticipantController createController(){
         List<SpecialCard> play_deck = new ArrayList<>();
         BarSet barSet = Mockito.mock(BarSet.class);
 
         GameParticipant player = new GameParticipant(play_deck, barSet);
-        GameParticipantController controller = new GameParticipantController(player);
+        ParticipantController controller = new ParticipantController(player);
         controller.setDefaultDeck();
 
         return controller;
