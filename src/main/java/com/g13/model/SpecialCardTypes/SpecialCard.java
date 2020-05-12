@@ -8,6 +8,8 @@ public class SpecialCard {
     private char symbol;
     private String cardInfo;
 
+    protected int roundsLeft = 0;
+
     public enum ACTIVATION_CONDITIONS{
         ON_PLAY,
         ON_END_TURN
@@ -19,6 +21,7 @@ public class SpecialCard {
         this.cost = cost;
         this.symbol = symbol;
         this.cardInfo = cardInfo;
+        this.roundsLeft = 0;
     }
 
     public int getCost() {
@@ -35,5 +38,9 @@ public class SpecialCard {
 
     public void activate(ACTIVATION_CONDITIONS condition, ArenaController arenaController, GameParticipantController participantController, GameParticipantController oppositeController){
 
+    }
+
+    public int getRoundsLeft(){
+        return roundsLeft;
     }
 }

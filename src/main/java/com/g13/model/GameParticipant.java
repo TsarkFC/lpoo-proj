@@ -2,6 +2,7 @@ package com.g13.model;
 
 import com.g13.model.SpecialCardTypes.SpecialCard;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GameParticipant {
@@ -19,6 +20,7 @@ public class GameParticipant {
         this.play_deck = play_deck;
         this.barSet = barSet;
         this.turn_over = false;
+        this.activeCards = new ArrayList<>();
     }
 
     public void setBoth_draw_decks(List<Card> draw_deck) {
@@ -78,4 +80,9 @@ public class GameParticipant {
         return turn_over;
     }
     public void setTurnOver(boolean turn_over){ this.turn_over = turn_over; }
+
+    public List<SpecialCard> getActiveCards(){return activeCards;}
+    public void setActiveCards(List<SpecialCard> activeCards){
+        this.activeCards = activeCards;
+    }
 }

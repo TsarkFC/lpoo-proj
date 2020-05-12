@@ -3,6 +3,7 @@ package com.g13.controller.creator;
 import com.g13.controller.ArenaController;
 import com.g13.controller.strategies.NormalPlayStrategy;
 import com.g13.model.*;
+import com.g13.model.SpecialCardTypes.EndOfTurn.AddHpPerTurn;
 import com.g13.model.SpecialCardTypes.Instant.FluxModifierAtoB;
 import com.g13.model.SpecialCardTypes.SpecialCard;
 import com.g13.model.SpecialCardTypes.Instant.StaticModifier;
@@ -29,8 +30,8 @@ public class ArenaCreator {
         List<SpecialCard> player_special = new ArrayList<>();
         player_special.add(new FluxModifierAtoB(2, '*', "Instantly adds 1 to 3 to your points this round", 1, 3));
         player_special.add(new StaticModifier(7, '+', "Instantly adds 3 to your points this round", 3));
-        player_special.add(new StaticModifier(4, '-', "Instantly adds 1 to your points this round", 1));
-        player_special.add(new StaticModifier(5, '/', "Instantly adds 2 to your points this round", 2));
+        player_special.add(new AddHpPerTurn(4, '-', "Heals for 5 per round for 1 round", 5, 1));
+        player_special.add(new AddHpPerTurn(5, '/', "Heals for 2 per round for 4 rounds", 2, 4));
         return player_special;
     }
 

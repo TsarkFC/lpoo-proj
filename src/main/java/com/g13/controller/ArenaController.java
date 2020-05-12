@@ -6,6 +6,7 @@ import com.g13.model.Arena;
 import com.g13.model.Enemy;
 import com.g13.model.GameParticipant;
 import com.g13.controller.observer.ArenaObserver;
+import com.g13.model.SpecialCardTypes.SpecialCard;
 import com.g13.view.Gui;
 
 import java.io.IOException;
@@ -149,6 +150,8 @@ public class ArenaController {
         enemyController.setTurnOver(false);
         playerController.setPoints(0);
         enemyController.setPoints(0);
+        ProcessPlayerCards(SpecialCard.ACTIVATION_CONDITIONS.ON_END_TURN);
+        ProcessEnemyCards(SpecialCard.ACTIVATION_CONDITIONS.ON_END_TURN);
     }
 
     public void notifyObservers() {
@@ -172,6 +175,24 @@ public class ArenaController {
             //TODO: Make variable with overdraw, normal and guarding states for ending the turn
             participantController.setTurnOver(true);
             participantController.setTurnOver(true);
+        }
+    }
+
+    public void ProcessPlayerCards(SpecialCard.ACTIVATION_CONDITIONS activationConditions){
+        List<SpecialCard> a = playerController.getParticipant().getActiveCards();
+        for(int i = 0; i < a.size(); i++){
+            a.get(i).activate(activationConditions, this, playerController, enemyController);
+            if(a.get(i).getRoundsLeft() <= 0){
+                a.remove(i);
+
+            }
+        }
+        playerController.getParticipant().setActiveCards(a);
+    }
+
+    public void ProcessEnemyCards(SpecialCard.ACTIVATION_CONDITIONS activationConditions){
+        for(int i = 0; i < enemyController.getParticipant().getActiveCards().size(); i++){
+            enemyController.getParticipant().getActiveCards().get(i).activate(activationConditions, this, enemyController, playerController);
         }
     }
 }
