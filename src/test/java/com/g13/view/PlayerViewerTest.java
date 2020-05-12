@@ -3,6 +3,7 @@ package com.g13.view;
 import com.g13.model.BarSet;
 import com.g13.model.GameParticipant;
 import com.g13.model.SpecialCardTypes.SpecialCard;
+import com.googlecode.lanterna.graphics.TextGraphics;
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -28,8 +29,9 @@ public class PlayerViewerTest {
 
         BarViewer barViewer = Mockito.mock(BarViewer.class);
         CardViewer cardViewer = Mockito.mock(CardViewer.class);
+        TextGraphics graphics = Mockito.mock(TextGraphics.class);
 
-        GameParticipantViewer viewer = new GameParticipantViewer(barViewer, cardViewer);
+        GameParticipantViewer viewer = new GameParticipantViewer(barViewer, cardViewer, graphics);
         viewer.drawPlayer(player);
 
         Mockito.verify(cardViewer, Mockito.times(1))
@@ -48,7 +50,7 @@ public class PlayerViewerTest {
         Mockito.verify(barViewer, Mockito.times(1))
                 .drawManaBar(15, 22, 0, 0);
         Mockito.verify(barViewer, Mockito.times(1))
-                .drawPointBar(15, 12, 0, 12);
+                .drawPointBar(15, 12, 0, 0);
     }
 
     @Test
@@ -65,8 +67,9 @@ public class PlayerViewerTest {
 
         BarViewer barViewer = Mockito.mock(BarViewer.class);
         CardViewer cardViewer = Mockito.mock(CardViewer.class);
+        TextGraphics graphics = Mockito.mock(TextGraphics.class);
 
-        GameParticipantViewer viewer = new GameParticipantViewer(barViewer, cardViewer);
+        GameParticipantViewer viewer = new GameParticipantViewer(barViewer, cardViewer, graphics);
         viewer.drawEnemy(enemy);
 
         Mockito.verify(cardViewer, Mockito.times(1))

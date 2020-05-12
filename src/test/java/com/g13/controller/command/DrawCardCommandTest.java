@@ -1,12 +1,13 @@
 package com.g13.controller.command;
 
+import com.g13.controller.ArenaController;
 import com.g13.controller.ParticipantController;
 import com.g13.controller.commands.DrawCardCommand;
-import com.g13.model.Bar;
-import com.g13.model.BarSet;
-import com.g13.model.Card;
-import com.g13.model.GameParticipant;
+import com.g13.controller.strategies.PlayStrategy;
+import com.g13.model.*;
+import com.g13.view.Gui;
 import org.junit.Test;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import java.util.ArrayList;
@@ -23,9 +24,17 @@ public class DrawCardCommandTest {
         BarSet barSet =  new BarSet(healthBar, manaBar, pointBar);
 
         GameParticipant player = new GameParticipant(new ArrayList<>(), barSet);
-        GameParticipant enemy = new GameParticipant(new ArrayList<>(), barSet);
-        ParticipantController playerController = new ParticipantController(player);
-        ParticipantController enemyController = new ParticipantController(enemy);
+        PlayStrategy strategy = Mockito.mock(PlayStrategy.class);
+        Enemy enemy = new Enemy(new ArrayList<>(), barSet, strategy);
+
+        Gui gui = Mockito.mock(Gui.class);
+        Arena arena = Mockito.mock(Arena.class);
+        ArenaController arenaController = new ArenaController(gui, arena);
+        arenaController.setEnemyController(enemy);
+        arenaController.setPlayerController(player);
+
+        ParticipantController playerController = arenaController.getPlayerController();
+        ParticipantController enemyController = arenaController.getEnemyController();
 
         playerController.setDefaultDeck();
         List<Card> drawDeck = new ArrayList<>();
@@ -35,7 +44,7 @@ public class DrawCardCommandTest {
         playerController.setPoints(10);
         enemyController.setPoints(10);
 
-        DrawCardCommand command = new DrawCardCommand(playerController, enemyController);
+        DrawCardCommand command = new DrawCardCommand(arenaController, playerController, enemyController);
         command.execute();
 
         assertEquals(24, playerController.getDraw_deck().size());
@@ -51,6 +60,7 @@ public class DrawCardCommandTest {
         GameParticipant enemy = new GameParticipant(new ArrayList<>(), barSet);
         ParticipantController playerController = new ParticipantController(player);
         ParticipantController enemyController = new ParticipantController(enemy);
+        ArenaController arenaController = Mockito.mock(ArenaController.class);
 
         playerController.setDefaultDeck();
         List<Card> drawDeck = new ArrayList<>();
@@ -60,7 +70,7 @@ public class DrawCardCommandTest {
         playerController.setPoints(10);
         enemyController.setPoints(12);
 
-        DrawCardCommand command = new DrawCardCommand(playerController, enemyController);
+        DrawCardCommand command = new DrawCardCommand(arenaController, playerController, enemyController);
         command.execute();
 
         assertEquals(24, playerController.getDraw_deck().size());
@@ -75,6 +85,7 @@ public class DrawCardCommandTest {
         GameParticipant enemy = new GameParticipant(new ArrayList<>(), barSet);
         ParticipantController playerController = new ParticipantController(player);
         ParticipantController enemyController = new ParticipantController(enemy);
+        ArenaController arenaController = Mockito.mock(ArenaController.class);
 
         playerController.setDefaultDeck();
         List<Card> drawDeck = new ArrayList<>();
@@ -84,7 +95,7 @@ public class DrawCardCommandTest {
         playerController.setPoints(10);
         enemyController.setPoints(0);
 
-        DrawCardCommand command = new DrawCardCommand(playerController, enemyController);
+        DrawCardCommand command = new DrawCardCommand(arenaController, playerController, enemyController);
         command.execute();
 
         assertEquals(24, playerController.getDraw_deck().size());

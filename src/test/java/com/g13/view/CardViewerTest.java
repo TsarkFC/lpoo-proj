@@ -62,15 +62,12 @@ public class CardViewerTest {
         TextGraphics graphics = Mockito.mock(TextGraphics.class);
         CardViewer viewer = new CardViewer(graphics);
 
-        Mockito.when(player.getCardInfo(0)).thenReturn("INFO");
-        viewer.drawCardInfo(0, screen, player);
+        viewer.drawCardInfo("INFO");
 
         Mockito.verify(graphics, Mockito.times(1)).
                 putString(20, 24, "Card Info:");
         Mockito.verify(graphics, Mockito.times(1)).
                 putString(1, 25, "INFO");
-        Mockito.verify(screen, Mockito.times(1)).
-                refresh();
         Mockito.verify(graphics, Mockito.times(1)).
                 setBackgroundColor(TextColor.Factory.fromString("#336699"));
         Mockito.verify(graphics, Mockito.times(1)).

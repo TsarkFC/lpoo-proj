@@ -171,8 +171,8 @@ public class ArenaController {
         }
 
         if(playerController.getPoints() > playerController.getMax_points()){
-            int a = min(this.getPlayer().getPoints() - 1, 6);
-            a = min(a, this.getEnemy().getPoints() - 1);
+            int a = min(playerController.getPoints() - 1, 6);
+            a = min(a, enemyController.getPoints() - 1);
             if(a < 0)  a = 0;
 
             playerController.setPoints(a);
