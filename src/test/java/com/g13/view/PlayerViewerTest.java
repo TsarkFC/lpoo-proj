@@ -1,9 +1,8 @@
 package com.g13.view;
 
-import com.g13.model.Bar;
 import com.g13.model.BarSet;
 import com.g13.model.GameParticipant;
-import com.g13.model.SpecialCard;
+import com.g13.model.SpecialCardTypes.SpecialCard;
 import org.junit.Test;
 import org.mockito.Mockito;
 

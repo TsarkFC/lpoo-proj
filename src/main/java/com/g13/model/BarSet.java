@@ -22,6 +22,7 @@ public class BarSet {
     public int getMana(){
         return manaBar.getValue();
     }
+    public void setMana(int mana) {this.manaBar.setValue(mana);}
     public int getMaxMana(){
         return manaBar.getMax_value();
     }

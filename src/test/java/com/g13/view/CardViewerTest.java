@@ -1,11 +1,10 @@
 package com.g13.view;
 
-import com.g13.view.CardViewer;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.g13.model.GameParticipant;
-import com.g13.model.SpecialCard;
+import com.g13.model.SpecialCardTypes.SpecialCard;
 import org.junit.Test;
 import org.mockito.Mockito;
 

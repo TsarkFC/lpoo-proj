@@ -25,8 +25,14 @@ public class Gui implements ArenaObserver {
         SWITCH,
         NOTHING,
         DRAW,
-        QUIT
+        QUIT,
+        PLAYCARD1,
+        PLAYCARD2,
+        PLAYCARD3,
+        PLAYCARD4
     }
+
+    int cardDrawn = 0;
 
     public Gui(Arena arena){
         try {
@@ -86,15 +92,42 @@ public class Gui implements ArenaObserver {
             return COMMAND.QUIT;
         }
 
-        if (input.getKeyType() == KeyType.Character && input.getCharacter() == '1') cardViewer.drawCardInfo(0, screen, arena.getPlayer());
-        if (input.getKeyType() == KeyType.Character && input.getCharacter() == '2') cardViewer.drawCardInfo(1, screen, arena.getPlayer());
-        if (input.getKeyType() == KeyType.Character && input.getCharacter() == '3') cardViewer.drawCardInfo(2, screen, arena.getPlayer());
-        if (input.getKeyType() == KeyType.Character && input.getCharacter() == '4') cardViewer.drawCardInfo(3, screen, arena.getPlayer());
+        if (input.getKeyType() == KeyType.Character && input.getCharacter() == '1') {
+            cardViewer.drawCardInfo(0, screen, arena.getPlayer());
+            cardDrawn = 1;
+        }
+        if (input.getKeyType() == KeyType.Character && input.getCharacter() == '2') {
+            cardViewer.drawCardInfo(1, screen, arena.getPlayer());
+            cardDrawn = 2;
+        }
+        if (input.getKeyType() == KeyType.Character && input.getCharacter() == '3') {
+            cardViewer.drawCardInfo(2, screen, arena.getPlayer());
+            cardDrawn = 3;
+        }
+        if (input.getKeyType() == KeyType.Character && input.getCharacter() == '4') {
+            cardViewer.drawCardInfo(3, screen, arena.getPlayer());
+            cardDrawn = 4;
+        }
 
         if (input.getKeyType() == KeyType.Character && input.getCharacter() == 'd')
             return COMMAND.DRAW;
         if (input.getKeyType() == KeyType.Enter)
             return COMMAND.SWITCH;
+
+        if(input.getKeyType() == KeyType.Tab){
+            if(cardDrawn == 1) { //Change later
+                return COMMAND.PLAYCARD1;
+            }
+            else if(cardDrawn == 2) {
+                return COMMAND.PLAYCARD2;
+            }
+            else if(cardDrawn == 3) {
+                return COMMAND.PLAYCARD3;
+            }
+            else if(cardDrawn == 4) {
+                return COMMAND.PLAYCARD4;
+            }
+        }
 
         return COMMAND.NOTHING;
     }

@@ -1,9 +1,19 @@
-package com.g13.model;
+package com.g13.model.SpecialCardTypes;
+
+import com.g13.controller.ArenaController;
+import com.g13.controller.GameParticipantController;
 
 public class SpecialCard {
     private int cost;
     private char symbol;
     private String cardInfo;
+
+    public enum ACTIVATION_CONDITIONS{
+        ON_PLAY,
+        ON_END_TURN
+    }
+
+    protected int duration = 0;
 
     public SpecialCard(int cost, char symbol, String cardInfo){
         this.cost = cost;
@@ -21,5 +31,9 @@ public class SpecialCard {
 
     public String getCardInfo() {
         return cardInfo;
+    }
+
+    public void activate(ACTIVATION_CONDITIONS condition, ArenaController arenaController, GameParticipantController participantController, GameParticipantController oppositeController){
+
     }
 }

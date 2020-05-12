@@ -1,5 +1,6 @@
 package com.g13.model;
 
+import com.g13.model.SpecialCardTypes.SpecialCard;
 import org.junit.Test;
 
 import java.util.ArrayList;

@@ -1,5 +1,7 @@
 package com.g13.model;
 
+import com.g13.model.SpecialCardTypes.SpecialCard;
+
 import java.util.List;
 
 public class GameParticipant {
@@ -10,6 +12,8 @@ public class GameParticipant {
     protected BarSet barSet;
 
     protected boolean turn_over;
+
+    protected List<SpecialCard> activeCards;
 
     public GameParticipant(List<SpecialCard> play_deck, BarSet barSet){
         this.play_deck = play_deck;
@@ -55,6 +59,7 @@ public class GameParticipant {
     public int getMana() {
         return barSet.getMana();
     }
+    public void setMana(int mana) { barSet.setMana(mana);}
     public int getMaxMana(){
         return barSet.getMaxMana();
     }

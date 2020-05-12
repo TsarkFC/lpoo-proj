@@ -14,6 +14,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
+import static java.lang.Integer.min;
+
 public class ArenaController {
     private Arena model;
     private Gui view;
@@ -58,6 +60,28 @@ public class ArenaController {
             }
             if (command == Gui.COMMAND.QUIT)
                 model.finish();
+            if(!model.getPlayer().getTurnOver()) {
+                if (command == Gui.COMMAND.PLAYCARD1) {
+                    PlaySpecialCardCommand specialCardCommand = new PlaySpecialCardCommand(1, this, playerController, enemyController);
+                    specialCardCommand.execute();
+                    notifyObservers();
+                }
+                if (command == Gui.COMMAND.PLAYCARD2) {
+                    PlaySpecialCardCommand specialCardCommand = new PlaySpecialCardCommand(2, this, playerController, enemyController);
+                    specialCardCommand.execute();
+                    notifyObservers();
+                }
+                if (command == Gui.COMMAND.PLAYCARD3) {
+                    PlaySpecialCardCommand specialCardCommand = new PlaySpecialCardCommand(3, this, playerController, enemyController);
+                    specialCardCommand.execute();
+                    notifyObservers();
+                }
+                if (command == Gui.COMMAND.PLAYCARD4) {
+                    PlaySpecialCardCommand specialCardCommand = new PlaySpecialCardCommand(4, this, playerController, enemyController);
+                    specialCardCommand.execute();
+                    notifyObservers();
+                }
+            }
         }
     }
 
@@ -130,6 +154,24 @@ public class ArenaController {
     public void notifyObservers() {
         for (ArenaObserver observer : model.getObservers()) {
             observer.arenaChanged();
+        }
+    }
+
+    public void checkControllerPoints(GameParticipantController participantController){
+        if(participantController.getPoints() == participantController.getMax_points()){
+            participantController.setTurnOver(true);
+        }
+
+        if(participantController.getPoints() > participantController.getMax_points()){
+            int a = min(this.getPlayer().getPoints() - 1, 6);
+            a = min(a, this.getEnemy().getPoints() - 1);
+            if(a < 0){
+                a = 0;
+            }
+            participantController.setPoints(a);
+            //TODO: Make variable with overdraw, normal and guarding states for ending the turn
+            participantController.setTurnOver(true);
+            participantController.setTurnOver(true);
         }
     }
 }
