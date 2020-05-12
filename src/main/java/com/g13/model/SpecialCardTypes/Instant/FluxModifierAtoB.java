@@ -22,19 +22,22 @@ public class FluxModifierAtoB extends SpecialCard {
     public void activate(SpecialCard.ACTIVATION_CONDITIONS condition, ArenaController arenaController){
 
         ParticipantController currentController;
-        ParticipantController oppositeController;
 
+        //Find who's playing
         if(arenaController.getModel().getPlayersTurn()){
             currentController = arenaController.getPlayerController();
-            oppositeController = arenaController.getEnemyController();
         }
         else{
             currentController = arenaController.getEnemyController();
-            oppositeController = arenaController.getPlayerController();
         }
 
+        //Subtract mana
+        currentController.getParticipant().setMana(currentController.getParticipant().getMana() - getCost());
+
+        //Add a random number --Has to be in the function itself, if it were in the constructor, it'd always add the same number
         int modNum = ThreadLocalRandom.current().nextInt(minModNum, maxModNum + 1);
 
+        //When the card is played
         if(condition == SpecialCard.ACTIVATION_CONDITIONS.ON_PLAY){
             currentController.setPoints(currentController.getPoints() + modNum);
             arenaController.checkControllerPoints();

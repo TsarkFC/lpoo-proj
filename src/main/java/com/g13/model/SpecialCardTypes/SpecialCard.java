@@ -56,7 +56,6 @@ public class SpecialCard {
     }
 
     public boolean checkEnemyPlay(ArenaController arenaController) {
-        System.out.println("Default special card checkEnemyPlay used.");
         return false;
     }
 }

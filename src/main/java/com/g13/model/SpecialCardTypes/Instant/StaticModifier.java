@@ -17,24 +17,20 @@ public class StaticModifier extends SpecialCard {
     }
 
     public boolean checkEnemyPlay(ArenaController arenaController){
-        System.out.println("Reached correct checkEnemyPlay");
         if(arenaController.getEnemy().getMana() < getCost()){
             return false;
         }
 
-        System.out.println("Condition 1 passed");
         if(arenaController.getEnemy().getPoints() + modNum > arenaController.getEnemy().getMaxPoints()){
             return false;
         }
 
 
 
-        System.out.println("Condition 2 passed");
         if(!arenaController.getEnemy().getPlayStrategy().CheckStaticModifier(arenaController, getCost(), modNum)){
             return false;
         }
 
-        System.out.println("Conditions passed");
         activate(ACTIVATION_CONDITIONS.ON_PLAY, arenaController);
         return true;
     }
@@ -43,6 +39,7 @@ public class StaticModifier extends SpecialCard {
 
         ParticipantController currentController;
 
+        //Find who is playing now
         if(arenaController.getModel().getPlayersTurn()){
             currentController = arenaController.getPlayerController();
         }
@@ -50,8 +47,10 @@ public class StaticModifier extends SpecialCard {
             currentController = arenaController.getEnemyController();
         }
 
+        //Subtract mana
         currentController.getParticipant().setMana(currentController.getParticipant().getMana() - getCost());
 
+        //When the card is played
         if(condition == SpecialCard.ACTIVATION_CONDITIONS.ON_PLAY){
             currentController.setPoints(currentController.getPoints() + modNum);
             arenaController.checkControllerPoints();

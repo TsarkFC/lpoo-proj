@@ -24,24 +24,26 @@ public class AddHpPerTurn extends SpecialCard {
     public void activate(ACTIVATION_CONDITIONS condition, ArenaController arenaController){
 
         ParticipantController currentController;
-        ParticipantController oppositeController;
 
+        //Find who's playing
         if(arenaController.getModel().getPlayersTurn()){
             currentController = arenaController.getPlayerController();
-            oppositeController = arenaController.getEnemyController();
         }
         else{
             currentController = arenaController.getEnemyController();
-            oppositeController = arenaController.getPlayerController();
         }
 
+        //Subtract mana on play
+        currentController.getParticipant().setMana(currentController.getParticipant().getMana() - getCost());
+
+        //When it's played
         if(condition == ACTIVATION_CONDITIONS.ON_PLAY){
             List<SpecialCard> a = currentController.getParticipant().getActiveCards();
             a.add(this);
             currentController.getParticipant().setActiveCards(a);
         }
 
-
+        //Happens at the end of each round until it's over
         else if(condition == ACTIVATION_CONDITIONS.ON_END_TURN){
             currentController.getParticipant().setHealth(currentController.getParticipant().getHealth() + HPPerTurn);
             if(currentController.getParticipant().getHealth() > currentController.getParticipant().getMaxHealth()){

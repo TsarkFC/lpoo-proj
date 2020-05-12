@@ -22,7 +22,6 @@ public class PlaySpecialCardCommand {
 
         if (a.getCost() <= currentController.getParticipant().getMana()) {
             a.activate(SpecialCard.ACTIVATION_CONDITIONS.ON_PLAY, arenaController);
-            //currentController.getParticipant().setMana(currentController.getParticipant().getMana() - a.getCost());
         }
     }
 

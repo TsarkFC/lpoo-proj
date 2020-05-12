@@ -36,20 +36,12 @@ public class NormalPlayStrategy implements PlayStrategy{
             draw_limit_reached = true;
         }
 
-        System.out.println("Enemy points: " + arenaController.getEnemy().getPoints());
-        System.out.println("Player points: " + arenaController.getPlayer().getPoints());
-        System.out.println("Draw limit reached: " + draw_limit_reached);
         if(arenaController.getEnemy().getPoints() <= arenaController.getPlayer().getPoints() && draw_limit_reached){
             mana_saved = 0;
-            //System.out.println("AAAA");
             for(int i = 0; i < 4; i++){
                 if(arenaController.getEnemy().getPlayDeck().get(i).checkEnemyPlay(arenaController))
                     break;
             }
-            /*List<SpecialCard> a = arenaController.getModel().getEnemy().getActiveCards();
-            for(int i = 0; i < a.size(); i++){
-                a.get(i).checkEnemyPlay(arenaController);
-            }*/
         }
 
         //Don't wanna draw but you're losing against the player?
@@ -107,9 +99,6 @@ public class NormalPlayStrategy implements PlayStrategy{
     @Override
     public boolean CheckStaticModifier(ArenaController arenaController, int cost, int modNum) {
 
-        System.out.println("Mana saved: " + mana_saved);
-        System.out.println("Cost: " + cost);
-        System.out.println("Mana: " + arenaController.getEnemy().getMana());
 
         return mana_saved <= arenaController.getEnemy().getMana() - cost;
     }
