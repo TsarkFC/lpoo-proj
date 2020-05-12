@@ -76,6 +76,15 @@ public class GameParticipantController {
         gameParticipant.setHealth(gameParticipant.getHealth() - value);
     }
 
+
+    public void setCardSelected(int cardno, boolean value){
+        gameParticipant.getPlay_deck().get(cardno).setSelected(value);
+    }
+    public void resetCardSelection(){
+        for (int i = 0; i<gameParticipant.getPlay_deck().size() && i<4; i++)
+            gameParticipant.getPlay_deck().get(i).setSelected(false);
+    }
+
     public void setTurnOver(boolean value){
         gameParticipant.setTurnOver(value);
     }

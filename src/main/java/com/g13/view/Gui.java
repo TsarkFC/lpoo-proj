@@ -26,13 +26,18 @@ public class Gui implements ArenaObserver {
         NOTHING,
         DRAW,
         QUIT,
+        ONE,
+        TWO,
+        THREE,
+        FOUR,
         PLAYCARD1,
         PLAYCARD2,
         PLAYCARD3,
-        PLAYCARD4
+        PLAYCARD4,
+        NOPLAYCARD
     }
-
-    int cardDrawn = 0;
+    COMMAND specialCmd = COMMAND.NOPLAYCARD;
+    COMMAND safeSpecialCmd;
 
     public Gui(Arena arena){
         try {
@@ -93,40 +98,35 @@ public class Gui implements ArenaObserver {
         }
 
         if (input.getKeyType() == KeyType.Character && input.getCharacter() == '1') {
-            cardViewer.drawCardInfo(0, screen, arena.getPlayer());
-            cardDrawn = 1;
+            specialCmd = COMMAND.PLAYCARD1;
+            return COMMAND.ONE;
         }
         if (input.getKeyType() == KeyType.Character && input.getCharacter() == '2') {
-            cardViewer.drawCardInfo(1, screen, arena.getPlayer());
-            cardDrawn = 2;
+            specialCmd = COMMAND.PLAYCARD2;
+            return COMMAND.TWO;
         }
         if (input.getKeyType() == KeyType.Character && input.getCharacter() == '3') {
-            cardViewer.drawCardInfo(2, screen, arena.getPlayer());
-            cardDrawn = 3;
+            specialCmd = COMMAND.PLAYCARD3;
+            return COMMAND.THREE;
         }
         if (input.getKeyType() == KeyType.Character && input.getCharacter() == '4') {
-            cardViewer.drawCardInfo(3, screen, arena.getPlayer());
-            cardDrawn = 4;
+            specialCmd = COMMAND.PLAYCARD4;
+            return COMMAND.FOUR;
         }
 
-        if (input.getKeyType() == KeyType.Character && input.getCharacter() == 'd')
+        if (input.getKeyType() == KeyType.Character && input.getCharacter() == 'd') {
+            specialCmd = COMMAND.NOPLAYCARD;
             return COMMAND.DRAW;
-        if (input.getKeyType() == KeyType.Enter)
+        }
+        if (input.getKeyType() == KeyType.Enter){
+            specialCmd = COMMAND.NOPLAYCARD;
             return COMMAND.SWITCH;
+        }
 
         if(input.getKeyType() == KeyType.Tab){
-            if(cardDrawn == 1) { //Change later
-                return COMMAND.PLAYCARD1;
-            }
-            else if(cardDrawn == 2) {
-                return COMMAND.PLAYCARD2;
-            }
-            else if(cardDrawn == 3) {
-                return COMMAND.PLAYCARD3;
-            }
-            else if(cardDrawn == 4) {
-                return COMMAND.PLAYCARD4;
-            }
+            safeSpecialCmd = specialCmd;
+            specialCmd = COMMAND.NOPLAYCARD;
+            return safeSpecialCmd;
         }
 
         return COMMAND.NOTHING;

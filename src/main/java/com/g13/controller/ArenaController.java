@@ -37,7 +37,18 @@ public class ArenaController {
         view.draw();
 
         while(!model.isFinished()){
+            playerController.resetCardSelection();
+
             Gui.COMMAND command = view.getNextCommand();
+            if (command == Gui.COMMAND.ONE)
+                playerController.setCardSelected(0, true);
+            else if(command == Gui.COMMAND.TWO)
+                playerController.setCardSelected(1, true);
+            else if(command == Gui.COMMAND.THREE)
+                playerController.setCardSelected(2, true);
+            else if(command == Gui.COMMAND.FOUR)
+                playerController.setCardSelected(3, true);
+
             if (command == Gui.COMMAND.SWITCH) {
                 if (endOfRound()){
                     interStageHandler();
@@ -46,8 +57,6 @@ public class ArenaController {
                     SkipTurnCommand skipTurnCommand = new SkipTurnCommand(playerController);
                     skipTurnCommand.execute();
                 }
-
-                notifyObservers();
             }
             if (command == Gui.COMMAND.DRAW){
                 if(!model.getPlayer().getTurnOver()) {
@@ -56,33 +65,31 @@ public class ArenaController {
                 }
                 if(!model.getEnemy().getTurnOver())
                     playEnemyTurn();
-
-                notifyObservers();
             }
-            if (command == Gui.COMMAND.QUIT)
-                model.finish();
+
             if(!model.getPlayer().getTurnOver()) {
                 if (command == Gui.COMMAND.PLAYCARD1) {
                     PlaySpecialCardCommand specialCardCommand = new PlaySpecialCardCommand(1, this, playerController, enemyController);
                     specialCardCommand.execute();
-                    notifyObservers();
                 }
                 if (command == Gui.COMMAND.PLAYCARD2) {
                     PlaySpecialCardCommand specialCardCommand = new PlaySpecialCardCommand(2, this, playerController, enemyController);
                     specialCardCommand.execute();
-                    notifyObservers();
                 }
                 if (command == Gui.COMMAND.PLAYCARD3) {
                     PlaySpecialCardCommand specialCardCommand = new PlaySpecialCardCommand(3, this, playerController, enemyController);
                     specialCardCommand.execute();
-                    notifyObservers();
                 }
                 if (command == Gui.COMMAND.PLAYCARD4) {
                     PlaySpecialCardCommand specialCardCommand = new PlaySpecialCardCommand(4, this, playerController, enemyController);
                     specialCardCommand.execute();
-                    notifyObservers();
                 }
             }
+
+            notifyObservers();
+
+            if (command == Gui.COMMAND.QUIT)
+                model.finish();
         }
     }
 

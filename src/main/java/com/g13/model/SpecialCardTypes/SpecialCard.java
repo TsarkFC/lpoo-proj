@@ -7,6 +7,7 @@ public class SpecialCard {
     private int cost;
     private char symbol;
     private String cardInfo;
+    private boolean selected = false;
 
     protected int roundsLeft = 0;
 
@@ -36,8 +37,11 @@ public class SpecialCard {
         return cardInfo;
     }
 
-    public void activate(ACTIVATION_CONDITIONS condition, ArenaController arenaController, GameParticipantController participantController, GameParticipantController oppositeController){
+    public boolean getSelected() {return selected;}
+    public void setSelected(boolean selected) { this.selected = selected; }
 
+    public void activate(ACTIVATION_CONDITIONS condition, ArenaController arenaController,
+                         GameParticipantController participantController, GameParticipantController oppositeController){
     }
 
     public int getRoundsLeft(){
