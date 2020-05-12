@@ -1,7 +1,7 @@
 package com.g13.model.SpecialCardTypes.EndOfTurn;
 
 import com.g13.controller.ArenaController;
-import com.g13.controller.GameParticipantController;
+import com.g13.controller.ParticipantController;
 import com.g13.model.SpecialCardTypes.SpecialCard;
 
 import java.util.List;
@@ -18,7 +18,7 @@ public class AddHpPerTurn extends SpecialCard {
         this.roundsLeft = numRounds;
     }
 
-    public void activate(ACTIVATION_CONDITIONS condition, ArenaController arenaController, GameParticipantController currentController, GameParticipantController oppositeController){
+    public void activate(ACTIVATION_CONDITIONS condition, ArenaController arenaController, ParticipantController currentController, ParticipantController oppositeController){
 
         if(condition == ACTIVATION_CONDITIONS.ON_PLAY){
             List<SpecialCard> a = currentController.getParticipant().getActiveCards();

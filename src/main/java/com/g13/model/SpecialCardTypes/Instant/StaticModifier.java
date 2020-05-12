@@ -1,7 +1,7 @@
 package com.g13.model.SpecialCardTypes.Instant;
 
 import com.g13.controller.ArenaController;
-import com.g13.controller.GameParticipantController;
+import com.g13.controller.ParticipantController;
 import com.g13.model.SpecialCardTypes.SpecialCard;
 
 public class StaticModifier extends SpecialCard {
@@ -13,11 +13,11 @@ public class StaticModifier extends SpecialCard {
         this.modNum = modNum;
     }
 
-    public void activate(SpecialCard.ACTIVATION_CONDITIONS condition, ArenaController arenaController, GameParticipantController participantController, GameParticipantController oppositeController){
+    public void activate(SpecialCard.ACTIVATION_CONDITIONS condition, ArenaController arenaController, ParticipantController participantController, ParticipantController oppositeController){
 
         if(condition == SpecialCard.ACTIVATION_CONDITIONS.ON_PLAY){
             participantController.setPoints(participantController.getPoints() + modNum);
-            arenaController.checkControllerPoints(participantController);
+            arenaController.checkControllerPoints(participantController, oppositeController);
         }
     }
 

@@ -1,6 +1,6 @@
 package com.g13.controller.command;
 
-import com.g13.controller.GameParticipantController;
+import com.g13.controller.ParticipantController;
 import com.g13.controller.commands.SkipTurnCommand;
 import com.g13.model.BarSet;
 import com.g13.model.GameParticipant;
@@ -16,7 +16,7 @@ public class SkipTurnCommandTest {
     public void testExecute(){
         BarSet barSet = Mockito.mock(BarSet.class);
         GameParticipant player = new GameParticipant(new ArrayList<>(), barSet);
-        GameParticipantController controller = new GameParticipantController(player);
+        ParticipantController controller = new ParticipantController(player);
 
         SkipTurnCommand command = new SkipTurnCommand(controller);
         command.execute();

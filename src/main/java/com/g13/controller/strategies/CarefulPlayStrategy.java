@@ -9,8 +9,9 @@ public class CarefulPlayStrategy implements PlayStrategy{
     @Override
     public boolean playTurn(ArenaController arenaController) {
         boolean has_drawn = false;
-        if(arenaController.getEnemy().getPoints() <= arenaController.getEnemy().getMax_points() - 6){
-            DrawCardCommand command = new DrawCardCommand(arenaController.getEnemyController(), arenaController.getPlayerController());
+        if(arenaController.getEnemy().getPoints() <= arenaController.getEnemy().getMaxPoints() - 6){
+            DrawCardCommand command = new DrawCardCommand(arenaController, arenaController.getEnemyController(),
+                                                                arenaController.getPlayerController());
             command.execute();
             has_drawn = true;
         }

@@ -11,6 +11,7 @@ import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.g13.controller.observer.ArenaObserver;
+import org.w3c.dom.Text;
 
 import java.io.IOException;
 
@@ -20,6 +21,7 @@ public class Gui implements ArenaObserver {
     private BarViewer barViewer;
     private GameParticipantViewer gameParticipantViewer;
     private Arena arena;
+    private TextGraphics graphics;
 
     public enum COMMAND {
         SWITCH,
@@ -39,33 +41,27 @@ public class Gui implements ArenaObserver {
     COMMAND specialCmd = COMMAND.NOPLAYCARD;
     COMMAND safeSpecialCmd;
 
-    public Gui(Arena arena){
-        try {
-            Terminal terminal = new DefaultTerminalFactory().setInitialTerminalSize(new TerminalSize(arena.getWidth(), arena.getHeight())).createTerminal();
-            screen = new TerminalScreen(terminal);
+    public Gui(Arena arena) throws IOException {
+        Terminal terminal = new DefaultTerminalFactory().setInitialTerminalSize(new TerminalSize(arena.getWidth(), arena.getHeight())).createTerminal();
+        screen = new TerminalScreen(terminal);
 
-            screen.setCursorPosition(null);   // we don't need a cursor
-            screen.startScreen();             // screens must be started
-            screen.doResizeIfNecessary();     // resize screen if necessary
+        screen.setCursorPosition(null);   // we don't need a cursor
+        screen.startScreen();             // screens must be started
+        screen.doResizeIfNecessary();     // resize screen if necessary
 
-            this.arena = arena;
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
+        graphics = screen.newTextGraphics();
+        graphics.setBackgroundColor(TextColor.Factory.fromString("#336699"));
+        graphics.setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
 
+        this.arena = arena;
         this.cardViewer = new CardViewer(screen.newTextGraphics());
         this.barViewer = new BarViewer(screen.newTextGraphics(), screen.newTextGraphics(), screen.newTextGraphics());
-        this.gameParticipantViewer = new GameParticipantViewer(barViewer, cardViewer);
+        this.gameParticipantViewer = new GameParticipantViewer(barViewer, cardViewer, graphics);
     }
 
     public void draw() throws IOException {
         screen.clear();
         drawBackground();
-
-        TextGraphics graphics = screen.newTextGraphics();
-        graphics.setBackgroundColor(TextColor.Factory.fromString("#336699"));
-        graphics.setForegroundColor(TextColor.Factory.fromString("#FF0000"));
 
         gameParticipantViewer.drawPlayer(arena.getPlayer());
         gameParticipantViewer.drawEnemy(arena.getEnemy());
@@ -74,12 +70,8 @@ public class Gui implements ArenaObserver {
     }
 
     @Override
-    public void arenaChanged() {
-        try{
-            draw();
-        } catch (IOException e) {
-
-        }
+    public void arenaChanged() throws IOException {
+        draw();
     }
 
     private void drawBackground(){

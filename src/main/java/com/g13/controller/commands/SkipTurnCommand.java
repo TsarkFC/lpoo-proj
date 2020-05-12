@@ -1,10 +1,10 @@
 package com.g13.controller.commands;
-import com.g13.controller.GameParticipantController;
+import com.g13.controller.ParticipantController;
 
 public class SkipTurnCommand implements Command{
-    private GameParticipantController controller;
+    private ParticipantController controller;
 
-    public SkipTurnCommand(GameParticipantController controller){
+    public SkipTurnCommand(ParticipantController controller){
         this.controller = controller;
     }
 

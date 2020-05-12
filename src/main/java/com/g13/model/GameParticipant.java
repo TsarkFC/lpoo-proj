@@ -23,28 +23,28 @@ public class GameParticipant {
         this.activeCards = new ArrayList<>();
     }
 
-    public void setBoth_draw_decks(List<Card> draw_deck) {
+    public void setBothDrawDecks(List<Card> draw_deck) {
         this.draw_deck = draw_deck;
         this.default_draw_deck = draw_deck;
     }
 
-    public List<Card> getDefault_draw_deck() {
+    public List<Card> getDefaultDrawDeck() {
         return default_draw_deck;
     }
 
-    public void setDefault_draw_deck(List<Card> draw_deck) {
+    public void setDefaultDrawDeck(List<Card> draw_deck) {
         this.default_draw_deck = draw_deck;
     }
 
-    public List<Card> getDraw_deck() {
+    public List<Card> getDrawDeck() {
         return draw_deck;
     }
 
-    public void setDraw_deck(List<Card> draw_deck) {
+    public void setDrawDeck(List<Card> draw_deck) {
         this.draw_deck = draw_deck;
     }
 
-    public List<SpecialCard> getPlay_deck() {
+    public List<SpecialCard> getPlayDeck() {
         return play_deck;
     }
 
@@ -72,7 +72,7 @@ public class GameParticipant {
     public void setPoints(int points) {
         barSet.setPoints(points);
     }
-    public int getMax_points() {
+    public int getMaxPoints() {
         return barSet.getMaxPoints();
     }
 

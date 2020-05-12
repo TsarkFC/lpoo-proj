@@ -20,13 +20,13 @@ public class PlayerTest {
 
         GameParticipant player = new GameParticipant(play_deck, barSet);
 
-        assertEquals(play_deck, player.getPlay_deck());
+        assertEquals(play_deck, player.getPlayDeck());
         assertEquals(0, player.getPoints());
         assertEquals(2, player.getHealth());
         assertEquals(5, player.getMana());
         assertEquals(12, player.getMaxMana());
         assertEquals(12, player.getMaxHealth());
-        assertEquals(12, player.getMax_points());
+        assertEquals(12, player.getMaxPoints());
         assertEquals(false, player.getTurnOver());
     }
 
@@ -45,8 +45,8 @@ public class PlayerTest {
         Card a = new Card(1);
         normal_deck2.add(a);
 
-        player.setBoth_draw_decks(normal_deck2);
-        assertEquals(player.getDefault_draw_deck(), normal_deck2);
-        assertEquals(player.getDraw_deck(), normal_deck2);
+        player.setBothDrawDecks(normal_deck2);
+        assertEquals(player.getDefaultDrawDeck(), normal_deck2);
+        assertEquals(player.getDrawDeck(), normal_deck2);
     }
 }

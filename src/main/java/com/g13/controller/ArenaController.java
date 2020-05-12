@@ -11,17 +11,15 @@ import com.g13.view.Gui;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 
 import static java.lang.Integer.min;
 
 public class ArenaController {
     private Arena model;
     private Gui view;
-    private GameParticipantController playerController;
-    private GameParticipantController enemyController;
+    private ParticipantController playerController;
+    private ParticipantController enemyController;
     private List<Command> commands;
     private int cmdStage = 0;
 
@@ -60,7 +58,7 @@ public class ArenaController {
             }
             if (command == Gui.COMMAND.DRAW){
                 if(!model.getPlayer().getTurnOver()) {
-                    DrawCardCommand drawCmd = new DrawCardCommand(playerController, enemyController);
+                    DrawCardCommand drawCmd = new DrawCardCommand(this, playerController, enemyController);
                     drawCmd.execute();
                 }
                 if(!model.getEnemy().getTurnOver())
@@ -97,22 +95,22 @@ public class ArenaController {
     public Enemy getEnemy() {return model.getEnemy();}
     public Arena getModel() {return model;}
 
-    public GameParticipantController getPlayerController() {
+    public ParticipantController getPlayerController() {
         return playerController;
     }
 
     public void setPlayerController(GameParticipant player) {
-        this.playerController = new GameParticipantController(player);
+        this.playerController = new ParticipantController(player);
         model.setPlayer(player);
         playerController.setDefaultDeck();
     }
 
-    public GameParticipantController getEnemyController() {
+    public ParticipantController getEnemyController() {
         return enemyController;
     }
 
     public void setEnemyController(Enemy enemy) {
-        this.enemyController = new GameParticipantController(enemy);
+        this.enemyController = new ParticipantController(enemy);
         model.setEnemy(enemy);
         enemyController.setDefaultDeck();
     }
@@ -130,11 +128,11 @@ public class ArenaController {
         return model.getPlayer().getTurnOver() && model.getEnemy().getTurnOver();
     }
 
-    public GameParticipantController getLooser(){
+    public ParticipantController getLooser(){
         return enemyController.getPoints() == 0 ? enemyController : playerController;
     }
 
-    public GameParticipantController getWinner(){
+    public ParticipantController getWinner(){
         return enemyController.getPoints() != 0 ? enemyController : playerController;
     }
 
@@ -161,27 +159,26 @@ public class ArenaController {
         ProcessEnemyCards(SpecialCard.ACTIVATION_CONDITIONS.ON_END_TURN);
     }
 
-    public void notifyObservers() {
+    public void notifyObservers() throws IOException {
         for (ArenaObserver observer : model.getObservers()) {
             observer.arenaChanged();
         }
     }
 
-    public void checkControllerPoints(GameParticipantController participantController){
-        if(participantController.getPoints() == participantController.getMax_points()){
-            participantController.setTurnOver(true);
+    public void checkControllerPoints(ParticipantController playerController, ParticipantController enemyController){
+        if(playerController.getPoints() == playerController.getMax_points()){
+            playerController.setTurnOver(true);
         }
 
-        if(participantController.getPoints() > participantController.getMax_points()){
+        if(playerController.getPoints() > playerController.getMax_points()){
             int a = min(this.getPlayer().getPoints() - 1, 6);
             a = min(a, this.getEnemy().getPoints() - 1);
-            if(a < 0){
-                a = 0;
-            }
-            participantController.setPoints(a);
+            if(a < 0)  a = 0;
+
+            playerController.setPoints(a);
             //TODO: Make variable with overdraw, normal and guarding states for ending the turn
-            participantController.setTurnOver(true);
-            participantController.setTurnOver(true);
+            playerController.setTurnOver(true);
+            enemyController.setTurnOver(true);
         }
     }
 
@@ -189,17 +186,16 @@ public class ArenaController {
         List<SpecialCard> a = playerController.getParticipant().getActiveCards();
         for(int i = 0; i < a.size(); i++){
             a.get(i).activate(activationConditions, this, playerController, enemyController);
-            if(a.get(i).getRoundsLeft() <= 0){
+            if(a.get(i).getRoundsLeft() <= 0)
                 a.remove(i);
-
-            }
         }
         playerController.getParticipant().setActiveCards(a);
     }
 
     public void ProcessEnemyCards(SpecialCard.ACTIVATION_CONDITIONS activationConditions){
         for(int i = 0; i < enemyController.getParticipant().getActiveCards().size(); i++){
-            enemyController.getParticipant().getActiveCards().get(i).activate(activationConditions, this, enemyController, playerController);
+            enemyController.getParticipant().getActiveCards().get(i)
+                    .activate(activationConditions, this, enemyController, playerController);
         }
     }
 }

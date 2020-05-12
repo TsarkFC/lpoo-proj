@@ -27,7 +27,7 @@ public class ArenaControllerTest {
         controller.setPlayerController(player);
 
         assertEquals(player, controller.getPlayerController().getParticipant());
-        assertEquals(24, controller.getPlayerController().getParticipant().getDraw_deck().size());
+        assertEquals(24, controller.getPlayerController().getParticipant().getDrawDeck().size());
     }
 
     @Test
@@ -44,6 +44,6 @@ public class ArenaControllerTest {
         controller.setEnemyController(enemy);
 
         assertEquals(enemy, controller.getEnemyController().getParticipant());
-        assertEquals(24, controller.getEnemyController().getParticipant().getDraw_deck().size());
+        assertEquals(24, controller.getEnemyController().getParticipant().getDrawDeck().size());
     }
 }

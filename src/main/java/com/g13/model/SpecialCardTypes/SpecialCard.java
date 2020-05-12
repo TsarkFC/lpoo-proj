@@ -1,7 +1,7 @@
 package com.g13.model.SpecialCardTypes;
 
 import com.g13.controller.ArenaController;
-import com.g13.controller.GameParticipantController;
+import com.g13.controller.ParticipantController;
 
 public class SpecialCard {
     private int cost;
@@ -41,7 +41,7 @@ public class SpecialCard {
     public void setSelected(boolean selected) { this.selected = selected; }
 
     public void activate(ACTIVATION_CONDITIONS condition, ArenaController arenaController,
-                         GameParticipantController participantController, GameParticipantController oppositeController){
+                         ParticipantController participantController, ParticipantController oppositeController){
     }
 
     public int getRoundsLeft(){

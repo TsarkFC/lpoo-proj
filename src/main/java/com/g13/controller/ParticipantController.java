@@ -7,10 +7,10 @@ import com.g13.model.GameParticipant;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GameParticipantController {
+public class ParticipantController {
     private GameParticipant gameParticipant;
 
-    public GameParticipantController(GameParticipant gameParticipant){
+    public ParticipantController(GameParticipant gameParticipant){
         this.gameParticipant = gameParticipant;
     }
 
@@ -20,7 +20,7 @@ public class GameParticipantController {
             Card card = new Card((i / 4) + 1);
             defaultDeck.add(card);
         }
-        gameParticipant.setDefault_draw_deck(defaultDeck);
+        gameParticipant.setDefaultDrawDeck(defaultDeck);
 
         DeckShuffler deck_shuffler = new DeckShuffler(defaultDeck);
         deck_shuffler.execute();
@@ -30,7 +30,7 @@ public class GameParticipantController {
 
     public void resetDrawDeck(){
         List<Card> deck = new ArrayList<>();
-        deck.addAll(gameParticipant.getDefault_draw_deck());
+        deck.addAll(gameParticipant.getDefaultDrawDeck());
         DeckShuffler shuffle = new DeckShuffler(deck);
         shuffle.execute();
         setDraw_deck(deck);
@@ -44,7 +44,7 @@ public class GameParticipantController {
     }
 
     public List<Card> getDraw_deck(){
-        return gameParticipant.getDraw_deck();
+        return gameParticipant.getDrawDeck();
     }
 
     public GameParticipant getParticipant(){
@@ -56,7 +56,7 @@ public class GameParticipantController {
     }
 
     public int getMax_points(){
-        return gameParticipant.getMax_points();
+        return gameParticipant.getMaxPoints();
     }
 
     public void setPoints(int points){
@@ -78,11 +78,11 @@ public class GameParticipantController {
 
 
     public void setCardSelected(int cardno, boolean value){
-        gameParticipant.getPlay_deck().get(cardno).setSelected(value);
+        gameParticipant.getPlayDeck().get(cardno).setSelected(value);
     }
     public void resetCardSelection(){
-        for (int i = 0; i<gameParticipant.getPlay_deck().size() && i<4; i++)
-            gameParticipant.getPlay_deck().get(i).setSelected(false);
+        for (int i = 0; i<gameParticipant.getPlayDeck().size() && i<4; i++)
+            gameParticipant.getPlayDeck().get(i).setSelected(false);
     }
 
     public void setTurnOver(boolean value){
@@ -90,6 +90,6 @@ public class GameParticipantController {
     }
 
     public void setDraw_deck(List<Card> deck){
-        gameParticipant.setDraw_deck(deck);
+        gameParticipant.setDrawDeck(deck);
     }
 }
