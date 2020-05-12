@@ -29,7 +29,7 @@ public class ArenaCreator {
     private List<SpecialCard> createSpecialDeck(){ //TODO: make different list for different enemies/for th eplayer
         List<SpecialCard> player_special = new ArrayList<>();
         player_special.add(new FluxModifierAtoB(2, '*', "Instantly adds 1 to 3 to your points this round", 1, 3));
-        player_special.add(new StaticModifier(7, '+', "Instantly adds 3 to your points this round", 3));
+        player_special.add(new StaticModifier(3, '+', "Instantly adds 1 to your points this round", 1));
         player_special.add(new AddHpPerTurn(4, '-', "Heals for 5 per round for 1 round", 5, 1));
         player_special.add(new AddHpPerTurn(5, '/', "Heals for 2 per round for 4 rounds", 2, 4));
         return player_special;

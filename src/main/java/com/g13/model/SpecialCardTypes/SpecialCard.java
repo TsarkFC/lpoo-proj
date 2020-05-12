@@ -16,6 +16,14 @@ public class SpecialCard {
         ON_END_TURN
     }
 
+    public enum CARD_TYPE{
+        HEAL_INSTANT,
+        HEAL_ON_END_TURN,
+        FLUX_MODIFIER_A_TO_B,
+        FLUX_MODIFIER_X_Y_OR_Z,
+        STATIC_MODIFIER
+    }
+
     protected int duration = 0;
 
     public SpecialCard(int cost, char symbol, String cardInfo){
@@ -40,11 +48,15 @@ public class SpecialCard {
     public boolean getSelected() {return selected;}
     public void setSelected(boolean selected) { this.selected = selected; }
 
-    public void activate(ACTIVATION_CONDITIONS condition, ArenaController arenaController,
-                         ParticipantController participantController, ParticipantController oppositeController){
+    public void activate(ACTIVATION_CONDITIONS condition, ArenaController arenaController){
     }
 
     public int getRoundsLeft(){
         return roundsLeft;
+    }
+
+    public boolean checkEnemyPlay(ArenaController arenaController) {
+        System.out.println("Default special card checkEnemyPlay used.");
+        return false;
     }
 }

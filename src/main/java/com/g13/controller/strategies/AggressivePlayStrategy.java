@@ -14,8 +14,7 @@ public class AggressivePlayStrategy implements PlayStrategy{
 
         //Fazer draw?
         if(arenaController.getEnemy().getPoints() <= arenaController.getEnemy().getMaxPoints() - 4){
-            DrawCardCommand command = new DrawCardCommand(arenaController, arenaController.getEnemyController(),
-                                                            arenaController.getPlayerController());
+            DrawCardCommand command = new DrawCardCommand(arenaController);
             command.execute();
             has_drawn = true;
         }
@@ -25,8 +24,7 @@ public class AggressivePlayStrategy implements PlayStrategy{
 
         //Fazer draw [2]?
         if(arenaController.getEnemy().getPoints() <= arenaController.getPlayer().getPoints() && !has_drawn){
-            DrawCardCommand command = new DrawCardCommand(arenaController, arenaController.getEnemyController(),
-                                                            arenaController.getPlayerController());
+            DrawCardCommand command = new DrawCardCommand(arenaController);
             command.execute();
             has_drawn = true;
         }
@@ -35,6 +33,11 @@ public class AggressivePlayStrategy implements PlayStrategy{
 
 
         return has_drawn;
+    }
+
+    @Override
+    public boolean CheckStaticModifier(ArenaController arenaController, int cost, int modNum) {
+        return true;
     }
 
 }

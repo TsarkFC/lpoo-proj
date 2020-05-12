@@ -23,6 +23,7 @@ public class ArenaController {
     private List<Command> commands;
     private int cmdStage = 0;
 
+
     public ArenaController(Gui gui, Arena arena){
         this.view = gui;
         this.model = arena;
@@ -56,9 +57,10 @@ public class ArenaController {
                     skipTurnCommand.execute();
                 }
             }
+
             if (command == Gui.COMMAND.DRAW){
                 if(!model.getPlayer().getTurnOver()) {
-                    DrawCardCommand drawCmd = new DrawCardCommand(this, playerController, enemyController);
+                    DrawCardCommand drawCmd = new DrawCardCommand(this);
                     drawCmd.execute();
                 }
                 if(!model.getEnemy().getTurnOver())
@@ -116,12 +118,14 @@ public class ArenaController {
     }
 
     public void playEnemyTurn(){
+        model.setPlayersTurn(false);
         PlayStrategy strategy = getEnemy().getPlayStrategy();
         if (!strategy.playTurn(this)) {
             //Acabar a ronda do inimigo
             SkipTurnCommand skipTurnCommand = new SkipTurnCommand(enemyController);
             skipTurnCommand.execute();
         }
+        model.setPlayersTurn(true);
     }
 
     private boolean endOfRound(){
@@ -165,27 +169,38 @@ public class ArenaController {
         }
     }
 
-    public void checkControllerPoints(ParticipantController playerController, ParticipantController enemyController){
-        if(playerController.getPoints() == playerController.getMax_points()){
-            playerController.setTurnOver(true);
+    public void checkControllerPoints(){
+        ParticipantController current;
+        ParticipantController opposite;
+        if(getModel().getPlayersTurn()){
+            current = getPlayerController();
+            opposite = getEnemyController();
+        }
+        else{
+            current = getEnemyController();
+            opposite = getPlayerController();
         }
 
-        if(playerController.getPoints() > playerController.getMax_points()){
-            int a = min(playerController.getPoints() - 1, 6);
-            a = min(a, enemyController.getPoints() - 1);
+        if(current.getPoints() == current.getMax_points()){
+            current.setTurnOver(true);
+        }
+
+        if(current.getPoints() > current.getMax_points()){
+            int a = min(current.getPoints() - 1, 6);
+            a = min(a, opposite.getPoints() - 1);
             if(a < 0)  a = 0;
 
-            playerController.setPoints(a);
+            current.setPoints(a);
             //TODO: Make variable with overdraw, normal and guarding states for ending the turn
-            playerController.setTurnOver(true);
-            enemyController.setTurnOver(true);
+            current.setTurnOver(true);
+            opposite.setTurnOver(true);
         }
     }
 
     public void ProcessPlayerCards(SpecialCard.ACTIVATION_CONDITIONS activationConditions){
         List<SpecialCard> a = playerController.getParticipant().getActiveCards();
         for(int i = 0; i < a.size(); i++){
-            a.get(i).activate(activationConditions, this, playerController, enemyController);
+            a.get(i).activate(activationConditions, this);
             if(a.get(i).getRoundsLeft() <= 0)
                 a.remove(i);
         }
@@ -195,7 +210,7 @@ public class ArenaController {
     public void ProcessEnemyCards(SpecialCard.ACTIVATION_CONDITIONS activationConditions){
         for(int i = 0; i < enemyController.getParticipant().getActiveCards().size(); i++){
             enemyController.getParticipant().getActiveCards().get(i)
-                    .activate(activationConditions, this, enemyController, playerController);
+                    .activate(activationConditions, this);
         }
     }
 }

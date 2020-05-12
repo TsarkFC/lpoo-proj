@@ -6,4 +6,6 @@ public interface PlayStrategy {
 
     boolean playTurn(ArenaController arenaController);
 
+    boolean CheckStaticModifier(ArenaController arenaController, int cost, int modNum);
+
 }

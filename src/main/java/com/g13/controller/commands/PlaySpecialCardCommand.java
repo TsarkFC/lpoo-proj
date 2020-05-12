@@ -21,8 +21,8 @@ public class PlaySpecialCardCommand {
         SpecialCard a = currentController.getParticipant().getPlayDeck().get(cardNum);
 
         if (a.getCost() <= currentController.getParticipant().getMana()) {
-            a.activate(SpecialCard.ACTIVATION_CONDITIONS.ON_PLAY, arenaController, currentController, oppositeController);
-            currentController.getParticipant().setMana(currentController.getParticipant().getMana() - a.getCost());
+            a.activate(SpecialCard.ACTIVATION_CONDITIONS.ON_PLAY, arenaController);
+            //currentController.getParticipant().setMana(currentController.getParticipant().getMana() - a.getCost());
         }
     }
 

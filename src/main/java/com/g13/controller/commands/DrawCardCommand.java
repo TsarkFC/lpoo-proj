@@ -4,22 +4,29 @@ import com.g13.controller.ArenaController;
 import com.g13.controller.CardController;
 import com.g13.controller.ParticipantController;
 import com.g13.model.Card;
+import com.g13.model.GameParticipant;
 
 import static java.lang.Integer.min;
 
 public class DrawCardCommand implements Command{
-    private ParticipantController current;
-    private ParticipantController opposite;
     private ArenaController arenaController;
 
-    public DrawCardCommand(ArenaController arena, ParticipantController currentController, ParticipantController oppositeController){
+    public DrawCardCommand(ArenaController arena){
         this.arenaController = arena;
-        this.current = currentController;
-        this.opposite = oppositeController;
     }
 
     @Override
     public void execute() {
+        ParticipantController current;
+        ParticipantController opposite;
+        if(arenaController.getModel().getPlayersTurn()){
+            current = arenaController.getPlayerController();
+            opposite = arenaController.getEnemyController();
+        }
+        else{
+            current = arenaController.getEnemyController();
+            opposite = arenaController.getPlayerController();
+        }
         Card card = current.getDraw_deck().get(0);
         CardController c = new CardController(card);
         c.effect(current.getParticipant());
@@ -39,7 +46,7 @@ public class DrawCardCommand implements Command{
             current.setTurnOver(true);
             opposite.setTurnOver(true);
         }*/
-        arenaController.checkControllerPoints(current, opposite);
+        arenaController.checkControllerPoints();
 
         if(current.getPoints() == current.getMax_points()){
             current.setTurnOver(true);
