@@ -11,3 +11,7 @@ No final de cada ronda é efetuado o cálculo da diferença das pontuações de 
 Durante cada ronda cada jogador pode ativar cartas especiais, desde que tenha mana para tal, sendo a sua ação ativada de imediato ou no final da ronda (dependendo do seu efeito).
 
 O jogo termina quando a vida de um dos jogadores atingir o valor 0.
+
+![](docs/img/img1.png)
+
+![](docs/img/img2.png)

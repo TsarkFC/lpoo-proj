@@ -1,0 +1,106 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: Game</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.g13</a> ]
+</div>
+
+<h1>Coverage Summary for Class: Game (com.g13)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Game</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 8)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.g13;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.g13.controller.ArenaController;
+<i>4</i>&nbsp;import com.g13.controller.creator.ArenaCreator;
+<i>5</i>&nbsp;import com.g13.model.Arena;
+<i>6</i>&nbsp;import com.g13.view.Gui;
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;import java.io.IOException;
+<i>9</i>&nbsp;
+<b class="nc"><i>10</i>&nbsp;public class Game {</b>
+<i>11</i>&nbsp;    private Gui gui;
+<i>12</i>&nbsp;    private Arena arena;
+<i>13</i>&nbsp;    public static void main(String[] args) throws IOException {
+<b class="nc"><i>14</i>&nbsp;        Arena arena = new Arena(50, 30);</b>
+<b class="nc"><i>15</i>&nbsp;        Gui gui = new Gui(arena);</b>
+<b class="nc"><i>16</i>&nbsp;        arena.addObserver(gui);</b>
+<i>17</i>&nbsp;
+<b class="nc"><i>18</i>&nbsp;        ArenaController controller = new ArenaController(gui, arena);</b>
+<b class="nc"><i>19</i>&nbsp;        ArenaCreator creator = new ArenaCreator();</b>
+<b class="nc"><i>20</i>&nbsp;        creator.create(controller);</b>
+<b class="nc"><i>21</i>&nbsp;        controller.start();</b>
+<i>22</i>&nbsp;    }
+<i>23</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-05-03 20:08</div>
+</div>
+</body>
+</html>
