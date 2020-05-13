@@ -16,15 +16,11 @@ public class CarefulPlayStrategy implements PlayStrategy{
             command.execute();
             has_drawn = true;
         }
-
-
         return has_drawn;
     }
 
     @Override
     public boolean CheckStaticModifier(ArenaController arenaController, int cost, int modNum) {
-
-
         return mana_saved >= arenaController.getEnemy().getMana() - cost;
     }
 }

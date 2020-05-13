@@ -98,8 +98,6 @@ public class NormalPlayStrategy implements PlayStrategy{
 
     @Override
     public boolean CheckStaticModifier(ArenaController arenaController, int cost, int modNum) {
-
-
         return mana_saved <= arenaController.getEnemy().getMana() - cost;
     }
 

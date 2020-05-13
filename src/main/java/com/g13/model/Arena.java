@@ -61,9 +61,7 @@ public class Arena {
 
     public List<ArenaObserver> getObservers(){return observers;}
 
-    public boolean getPlayersTurn() {
-        return playersTurn;
-    }
+    public boolean getPlayersTurn() { return playersTurn; }
 
     public void setPlayersTurn(boolean playersTurn) {
         this.playersTurn = playersTurn;

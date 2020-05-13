@@ -17,19 +17,14 @@ public class StaticModifier extends SpecialCard {
     }
 
     public boolean checkEnemyPlay(ArenaController arenaController){
-        if(arenaController.getEnemy().getMana() < getCost()){
+        if(arenaController.getEnemy().getMana() < getCost())
             return false;
-        }
 
-        if(arenaController.getEnemy().getPoints() + modNum > arenaController.getEnemy().getMaxPoints()){
+        if(arenaController.getEnemy().getPoints() + modNum > arenaController.getEnemy().getMaxPoints())
             return false;
-        }
 
-
-
-        if(!arenaController.getEnemy().getPlayStrategy().CheckStaticModifier(arenaController, getCost(), modNum)){
+        if(!arenaController.getEnemy().getPlayStrategy().CheckStaticModifier(arenaController, getCost(), modNum))
             return false;
-        }
 
         activate(ACTIVATION_CONDITIONS.ON_PLAY, arenaController);
         return true;
@@ -37,21 +32,12 @@ public class StaticModifier extends SpecialCard {
 
     public void activate(SpecialCard.ACTIVATION_CONDITIONS condition, ArenaController arenaController){
 
-        ParticipantController currentController;
-
-        //Find who is playing now
-        if(arenaController.getModel().getPlayersTurn()){
-            currentController = arenaController.getPlayerController();
-        }
-        else{
-            currentController = arenaController.getEnemyController();
-        }
-
-        //Subtract mana
-        currentController.getParticipant().setMana(currentController.getParticipant().getMana() - getCost());
+        ParticipantController currentController = arenaController.getCurrent();
 
         //When the card is played
         if(condition == SpecialCard.ACTIVATION_CONDITIONS.ON_PLAY){
+            //Subtract mana
+            currentController.getParticipant().setMana(currentController.getParticipant().getMana() - getCost());
             currentController.setPoints(currentController.getPoints() + modNum);
             arenaController.checkControllerPoints();
         }
