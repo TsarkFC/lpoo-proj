@@ -7,16 +7,16 @@ import com.g13.model.SpecialCardTypes.SpecialCard;
 import java.util.List;
 
 
-public class NormalPlayStrategy implements PlayStrategy{
+public class NormalPlayStrategy extends PlayStrategy{
 
-    protected int mana_saved = 5;
 
     //TODO: Create function to calculate hipothetical damage taken by the enemy when they lose
 
     @Override
     public boolean playTurn(ArenaController arenaController) {
 
-        mana_saved = 5;
+        mana_saved = 0;
+        flux_percentage_accept = 0.75;
 
         boolean draw_limit_reached = false;
 
@@ -36,13 +36,27 @@ public class NormalPlayStrategy implements PlayStrategy{
             draw_limit_reached = true;
         }
 
-        if(arenaController.getEnemy().getPoints() <= arenaController.getPlayer().getPoints() && draw_limit_reached){
-            mana_saved = 0;
-            for(int i = 0; i < 4; i++){
-                if(arenaController.getEnemy().getPlayDeck().get(i).checkEnemyPlay(arenaController))
-                    break;
-            }
+        for(int i = 0; i < 4; i++){
+            if(arenaController.getEnemy().getPlayDeck().get(i).getCardType() == SpecialCard.CARD_TYPE.STATIC_MODIFIER || arenaController.getEnemy().getPlayDeck().get(i).getCardType() == SpecialCard.CARD_TYPE.FLUX_MODIFIER_A_TO_B || arenaController.getEnemy().getPlayDeck().get(i).getCardType() == SpecialCard.CARD_TYPE.FLUX_MODIFIER_X_Y_OR_Z)
+                arenaController.getEnemy().getPlayDeck().get(i).checkEnemyPlay(arenaController);
         }
+
+
+        //Heal (Instant)
+        health_to_heal = 2;
+        for(int i = 0; i < 4; i++){
+            if(arenaController.getEnemy().getPlayDeck().get(i).getCardType() == SpecialCard.CARD_TYPE.HEAL_INSTANT)
+                arenaController.getEnemy().getPlayDeck().get(i).checkEnemyPlay(arenaController);
+        }
+
+        //Heal (End turn)
+        health_to_heal = 5;
+        for(int i = 0; i < 4; i++){
+            if(arenaController.getEnemy().getPlayDeck().get(i).getCardType() == SpecialCard.CARD_TYPE.HEAL_ON_END_TURN)
+                arenaController.getEnemy().getPlayDeck().get(i).checkEnemyPlay(arenaController);
+        }
+
+
 
         //Don't wanna draw but you're losing against the player?
         //if(arenaController.getEnemy().getPoints() < arenaController.getPlayer().getPoints() && draw_limit_reached){
@@ -94,13 +108,6 @@ public class NormalPlayStrategy implements PlayStrategy{
             //
         //}
         return has_drawn;
-    }
-
-    @Override
-    public boolean CheckStaticModifier(ArenaController arenaController, int cost, int modNum) {
-
-
-        return mana_saved <= arenaController.getEnemy().getMana() - cost;
     }
 
 

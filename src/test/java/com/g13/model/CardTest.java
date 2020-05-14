@@ -1,6 +1,5 @@
 package com.g13.model;
 
-import com.g13.model.Card;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

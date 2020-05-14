@@ -7,7 +7,6 @@ import com.g13.controller.strategies.PlayStrategy;
 import com.g13.model.*;
 import com.g13.view.Gui;
 import org.junit.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import java.util.ArrayList;
@@ -18,89 +17,89 @@ import static org.junit.Assert.assertEquals;
 public class DrawCardCommandTest {
     @Test
     public void testExecuteOverFlow(){
-        Bar healthBar = new Bar(10, 20);
-        Bar manaBar = new Bar(10, 20);
-        Bar pointBar = new Bar(0, 12);
-        BarSet barSet =  new BarSet(healthBar, manaBar, pointBar);
-
-        GameParticipant player = new GameParticipant(new ArrayList<>(), barSet);
-        PlayStrategy strategy = Mockito.mock(PlayStrategy.class);
-        Enemy enemy = new Enemy(new ArrayList<>(), barSet, strategy);
-
-        Gui gui = Mockito.mock(Gui.class);
-        Arena arena = Mockito.mock(Arena.class);
-        ArenaController arenaController = new ArenaController(gui, arena);
-        arenaController.setEnemyController(enemy);
-        arenaController.setPlayerController(player);
-
+        ArenaController arenaController = initArena();
         ParticipantController playerController = arenaController.getPlayerController();
         ParticipantController enemyController = arenaController.getEnemyController();
 
-        playerController.setDefaultDeck();
         List<Card> drawDeck = new ArrayList<>();
         drawDeck.add(new Card(5));
-        player.setDrawDeck(drawDeck);
+        playerController.setDrawDeck(drawDeck);
 
         playerController.setPoints(10);
         enemyController.setPoints(10);
 
-        DrawCardCommand command = new DrawCardCommand(arenaController, playerController, enemyController);
+        DrawCardCommand command = new DrawCardCommand(arenaController);
         command.execute();
 
-        assertEquals(24, playerController.getDraw_deck().size());
-        assertEquals(true, player.getTurnOver());
-        assertEquals(true, enemy.getTurnOver());
-        assertEquals(6, player.getPoints());
+        assertEquals(24, playerController.getDrawDeck().size());
+        assertEquals(true, playerController.getParticipant().getTurnOver());
+        assertEquals(true, enemyController.getParticipant().getTurnOver());
+        assertEquals(6, playerController.getPoints());
     }
 
     @Test
     public void testExecuteBothMax(){
-        BarSet barSet = Mockito.mock(BarSet.class);
-        GameParticipant player = new GameParticipant(new ArrayList<>(), barSet);
-        GameParticipant enemy = new GameParticipant(new ArrayList<>(), barSet);
-        ParticipantController playerController = new ParticipantController(player);
-        ParticipantController enemyController = new ParticipantController(enemy);
-        ArenaController arenaController = Mockito.mock(ArenaController.class);
+        ArenaController arenaController = initArena();
+        ParticipantController playerController = arenaController.getPlayerController();
+        ParticipantController enemyController = arenaController.getEnemyController();
 
-        playerController.setDefaultDeck();
         List<Card> drawDeck = new ArrayList<>();
         drawDeck.add(new Card(2));
-        player.setDrawDeck(drawDeck);
+        drawDeck.add(new Card(4));
+        playerController.setDrawDeck(drawDeck);
 
         playerController.setPoints(10);
         enemyController.setPoints(12);
 
-        DrawCardCommand command = new DrawCardCommand(arenaController, playerController, enemyController);
+        DrawCardCommand command = new DrawCardCommand(arenaController);
         command.execute();
 
-        assertEquals(24, playerController.getDraw_deck().size());
-        assertEquals(true, player.getTurnOver());
-        assertEquals(true, enemy.getTurnOver());
+        assertEquals(1, playerController.getDrawDeck().size());
+        assertEquals(true, playerController.getParticipant().getTurnOver());
+        assertEquals(true, enemyController.getParticipant().getTurnOver());
     }
 
     @Test
-    public void testExecuteNegativeA(){
-        BarSet barSet = Mockito.mock(BarSet.class);
-        GameParticipant player = new GameParticipant(new ArrayList<>(), barSet);
-        GameParticipant enemy = new GameParticipant(new ArrayList<>(), barSet);
-        ParticipantController playerController = new ParticipantController(player);
-        ParticipantController enemyController = new ParticipantController(enemy);
-        ArenaController arenaController = Mockito.mock(ArenaController.class);
+    public void testExecuteNegative(){
+        ArenaController arenaController = initArena();
+        ParticipantController playerController = arenaController.getPlayerController();
+        ParticipantController enemyController = arenaController.getEnemyController();
 
-        playerController.setDefaultDeck();
         List<Card> drawDeck = new ArrayList<>();
         drawDeck.add(new Card(3));
-        player.setDrawDeck(drawDeck);
+        playerController.setDrawDeck(drawDeck);
 
         playerController.setPoints(10);
         enemyController.setPoints(0);
 
-        DrawCardCommand command = new DrawCardCommand(arenaController, playerController, enemyController);
+        DrawCardCommand command = new DrawCardCommand(arenaController);
         command.execute();
 
-        assertEquals(24, playerController.getDraw_deck().size());
-        assertEquals(true, player.getTurnOver());
-        assertEquals(true, enemy.getTurnOver());
-        assertEquals(0, player.getPoints());
+        assertEquals(true, playerController.getParticipant().getTurnOver());
+        assertEquals(true, enemyController.getParticipant().getTurnOver());
+        assertEquals(0, playerController.getPoints());
+        assertEquals(24, playerController.getDrawDeck().size());
+    }
+
+    private ArenaController initArena(){
+        GameParticipant player = new GameParticipant(new ArrayList<>(), initBar());
+        PlayStrategy strategy = Mockito.mock(PlayStrategy.class);
+        Enemy enemy = new Enemy(new ArrayList<>(), initBar(), strategy);
+
+        Gui gui = Mockito.mock(Gui.class);
+        Arena arena = new Arena(0,0);
+        ArenaController arenaController = new ArenaController(gui, arena);
+
+        arenaController.setEnemyController(enemy);
+        arenaController.setPlayerController(player);
+        return arenaController;
+    }
+
+    private BarSet initBar(){
+        Bar healthBar = new Bar(10, 20);
+        Bar manaBar = new Bar(10, 20);
+        Bar pointBar = new Bar(0, 12);
+        BarSet barSet =  new BarSet(healthBar, manaBar, pointBar);
+        return barSet;
     }
 }

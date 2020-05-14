@@ -11,6 +11,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PlayerViewerTest {
+
+    BarViewer barViewer = Mockito.mock(BarViewer.class);
+    CardViewer cardViewer = Mockito.mock(CardViewer.class);
+    TextGraphics graphics = Mockito.mock(TextGraphics.class);
+
     @Test
     public void testDrawPlayer(){
         List<SpecialCard> player_special = new ArrayList<>();
@@ -26,10 +31,6 @@ public class PlayerViewerTest {
 
         GameParticipant player = new GameParticipant(player_special, barSet);
         player.setDrawDeck(new ArrayList<>());
-
-        BarViewer barViewer = Mockito.mock(BarViewer.class);
-        CardViewer cardViewer = Mockito.mock(CardViewer.class);
-        TextGraphics graphics = Mockito.mock(TextGraphics.class);
 
         GameParticipantViewer viewer = new GameParticipantViewer(barViewer, cardViewer, graphics);
         viewer.drawPlayer(player);
@@ -64,10 +65,6 @@ public class PlayerViewerTest {
 
         GameParticipant enemy = new GameParticipant(player_special, barSet);
         enemy.setDrawDeck(new ArrayList<>());
-
-        BarViewer barViewer = Mockito.mock(BarViewer.class);
-        CardViewer cardViewer = Mockito.mock(CardViewer.class);
-        TextGraphics graphics = Mockito.mock(TextGraphics.class);
 
         GameParticipantViewer viewer = new GameParticipantViewer(barViewer, cardViewer, graphics);
         viewer.drawEnemy(enemy);

@@ -57,8 +57,6 @@ public class CardViewerTest {
 
     @Test
     public void testdrawCardInfo() throws IOException {
-        TerminalScreen screen = Mockito.mock(TerminalScreen.class);
-        GameParticipant player = Mockito.mock(GameParticipant.class);
         TextGraphics graphics = Mockito.mock(TextGraphics.class);
         CardViewer viewer = new CardViewer(graphics);
 

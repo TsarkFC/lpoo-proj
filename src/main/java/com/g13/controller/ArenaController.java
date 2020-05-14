@@ -37,21 +37,18 @@ public class ArenaController {
 
         while(!model.isFinished()){
             playerController.resetCardSelection();
+            int select = -1;
 
             Gui.COMMAND command = view.getNextCommand();
-            if (command == Gui.COMMAND.ONE)
-                playerController.setCardSelected(0, true);
-            else if(command == Gui.COMMAND.TWO)
-                playerController.setCardSelected(1, true);
-            else if(command == Gui.COMMAND.THREE)
-                playerController.setCardSelected(2, true);
-            else if(command == Gui.COMMAND.FOUR)
-                playerController.setCardSelected(3, true);
+            if (command == Gui.COMMAND.ONE) select = 0;
+            else if(command == Gui.COMMAND.TWO) select = 1;
+            else if(command == Gui.COMMAND.THREE) select = 2;
+            else if(command == Gui.COMMAND.FOUR) select = 3;
+            if (select != -1) playerController.setCardSelected(select, true);
 
             if (command == Gui.COMMAND.SWITCH) {
-                if (endOfRound()){
+                if (endOfRound())
                     interStageHandler();
-                }
                 else {
                     SkipTurnCommand skipTurnCommand = new SkipTurnCommand(playerController);
                     skipTurnCommand.execute();
@@ -68,20 +65,14 @@ public class ArenaController {
             }
 
             if(!model.getPlayer().getTurnOver()) {
-                if (command == Gui.COMMAND.PLAYCARD1) {
-                    PlaySpecialCardCommand specialCardCommand = new PlaySpecialCardCommand(1, this, playerController, enemyController);
-                    specialCardCommand.execute();
-                }
-                if (command == Gui.COMMAND.PLAYCARD2) {
-                    PlaySpecialCardCommand specialCardCommand = new PlaySpecialCardCommand(2, this, playerController, enemyController);
-                    specialCardCommand.execute();
-                }
-                if (command == Gui.COMMAND.PLAYCARD3) {
-                    PlaySpecialCardCommand specialCardCommand = new PlaySpecialCardCommand(3, this, playerController, enemyController);
-                    specialCardCommand.execute();
-                }
-                if (command == Gui.COMMAND.PLAYCARD4) {
-                    PlaySpecialCardCommand specialCardCommand = new PlaySpecialCardCommand(4, this, playerController, enemyController);
+                int cardno = 0;
+                if (command == Gui.COMMAND.PLAYCARD1) cardno = 1;
+                else if (command == Gui.COMMAND.PLAYCARD2) cardno = 2;
+                else if (command == Gui.COMMAND.PLAYCARD3) cardno = 3;
+                else if (command == Gui.COMMAND.PLAYCARD4) cardno = 4;
+
+                if (cardno != 0){
+                    PlaySpecialCardCommand specialCardCommand = new PlaySpecialCardCommand(cardno, this, playerController, enemyController);
                     specialCardCommand.execute();
                 }
             }
@@ -121,7 +112,6 @@ public class ArenaController {
         model.setPlayersTurn(false);
         PlayStrategy strategy = getEnemy().getPlayStrategy();
         if (!strategy.playTurn(this)) {
-            //Acabar a ronda do inimigo
             SkipTurnCommand skipTurnCommand = new SkipTurnCommand(enemyController);
             skipTurnCommand.execute();
         }
@@ -142,15 +132,10 @@ public class ArenaController {
 
     private void interStageHandler(){
         commands.get(cmdStage).execute();
-        if (cmdStage != 1 && cmdStage != 0){
-           commands.remove(cmdStage);
-        }
-        else{
-            cmdStage++;
-            if (cmdStage == commands.size()) {
-                resetRound();
-                cmdStage = 0;
-            }
+        cmdStage++;
+        if (cmdStage == commands.size()) {
+            resetRound();
+            cmdStage = 0;
         }
     }
 
@@ -160,7 +145,9 @@ public class ArenaController {
         playerController.setPoints(0);
         enemyController.setPoints(0);
         ProcessPlayerCards(SpecialCard.ACTIVATION_CONDITIONS.ON_END_TURN);
+        model.setPlayersTurn(false);
         ProcessEnemyCards(SpecialCard.ACTIVATION_CONDITIONS.ON_END_TURN);
+        model.setPlayersTurn(true);
     }
 
     public void notifyObservers() throws IOException {
@@ -170,28 +157,19 @@ public class ArenaController {
     }
 
     public void checkControllerPoints(){
-        ParticipantController current;
-        ParticipantController opposite;
-        if(getModel().getPlayersTurn()){
-            current = getPlayerController();
-            opposite = getEnemyController();
-        }
-        else{
-            current = getEnemyController();
-            opposite = getPlayerController();
-        }
+        ParticipantController current = getCurrent();
+        ParticipantController opposite = getOpponent();
 
-        if(current.getPoints() == current.getMax_points()){
+        if(current.getPoints() == current.getMaxPoints()){
             current.setTurnOver(true);
         }
 
-        if(current.getPoints() > current.getMax_points()){
+        if(current.getPoints() > current.getMaxPoints()){
             int a = min(current.getPoints() - 1, 6);
             a = min(a, opposite.getPoints() - 1);
             if(a < 0)  a = 0;
 
             current.setPoints(a);
-            //TODO: Make variable with overdraw, normal and guarding states for ending the turn
             current.setTurnOver(true);
             opposite.setTurnOver(true);
         }
@@ -209,8 +187,17 @@ public class ArenaController {
 
     public void ProcessEnemyCards(SpecialCard.ACTIVATION_CONDITIONS activationConditions){
         for(int i = 0; i < enemyController.getParticipant().getActiveCards().size(); i++){
-            enemyController.getParticipant().getActiveCards().get(i)
-                    .activate(activationConditions, this);
+            System.out.println("Old hp: " + enemyController.getParticipant().getHealth());
+            enemyController.getParticipant().getActiveCards().get(i).activate(activationConditions, this);
+            System.out.println("New hp: " + enemyController.getParticipant().getHealth());
         }
+    }
+
+    public ParticipantController getCurrent(){
+        return model.getPlayersTurn() ? getPlayerController() : getEnemyController();
+    }
+
+    public ParticipantController getOpponent(){
+        return model.getPlayersTurn() ? getEnemyController() : getPlayerController();
     }
 }

@@ -69,9 +69,7 @@ public class GameParticipant {
     public int getPoints() {
         return barSet.getPoints();
     }
-    public void setPoints(int points) {
-        barSet.setPoints(points);
-    }
+    public void setPoints(int points) { barSet.setPoints(points); }
     public int getMaxPoints() {
         return barSet.getMaxPoints();
     }

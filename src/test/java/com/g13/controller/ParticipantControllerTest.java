@@ -19,9 +19,8 @@ public class ParticipantControllerTest {
         assertEquals(controller.getParticipant().getDrawDeck().size(), 24);
 
         int a = 0;
-        for(int i = 0; i < 24; i++){
-            a += controller.getParticipant().getDrawDeck().get(i).getValue(); // fix
-        }
+        for(int i = 0; i < 24; i++)
+            a += controller.getDrawDeck().get(i).getValue();
 
         assertEquals(a, 4 + 8 + 12 + 16 + 20 + 24);
     }
@@ -38,9 +37,8 @@ public class ParticipantControllerTest {
         assertEquals(controller.getParticipant().getDrawDeck().size(), 24);
 
         int a = 0;
-        for(int i = 0; i < 24; i++){
-            a += controller.getParticipant().getDrawDeck().get(i).getValue();
-        }
+        for(int i = 0; i < 24; i++)
+            a += controller.getDrawDeck().get(i).getValue();
 
         assertEquals(a, 4 + 8 + 12 + 16 + 20 + 24);
     }
@@ -48,7 +46,6 @@ public class ParticipantControllerTest {
     @Test
     public void testremoveDeckTop(){
         ParticipantController controller = createController();
-
         for (int i = 0; i<7; i++)
             controller.removeDeckTop();
         assertEquals(controller.getParticipant().getDrawDeck().size(), 17);

@@ -7,13 +7,13 @@ import org.mockito.Mockito;
 
 public class BarViewerTest {
 
+    TextGraphics unfilled_point = Mockito.mock(TextGraphics.class);
+    TextGraphics filled_point = Mockito.mock(TextGraphics.class);
+    TextGraphics point_number = Mockito.mock(TextGraphics.class);
+    BarViewer barViewer = new BarViewer(unfilled_point, filled_point, point_number);
+
     @Test
     public void testdrawPointBar(){
-        TextGraphics unfilled_point = Mockito.mock(TextGraphics.class);
-        TextGraphics filled_point = Mockito.mock(TextGraphics.class);
-        TextGraphics point_number = Mockito.mock(TextGraphics.class);
-        BarViewer barViewer = new BarViewer(unfilled_point, filled_point, point_number);
-
         barViewer.drawPointBar(3, 3, 0, 6);
 
         testEmptyFillBar(unfilled_point, filled_point);
@@ -45,11 +45,6 @@ public class BarViewerTest {
 
     @Test
     public void testFulldrawPointBar(){
-        TextGraphics unfilled_point = Mockito.mock(TextGraphics.class);
-        TextGraphics filled_point = Mockito.mock(TextGraphics.class);
-        TextGraphics point_number = Mockito.mock(TextGraphics.class);
-        BarViewer barViewer = new BarViewer(unfilled_point, filled_point, point_number);
-
         barViewer.drawPointBar(3, 3, 6, 6);
 
         testFullFillBar(filled_point);
@@ -62,11 +57,6 @@ public class BarViewerTest {
 
     @Test
     public void testdrawHealthBar(){
-        TextGraphics unfilled_point = Mockito.mock(TextGraphics.class);
-        TextGraphics filled_point = Mockito.mock(TextGraphics.class);
-        TextGraphics point_number = Mockito.mock(TextGraphics.class);
-        BarViewer barViewer = new BarViewer(unfilled_point, filled_point, point_number);
-
         barViewer.drawHealthBar(3, 3, 6, 6);
 
         testDrawBar(filled_point, point_number, "Hp:");
@@ -89,11 +79,6 @@ public class BarViewerTest {
 
     @Test
     public void testdrawManaBar(){
-        TextGraphics unfilled_point = Mockito.mock(TextGraphics.class);
-        TextGraphics filled_point = Mockito.mock(TextGraphics.class);
-        TextGraphics point_number = Mockito.mock(TextGraphics.class);
-        BarViewer barViewer = new BarViewer(unfilled_point, filled_point, point_number);
-
         barViewer.drawManaBar(3, 3, 6, 6);
 
         testDrawBar(filled_point, point_number, "Mana:");
@@ -114,7 +99,7 @@ public class BarViewerTest {
                 setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
     }
 
-    public void testEmptyFillBar(TextGraphics unfilled_point, TextGraphics filled_point){
+    private void testEmptyFillBar(TextGraphics unfilled_point, TextGraphics filled_point){
 
         Mockito.verify(filled_point, Mockito.times(1)).putString(3, 3, "|");
         for (int i = 4; i <= 16; i += 4)
@@ -124,7 +109,7 @@ public class BarViewerTest {
             Mockito.verify(unfilled_point, Mockito.times(1)).putString(3 + j + j / 3 + 1, 3, "_");
     }
 
-    public void testFullFillBar(TextGraphics filled_point){
+    private void testFullFillBar(TextGraphics filled_point){
         for (int i = 0; i <= 16; i += 4)
             Mockito.verify(filled_point, Mockito.times(1)).putString(3 + i, 3, "|");
 
@@ -132,7 +117,7 @@ public class BarViewerTest {
             Mockito.verify(filled_point, Mockito.times(1)).putString(3 + j + j / 3 + 1, 3, "_");
     }
 
-    public void testHeaderBar(TextGraphics point_number){
+    private void testHeaderBar(TextGraphics point_number){
 
         Mockito.verify(point_number, Mockito.times(1)).putString(3+19, 3, " ");
         Mockito.verify(point_number, Mockito.times(1)).putString(3+20, 3, " ");
@@ -141,7 +126,7 @@ public class BarViewerTest {
         Mockito.verify(point_number, Mockito.times(1)).putString(3+22, 3, "6");
     }
 
-    public void testDrawBar(TextGraphics filled_point, TextGraphics point_number, String word){
+    private void testDrawBar(TextGraphics filled_point, TextGraphics point_number, String word){
         testFullFillBar(filled_point);
         testHeaderBar(point_number);
         Mockito.verify(point_number, Mockito.times(1)).
