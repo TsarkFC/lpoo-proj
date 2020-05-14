@@ -12,13 +12,7 @@ public class PlayerTest {
     @Test
     public void testConstructor(){ //TODO: Use stub for creating cards and create multiple cards
         List<SpecialCard> play_deck = new ArrayList<>();
-
-        Bar healthBar = new Bar(2, 12);
-        Bar manaBar = new Bar(5, 12);
-        Bar pointBar = new Bar(0, 12);
-        BarSet barSet = new BarSet(healthBar, manaBar, pointBar);
-
-        GameParticipant player = new GameParticipant(play_deck, barSet);
+        GameParticipant player = new GameParticipant(play_deck, initBarSet());
 
         assertEquals(play_deck, player.getPlayDeck());
         assertEquals(0, player.getPoints());
@@ -33,13 +27,7 @@ public class PlayerTest {
     @Test
     public void listSetterTest(){
         List<SpecialCard> play_deck = new ArrayList<>();
-
-        Bar healthBar = new Bar(2, 12);
-        Bar manaBar = new Bar(5, 12);
-        Bar pointBar = new Bar(0, 12);
-        BarSet barSet = new BarSet(healthBar, manaBar, pointBar);
-
-        GameParticipant player = new GameParticipant(play_deck, barSet);
+        GameParticipant player = new GameParticipant(play_deck, initBarSet());
 
         List<Card> normal_deck2 = new ArrayList<>();
         Card a = new Card(1);
@@ -48,5 +36,12 @@ public class PlayerTest {
         player.setBothDrawDecks(normal_deck2);
         assertEquals(player.getDefaultDrawDeck(), normal_deck2);
         assertEquals(player.getDrawDeck(), normal_deck2);
+    }
+
+    private BarSet initBarSet(){
+        Bar healthBar = new Bar(2, 12);
+        Bar manaBar = new Bar(5, 12);
+        Bar pointBar = new Bar(0, 12);
+        return new BarSet(healthBar, manaBar, pointBar);
     }
 }

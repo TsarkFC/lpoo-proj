@@ -132,15 +132,10 @@ public class ArenaController {
 
     private void interStageHandler(){
         commands.get(cmdStage).execute();
-        if (cmdStage != 1 && cmdStage != 0){
-           commands.remove(cmdStage);
-        }
-        else{
-            cmdStage++;
-            if (cmdStage == commands.size()) {
-                resetRound();
-                cmdStage = 0;
-            }
+        cmdStage++;
+        if (cmdStage == commands.size()) {
+            resetRound();
+            cmdStage = 0;
         }
     }
 
@@ -163,11 +158,11 @@ public class ArenaController {
         ParticipantController current = getCurrent();
         ParticipantController opposite = getOpponent();
 
-        if(current.getPoints() == current.getMax_points()){
+        if(current.getPoints() == current.getMaxPoints()){
             current.setTurnOver(true);
         }
 
-        if(current.getPoints() > current.getMax_points()){
+        if(current.getPoints() > current.getMaxPoints()){
             int a = min(current.getPoints() - 1, 6);
             a = min(a, opposite.getPoints() - 1);
             if(a < 0)  a = 0;
@@ -196,12 +191,10 @@ public class ArenaController {
     }
 
     public ParticipantController getCurrent(){
-        if (model.getPlayersTurn()) return getPlayerController();
-        return getEnemyController();
+        return model.getPlayersTurn() ? getPlayerController() : getEnemyController();
     }
 
     public ParticipantController getOpponent(){
-        if (model.getPlayersTurn()) return getEnemyController();
-        return getPlayerController();
+        return model.getPlayersTurn() ? getEnemyController() : getPlayerController();
     }
 }

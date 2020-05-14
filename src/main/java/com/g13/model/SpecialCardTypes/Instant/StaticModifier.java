@@ -2,7 +2,6 @@ package com.g13.model.SpecialCardTypes.Instant;
 
 import com.g13.controller.ArenaController;
 import com.g13.controller.ParticipantController;
-import com.g13.model.Arena;
 import com.g13.model.SpecialCardTypes.SpecialCard;
 
 public class StaticModifier extends SpecialCard {

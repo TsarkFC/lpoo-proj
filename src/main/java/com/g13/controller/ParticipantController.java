@@ -25,7 +25,7 @@ public class ParticipantController {
         DeckShuffler deck_shuffler = new DeckShuffler(defaultDeck);
         deck_shuffler.execute();
 
-        setDraw_deck(defaultDeck);
+        setDrawDeck(defaultDeck);
     }
 
     public void resetDrawDeck(){
@@ -33,19 +33,17 @@ public class ParticipantController {
         deck.addAll(gameParticipant.getDefaultDrawDeck());
         DeckShuffler shuffle = new DeckShuffler(deck);
         shuffle.execute();
-        setDraw_deck(deck);
+        setDrawDeck(deck);
     }
 
     public void removeDeckTop(){
         List<Card> deckCopy = new ArrayList<>();
-        deckCopy.addAll(getDraw_deck());
+        deckCopy.addAll(getDrawDeck());
         deckCopy.remove(0);
-        setDraw_deck(deckCopy);
+        setDrawDeck(deckCopy);
     }
 
-    public List<Card> getDraw_deck(){
-        return gameParticipant.getDrawDeck();
-    }
+    public List<Card> getDrawDeck(){ return gameParticipant.getDrawDeck(); }
 
     public GameParticipant getParticipant(){
         return gameParticipant;
@@ -55,13 +53,11 @@ public class ParticipantController {
         return gameParticipant.getPoints();
     }
 
-    public int getMax_points(){
+    public int getMaxPoints(){
         return gameParticipant.getMaxPoints();
     }
 
-    public void setPoints(int points){
-        gameParticipant.setPoints(points);
-    }
+    public void setPoints(int points){ gameParticipant.setPoints(points); }
 
     public void subtractPoints(int points){
         gameParticipant.setPoints(gameParticipant.getPoints() - points);
@@ -89,7 +85,5 @@ public class ParticipantController {
         gameParticipant.setTurnOver(value);
     }
 
-    public void setDraw_deck(List<Card> deck){
-        gameParticipant.setDrawDeck(deck);
-    }
+    public void setDrawDeck(List<Card> deck){ gameParticipant.setDrawDeck(deck); }
 }

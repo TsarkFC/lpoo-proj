@@ -17,11 +17,8 @@ import static org.junit.Assert.assertEquals;
 public class ArenaControllerTest {
     @Test
     public void testsetPlayerController(){
-        Gui gui = Mockito.mock(Gui.class);
-        Arena arena = Mockito.mock(Arena.class);
         BarSet barSet = Mockito.mock(BarSet.class);
-
-        ArenaController controller = new ArenaController(gui, arena);
+        ArenaController controller = initArena();
         GameParticipant player = new GameParticipant(new ArrayList<>(), barSet);
 
         controller.setPlayerController(player);
@@ -32,12 +29,8 @@ public class ArenaControllerTest {
 
     @Test
     public void testsetEnemyontroller(){
-        Gui gui = Mockito.mock(Gui.class);
-        Arena arena = Mockito.mock(Arena.class);
         BarSet barSet = Mockito.mock(BarSet.class);
-
-        ArenaController controller = new ArenaController(gui, arena);
-
+        ArenaController controller = initArena();
         PlayStrategy strategy = Mockito.mock(NormalPlayStrategy.class);
         Enemy enemy = new Enemy(new ArrayList<>(), barSet, strategy);
 
@@ -45,5 +38,11 @@ public class ArenaControllerTest {
 
         assertEquals(enemy, controller.getEnemyController().getParticipant());
         assertEquals(24, controller.getEnemyController().getParticipant().getDrawDeck().size());
+    }
+
+    private ArenaController initArena(){
+        Gui gui = Mockito.mock(Gui.class);
+        Arena arena = Mockito.mock(Arena.class);
+        return new ArenaController(gui, arena);
     }
 }

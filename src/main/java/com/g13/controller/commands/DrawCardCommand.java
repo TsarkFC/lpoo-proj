@@ -17,20 +17,20 @@ public class DrawCardCommand implements Command{
         ParticipantController current = arenaController.getCurrent();
         ParticipantController opposite = arenaController.getOpponent();
 
-        Card card = current.getDraw_deck().get(0);
+        Card card = current.getDrawDeck().get(0);
         CardController c = new CardController(card);
         c.effect(current.getParticipant());
 
         current.removeDeckTop();
 
-        if(current.getDraw_deck().size() == 0)
+        if(current.getDrawDeck().size() == 0)
             current.resetDrawDeck();
 
         arenaController.checkControllerPoints();
 
-        if(current.getPoints() == current.getMax_points())
+        if(current.getPoints() == current.getMaxPoints())
             current.setTurnOver(true);
-        if(opposite.getPoints() == opposite.getMax_points())
+        if(opposite.getPoints() == opposite.getMaxPoints())
             opposite.setTurnOver(true);
     }
 }

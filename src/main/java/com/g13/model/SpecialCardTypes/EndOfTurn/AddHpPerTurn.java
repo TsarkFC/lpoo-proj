@@ -2,7 +2,6 @@ package com.g13.model.SpecialCardTypes.EndOfTurn;
 
 import com.g13.controller.ArenaController;
 import com.g13.controller.ParticipantController;
-import com.g13.model.GameParticipant;
 import com.g13.model.SpecialCardTypes.SpecialCard;
 
 import java.util.List;
