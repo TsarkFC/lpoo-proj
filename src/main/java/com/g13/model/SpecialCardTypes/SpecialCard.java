@@ -11,6 +11,8 @@ public class SpecialCard {
 
     protected int roundsLeft = 0;
 
+
+
     public enum ACTIVATION_CONDITIONS{
         ON_PLAY,
         ON_END_TURN
@@ -23,6 +25,8 @@ public class SpecialCard {
         FLUX_MODIFIER_X_Y_OR_Z,
         STATIC_MODIFIER
     }
+
+    protected CARD_TYPE cardType;
 
     protected int duration = 0;
 
@@ -56,6 +60,10 @@ public class SpecialCard {
     }
 
     public boolean checkEnemyPlay(ArenaController arenaController) {
-        return false;
+        return arenaController.getEnemy().getMana() < getCost();
+    }
+
+    public CARD_TYPE getCardType(){
+        return cardType;
     }
 }

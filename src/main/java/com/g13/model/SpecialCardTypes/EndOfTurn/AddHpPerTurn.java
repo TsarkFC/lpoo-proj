@@ -12,18 +12,19 @@ public class AddHpPerTurn extends SpecialCard {
     int HPPerTurn;
     int numRounds;
 
-    final CARD_TYPE cardType = SpecialCard.CARD_TYPE.HEAL_ON_END_TURN;
 
     public AddHpPerTurn(int cost, char symbol, String cardInfo, int HPPerTurn, int numRounds) {
         super(cost, symbol, cardInfo);
         this.HPPerTurn = HPPerTurn;
         this.numRounds = numRounds;
         this.roundsLeft = numRounds;
+        cardType = SpecialCard.CARD_TYPE.HEAL_ON_END_TURN;
     }
 
     public void activate(ACTIVATION_CONDITIONS condition, ArenaController arenaController){
 
         ParticipantController currentController = arenaController.getCurrent();
+
 
 
         //When it's played
@@ -43,6 +44,20 @@ public class AddHpPerTurn extends SpecialCard {
             }
             roundsLeft--;
         }
+    }
+
+    @Override
+    public boolean checkEnemyPlay(ArenaController arenaController) {
+        super.checkEnemyPlay(arenaController);
+
+        if(arenaController.getEnemy().getHealth() >= arenaController.getEnemy().getMaxHealth())
+            return false;
+
+        if(!arenaController.getEnemy().getPlayStrategy().CheckOverTimeHeal(arenaController, getCost()))
+            return false;
+
+        activate(ACTIVATION_CONDITIONS.ON_PLAY, arenaController);
+        return true;
     }
 
 }

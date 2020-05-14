@@ -150,7 +150,9 @@ public class ArenaController {
         playerController.setPoints(0);
         enemyController.setPoints(0);
         ProcessPlayerCards(SpecialCard.ACTIVATION_CONDITIONS.ON_END_TURN);
+        model.setPlayersTurn(false);
         ProcessEnemyCards(SpecialCard.ACTIVATION_CONDITIONS.ON_END_TURN);
+        model.setPlayersTurn(true);
     }
 
     public void notifyObservers() throws IOException {
@@ -190,8 +192,9 @@ public class ArenaController {
 
     public void ProcessEnemyCards(SpecialCard.ACTIVATION_CONDITIONS activationConditions){
         for(int i = 0; i < enemyController.getParticipant().getActiveCards().size(); i++){
-            enemyController.getParticipant().getActiveCards().get(i)
-                    .activate(activationConditions, this);
+            System.out.println("Old hp: " + enemyController.getParticipant().getHealth());
+            enemyController.getParticipant().getActiveCards().get(i).activate(activationConditions, this);
+            System.out.println("New hp: " + enemyController.getParticipant().getHealth());
         }
     }
 

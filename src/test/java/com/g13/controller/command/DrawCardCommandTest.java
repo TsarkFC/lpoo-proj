@@ -44,7 +44,7 @@ public class DrawCardCommandTest {
         playerController.setPoints(10);
         enemyController.setPoints(10);
 
-        DrawCardCommand command = new DrawCardCommand(arenaController, playerController, enemyController);
+        DrawCardCommand command = new DrawCardCommand(arenaController);
         command.execute();
 
         assertEquals(24, playerController.getDraw_deck().size());
@@ -70,7 +70,7 @@ public class DrawCardCommandTest {
         playerController.setPoints(10);
         enemyController.setPoints(12);
 
-        DrawCardCommand command = new DrawCardCommand(arenaController, playerController, enemyController);
+        DrawCardCommand command = new DrawCardCommand(arenaController);
         command.execute();
 
         assertEquals(24, playerController.getDraw_deck().size());
@@ -95,7 +95,7 @@ public class DrawCardCommandTest {
         playerController.setPoints(10);
         enemyController.setPoints(0);
 
-        DrawCardCommand command = new DrawCardCommand(arenaController, playerController, enemyController);
+        DrawCardCommand command = new DrawCardCommand(arenaController);
         command.execute();
 
         assertEquals(24, playerController.getDraw_deck().size());

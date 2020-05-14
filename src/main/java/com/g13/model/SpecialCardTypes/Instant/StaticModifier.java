@@ -9,16 +9,16 @@ public class StaticModifier extends SpecialCard {
 
     int modNum;
 
-    final CARD_TYPE cardType = SpecialCard.CARD_TYPE.STATIC_MODIFIER;
 
     public StaticModifier(int cost, char symbol, String cardInfo, int modNum) {
         super(cost, symbol, cardInfo);
         this.modNum = modNum;
+        cardType = CARD_TYPE.STATIC_MODIFIER;
     }
 
+    @Override
     public boolean checkEnemyPlay(ArenaController arenaController){
-        if(arenaController.getEnemy().getMana() < getCost())
-            return false;
+        super.checkEnemyPlay(arenaController);
 
         if(arenaController.getEnemy().getPoints() + modNum > arenaController.getEnemy().getMaxPoints())
             return false;

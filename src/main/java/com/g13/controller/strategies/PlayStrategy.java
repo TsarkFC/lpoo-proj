@@ -1,11 +1,46 @@
 package com.g13.controller.strategies;
 
 import com.g13.controller.ArenaController;
+import com.g13.model.Arena;
 
-public interface PlayStrategy {
+abstract public class PlayStrategy {
 
-    boolean playTurn(ArenaController arenaController);
+    protected int mana_saved = 5;
 
-    boolean CheckStaticModifier(ArenaController arenaController, int cost, int modNum);
+    protected int health_to_heal = 2;
 
+    protected double flux_percentage_accept = 0.75;
+
+    protected boolean draw_limit_reached = false;
+
+    abstract public boolean playTurn(ArenaController arenaController);
+
+    public boolean CheckStaticModifier(ArenaController arenaController, int cost, int modNum) {
+        if(arenaController.getEnemy().getPoints() <= arenaController.getPlayer().getPoints() && draw_limit_reached)
+            HasEnoughManaToWantToPlay(arenaController, cost);
+        return false;
+    }
+
+    public boolean CheckInstantHeal(ArenaController arenaController, int cost) {
+        if(arenaController.getEnemy().getHealth() <= health_to_heal)
+            HasEnoughManaToWantToPlay(arenaController, cost);
+        return false;
+    }
+
+    public boolean CheckOverTimeHeal(ArenaController arenaController, int cost) {
+        if(arenaController.getEnemy().getHealth() <= health_to_heal)
+            HasEnoughManaToWantToPlay(arenaController, cost);
+        return false;
+    }
+
+    public boolean CheckFluxModifier(ArenaController arenaController, int cost, int minModNum, int maxModNum){
+        int result =  (int) Math.ceil(flux_percentage_accept * (maxModNum - minModNum + 1) + minModNum);
+
+        return result <= arenaController.getEnemy().getMaxPoints() - arenaController.getEnemy().getPoints() && HasEnoughManaToWantToPlay(arenaController, cost);
+    }
+
+
+    private boolean HasEnoughManaToWantToPlay(ArenaController arenaController, int cost){
+        return mana_saved <= arenaController.getEnemy().getMana() - cost;
+    }
 }
