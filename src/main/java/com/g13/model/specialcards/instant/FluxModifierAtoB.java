@@ -1,16 +1,15 @@
-package com.g13.model.SpecialCardTypes.Instant;
+package com.g13.model.specialcards.instant;
 
 import com.g13.controller.ArenaController;
 import com.g13.controller.ParticipantController;
-import com.g13.model.SpecialCardTypes.SpecialCard;
+import com.g13.model.specialcards.SpecialCard;
 
 import java.util.concurrent.ThreadLocalRandom;
 
 public class FluxModifierAtoB extends SpecialCard {
 
-    int minModNum;
-    int maxModNum;
-
+    private int minModNum;
+    private int maxModNum;
 
     public FluxModifierAtoB(int cost, char symbol, String cardInfo, int minModNum, int maxModNum) {
         super(cost, symbol, cardInfo);
@@ -48,4 +47,7 @@ public class FluxModifierAtoB extends SpecialCard {
             arenaController.checkControllerPoints();
         }
     }
+
+    public int getMinModNum(){ return minModNum; }
+    public int getMaxModNum(){ return maxModNum; }
 }

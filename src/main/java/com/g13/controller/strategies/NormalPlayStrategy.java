@@ -2,9 +2,7 @@ package com.g13.controller.strategies;
 
 import com.g13.controller.commands.DrawCardCommand;
 import com.g13.controller.ArenaController;
-import com.g13.model.SpecialCardTypes.SpecialCard;
-
-import java.util.List;
+import com.g13.model.specialcards.SpecialCard;
 
 
 public class NormalPlayStrategy extends PlayStrategy{
@@ -32,12 +30,14 @@ public class NormalPlayStrategy extends PlayStrategy{
         }
 
         //Vais querer fazer draw na próxima ronda?
-        if(arenaController.getEnemy().getPoints() >= arenaController.getEnemy().getMaxPoints() - 4){
+        if(arenaController.getEnemyController().getPoints() >= arenaController.getEnemyController().getMaxPoints() - 4){
             draw_limit_reached = true;
         }
 
         for(int i = 0; i < 4; i++){
-            if(arenaController.getEnemy().getPlayDeck().get(i).getCardType() == SpecialCard.CARD_TYPE.STATIC_MODIFIER || arenaController.getEnemy().getPlayDeck().get(i).getCardType() == SpecialCard.CARD_TYPE.FLUX_MODIFIER_A_TO_B || arenaController.getEnemy().getPlayDeck().get(i).getCardType() == SpecialCard.CARD_TYPE.FLUX_MODIFIER_X_Y_OR_Z)
+            if(arenaController.getEnemyController().getCardType(i) == SpecialCard.CARD_TYPE.STATIC_MODIFIER
+                || arenaController.getEnemyController().getCardType(i) == SpecialCard.CARD_TYPE.FLUX_MODIFIER_A_TO_B
+                || arenaController.getEnemyController().getCardType(i) == SpecialCard.CARD_TYPE.FLUX_MODIFIER_X_Y_OR_Z)
                 arenaController.getEnemy().getPlayDeck().get(i).checkEnemyPlay(arenaController);
         }
 
@@ -45,7 +45,7 @@ public class NormalPlayStrategy extends PlayStrategy{
         //Heal (Instant)
         health_to_heal = 2;
         for(int i = 0; i < 4; i++){
-            if(arenaController.getEnemy().getPlayDeck().get(i).getCardType() == SpecialCard.CARD_TYPE.HEAL_INSTANT)
+            if(arenaController.getEnemyController().getCardType(i) == SpecialCard.CARD_TYPE.HEAL_INSTANT)
                 arenaController.getEnemy().getPlayDeck().get(i).checkEnemyPlay(arenaController);
         }
 

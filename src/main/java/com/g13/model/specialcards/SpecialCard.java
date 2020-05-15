@@ -1,7 +1,6 @@
-package com.g13.model.SpecialCardTypes;
+package com.g13.model.specialcards;
 
 import com.g13.controller.ArenaController;
-import com.g13.controller.ParticipantController;
 
 public class SpecialCard {
     private int cost;
@@ -10,8 +9,6 @@ public class SpecialCard {
     private boolean selected = false;
 
     protected int roundsLeft = 0;
-
-
 
     public enum ACTIVATION_CONDITIONS{
         ON_PLAY,
@@ -52,13 +49,16 @@ public class SpecialCard {
     public boolean getSelected() {return selected;}
     public void setSelected(boolean selected) { this.selected = selected; }
 
+    //MVC VIOLATION
     public void activate(ACTIVATION_CONDITIONS condition, ArenaController arenaController){
     }
 
     public int getRoundsLeft(){
         return roundsLeft;
     }
+    public void decrementRoundsLeft() {roundsLeft--;}
 
+    //MVC VIOLATION
     public boolean checkEnemyPlay(ArenaController arenaController) {
         return arenaController.getEnemy().getMana() < getCost();
     }

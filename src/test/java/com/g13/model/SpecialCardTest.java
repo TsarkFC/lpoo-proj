@@ -1,6 +1,6 @@
 package com.g13.model;
 
-import com.g13.model.SpecialCardTypes.SpecialCard;
+import com.g13.model.specialcards.SpecialCard;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

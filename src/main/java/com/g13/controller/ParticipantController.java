@@ -3,6 +3,7 @@ package com.g13.controller;
 import com.g13.controller.commands.DeckShuffler;
 import com.g13.model.Card;
 import com.g13.model.GameParticipant;
+import com.g13.model.specialcards.SpecialCard;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,13 +53,10 @@ public class ParticipantController {
     public int getPoints(){
         return gameParticipant.getPoints();
     }
-
     public int getMaxPoints(){
         return gameParticipant.getMaxPoints();
     }
-
     public void setPoints(int points){ gameParticipant.setPoints(points); }
-
     public void subtractPoints(int points){
         gameParticipant.setPoints(gameParticipant.getPoints() - points);
     }
@@ -86,4 +84,8 @@ public class ParticipantController {
     }
 
     public void setDrawDeck(List<Card> deck){ gameParticipant.setDrawDeck(deck); }
+
+    public SpecialCard.CARD_TYPE getCardType(int cardno){
+       return gameParticipant.getPlayDeck().get(cardno).getCardType();
+    }
 }

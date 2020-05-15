@@ -3,10 +3,10 @@ package com.g13.controller.creator;
 import com.g13.controller.ArenaController;
 import com.g13.controller.strategies.NormalPlayStrategy;
 import com.g13.model.*;
-import com.g13.model.SpecialCardTypes.EndOfTurn.AddHpPerTurn;
-import com.g13.model.SpecialCardTypes.Instant.FluxModifierAtoB;
-import com.g13.model.SpecialCardTypes.SpecialCard;
-import com.g13.model.SpecialCardTypes.Instant.StaticModifier;
+import com.g13.model.specialcards.endofturn.AddHpPerTurn;
+import com.g13.model.specialcards.instant.FluxModifierAtoB;
+import com.g13.model.specialcards.SpecialCard;
+import com.g13.model.specialcards.instant.StaticModifier;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +26,7 @@ public class ArenaCreator {
         return new Enemy(player_special, barSet, new NormalPlayStrategy());
     }
 
-    private List<SpecialCard> createSpecialDeck(){ //TODO: make different list for different enemies/for th eplayer
+    private List<SpecialCard> createSpecialDeck(){ //TODO: make different list for different enemies/for the player
         List<SpecialCard> player_special = new ArrayList<>();
         player_special.add(new FluxModifierAtoB(2, '*', "Instantly adds 1 to 3 to your points this round", 1, 3));
         player_special.add(new StaticModifier(3, '+', "Instantly adds 1 to your points this round", 1));

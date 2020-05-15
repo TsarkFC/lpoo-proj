@@ -1,21 +1,18 @@
-package com.g13.model.SpecialCardTypes.EndOfTurn;
+package com.g13.model.specialcards.endofturn;
 
 import com.g13.controller.ArenaController;
 import com.g13.controller.ParticipantController;
-import com.g13.model.SpecialCardTypes.SpecialCard;
+import com.g13.model.specialcards.SpecialCard;
 
 import java.util.List;
 
 public class AddHpPerTurn extends SpecialCard {
 
-    int HPPerTurn;
-    int numRounds;
-
+    private int HPPerTurn;
 
     public AddHpPerTurn(int cost, char symbol, String cardInfo, int HPPerTurn, int numRounds) {
         super(cost, symbol, cardInfo);
         this.HPPerTurn = HPPerTurn;
-        this.numRounds = numRounds;
         this.roundsLeft = numRounds;
         cardType = SpecialCard.CARD_TYPE.HEAL_ON_END_TURN;
     }
@@ -23,8 +20,6 @@ public class AddHpPerTurn extends SpecialCard {
     public void activate(ACTIVATION_CONDITIONS condition, ArenaController arenaController){
 
         ParticipantController currentController = arenaController.getCurrent();
-
-
 
         //When it's played
         if(condition == ACTIVATION_CONDITIONS.ON_PLAY){
@@ -58,5 +53,7 @@ public class AddHpPerTurn extends SpecialCard {
         activate(ACTIVATION_CONDITIONS.ON_PLAY, arenaController);
         return true;
     }
+
+    public int getHPPerTurn(){ return HPPerTurn; }
 
 }

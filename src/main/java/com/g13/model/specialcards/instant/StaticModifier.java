@@ -1,13 +1,12 @@
-package com.g13.model.SpecialCardTypes.Instant;
+package com.g13.model.specialcards.instant;
 
 import com.g13.controller.ArenaController;
 import com.g13.controller.ParticipantController;
-import com.g13.model.SpecialCardTypes.SpecialCard;
+import com.g13.model.specialcards.SpecialCard;
 
 public class StaticModifier extends SpecialCard {
 
-    int modNum;
-
+    private int modNum;
 
     public StaticModifier(int cost, char symbol, String cardInfo, int modNum) {
         super(cost, symbol, cardInfo);
@@ -42,4 +41,5 @@ public class StaticModifier extends SpecialCard {
         }
     }
 
+    public int getModNum(){ return modNum; }
 }

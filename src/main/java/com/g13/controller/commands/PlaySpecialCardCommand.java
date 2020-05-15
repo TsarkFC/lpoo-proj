@@ -2,7 +2,7 @@ package com.g13.controller.commands;
 
 import com.g13.controller.ArenaController;
 import com.g13.controller.ParticipantController;
-import com.g13.model.SpecialCardTypes.SpecialCard;
+import com.g13.model.specialcards.SpecialCard;
 
 public class PlaySpecialCardCommand {
     private ArenaController arenaController;
