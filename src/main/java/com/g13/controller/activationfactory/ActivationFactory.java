@@ -9,7 +9,7 @@ import com.g13.model.specialcards.endofturn.AddHpPerTurn;
 import com.g13.model.specialcards.instant.FluxModifierAtoB;
 import com.g13.model.specialcards.instant.StaticModifier;
 
-public abstract class SpecialCardController {
+public class ActivationFactory {
 
     public SpecialCardAc getActivation(SpecialCard card){
         if (card instanceof AddHpPerTurn)

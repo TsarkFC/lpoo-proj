@@ -38,7 +38,8 @@ public class NormalPlayStrategy extends PlayStrategy{
             if(arenaController.getEnemyController().getCardType(i) == SpecialCard.CARD_TYPE.STATIC_MODIFIER
                 || arenaController.getEnemyController().getCardType(i) == SpecialCard.CARD_TYPE.FLUX_MODIFIER_A_TO_B
                 || arenaController.getEnemyController().getCardType(i) == SpecialCard.CARD_TYPE.FLUX_MODIFIER_X_Y_OR_Z)
-                arenaController.getEnemy().getPlayDeck().get(i).checkEnemyPlay(arenaController);
+                arenaController.getActivationFactory().getActivation(arenaController.getEnemy().getPlayDeck().get(i))
+                        .checkEnemyPlay(arenaController);
         }
 
 
@@ -46,14 +47,16 @@ public class NormalPlayStrategy extends PlayStrategy{
         health_to_heal = 2;
         for(int i = 0; i < 4; i++){
             if(arenaController.getEnemyController().getCardType(i) == SpecialCard.CARD_TYPE.HEAL_INSTANT)
-                arenaController.getEnemy().getPlayDeck().get(i).checkEnemyPlay(arenaController);
+                arenaController.getActivationFactory().getActivation(arenaController.getEnemy().getPlayDeck().get(i))
+                        .checkEnemyPlay(arenaController);
         }
 
         //Heal (End turn)
         health_to_heal = 5;
         for(int i = 0; i < 4; i++){
             if(arenaController.getEnemy().getPlayDeck().get(i).getCardType() == SpecialCard.CARD_TYPE.HEAL_ON_END_TURN)
-                arenaController.getEnemy().getPlayDeck().get(i).checkEnemyPlay(arenaController);
+                arenaController.getActivationFactory().getActivation(arenaController.getEnemy().getPlayDeck().get(i))
+                    .checkEnemyPlay(arenaController);
         }
 
 

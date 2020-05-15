@@ -1,5 +1,6 @@
 package com.g13.controller;
 
+import com.g13.controller.activationfactory.ActivationFactory;
 import com.g13.controller.commands.*;
 import com.g13.controller.strategies.PlayStrategy;
 import com.g13.model.Arena;
@@ -20,6 +21,7 @@ public class ArenaController {
     private Gui view;
     private ParticipantController playerController;
     private ParticipantController enemyController;
+    private ActivationFactory activationFactory;
     private List<Command> commands;
     private int cmdStage = 0;
 
@@ -30,6 +32,7 @@ public class ArenaController {
         commands = new ArrayList<>();
         commands.add(new PointDiffCommand(this));
         commands.add(new ApplyDiffCommand(this));
+        activationFactory = new ActivationFactory();
     }
 
     public void start() throws IOException {
@@ -49,17 +52,13 @@ public class ArenaController {
             if (command == Gui.COMMAND.SWITCH) {
                 if (endOfRound())
                     interStageHandler();
-                else {
-                    SkipTurnCommand skipTurnCommand = new SkipTurnCommand(playerController);
-                    skipTurnCommand.execute();
-                }
+                else
+                    new SkipTurnCommand(playerController).execute();
             }
 
             if (command == Gui.COMMAND.DRAW){
-                if(!model.getPlayer().getTurnOver()) {
-                    DrawCardCommand drawCmd = new DrawCardCommand(this);
-                    drawCmd.execute();
-                }
+                if(!model.getPlayer().getTurnOver())
+                    new DrawCardCommand(this).execute();
                 if(!model.getEnemy().getTurnOver())
                     playEnemyTurn();
             }
@@ -71,10 +70,8 @@ public class ArenaController {
                 else if (command == Gui.COMMAND.PLAYCARD3) cardno = 3;
                 else if (command == Gui.COMMAND.PLAYCARD4) cardno = 4;
 
-                if (cardno != 0){
-                    PlaySpecialCardCommand specialCardCommand = new PlaySpecialCardCommand(cardno, this, playerController, enemyController);
-                    specialCardCommand.execute();
-                }
+                if (cardno != 0)
+                    new PlaySpecialCardCommand(cardno, this).execute();
             }
 
             notifyObservers();
@@ -178,7 +175,7 @@ public class ArenaController {
     public void ProcessPlayerCards(SpecialCard.ACTIVATION_CONDITIONS activationConditions){
         List<SpecialCard> a = playerController.getParticipant().getActiveCards();
         for(int i = 0; i < a.size(); i++){
-            a.get(i).activate(activationConditions, this);
+            activationFactory.getActivation(a.get(i)).activate(activationConditions, this);
             if(a.get(i).getRoundsLeft() <= 0)
                 a.remove(i);
         }
@@ -188,7 +185,8 @@ public class ArenaController {
     public void ProcessEnemyCards(SpecialCard.ACTIVATION_CONDITIONS activationConditions){
         for(int i = 0; i < enemyController.getParticipant().getActiveCards().size(); i++){
             System.out.println("Old hp: " + enemyController.getParticipant().getHealth());
-            enemyController.getParticipant().getActiveCards().get(i).activate(activationConditions, this);
+            activationFactory.getActivation(enemyController.getParticipant().getActiveCards().get(i))
+                .activate(activationConditions, this);
             System.out.println("New hp: " + enemyController.getParticipant().getHealth());
         }
     }
@@ -200,4 +198,6 @@ public class ArenaController {
     public ParticipantController getOpponent(){
         return model.getPlayersTurn() ? getEnemyController() : getPlayerController();
     }
+
+    public ActivationFactory getActivationFactory() { return activationFactory; }
 }

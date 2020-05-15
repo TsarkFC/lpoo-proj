@@ -1,6 +1,7 @@
 package com.g13.controller.creator;
 
 import com.g13.controller.ArenaController;
+import com.g13.controller.activationfactory.ActivationFactory;
 import com.g13.controller.strategies.NormalPlayStrategy;
 import com.g13.model.*;
 import com.g13.model.specialcards.endofturn.AddHpPerTurn;

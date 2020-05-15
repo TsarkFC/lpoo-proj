@@ -49,19 +49,11 @@ public class SpecialCard {
     public boolean getSelected() {return selected;}
     public void setSelected(boolean selected) { this.selected = selected; }
 
-    //MVC VIOLATION
-    public void activate(ACTIVATION_CONDITIONS condition, ArenaController arenaController){
-    }
-
     public int getRoundsLeft(){
         return roundsLeft;
     }
     public void decrementRoundsLeft() {roundsLeft--;}
 
-    //MVC VIOLATION
-    public boolean checkEnemyPlay(ArenaController arenaController) {
-        return arenaController.getEnemy().getMana() < getCost();
-    }
 
     public CARD_TYPE getCardType(){
         return cardType;

@@ -10,10 +10,10 @@ public class PlaySpecialCardCommand {
     private ParticipantController oppositeController;
     int cardNum;
 
-    public PlaySpecialCardCommand(int cardNum , ArenaController arenaController, ParticipantController currentController, ParticipantController oppositeController){
+    public PlaySpecialCardCommand(int cardNum , ArenaController arenaController){
         this.arenaController = arenaController;
-        this.currentController = currentController;
-        this.oppositeController = oppositeController;
+        this.currentController = arenaController.getCurrent();
+        this.oppositeController = arenaController.getOpponent();
         this.cardNum = cardNum - 1;
     }
 
@@ -21,7 +21,8 @@ public class PlaySpecialCardCommand {
         SpecialCard a = currentController.getParticipant().getPlayDeck().get(cardNum);
 
         if (a.getCost() <= currentController.getParticipant().getMana()) {
-            a.activate(SpecialCard.ACTIVATION_CONDITIONS.ON_PLAY, arenaController);
+            arenaController.getActivationFactory().getActivation(a)
+                .activate(SpecialCard.ACTIVATION_CONDITIONS.ON_PLAY, arenaController);
         }
     }
 
