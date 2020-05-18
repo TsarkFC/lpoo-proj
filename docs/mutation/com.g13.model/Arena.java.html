@@ -54,7 +54,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>import com.g13.controller.observer.ArenaObserver;</span></pre></td></tr>
+<td class=''><pre><span  class=''>import com.g13.controller.arena.observer.ArenaObserver;</span></pre></td></tr>
 
 
 <tr>
@@ -949,7 +949,7 @@
 
 <a name='grouporg.pitest.mutationtest.report.html.SourceFile@3bec5821_25'/> 
 
-<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getWidth<br/><b>Killed by : </b>com.g13.model.ArenaTest.testConstructor(com.g13.model.ArenaTest)</span></span> replaced return of integer sized value with (x == 0 ? 1 : 0) &rarr; KILLED</p> 
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getWidth<br/><b>Killed by : </b>com.g13.model.arena.ArenaTest.testConstructor(com.g13.model.arena.ArenaTest)</span></span> replaced return of integer sized value with (x == 0 ? 1 : 0) &rarr; KILLED</p>
 </td>
 </tr>
 <tr>
@@ -959,7 +959,7 @@
 
 <a name='grouporg.pitest.mutationtest.report.html.SourceFile@3bec5821_29'/> 
 
-<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getHeight<br/><b>Killed by : </b>com.g13.model.ArenaTest.testConstructor(com.g13.model.ArenaTest)</span></span> replaced return of integer sized value with (x == 0 ? 1 : 0) &rarr; KILLED</p> 
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getHeight<br/><b>Killed by : </b>com.g13.model.arena.ArenaTest.testConstructor(com.g13.model.arena.ArenaTest)</span></span> replaced return of integer sized value with (x == 0 ? 1 : 0) &rarr; KILLED</p>
 </td>
 </tr>
 <tr>
@@ -969,7 +969,7 @@
 
 <a name='grouporg.pitest.mutationtest.report.html.SourceFile@3bec5821_33'/> 
 
-<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getPlayer<br/><b>Killed by : </b>com.g13.controller.creator.ArenaCreatorTest.testCreation(com.g13.controller.creator.ArenaCreatorTest)</span></span> mutated return of Object value for com/g13/model/Arena::getPlayer to ( if (x != null) null else throw new RuntimeException ) &rarr; KILLED</p> 
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getPlayer<br/><b>Killed by : </b>com.g13.controller.arena.creator.ArenaCreatorTest.testCreation(com.g13.controller.arena.creator.ArenaCreatorTest)</span></span> mutated return of Object value for com/g13/model/Arena::getPlayer to ( if (x != null) null else throw new RuntimeException ) &rarr; KILLED</p>
 </td>
 </tr>
 <tr>
@@ -979,7 +979,7 @@
 
 <a name='grouporg.pitest.mutationtest.report.html.SourceFile@3bec5821_37'/> 
 
-<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getEnemy<br/><b>Killed by : </b>com.g13.controller.creator.ArenaCreatorTest.testCreation(com.g13.controller.creator.ArenaCreatorTest)</span></span> mutated return of Object value for com/g13/model/Arena::getEnemy to ( if (x != null) null else throw new RuntimeException ) &rarr; KILLED</p> 
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getEnemy<br/><b>Killed by : </b>com.g13.controller.arena.creator.ArenaCreatorTest.testCreation(com.g13.controller.arena.creator.ArenaCreatorTest)</span></span> mutated return of Object value for com/g13/model/Arena::getEnemy to ( if (x != null) null else throw new RuntimeException ) &rarr; KILLED</p>
 </td>
 </tr>
 <tr>
@@ -989,7 +989,7 @@
 
 <a name='grouporg.pitest.mutationtest.report.html.SourceFile@3bec5821_41'/> 
 
-<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>isFinished<br/><b>Killed by : </b>com.g13.model.ArenaTest.testFinish(com.g13.model.ArenaTest)</span></span> replaced return of integer sized value with (x == 0 ? 1 : 0) &rarr; KILLED</p> 
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>isFinished<br/><b>Killed by : </b>com.g13.model.arena.ArenaTest.testFinish(com.g13.model.arena.ArenaTest)</span></span> replaced return of integer sized value with (x == 0 ? 1 : 0) &rarr; KILLED</p>
 </td>
 </tr>
 <tr>
@@ -999,7 +999,7 @@
 
 <a name='grouporg.pitest.mutationtest.report.html.SourceFile@3bec5821_60'/> 
 
-<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getObservers<br/><b>Killed by : </b>com.g13.model.ArenaTest.testConstructor(com.g13.model.ArenaTest)</span></span> mutated return of Object value for com/g13/model/Arena::getObservers to ( if (x != null) null else throw new RuntimeException ) &rarr; KILLED</p> 
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getObservers<br/><b>Killed by : </b>com.g13.model.arena.ArenaTest.testConstructor(com.g13.model.arena.ArenaTest)</span></span> mutated return of Object value for com/g13/model/Arena::getObservers to ( if (x != null) null else throw new RuntimeException ) &rarr; KILLED</p>
 </td>
 </tr>
 
@@ -1020,7 +1020,10 @@
 
 <h2>Tests examined</h2>
 <ul>
-<li>com.g13.controller.creator.ArenaCreatorTest.testCreation(com.g13.controller.creator.ArenaCreatorTest) (48 ms)</li><li>com.g13.model.ArenaTest.testFinish(com.g13.model.ArenaTest) (0 ms)</li><li>com.g13.model.ArenaTest.testObservers(com.g13.model.ArenaTest) (1 ms)</li><li>com.g13.model.ArenaTest.testConstructor(com.g13.model.ArenaTest) (0 ms)</li>
+<li>com.g13.controller.arena.creator.ArenaCreatorTest.testCreation(com.g13.controller.arena.creator.ArenaCreatorTest)
+    (48
+    ms)</li><li>com.g13.model.arena.ArenaTest.testFinish(com.g13.model.arena.ArenaTest) (0 ms)</li><li>com.g13.model.arena.ArenaTest.testObservers(com.g13.model.arena.ArenaTest)
+    (1 ms)</li><li>com.g13.model.arena.ArenaTest.testConstructor(com.g13.model.arena.ArenaTest) (0 ms)</li>
 </ul>
 
 <br/>

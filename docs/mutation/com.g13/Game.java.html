@@ -54,7 +54,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>import com.g13.controller.ArenaController;</span></pre></td></tr>
+<td class=''><pre><span  class=''>import com.g13.controller.arena.ArenaController;</span></pre></td></tr>
 
 
 <tr>
@@ -69,7 +69,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>import com.g13.controller.creator.ArenaCreator;</span></pre></td></tr>
+<td class=''><pre><span  class=''>import com.g13.controller.arena.creator.ArenaCreator;</span></pre></td></tr>
 
 
 <tr>
@@ -84,7 +84,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>import com.g13.model.Arena;</span></pre></td></tr>
+<td class=''><pre><span  class=''>import com.g13.model.arena.Arena;</span></pre></td></tr>
 
 
 <tr>
@@ -99,7 +99,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>import com.g13.view.Gui;</span></pre></td></tr>
+<td class=''><pre><span  class=''>import com.g13.view.arena.ArenaViewer;</span></pre></td></tr>
 
 
 <tr>
@@ -174,7 +174,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    private Gui gui;</span></pre></td></tr>
+<td class=''><pre><span  class=''>    private Gui arenaViewer;</span></pre></td></tr>
 
 
 <tr>
@@ -234,7 +234,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>        Gui gui = new Gui(arena);</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>        Gui arenaViewer = new Gui(arena);</span></pre></td></tr>
 
 
 <tr>
@@ -251,7 +251,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class='survived'>        arena.addObserver(gui);</span></pre></td></tr>
+<td class='uncovered'><pre><span  class='survived'>        arena.addObserver(arenaViewer);</span></pre></td></tr>
 
 
 <tr>
@@ -281,7 +281,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>        ArenaController controller = new ArenaController(gui, arena);</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>        ArenaController controller = new ArenaController(arenaViewer, arena);</span></pre></td></tr>
 
 
 <tr>

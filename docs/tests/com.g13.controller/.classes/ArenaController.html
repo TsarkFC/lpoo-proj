@@ -74,14 +74,14 @@
 
 <div class="sourceCode"><i>1</i>&nbsp;package com.g13.controller;
 <i>2</i>&nbsp;
-<i>3</i>&nbsp;import com.g13.controller.strategies.PlayStrategy;
-<i>4</i>&nbsp;import com.g13.controller.commands.DrawCardCommand;
-<i>5</i>&nbsp;import com.g13.controller.commands.SkipTurnCommand;
-<i>6</i>&nbsp;import com.g13.model.Arena;
-<i>7</i>&nbsp;import com.g13.model.Enemy;
-<i>8</i>&nbsp;import com.g13.model.GameParticipant;
-<i>9</i>&nbsp;import com.g13.controller.observer.ArenaObserver;
-<i>10</i>&nbsp;import com.g13.view.Gui;
+<i>3</i>&nbsp;import com.g13.controller.arena.strategies.PlayStrategy;
+<i>4</i>&nbsp;import com.g13.controller.arena.commands.DrawCardCommand;
+<i>5</i>&nbsp;import com.g13.controller.arena.commands.SkipTurnCommand;
+<i>6</i>&nbsp;import com.g13.model.arena.Arena;
+<i>7</i>&nbsp;import com.g13.model.arena.Enemy;
+<i>8</i>&nbsp;import com.g13.model.arena.GameParticipant;
+<i>9</i>&nbsp;import com.g13.controller.arena.observer.ArenaObserver;
+<i>10</i>&nbsp;import com.g13.view.arena.ArenaViewer;
 <i>11</i>&nbsp;
 <i>12</i>&nbsp;import java.io.IOException;
 <i>13</i>&nbsp;
@@ -91,8 +91,8 @@
 <i>17</i>&nbsp;    private GameParticipantController playerController;
 <i>18</i>&nbsp;    private GameParticipantController enemyController;
 <i>19</i>&nbsp;
-<b class="fc"><i>20</i>&nbsp;    public ArenaController(Gui gui, Arena arena){</b>
-<b class="fc"><i>21</i>&nbsp;        this.view = gui;</b>
+<b class="fc"><i>20</i>&nbsp;    public ArenaController(Gui arenaViewer, Arena arena){</b>
+<b class="fc"><i>21</i>&nbsp;        this.view = arenaViewer;</b>
 <b class="fc"><i>22</i>&nbsp;        this.model = arena;</b>
 <b class="fc"><i>23</i>&nbsp;    }</b>
 <i>24</i>&nbsp;
