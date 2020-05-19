@@ -1,6 +1,8 @@
 package com.g13.view.arena;
 
+import com.g13.controller.state.State;
 import com.g13.model.arena.Arena;
+import com.g13.model.menu.Stage;
 import com.g13.view.View;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
@@ -75,8 +77,6 @@ public class ArenaViewer implements ArenaObserver, View {
     }
 
     private void drawBackground(){
-        TextGraphics graphics = screen.newTextGraphics();
-        graphics.setBackgroundColor(TextColor.Factory.fromString("#336699"));
         graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(arena.getWidth(), arena.getHeight()), ' ');
     }
 
