@@ -14,15 +14,27 @@ public class GameState implements State{
     private Arena arena;
     private ArenaViewer arenaViewer;
     private ArenaController arenaController;
+    private StateRecognizer recognizer;
 
-    public GameState() throws IOException {
+    public GameState(StateRecognizer recognizer) throws IOException {
         arena = new Arena(50, 30);
         arenaViewer = new ArenaViewer(arena);
         arena.addObserver(arenaViewer);
-        arenaController = new ArenaController(arenaViewer, arena);
+        arenaController = new ArenaController(arenaViewer, arena, recognizer);
         ArenaCreator creator = new ArenaCreator();
         creator.create(arenaController);
+        this.recognizer = recognizer;
     }
 
+    @Override
+    public Model getModel() { return arena; }
+
+    @Override
+    public View getView() { return arenaViewer; }
+
+    @Override
     public Controller getController() {return arenaController;}
+
+    @Override
+    public void advance() { recognizer.setCurrentState(recognizer.getMenuState()); }
 }

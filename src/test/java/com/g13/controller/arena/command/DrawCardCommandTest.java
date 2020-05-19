@@ -88,7 +88,7 @@ public class DrawCardCommandTest {
 
         ArenaViewer arenaViewer = Mockito.mock(ArenaViewer.class);
         Arena arena = new Arena(0,0);
-        ArenaController arenaController = new ArenaController(arenaViewer, arena);
+        ArenaController arenaController = new ArenaController(arenaViewer, arena, );
 
         arenaController.setEnemyController(enemy);
         arenaController.setPlayerController(player);

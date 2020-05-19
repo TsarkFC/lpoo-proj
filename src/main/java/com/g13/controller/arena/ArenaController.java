@@ -4,6 +4,7 @@ import com.g13.controller.Controller;
 import com.g13.controller.arena.activationfactory.ActivationFactory;
 import com.g13.controller.arena.commands.*;
 import com.g13.controller.arena.strategies.PlayStrategy;
+import com.g13.controller.state.StateRecognizer;
 import com.g13.model.arena.Arena;
 import com.g13.model.arena.Enemy;
 import com.g13.model.arena.GameParticipant;
@@ -20,6 +21,7 @@ import static java.lang.Integer.min;
 public class ArenaController implements Controller {
     private Arena model;
     private ArenaViewer view;
+    private StateRecognizer recognizer;
     private ParticipantController playerController;
     private ParticipantController enemyController;
     private ActivationFactory activationFactory;
@@ -27,9 +29,10 @@ public class ArenaController implements Controller {
     private int cmdStage = 0;
 
 
-    public ArenaController(ArenaViewer arenaViewer, Arena arena){
+    public ArenaController(ArenaViewer arenaViewer, Arena arena, StateRecognizer recognizer){
         this.view = arenaViewer;
         this.model = arena;
+        this.recognizer = recognizer;
         commands = new ArrayList<>();
         commands.add(new PointDiffCommand(this));
         commands.add(new ApplyDiffCommand(this));
@@ -37,49 +40,45 @@ public class ArenaController implements Controller {
     }
 
     public void start() throws IOException {
-        view.draw();
+        playerController.resetCardSelection();
+        int select = -1;
 
-        while(!model.isFinished()){
-            playerController.resetCardSelection();
-            int select = -1;
+        ArenaViewer.COMMAND command = view.getNextCommand();
+        if (command == ArenaViewer.COMMAND.ONE) select = 0;
+        else if(command == ArenaViewer.COMMAND.TWO) select = 1;
+        else if(command == ArenaViewer.COMMAND.THREE) select = 2;
+        else if(command == ArenaViewer.COMMAND.FOUR) select = 3;
+        if (select != -1) playerController.setCardSelected(select, true);
 
-            ArenaViewer.COMMAND command = view.getNextCommand();
-            if (command == ArenaViewer.COMMAND.ONE) select = 0;
-            else if(command == ArenaViewer.COMMAND.TWO) select = 1;
-            else if(command == ArenaViewer.COMMAND.THREE) select = 2;
-            else if(command == ArenaViewer.COMMAND.FOUR) select = 3;
-            if (select != -1) playerController.setCardSelected(select, true);
-
-            if (command == ArenaViewer.COMMAND.SWITCH) {
-                if (endOfRound())
-                    interStageHandler();
-                else
-                    new SkipTurnCommand(playerController).execute();
-            }
-
-            if (command == ArenaViewer.COMMAND.DRAW){
-                if(!model.getPlayer().getTurnOver())
-                    new DrawCardCommand(this).execute();
-                if(!model.getEnemy().getTurnOver())
-                    playEnemyTurn();
-            }
-
-            if(!model.getPlayer().getTurnOver()) {
-                int cardno = 0;
-                if (command == ArenaViewer.COMMAND.PLAYCARD1) cardno = 1;
-                else if (command == ArenaViewer.COMMAND.PLAYCARD2) cardno = 2;
-                else if (command == ArenaViewer.COMMAND.PLAYCARD3) cardno = 3;
-                else if (command == ArenaViewer.COMMAND.PLAYCARD4) cardno = 4;
-
-                if (cardno != 0)
-                    new PlaySpecialCardCommand(cardno, this).execute();
-            }
-
-            notifyObservers();
-
-            if (command == ArenaViewer.COMMAND.QUIT)
-                model.finish();
+        if (command == ArenaViewer.COMMAND.SWITCH) {
+            if (endOfRound())
+                interStageHandler();
+            else
+                new SkipTurnCommand(playerController).execute();
         }
+
+        if (command == ArenaViewer.COMMAND.DRAW){
+            if(!playerController.getTurnOver())
+                new DrawCardCommand(this).execute();
+            if(!playerController.getTurnOver())
+                playEnemyTurn();
+        }
+
+        if(!playerController.getTurnOver()) {
+            int cardno = 0;
+            if (command == ArenaViewer.COMMAND.PLAYCARD1) cardno = 1;
+            else if (command == ArenaViewer.COMMAND.PLAYCARD2) cardno = 2;
+            else if (command == ArenaViewer.COMMAND.PLAYCARD3) cardno = 3;
+            else if (command == ArenaViewer.COMMAND.PLAYCARD4) cardno = 4;
+
+            if (cardno != 0)
+                new PlaySpecialCardCommand(cardno, this).execute();
+        }
+
+        notifyObservers();
+
+        if (command == ArenaViewer.COMMAND.QUIT)
+            model.finish();
     }
 
     public GameParticipant getPlayer() {return model.getPlayer();}
@@ -149,18 +148,16 @@ public class ArenaController implements Controller {
     }
 
     public void notifyObservers() throws IOException {
-        for (ArenaObserver observer : model.getObservers()) {
+        for (ArenaObserver observer : model.getObservers())
             observer.arenaChanged();
-        }
     }
 
     public void checkControllerPoints(){
         ParticipantController current = getCurrent();
         ParticipantController opposite = getOpponent();
 
-        if(current.getPoints() == current.getMaxPoints()){
+        if(current.getPoints() == current.getMaxPoints())
             current.setTurnOver(true);
-        }
 
         if(current.getPoints() > current.getMaxPoints()){
             int a = min(current.getPoints() - 1, 6);

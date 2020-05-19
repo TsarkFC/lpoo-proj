@@ -9,11 +9,14 @@ public class StateRecognizer {
     private State currentState;
 
     public StateRecognizer() throws IOException {
-        gameState = new GameState();
-        startState = new StartState();
-        menuState = new MenuState();
+        gameState = new GameState(this);
+        startState = new StartState(this);
+        menuState = new MenuState(this);
         currentState = gameState;
     }
     public State getCurrentState() { return currentState; }
     public void setCurrentState(State currentState) { this.currentState = currentState; }
+
+    public GameState getGameState() { return gameState; }
+    public MenuState getMenuState() { return menuState; }
 }

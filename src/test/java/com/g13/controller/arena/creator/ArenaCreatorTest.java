@@ -19,7 +19,7 @@ public class ArenaCreatorTest {
     public void testCreation(){
         ArenaViewer arenaViewer = Mockito.mock(ArenaViewer.class);
         Arena arena = new Arena(10, 10);
-        ArenaController controller = new ArenaController(arenaViewer, arena);
+        ArenaController controller = new ArenaController(arenaViewer, arena, );
         ArenaCreator creator = new ArenaCreator();
         List<SpecialCard> player_special = new ArrayList<>();
         player_special.add(new SpecialCard(2, '*', "card no 2"));

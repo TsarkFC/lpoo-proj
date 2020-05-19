@@ -43,6 +43,6 @@ public class ArenaControllerTest {
     private ArenaController initArena(){
         ArenaViewer arenaViewer = Mockito.mock(ArenaViewer.class);
         Arena arena = Mockito.mock(Arena.class);
-        return new ArenaController(arenaViewer, arena);
+        return new ArenaController(arenaViewer, arena, );
     }
 }

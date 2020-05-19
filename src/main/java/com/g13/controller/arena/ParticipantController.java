@@ -82,6 +82,7 @@ public class ParticipantController {
     public void setTurnOver(boolean value){
         gameParticipant.setTurnOver(value);
     }
+    public boolean getTurnOver() {return gameParticipant.getTurnOver(); }
 
     public void setDrawDeck(List<Card> deck){ gameParticipant.setDrawDeck(deck); }
 
