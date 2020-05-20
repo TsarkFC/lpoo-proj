@@ -1,6 +1,7 @@
 package com.g13.controller.arena.creator;
 
 import com.g13.controller.arena.ArenaController;
+import com.g13.controller.state.StateRecognizer;
 import com.g13.model.arena.Arena;
 import com.g13.model.arena.GameParticipant;
 import com.g13.model.arena.specialcards.SpecialCard;
@@ -19,7 +20,8 @@ public class ArenaCreatorTest {
     public void testCreation(){
         ArenaViewer arenaViewer = Mockito.mock(ArenaViewer.class);
         Arena arena = new Arena(10, 10);
-        ArenaController controller = new ArenaController(arenaViewer, arena, );
+        StateRecognizer recognizer = Mockito.mock(StateRecognizer.class);
+        ArenaController controller = new ArenaController(arenaViewer, arena, recognizer);
         ArenaCreator creator = new ArenaCreator();
         List<SpecialCard> player_special = new ArrayList<>();
         player_special.add(new SpecialCard(2, '*', "card no 2"));

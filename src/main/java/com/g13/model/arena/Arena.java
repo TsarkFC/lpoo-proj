@@ -1,5 +1,5 @@
 package com.g13.model.arena;
-import com.g13.controller.arena.observer.ArenaObserver;
+import com.g13.controller.arena.observer.Observer;
 import com.g13.model.Model;
 
 import java.util.ArrayList;
@@ -12,7 +12,7 @@ public class Arena implements Model {
     private Enemy enemy;
 
     private boolean isFinished;
-    private List<ArenaObserver> observers;
+    private List<Observer> observers;
 
     private boolean playersTurn = true;
 
@@ -47,7 +47,7 @@ public class Arena implements Model {
         this.isFinished = true;
     }
 
-    public void addObserver(ArenaObserver observer) {
+    public void addObserver(Observer observer) {
         observers.add(observer);
     }
 
@@ -59,7 +59,7 @@ public class Arena implements Model {
         this.enemy = enemy;
     }
 
-    public List<ArenaObserver> getObservers(){return observers;}
+    public List<Observer> getObservers(){return observers;}
 
     public boolean getPlayersTurn() { return playersTurn; }
 

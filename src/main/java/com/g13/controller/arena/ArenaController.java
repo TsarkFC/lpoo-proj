@@ -3,12 +3,12 @@ package com.g13.controller.arena;
 import com.g13.controller.Controller;
 import com.g13.controller.arena.activationfactory.ActivationFactory;
 import com.g13.controller.arena.commands.*;
+import com.g13.controller.arena.observer.Observer;
 import com.g13.controller.arena.strategies.PlayStrategy;
 import com.g13.controller.state.StateRecognizer;
 import com.g13.model.arena.Arena;
 import com.g13.model.arena.Enemy;
 import com.g13.model.arena.GameParticipant;
-import com.g13.controller.arena.observer.ArenaObserver;
 import com.g13.model.arena.specialcards.SpecialCard;
 import com.g13.view.arena.ArenaViewer;
 
@@ -148,8 +148,8 @@ public class ArenaController implements Controller {
     }
 
     public void notifyObservers() throws IOException {
-        for (ArenaObserver observer : model.getObservers())
-            observer.arenaChanged();
+        for (Observer observer : model.getObservers())
+            observer.modelChanged();
     }
 
     public void checkControllerPoints(){

@@ -1,5 +1,6 @@
 package com.g13.view.menu;
 
+import com.g13.controller.arena.observer.Observer;
 import com.g13.model.menu.Menu;
 import com.g13.model.menu.Stage;
 import com.g13.view.View;
@@ -10,33 +11,32 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.TerminalScreen;
-import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
-import com.googlecode.lanterna.terminal.Terminal;
 
 import java.io.IOException;
 
-public class MenuViewer implements View {
+public class MenuViewer implements View, Observer {
     private Menu model;
     private TerminalScreen screen;
     private TextGraphics graphics;
     private TextGraphics greenGraphics;
     private TextGraphics redGraphics;
 
-    public enum COMMAND {
-        RIGHT,
-        LEFT,
-        SELECT,
-        NOTHING
+    @Override
+    public void modelChanged() throws IOException {
+        draw();
     }
 
-    public MenuViewer(Menu model) throws IOException {
-        this.model = model;
-        Terminal terminal = new DefaultTerminalFactory().setInitialTerminalSize(new TerminalSize(70, 40)).createTerminal();
-        screen = new TerminalScreen(terminal);
+    public enum COMMAND {
+        DOWN,
+        UP,
+        SELECT,
+        NOTHING,
+        QUIT
+    }
 
-        screen.setCursorPosition(null);   // we don't need a cursor
-        screen.startScreen();             // screens must be started
-        screen.doResizeIfNecessary();     // resize screen if necessary
+    public MenuViewer(Menu model, TerminalScreen screen) throws IOException {
+        this.model = model;
+        this.screen = screen;
 
         graphics = screen.newTextGraphics();
         graphics.setBackgroundColor(TextColor.Factory.fromString("#336699"));
@@ -55,11 +55,12 @@ public class MenuViewer implements View {
     public void draw() throws IOException {
         screen.clear();
 
-        graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(70, 40), ' ');
+        graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(50, 30), ' ');
         for (Stage stage : model.getStages()){
             if (stage.isUnlocked()) greenGraphics.putString(stage.getX(), stage.getY(), " ");
             else redGraphics.putString(stage.getX(), stage.getY(), " ");
         }
+        greenGraphics.putString(model.getX(), (model.getCross()+1)*5+5, "x");
         screen.refresh();
     }
 
@@ -67,9 +68,16 @@ public class MenuViewer implements View {
     public COMMAND getNextCommand() throws IOException {
         KeyStroke input = screen.readInput();
 
-        if (input.getKeyType() == KeyType.ArrowRight) return COMMAND.RIGHT;
-        else if (input.getKeyType() == KeyType.ArrowLeft) return COMMAND.LEFT;
+        if (input.getKeyType() == KeyType.ArrowDown) return COMMAND.DOWN;
+        else if (input.getKeyType() == KeyType.ArrowUp) return COMMAND.UP;
         else if (input.getKeyType() == KeyType.Enter) return COMMAND.SELECT;
+        else if (input.getKeyType() == KeyType.EOF ||
+                input.getKeyType() == KeyType.Character && input.getCharacter() == 'q'){
+            screen.close();
+            return COMMAND.QUIT;
+        }
         else return COMMAND.NOTHING;
     }
+
+    public TerminalScreen getFirstScreen() { return screen;}
 }

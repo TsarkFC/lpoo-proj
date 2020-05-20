@@ -16,10 +16,11 @@ public class MenuState implements State{
     private StateRecognizer recognizer;
 
     public MenuState(StateRecognizer recognizer) throws IOException {
-        menu = new Menu();
-        menuViewer = new MenuViewer(menu);
-        menuController = new MenuController(menu, menuViewer);
         this.recognizer = recognizer;
+        menu = new Menu();
+        menuViewer = new MenuViewer(menu, recognizer.getScreen());
+        menu.setObserver(menuViewer);
+        menuController = new MenuController(menu, menuViewer, recognizer);
     }
 
     @Override
@@ -34,5 +35,8 @@ public class MenuState implements State{
     }
 
     @Override
-    public void advance() { recognizer.setCurrentState(recognizer.getGameState());}
+    public void advance() throws IOException {
+        recognizer.setCurrentState(recognizer.getGameState());
+        recognizer.getCurrentState().getView().draw(); //change to notify
+    }
 }

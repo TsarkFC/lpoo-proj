@@ -4,6 +4,7 @@ import com.g13.controller.arena.ArenaController;
 import com.g13.controller.arena.ParticipantController;
 import com.g13.controller.arena.commands.DrawCardCommand;
 import com.g13.controller.arena.strategies.PlayStrategy;
+import com.g13.controller.state.StateRecognizer;
 import com.g13.model.arena.*;
 import com.g13.view.arena.ArenaViewer;
 import org.junit.Test;
@@ -88,7 +89,8 @@ public class DrawCardCommandTest {
 
         ArenaViewer arenaViewer = Mockito.mock(ArenaViewer.class);
         Arena arena = new Arena(0,0);
-        ArenaController arenaController = new ArenaController(arenaViewer, arena, );
+        StateRecognizer recognizer = Mockito.mock(StateRecognizer.class);
+        ArenaController arenaController = new ArenaController(arenaViewer, arena, recognizer);
 
         arenaController.setEnemyController(enemy);
         arenaController.setPlayerController(player);

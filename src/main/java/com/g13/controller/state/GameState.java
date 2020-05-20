@@ -18,7 +18,7 @@ public class GameState implements State{
 
     public GameState(StateRecognizer recognizer) throws IOException {
         arena = new Arena(50, 30);
-        arenaViewer = new ArenaViewer(arena);
+        arenaViewer = new ArenaViewer(arena, recognizer.getScreen());
         arena.addObserver(arenaViewer);
         arenaController = new ArenaController(arenaViewer, arena, recognizer);
         ArenaCreator creator = new ArenaCreator();

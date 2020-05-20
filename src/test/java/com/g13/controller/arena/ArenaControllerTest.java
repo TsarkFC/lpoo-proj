@@ -2,6 +2,8 @@ package com.g13.controller.arena;
 
 import com.g13.controller.arena.strategies.NormalPlayStrategy;
 import com.g13.controller.arena.strategies.PlayStrategy;
+import com.g13.controller.state.State;
+import com.g13.controller.state.StateRecognizer;
 import com.g13.model.arena.Arena;
 import com.g13.model.arena.BarSet;
 import com.g13.model.arena.Enemy;
@@ -43,6 +45,7 @@ public class ArenaControllerTest {
     private ArenaController initArena(){
         ArenaViewer arenaViewer = Mockito.mock(ArenaViewer.class);
         Arena arena = Mockito.mock(Arena.class);
-        return new ArenaController(arenaViewer, arena, );
+        StateRecognizer recognizer = Mockito.mock(StateRecognizer.class);
+        return new ArenaController(arenaViewer, arena, recognizer);
     }
 }

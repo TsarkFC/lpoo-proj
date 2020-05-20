@@ -1,8 +1,7 @@
 package com.g13.view.arena;
 
-import com.g13.controller.state.State;
+import com.g13.controller.arena.observer.Observer;
 import com.g13.model.arena.Arena;
-import com.g13.model.menu.Stage;
 import com.g13.view.View;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
@@ -11,13 +10,10 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.TerminalScreen;
-import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
-import com.googlecode.lanterna.terminal.Terminal;
-import com.g13.controller.arena.observer.ArenaObserver;
 
 import java.io.IOException;
 
-public class ArenaViewer implements ArenaObserver, View {
+public class ArenaViewer implements Observer, View {
     private TerminalScreen screen;
     private CardViewer cardViewer;
     private BarViewer barViewer;
@@ -43,13 +39,8 @@ public class ArenaViewer implements ArenaObserver, View {
     COMMAND specialCmd = COMMAND.NOPLAYCARD;
     COMMAND safeSpecialCmd;
 
-    public ArenaViewer(Arena arena) throws IOException {
-        Terminal terminal = new DefaultTerminalFactory().setInitialTerminalSize(new TerminalSize(arena.getWidth(), arena.getHeight())).createTerminal();
-        screen = new TerminalScreen(terminal);
-
-        screen.setCursorPosition(null);   // we don't need a cursor
-        screen.startScreen();             // screens must be started
-        screen.doResizeIfNecessary();     // resize screen if necessary
+    public ArenaViewer(Arena arena, TerminalScreen screen) throws IOException {
+        this.screen = screen;
 
         graphics = screen.newTextGraphics();
         graphics.setBackgroundColor(TextColor.Factory.fromString("#336699"));
@@ -72,7 +63,7 @@ public class ArenaViewer implements ArenaObserver, View {
     }
 
     @Override
-    public void arenaChanged() throws IOException {
+    public void modelChanged() throws IOException {
         draw();
     }
 
