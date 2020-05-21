@@ -54,7 +54,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>import com.g13.controller.strategies.PlayStrategy;</span></pre></td></tr>
+<td class=''><pre><span  class=''>import com.g13.controller.arena.strategies.PlayStrategy;</span></pre></td></tr>
 
 
 <tr>
@@ -69,7 +69,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>import com.g13.controller.commands.DrawCardCommand;</span></pre></td></tr>
+<td class=''><pre><span  class=''>import com.g13.controller.arena.commands.DrawCardCommand;</span></pre></td></tr>
 
 
 <tr>
@@ -84,7 +84,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>import com.g13.controller.commands.SkipTurnCommand;</span></pre></td></tr>
+<td class=''><pre><span  class=''>import com.g13.controller.arena.commands.SkipTurnCommand;</span></pre></td></tr>
 
 
 <tr>
@@ -99,7 +99,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>import com.g13.model.Arena;</span></pre></td></tr>
+<td class=''><pre><span  class=''>import com.g13.model.arena.Arena;</span></pre></td></tr>
 
 
 <tr>
@@ -114,7 +114,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>import com.g13.model.Enemy;</span></pre></td></tr>
+<td class=''><pre><span  class=''>import com.g13.model.arena.Enemy;</span></pre></td></tr>
 
 
 <tr>
@@ -129,7 +129,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>import com.g13.model.GameParticipant;</span></pre></td></tr>
+<td class=''><pre><span  class=''>import com.g13.model.arena.GameParticipant;</span></pre></td></tr>
 
 
 <tr>
@@ -144,7 +144,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>import com.g13.controller.observer.ArenaObserver;</span></pre></td></tr>
+<td class=''><pre><span  class=''>import com.g13.controller.arena.observer.Observer;</span></pre></td></tr>
 
 
 <tr>
@@ -159,7 +159,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>import com.g13.view.Gui;</span></pre></td></tr>
+<td class=''><pre><span  class=''>import com.g13.view.arena.ArenaViewer;</span></pre></td></tr>
 
 
 <tr>
@@ -309,7 +309,7 @@
 </span>
 </span>
 </td>
-<td class='covered'><pre><span  class=''>    public ArenaController(Gui gui, Arena arena){</span></pre></td></tr>
+<td class='covered'><pre><span  class=''>    public ArenaController(Gui arenaViewer, Arena arena){</span></pre></td></tr>
 
 
 <tr>
@@ -324,7 +324,7 @@
 </span>
 </span>
 </td>
-<td class='covered'><pre><span  class=''>        this.view = gui;</span></pre></td></tr>
+<td class='covered'><pre><span  class=''>        this.view = arenaViewer;</span></pre></td></tr>
 
 
 <tr>
@@ -1540,7 +1540,7 @@
 
 <a name='grouporg.pitest.mutationtest.report.html.SourceFile@5ec5ea63_52'/> 
 
-<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getPlayer<br/><b>Killed by : </b>com.g13.controller.creator.ArenaCreatorTest.testCreation(com.g13.controller.creator.ArenaCreatorTest)</span></span> mutated return of Object value for com/g13/controller/ArenaController::getPlayer to ( if (x != null) null else throw new RuntimeException ) &rarr; KILLED</p> 
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getPlayer<br/><b>Killed by : </b>com.g13.controller.arena.creator.ArenaCreatorTest.testCreation(com.g13.controller.arena.creator.ArenaCreatorTest)</span></span> mutated return of Object value for com/g13/controller/ArenaController::getPlayer to ( if (x != null) null else throw new RuntimeException ) &rarr; KILLED</p>
 </td>
 </tr>
 <tr>
@@ -1550,7 +1550,7 @@
 
 <a name='grouporg.pitest.mutationtest.report.html.SourceFile@5ec5ea63_53'/> 
 
-<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getEnemy<br/><b>Killed by : </b>com.g13.controller.creator.ArenaCreatorTest.testCreation(com.g13.controller.creator.ArenaCreatorTest)</span></span> mutated return of Object value for com/g13/controller/ArenaController::getEnemy to ( if (x != null) null else throw new RuntimeException ) &rarr; KILLED</p> 
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getEnemy<br/><b>Killed by : </b>com.g13.controller.arena.creator.ArenaCreatorTest.testCreation(com.g13.controller.arena.creator.ArenaCreatorTest)</span></span> mutated return of Object value for com/g13/controller/ArenaController::getEnemy to ( if (x != null) null else throw new RuntimeException ) &rarr; KILLED</p>
 </td>
 </tr>
 <tr>
@@ -1570,7 +1570,7 @@
 
 <a name='grouporg.pitest.mutationtest.report.html.SourceFile@5ec5ea63_57'/> 
 
-<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getPlayerController<br/><b>Killed by : </b>com.g13.controller.ArenaControllerTest.testsetPlayerController(com.g13.controller.ArenaControllerTest)</span></span> mutated return of Object value for com/g13/controller/ArenaController::getPlayerController to ( if (x != null) null else throw new RuntimeException ) &rarr; KILLED</p> 
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getPlayerController<br/><b>Killed by : </b>com.g13.controller.arena.ArenaControllerTest.testsetPlayerController(com.g13.controller.arena.ArenaControllerTest)</span></span> mutated return of Object value for com/g13/controller/ArenaController::getPlayerController to ( if (x != null) null else throw new RuntimeException ) &rarr; KILLED</p>
 </td>
 </tr>
 <tr>
@@ -1580,7 +1580,7 @@
 
 <a name='grouporg.pitest.mutationtest.report.html.SourceFile@5ec5ea63_62'/> 
 
-<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>setPlayerController<br/><b>Killed by : </b>com.g13.controller.creator.ArenaCreatorTest.testCreation(com.g13.controller.creator.ArenaCreatorTest)</span></span> removed call to com/g13/model/Arena::setPlayer &rarr; KILLED</p> 
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>setPlayerController<br/><b>Killed by : </b>com.g13.controller.arena.creator.ArenaCreatorTest.testCreation(com.g13.controller.arena.creator.ArenaCreatorTest)</span></span> removed call to com/g13/model/Arena::setPlayer &rarr; KILLED</p>
 </td>
 </tr>
 <tr>
@@ -1590,7 +1590,7 @@
 
 <a name='grouporg.pitest.mutationtest.report.html.SourceFile@5ec5ea63_63'/> 
 
-<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>setPlayerController<br/><b>Killed by : </b>com.g13.controller.ArenaControllerTest.testsetPlayerController(com.g13.controller.ArenaControllerTest)</span></span> removed call to com/g13/controller/GameParticipantController::setDefaultDeck &rarr; KILLED</p> 
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>setPlayerController<br/><b>Killed by : </b>com.g13.controller.arena.ArenaControllerTest.testsetPlayerController(com.g13.controller.arena.ArenaControllerTest)</span></span> removed call to com/g13/controller/GameParticipantController::setDefaultDeck &rarr; KILLED</p>
 </td>
 </tr>
 <tr>
@@ -1600,7 +1600,7 @@
 
 <a name='grouporg.pitest.mutationtest.report.html.SourceFile@5ec5ea63_67'/> 
 
-<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getEnemyController<br/><b>Killed by : </b>com.g13.controller.ArenaControllerTest.testsetEnemyontroller(com.g13.controller.ArenaControllerTest)</span></span> mutated return of Object value for com/g13/controller/ArenaController::getEnemyController to ( if (x != null) null else throw new RuntimeException ) &rarr; KILLED</p> 
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getEnemyController<br/><b>Killed by : </b>com.g13.controller.arena.ArenaControllerTest.testsetEnemyontroller(com.g13.controller.arena.ArenaControllerTest)</span></span> mutated return of Object value for com/g13/controller/ArenaController::getEnemyController to ( if (x != null) null else throw new RuntimeException ) &rarr; KILLED</p>
 </td>
 </tr>
 <tr>
@@ -1610,7 +1610,7 @@
 
 <a name='grouporg.pitest.mutationtest.report.html.SourceFile@5ec5ea63_72'/> 
 
-<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>setEnemyController<br/><b>Killed by : </b>com.g13.controller.creator.ArenaCreatorTest.testCreation(com.g13.controller.creator.ArenaCreatorTest)</span></span> removed call to com/g13/model/Arena::setEnemy &rarr; KILLED</p> 
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>setEnemyController<br/><b>Killed by : </b>com.g13.controller.arena.creator.ArenaCreatorTest.testCreation(com.g13.controller.arena.creator.ArenaCreatorTest)</span></span> removed call to com/g13/model/Arena::setEnemy &rarr; KILLED</p>
 </td>
 </tr>
 <tr>
@@ -1620,7 +1620,7 @@
 
 <a name='grouporg.pitest.mutationtest.report.html.SourceFile@5ec5ea63_73'/> 
 
-<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>setEnemyController<br/><b>Killed by : </b>com.g13.controller.ArenaControllerTest.testsetEnemyontroller(com.g13.controller.ArenaControllerTest)</span></span> removed call to com/g13/controller/GameParticipantController::setDefaultDeck &rarr; KILLED</p> 
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>setEnemyController<br/><b>Killed by : </b>com.g13.controller.arena.ArenaControllerTest.testsetEnemyontroller(com.g13.controller.arena.ArenaControllerTest)</span></span> removed call to com/g13/controller/GameParticipantController::setDefaultDeck &rarr; KILLED</p>
 </td>
 </tr>
 <tr>
@@ -1671,7 +1671,11 @@
 
 <h2>Tests examined</h2>
 <ul>
-<li>com.g13.controller.creator.ArenaCreatorTest.testCreation(com.g13.controller.creator.ArenaCreatorTest) (48 ms)</li><li>com.g13.controller.ArenaControllerTest.testsetEnemyontroller(com.g13.controller.ArenaControllerTest) (315 ms)</li><li>com.g13.controller.ArenaControllerTest.testsetPlayerController(com.g13.controller.ArenaControllerTest) (1 ms)</li>
+<li>com.g13.controller.arena.creator.ArenaCreatorTest.testCreation(com.g13.controller.arena.creator.ArenaCreatorTest)
+    (48
+    ms)</li><li>com.g13.controller.arena.ArenaControllerTest.testsetEnemyontroller(com.g13.controller.arena.ArenaControllerTest)
+    (315 ms)</li><li>com.g13.controller.arena.ArenaControllerTest.testsetPlayerController(com.g13.controller.arena.ArenaControllerTest)
+    (1 ms)</li>
 </ul>
 
 <br/>

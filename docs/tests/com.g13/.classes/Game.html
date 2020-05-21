@@ -74,22 +74,22 @@
 
 <div class="sourceCode"><i>1</i>&nbsp;package com.g13;
 <i>2</i>&nbsp;
-<i>3</i>&nbsp;import com.g13.controller.ArenaController;
-<i>4</i>&nbsp;import com.g13.controller.creator.ArenaCreator;
-<i>5</i>&nbsp;import com.g13.model.Arena;
-<i>6</i>&nbsp;import com.g13.view.Gui;
+<i>3</i>&nbsp;import com.g13.controller.arena.ArenaController;
+<i>4</i>&nbsp;import com.g13.controller.arena.creator.ArenaCreator;
+<i>5</i>&nbsp;import com.g13.model.arena.Arena;
+<i>6</i>&nbsp;import com.g13.view.arena.ArenaViewer;
 <i>7</i>&nbsp;
 <i>8</i>&nbsp;import java.io.IOException;
 <i>9</i>&nbsp;
 <b class="nc"><i>10</i>&nbsp;public class Game {</b>
-<i>11</i>&nbsp;    private Gui gui;
+<i>11</i>&nbsp;    private Gui arenaViewer;
 <i>12</i>&nbsp;    private Arena arena;
 <i>13</i>&nbsp;    public static void main(String[] args) throws IOException {
 <b class="nc"><i>14</i>&nbsp;        Arena arena = new Arena(50, 30);</b>
-<b class="nc"><i>15</i>&nbsp;        Gui gui = new Gui(arena);</b>
-<b class="nc"><i>16</i>&nbsp;        arena.addObserver(gui);</b>
+<b class="nc"><i>15</i>&nbsp;        Gui arenaViewer = new Gui(arena);</b>
+<b class="nc"><i>16</i>&nbsp;        arena.addObserver(arenaViewer);</b>
 <i>17</i>&nbsp;
-<b class="nc"><i>18</i>&nbsp;        ArenaController controller = new ArenaController(gui, arena);</b>
+<b class="nc"><i>18</i>&nbsp;        ArenaController controller = new ArenaController(arenaViewer, arena);</b>
 <b class="nc"><i>19</i>&nbsp;        ArenaCreator creator = new ArenaCreator();</b>
 <b class="nc"><i>20</i>&nbsp;        creator.create(controller);</b>
 <b class="nc"><i>21</i>&nbsp;        controller.start();</b>

@@ -1,23 +1,17 @@
 package com.g13;
 
-import com.g13.controller.ArenaController;
-import com.g13.controller.creator.ArenaCreator;
-import com.g13.model.Arena;
-import com.g13.view.Gui;
+import com.g13.controller.state.StateRecognizer;
+import com.g13.view.ScreenFactory;
+import com.g13.view.View;
 
 import java.io.IOException;
 
 public class Game {
-    private Gui gui;
-    private Arena arena;
     public static void main(String[] args) throws IOException {
-        Arena arena = new Arena(50, 30);
-        Gui gui = new Gui(arena);
-        arena.addObserver(gui);
-
-        ArenaController controller = new ArenaController(gui, arena);
-        ArenaCreator creator = new ArenaCreator();
-        creator.create(controller);
-        controller.start();
+        ScreenFactory factory = new ScreenFactory();
+        StateRecognizer recognizer = new StateRecognizer(factory.getScreen());
+        recognizer.getCurrentState().getView().draw();
+        while(!recognizer.getCurrentState().getModel().isFinished())
+            recognizer.getCurrentState().getController().start();
     }
 }
