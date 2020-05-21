@@ -3,7 +3,6 @@ package com.g13.controller.arena;
 import com.g13.controller.Controller;
 import com.g13.controller.arena.activationfactory.ActivationFactory;
 import com.g13.controller.arena.commands.*;
-import com.g13.controller.arena.observer.Observer;
 import com.g13.controller.arena.strategies.PlayStrategy;
 import com.g13.controller.state.StateRecognizer;
 import com.g13.model.arena.Arena;
@@ -75,7 +74,7 @@ public class ArenaController implements Controller {
                 new PlaySpecialCardCommand(cardno, this).execute();
         }
 
-        notifyObservers();
+        view.draw();
 
         if (command == ArenaViewer.COMMAND.QUIT)
             model.finish();
@@ -145,11 +144,6 @@ public class ArenaController implements Controller {
         model.setPlayersTurn(false);
         ProcessEnemyCards(SpecialCard.ACTIVATION_CONDITIONS.ON_END_TURN);
         model.setPlayersTurn(true);
-    }
-
-    public void notifyObservers() throws IOException {
-        for (Observer observer : model.getObservers())
-            observer.modelChanged();
     }
 
     public void checkControllerPoints(){

@@ -1,8 +1,6 @@
 package com.g13.model.menu;
 
-import com.g13.controller.arena.observer.Observer;
 import com.g13.model.Model;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +9,6 @@ public class Menu implements Model {
     private List<Stage> stages;
     private int cross;
     private int x = 24;
-    private Observer observer;
     private final char[][] title_void = {{'*',' ','*',' ','*','*','*',' ','*','*','*',' ','*','*',' '},
                                          {'*',' ','*',' ','*',' ','*',' ',' ','*',' ',' ','*',' ','*'},
                                          {' ','*',' ',' ','*','*','*',' ','*','*','*',' ','*','*',' '}};
@@ -40,9 +37,6 @@ public class Menu implements Model {
 
     public List<Stage> getStages() { return stages; }
     public boolean getNextCross() { return stages.get(cross+1).isUnlocked(); }
-
-    public Observer getObserver() { return observer; }
-    public void setObserver(Observer observer) { this.observer = observer; }
 
     public char[][] getTitle_void() { return title_void; }
 

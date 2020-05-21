@@ -19,7 +19,6 @@ public class MenuState implements State{
         this.recognizer = recognizer;
         menu = new Menu();
         menuViewer = new MenuViewer(menu, recognizer.getScreen());
-        menu.setObserver(menuViewer);
         menuController = new MenuController(menu, menuViewer, recognizer);
     }
 

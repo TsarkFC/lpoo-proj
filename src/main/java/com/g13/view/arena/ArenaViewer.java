@@ -1,6 +1,5 @@
 package com.g13.view.arena;
 
-import com.g13.controller.arena.observer.Observer;
 import com.g13.model.arena.Arena;
 import com.g13.view.View;
 import com.googlecode.lanterna.TerminalPosition;
@@ -13,7 +12,7 @@ import com.googlecode.lanterna.screen.TerminalScreen;
 
 import java.io.IOException;
 
-public class ArenaViewer implements Observer, View {
+public class ArenaViewer implements View {
     private TerminalScreen screen;
     private CardViewer cardViewer;
     private BarViewer barViewer;
@@ -60,11 +59,6 @@ public class ArenaViewer implements Observer, View {
         gameParticipantViewer.drawEnemy(arena.getEnemy());
 
         screen.refresh();
-    }
-
-    @Override
-    public void modelChanged() throws IOException {
-        draw();
     }
 
     private void drawBackground(){

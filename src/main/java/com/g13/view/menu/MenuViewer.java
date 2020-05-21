@@ -1,6 +1,5 @@
 package com.g13.view.menu;
 
-import com.g13.controller.arena.observer.Observer;
 import com.g13.model.menu.Menu;
 import com.g13.model.menu.Stage;
 import com.g13.view.View;
@@ -14,17 +13,12 @@ import com.googlecode.lanterna.screen.TerminalScreen;
 
 import java.io.IOException;
 
-public class MenuViewer implements View, Observer {
+public class MenuViewer implements View {
     private Menu model;
     private TerminalScreen screen;
     private TextGraphics graphics;
     private TextGraphics brownGraphics;
     private TextGraphics redGraphics;
-
-    @Override
-    public void modelChanged() throws IOException {
-        draw();
-    }
 
     public enum COMMAND {
         DOWN,
