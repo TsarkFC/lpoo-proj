@@ -18,7 +18,7 @@ public class MenuViewer implements View, Observer {
     private Menu model;
     private TerminalScreen screen;
     private TextGraphics graphics;
-    private TextGraphics greenGraphics;
+    private TextGraphics brownGraphics;
     private TextGraphics redGraphics;
 
     @Override
@@ -42,9 +42,9 @@ public class MenuViewer implements View, Observer {
         graphics.setBackgroundColor(TextColor.Factory.fromString("#336699"));
         graphics.setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
 
-        greenGraphics = screen.newTextGraphics();
-        greenGraphics.setBackgroundColor(TextColor.Factory.fromString("#00FF00"));
-        greenGraphics.setForegroundColor(TextColor.Factory.fromString("#000000"));
+        brownGraphics = screen.newTextGraphics();
+        brownGraphics.setBackgroundColor(TextColor.Factory.fromString("#EECC88"));
+        brownGraphics.setForegroundColor(TextColor.Factory.fromString("#000000"));
 
         redGraphics = screen.newTextGraphics();
         redGraphics.setBackgroundColor(TextColor.Factory.fromString("#FF0000"));
@@ -57,10 +57,12 @@ public class MenuViewer implements View, Observer {
 
         graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(50, 30), ' ');
         for (Stage stage : model.getStages()){
-            if (stage.isUnlocked()) greenGraphics.putString(stage.getX(), stage.getY(), " ");
+            if (stage.isUnlocked()) brownGraphics.putString(stage.getX(), stage.getY(), " ");
             else redGraphics.putString(stage.getX(), stage.getY(), " ");
         }
-        greenGraphics.putString(model.getX(), (model.getCross()+1)*5+5, "x");
+        brownGraphics.putString(model.getX(), (model.getCross()+1)*5+5, "x");
+
+        drawTitle();
         screen.refresh();
     }
 
@@ -79,5 +81,29 @@ public class MenuViewer implements View, Observer {
         else return COMMAND.NOTHING;
     }
 
-    public TerminalScreen getFirstScreen() { return screen;}
+    private void drawTitle(){
+        int x = 17, y = 1;
+        char title_void[][] = model.getTitle_void();
+        char title_tyrant[][] = model.getTitle_tyrant();
+
+        drawGenericTitle(x,y,title_void);
+        x = 13;
+        y = 5;
+        drawGenericTitle(x,y,title_tyrant);
+    }
+
+    private void drawGenericTitle(int x, int y, char[][] title){
+        int safex = x;
+        for (int i = 0; i < title.length; i++){
+            for (int j = 0; j < title[i].length; j++){
+                if (title[i][j] == '*')
+                    brownGraphics.putString(x, y, " ");
+                else
+                    graphics.putString(x, y, " ");
+                x += 1;
+            }
+            x = safex;
+            y += 1;
+        }
+    }
 }

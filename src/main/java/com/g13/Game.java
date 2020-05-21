@@ -2,7 +2,6 @@ package com.g13;
 
 import com.g13.controller.state.StateRecognizer;
 import com.g13.view.ScreenFactory;
-import com.g13.view.View;
 
 import java.io.IOException;
 

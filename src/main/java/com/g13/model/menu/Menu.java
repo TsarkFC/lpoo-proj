@@ -12,6 +12,12 @@ public class Menu implements Model {
     private int cross;
     private int x = 24;
     private Observer observer;
+    private final char[][] title_void = {{'*',' ','*',' ','*','*','*',' ','*','*','*',' ','*','*',' '},
+                                         {'*',' ','*',' ','*',' ','*',' ',' ','*',' ',' ','*',' ','*'},
+                                         {' ','*',' ',' ','*','*','*',' ','*','*','*',' ','*','*',' '}};
+    private final char[][] title_tyrant = {{'*','*','*',' ','*',' ','*',' ','*','*',' ',' ',' ','*',' ',' ','*','*',' ',' ','*','*','*'},
+                                           {' ','*',' ',' ',' ','*',' ',' ','*','*',' ',' ','*','*','*',' ','*',' ','*',' ',' ','*',' '},
+                                           {' ','*',' ',' ',' ','*',' ',' ','*',' ','*',' ','*',' ','*',' ','*',' ','*',' ',' ','*',' '}};
 
     public Menu(){
         isFinished = false;
@@ -37,4 +43,8 @@ public class Menu implements Model {
 
     public Observer getObserver() { return observer; }
     public void setObserver(Observer observer) { this.observer = observer; }
+
+    public char[][] getTitle_void() { return title_void; }
+
+    public char[][] getTitle_tyrant() { return title_tyrant; }
 }

@@ -37,10 +37,7 @@ public class MenuController implements Controller {
     private void moveDown(){
         if (model.getCross() < 4 && model.getNextCross()) model.crossMoveDown();
     }
-
-    private void moveUp() {
-        if (model.getCross() > 0) model.crossMoveUp();
-    }
+    private void moveUp() { if (model.getCross() > 0) model.crossMoveUp(); }
 
     private void processSelection() throws IOException {
         recognizer.getCurrentState().advance();
