@@ -42,6 +42,12 @@ public class ArenaController implements Controller {
         playerController.resetCardSelection();
         int select = -1;
 
+        if (playerController.getHealth() <= 0 || enemyController.getHealth() <= 0) {
+            recognizer.setCurrentState(recognizer.getMenuState());
+            recognizer.getCurrentState().getView().draw();
+            return;
+        }
+
         ArenaViewer.COMMAND command = view.getNextCommand();
         if (command == ArenaViewer.COMMAND.ONE) select = 0;
         else if(command == ArenaViewer.COMMAND.TWO) select = 1;
@@ -59,7 +65,7 @@ public class ArenaController implements Controller {
         if (command == ArenaViewer.COMMAND.DRAW){
             if(!playerController.getTurnOver())
                 new DrawCardCommand(this).execute();
-            if(!playerController.getTurnOver())
+            if(!enemyController.getTurnOver())
                 playEnemyTurn();
         }
 
