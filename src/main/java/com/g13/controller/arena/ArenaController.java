@@ -42,13 +42,10 @@ public class ArenaController implements Controller {
         playerController.resetCardSelection();
         int select = -1;
 
-        if (playerController.getHealth() <= 0 || enemyController.getHealth() <= 0) {
-            recognizer.setCurrentState(recognizer.getMenuState());
-            recognizer.getCurrentState().getView().draw();
-            return;
-        }
+        if (verifyEndOfGame()) return;
 
         ArenaViewer.COMMAND command = view.getNextCommand();
+
         if (command == ArenaViewer.COMMAND.ONE) select = 0;
         else if(command == ArenaViewer.COMMAND.TWO) select = 1;
         else if(command == ArenaViewer.COMMAND.THREE) select = 2;
@@ -198,4 +195,15 @@ public class ArenaController implements Controller {
     }
 
     public ActivationFactory getActivationFactory() { return activationFactory; }
+
+    private boolean verifyEndOfGame() throws IOException {
+        if (playerController.getHealth() <= 0 || enemyController.getHealth() <= 0) {
+            recognizer.setCurrentState(recognizer.getMenuState());
+            enemyController.resetPlayer();
+            playerController.resetPlayer();
+            recognizer.getCurrentState().getView().draw();
+            return true;
+        }
+        else return false;
+    }
 }

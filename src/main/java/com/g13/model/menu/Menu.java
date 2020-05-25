@@ -20,7 +20,7 @@ public class Menu implements Model {
         isFinished = false;
         stages = new ArrayList<>();
         stages.add(new Stage(x, 10, true));
-        stages.add(new Stage(x, 15, true));
+        stages.add(new Stage(x, 15, false));
         stages.add(new Stage(x, 20, false));
         stages.add(new Stage(x, 25, false));
         cross = 0;
