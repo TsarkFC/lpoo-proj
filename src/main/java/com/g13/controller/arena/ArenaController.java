@@ -204,10 +204,15 @@ public class ArenaController implements Controller {
             return true;
         }
         else if (enemyController.getHealth() <= 0){
+            recognizer.getLevelState().unlockNextStage();
             recognizer.setMenuState();
             enemyController.resetPlayer();
             return true;
         }
         else return false;
+    }
+
+    public void setEnemyStrategy(PlayStrategy strategy){
+        model.getEnemy().setPlayStrategy(strategy);
     }
 }
