@@ -1,5 +1,6 @@
 package com.g13.view.titles;
 
+import com.g13.model.titles.Button;
 import com.g13.model.titles.Titles;
 import com.g13.view.View;
 import com.googlecode.lanterna.TextColor;
@@ -80,5 +81,12 @@ public abstract class TitlesViewer implements View {
             return COMMAND.QUIT;
         }
         else return COMMAND.NOTHING;
+    }
+
+    protected void drawButton(Button button, boolean condition, TextGraphics opposite){
+        if (condition)
+            brownGraphics.putString(button.getX(), button.getY(), button.getMessage());
+        else
+            opposite.putString(button.getX(), button.getY(), button.getMessage());
     }
 }

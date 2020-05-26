@@ -38,8 +38,7 @@ public class MenuViewer extends TitlesViewer implements View {
         Stage stage;
         for (int i = 0; i < model.getStages().size(); i++){
             stage = model.getStages().get(i);
-            if (stage.isUnlocked()) brownGraphics.putString(stage.getX(), stage.getY(), " ");
-            else redGraphics.putString(stage.getX(), stage.getY(), " ");
+            drawButton(stage, stage.isUnlocked(), redGraphics);
             graphics.putString(stage.getX() + 2, stage.getY(), menu_titles[i]);
         }
         brownGraphics.putString(model.getX(), (model.getCross()+1)*5+7, "x");

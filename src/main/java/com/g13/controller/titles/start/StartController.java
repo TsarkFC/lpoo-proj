@@ -3,7 +3,6 @@ package com.g13.controller.titles.start;
 import com.g13.controller.Controller;
 import com.g13.controller.state.StateRecognizer;
 import com.g13.controller.titles.TitlesController;
-import com.g13.model.titles.start.Button;
 import com.g13.model.titles.start.Start;
 import com.g13.view.titles.start.StartViewer;
 

@@ -1,6 +1,7 @@
 package com.g13.model.titles.start;
 
 import com.g13.model.Model;
+import com.g13.model.titles.Button;
 import com.g13.model.titles.Titles;
 
 import java.util.ArrayList;

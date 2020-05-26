@@ -1,4 +1,4 @@
-package com.g13.model.titles.start;
+package com.g13.model.titles;
 
 public class Button {
     private int x;

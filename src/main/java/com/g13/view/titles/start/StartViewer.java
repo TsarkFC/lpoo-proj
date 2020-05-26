@@ -1,6 +1,6 @@
 package com.g13.view.titles.start;
 
-import com.g13.model.titles.start.Button;
+import com.g13.model.titles.Button;
 import com.g13.model.titles.start.Start;
 import com.g13.view.View;
 import com.g13.view.titles.TitlesViewer;
@@ -29,13 +29,6 @@ public class StartViewer extends TitlesViewer implements View {
 
     private void drawStartComponents(){
         for (int i = 0; i < model.getButtons().size();  i++)
-            drawButton(model.getButtons().get(i), i);
-    }
-
-    private void drawButton(Button button, int i){
-        if (model.getSelection() == i)
-            brownGraphics.putString(button.getX(), button.getY(), button.getMessage());
-        else
-            graphics.putString(button.getX(), button.getY(), button.getMessage());
+            drawButton(model.getButtons().get(i), model.getSelection() == i, graphics);
     }
 }
