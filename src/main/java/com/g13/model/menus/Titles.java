@@ -1,4 +1,4 @@
-package com.g13.model.titles;
+package com.g13.model.menus;
 
 import com.g13.model.Model;
 

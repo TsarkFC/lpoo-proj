@@ -1,15 +1,14 @@
-package com.g13.controller.titles.menu;
+package com.g13.controller.menus;
 
 import com.g13.controller.Controller;
 import com.g13.controller.state.StateRecognizer;
-import com.g13.controller.titles.TitlesController;
-import com.g13.model.titles.menu.Menu;
-import com.g13.view.titles.menu.MenuViewer;
+import com.g13.model.menus.Level;
+import com.g13.view.menus.LevelViewer;
 
-public class MenuController extends TitlesController implements Controller {
-    private Menu model;
+public class LevelController extends TitlesController implements Controller {
+    private Level model;
 
-    public MenuController(Menu model, MenuViewer view, StateRecognizer recognizer){
+    public LevelController(Level model, LevelViewer view, StateRecognizer recognizer){
         super(model, view, recognizer);
         this.model = model;
     }

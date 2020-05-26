@@ -1,11 +1,11 @@
 package com.g13.controller.state;
 
 import com.g13.controller.Controller;
-import com.g13.controller.titles.start.StartController;
+import com.g13.controller.menus.StartController;
 import com.g13.model.Model;
-import com.g13.model.titles.start.Start;
+import com.g13.model.menus.Start;
 import com.g13.view.View;
-import com.g13.view.titles.start.StartViewer;
+import com.g13.view.menus.StartViewer;
 
 import java.io.IOException;
 
@@ -37,7 +37,13 @@ public class StartState implements State{
     public void advance() throws IOException {
         if (start.getSelection() == 0)
             recognizer.setMenuState();
-        else if (start.getSelection() == 1)
-            System.out.println("Instructions");
+        else if (start.getSelection() == -1){
+            start.setSelection(1);
+            recognizer.getCurrentState().getView().draw();
+        }
+        else if (start.getSelection() == 1){
+            start.setSelection(-1);
+            startViewer.drawInstructions();
+        }
     }
 }

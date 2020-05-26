@@ -1,8 +1,8 @@
-package com.g13.model.titles.menu;
+package com.g13.model.menus.button;
 
-import com.g13.model.titles.Button;
+import com.g13.model.menus.button.Button;
 
-public class Stage extends Button{
+public class Stage extends Button {
     private boolean unlocked;
 
     public Stage(int x, int y, boolean unlocked){

@@ -1,10 +1,9 @@
-package com.g13.controller.titles.start;
+package com.g13.controller.menus;
 
 import com.g13.controller.Controller;
 import com.g13.controller.state.StateRecognizer;
-import com.g13.controller.titles.TitlesController;
-import com.g13.model.titles.start.Start;
-import com.g13.view.titles.start.StartViewer;
+import com.g13.model.menus.Start;
+import com.g13.view.menus.StartViewer;
 
 public class StartController extends TitlesController implements Controller {
     private Start model;
@@ -16,7 +15,7 @@ public class StartController extends TitlesController implements Controller {
 
     @Override
     public void moveDown() {
-        if (model.getSelection() < 2)
+        if (model.getSelection() < 1)
             model.selectionMoveDown();
     }
 

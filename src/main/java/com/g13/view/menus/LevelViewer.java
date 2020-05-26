@@ -1,25 +1,22 @@
-package com.g13.view.titles.menu;
+package com.g13.view.menus;
 
-import com.g13.model.titles.menu.Menu;
-import com.g13.model.titles.menu.Stage;
-import com.g13.view.titles.TitlesViewer;
+import com.g13.model.menus.Level;
+import com.g13.model.menus.button.Stage;
 import com.g13.view.View;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
-import com.googlecode.lanterna.input.KeyStroke;
-import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.TerminalScreen;
 
 import java.io.IOException;
 
-public class MenuViewer extends TitlesViewer implements View {
-    private Menu model;
+public class LevelViewer extends TitlesViewer implements View {
+    private Level model;
     private TerminalScreen screen;
     private final String[] menu_titles = {"[Enemy 1] Normal mentality",
                                         "[Enemy 2] Passive mentality",
                                         "[Enemy 3] Aggressive mentality"};
 
-    public MenuViewer(Menu model, TerminalScreen screen) {
+    public LevelViewer(Level model, TerminalScreen screen) {
         super(model,screen);
         this.model = model;
         this.screen = screen;

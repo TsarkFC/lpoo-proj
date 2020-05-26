@@ -1,18 +1,18 @@
-package com.g13.model.titles.menu;
+package com.g13.model.menus;
 
 import com.g13.model.Model;
-import com.g13.model.titles.Titles;
+import com.g13.model.menus.button.Stage;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Menu extends Titles implements Model {
+public class Level extends Titles implements Model {
     private boolean isFinished;
     private List<Stage> stages;
     private int cross;
     private int x = 12;
 
-    public Menu(){
+    public Level(){
         super(false);
         stages = new ArrayList<>();
         stages.add(new Stage(x, 12, true));

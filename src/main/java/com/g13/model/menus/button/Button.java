@@ -1,4 +1,4 @@
-package com.g13.model.titles;
+package com.g13.model.menus.button;
 
 public class Button {
     private int x;

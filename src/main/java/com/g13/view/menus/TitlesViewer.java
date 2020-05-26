@@ -1,13 +1,12 @@
-package com.g13.view.titles;
+package com.g13.view.menus;
 
-import com.g13.model.titles.Button;
-import com.g13.model.titles.Titles;
+import com.g13.model.menus.button.Button;
+import com.g13.model.menus.Titles;
 import com.g13.view.View;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
-import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 
 import java.io.IOException;

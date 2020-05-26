@@ -1,15 +1,15 @@
-package com.g13.controller.titles;
+package com.g13.controller.menus;
 
 import com.g13.controller.Controller;
 import com.g13.controller.state.StateRecognizer;
-import com.g13.model.titles.Titles;
-import com.g13.view.titles.TitlesViewer;
-import com.g13.view.titles.menu.MenuViewer;
+import com.g13.model.menus.Titles;
+import com.g13.view.menus.TitlesViewer;
+import com.g13.view.menus.LevelViewer;
 
 import java.io.IOException;
 
-import static com.g13.view.titles.TitlesViewer.COMMAND.*;
-import static com.g13.view.titles.TitlesViewer.COMMAND.QUIT;
+import static com.g13.view.menus.TitlesViewer.COMMAND.*;
+import static com.g13.view.menus.TitlesViewer.COMMAND.QUIT;
 
 public abstract class TitlesController implements Controller {
     protected Titles model;
@@ -24,7 +24,7 @@ public abstract class TitlesController implements Controller {
 
     @Override
     public void start() throws IOException {
-        MenuViewer.COMMAND command = view.getNextCommand();
+        LevelViewer.COMMAND command = view.getNextCommand();
 
         if (command == DOWN) moveDown();
         else if (command == UP) moveUp();
