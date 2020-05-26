@@ -1,6 +1,9 @@
-package com.g13.model.menu;
+package com.g13.model.titles.menu;
+
+import com.g13.model.titles.start.Button;
 
 public class Stage {
+
     private int x;
     private int y;
     private boolean unlocked;
@@ -11,9 +14,9 @@ public class Stage {
         this.unlocked = unlocked;
     }
 
-    public int getX() { return x; }
-    public int getY() { return y; }
-
     public boolean isUnlocked() { return unlocked; }
     public void setUnlocked(boolean unlocked) { this.unlocked = unlocked; }
+
+    public int getX() { return x; }
+    public int getY() { return y; }
 }

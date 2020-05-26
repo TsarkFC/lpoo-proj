@@ -1,11 +1,11 @@
 package com.g13.controller.state;
 
 import com.g13.controller.Controller;
-import com.g13.controller.menu.MenuController;
+import com.g13.controller.titles.menu.MenuController;
 import com.g13.model.Model;
-import com.g13.model.menu.Menu;
+import com.g13.model.titles.menu.Menu;
 import com.g13.view.View;
-import com.g13.view.menu.MenuViewer;
+import com.g13.view.titles.menu.MenuViewer;
 
 import java.io.IOException;
 

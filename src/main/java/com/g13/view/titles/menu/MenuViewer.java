@@ -1,0 +1,47 @@
+package com.g13.view.titles.menu;
+
+import com.g13.model.titles.menu.Menu;
+import com.g13.model.titles.menu.Stage;
+import com.g13.view.titles.TitlesViewer;
+import com.g13.view.View;
+import com.googlecode.lanterna.TerminalPosition;
+import com.googlecode.lanterna.TerminalSize;
+import com.googlecode.lanterna.input.KeyStroke;
+import com.googlecode.lanterna.input.KeyType;
+import com.googlecode.lanterna.screen.TerminalScreen;
+
+import java.io.IOException;
+
+public class MenuViewer extends TitlesViewer implements View {
+    private Menu model;
+    private TerminalScreen screen;
+    private final String[] menu_titles = {"[Enemy 1] Normal mentality",
+                                        "[Enemy 2] Passive mentality",
+                                        "[Enemy 3] Aggressive mentality"};
+
+    public MenuViewer(Menu model, TerminalScreen screen) {
+        super(model,screen);
+        this.model = model;
+        this.screen = screen;
+    }
+
+    @Override
+    public void draw() throws IOException {
+        screen.clear();
+        graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(50, 30), ' ');
+        drawMenuComponents();
+        drawTitle();
+        screen.refresh();
+    }
+
+    private void drawMenuComponents(){
+        Stage stage;
+        for (int i = 0; i < model.getStages().size(); i++){
+            stage = model.getStages().get(i);
+            if (stage.isUnlocked()) brownGraphics.putString(stage.getX(), stage.getY(), " ");
+            else redGraphics.putString(stage.getX(), stage.getY(), " ");
+            graphics.putString(stage.getX() + 2, stage.getY(), menu_titles[i]);
+        }
+        brownGraphics.putString(model.getX(), (model.getCross()+1)*5+7, "x");
+    }
+}

@@ -197,11 +197,15 @@ public class ArenaController implements Controller {
     public ActivationFactory getActivationFactory() { return activationFactory; }
 
     private boolean verifyEndOfGame() throws IOException {
-        if (playerController.getHealth() <= 0 || enemyController.getHealth() <= 0) {
-            recognizer.setCurrentState(recognizer.getMenuState());
+        if (playerController.getHealth() <= 0) {
+            recognizer.setMenuState();
             enemyController.resetPlayer();
             playerController.resetPlayer();
-            recognizer.getCurrentState().getView().draw();
+            return true;
+        }
+        else if (enemyController.getHealth() <= 0){
+            recognizer.setMenuState();
+            enemyController.resetPlayer();
             return true;
         }
         else return false;
