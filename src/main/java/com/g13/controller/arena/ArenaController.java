@@ -3,7 +3,6 @@ package com.g13.controller.arena;
 import com.g13.controller.Controller;
 import com.g13.controller.arena.activationfactory.ActivationFactory;
 import com.g13.controller.arena.commands.*;
-import com.g13.controller.arena.observer.Observer;
 import com.g13.controller.arena.strategies.PlayStrategy;
 import com.g13.controller.state.StateRecognizer;
 import com.g13.model.arena.Arena;
@@ -43,7 +42,10 @@ public class ArenaController implements Controller {
         playerController.resetCardSelection();
         int select = -1;
 
+        if (verifyEndOfGame()) return;
+
         ArenaViewer.COMMAND command = view.getNextCommand();
+
         if (command == ArenaViewer.COMMAND.ONE) select = 0;
         else if(command == ArenaViewer.COMMAND.TWO) select = 1;
         else if(command == ArenaViewer.COMMAND.THREE) select = 2;
@@ -60,7 +62,7 @@ public class ArenaController implements Controller {
         if (command == ArenaViewer.COMMAND.DRAW){
             if(!playerController.getTurnOver())
                 new DrawCardCommand(this).execute();
-            if(!playerController.getTurnOver())
+            if(!enemyController.getTurnOver())
                 playEnemyTurn();
         }
 
@@ -75,7 +77,7 @@ public class ArenaController implements Controller {
                 new PlaySpecialCardCommand(cardno, this).execute();
         }
 
-        notifyObservers();
+        view.draw();
 
         if (command == ArenaViewer.COMMAND.QUIT)
             model.finish();
@@ -147,11 +149,6 @@ public class ArenaController implements Controller {
         model.setPlayersTurn(true);
     }
 
-    public void notifyObservers() throws IOException {
-        for (Observer observer : model.getObservers())
-            observer.modelChanged();
-    }
-
     public void checkControllerPoints(){
         ParticipantController current = getCurrent();
         ParticipantController opposite = getOpponent();
@@ -198,4 +195,19 @@ public class ArenaController implements Controller {
     }
 
     public ActivationFactory getActivationFactory() { return activationFactory; }
+
+    private boolean verifyEndOfGame() throws IOException {
+        if (playerController.getHealth() <= 0) {
+            recognizer.setMenuState();
+            enemyController.resetPlayer();
+            playerController.resetPlayer();
+            return true;
+        }
+        else if (enemyController.getHealth() <= 0){
+            recognizer.setMenuState();
+            enemyController.resetPlayer();
+            return true;
+        }
+        else return false;
+    }
 }

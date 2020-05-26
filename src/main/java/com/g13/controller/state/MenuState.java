@@ -1,42 +1,41 @@
 package com.g13.controller.state;
 
 import com.g13.controller.Controller;
-import com.g13.controller.menu.MenuController;
+import com.g13.controller.menus.LevelController;
 import com.g13.model.Model;
-import com.g13.model.menu.Menu;
+import com.g13.model.menus.Level;
 import com.g13.view.View;
-import com.g13.view.menu.MenuViewer;
+import com.g13.view.menus.LevelViewer;
 
 import java.io.IOException;
 
 public class MenuState implements State{
-    private Menu menu;
-    private MenuViewer menuViewer;
-    private MenuController menuController;
+    private Level level;
+    private LevelViewer levelViewer;
+    private LevelController levelController;
     private StateRecognizer recognizer;
 
     public MenuState(StateRecognizer recognizer) throws IOException {
         this.recognizer = recognizer;
-        menu = new Menu();
-        menuViewer = new MenuViewer(menu, recognizer.getScreen());
-        menu.setObserver(menuViewer);
-        menuController = new MenuController(menu, menuViewer, recognizer);
+        level = new Level();
+        levelViewer = new LevelViewer(level, recognizer.getScreen());
+        levelController = new LevelController(level, levelViewer, recognizer);
     }
 
     @Override
-    public Model getModel() { return menu; }
+    public Model getModel() { return level; }
 
     @Override
-    public View getView() { return menuViewer; }
+    public View getView() { return levelViewer; }
 
     @Override
     public Controller getController() {
-        return menuController;
+        return levelController;
     }
 
     @Override
     public void advance() throws IOException {
         recognizer.setCurrentState(recognizer.getGameState());
-        recognizer.getCurrentState().getView().draw(); //change to notify
+        recognizer.getCurrentState().getView().draw();
     }
 }

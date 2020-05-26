@@ -1,5 +1,4 @@
 package com.g13.model.arena;
-import com.g13.controller.arena.observer.Observer;
 import com.g13.model.Model;
 
 import java.util.ArrayList;
@@ -12,7 +11,6 @@ public class Arena implements Model {
     private Enemy enemy;
 
     private boolean isFinished;
-    private List<Observer> observers;
 
     private boolean playersTurn = true;
 
@@ -20,7 +18,6 @@ public class Arena implements Model {
         this.width = width;
         this.height = height;
         this.isFinished = false;
-        this.observers = new ArrayList<>();
     }
 
     public int getWidth() {
@@ -47,10 +44,6 @@ public class Arena implements Model {
         this.isFinished = true;
     }
 
-    public void addObserver(Observer observer) {
-        observers.add(observer);
-    }
-
     public void setPlayer(GameParticipant player) {
         this.player = player;
     }
@@ -58,8 +51,6 @@ public class Arena implements Model {
     public void setEnemy(Enemy enemy) {
         this.enemy = enemy;
     }
-
-    public List<Observer> getObservers(){return observers;}
 
     public boolean getPlayersTurn() { return playersTurn; }
 

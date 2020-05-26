@@ -39,8 +39,8 @@ public class ArenaCreator {
     }
 
     public BarSet createBarSet(){
-        Bar healthBar = new Bar(10, 20);
-        Bar manaBar = new Bar(10, 20);
+        Bar healthBar = new Bar(20, 20);
+        Bar manaBar = new Bar(20, 20);
         Bar pointBar = new Bar(0, 12);
         return new BarSet(healthBar, manaBar, pointBar);
     }

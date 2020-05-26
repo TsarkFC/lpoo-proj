@@ -62,6 +62,7 @@ public class ParticipantController {
     }
 
     public int getHealth(){ return gameParticipant.getHealth();}
+    public void setHealth(int health) {gameParticipant.setHealth(health);}
     public void zeroHealth(){
         if (gameParticipant.getPoints() < 0)
             gameParticipant.setHealth(0);
@@ -70,6 +71,8 @@ public class ParticipantController {
         gameParticipant.setHealth(gameParticipant.getHealth() - value);
     }
 
+    public int getMana() { return gameParticipant.getMana(); }
+    public void setMana(int mana) { gameParticipant.setMana(mana); }
 
     public void setCardSelected(int cardno, boolean value){
         gameParticipant.getPlayDeck().get(cardno).setSelected(value);
@@ -88,5 +91,12 @@ public class ParticipantController {
 
     public SpecialCard.CARD_TYPE getCardType(int cardno){
        return gameParticipant.getPlayDeck().get(cardno).getCardType();
+    }
+
+    public void resetPlayer(){
+        setPoints(0);
+        setHealth(20);
+        setMana(20);
+        resetDrawDeck();
     }
 }
