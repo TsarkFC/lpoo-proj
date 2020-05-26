@@ -19,6 +19,9 @@ public class MenuViewer implements View {
     private TextGraphics graphics;
     private TextGraphics brownGraphics;
     private TextGraphics redGraphics;
+    private final String[] menu_titles = {"[Enemy 1] Normal mentality",
+                                        "[Enemy 2] Passive mentality",
+                                        "[Enemy 3] Aggressive mentality"};
 
     public enum COMMAND {
         DOWN,
@@ -28,7 +31,7 @@ public class MenuViewer implements View {
         QUIT
     }
 
-    public MenuViewer(Menu model, TerminalScreen screen) throws IOException {
+    public MenuViewer(Menu model, TerminalScreen screen) {
         this.model = model;
         this.screen = screen;
 
@@ -48,14 +51,8 @@ public class MenuViewer implements View {
     @Override
     public void draw() throws IOException {
         screen.clear();
-
         graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(50, 30), ' ');
-        for (Stage stage : model.getStages()){
-            if (stage.isUnlocked()) brownGraphics.putString(stage.getX(), stage.getY(), " ");
-            else redGraphics.putString(stage.getX(), stage.getY(), " ");
-        }
-        brownGraphics.putString(model.getX(), (model.getCross()+1)*5+5, "x");
-
+        drawMenuComponents();
         drawTitle();
         screen.refresh();
     }
@@ -99,5 +96,16 @@ public class MenuViewer implements View {
             x = safex;
             y += 1;
         }
+    }
+
+    private void drawMenuComponents(){
+        Stage stage;
+        for (int i = 0; i < model.getStages().size(); i++){
+            stage = model.getStages().get(i);
+            if (stage.isUnlocked()) brownGraphics.putString(stage.getX(), stage.getY(), " ");
+            else redGraphics.putString(stage.getX(), stage.getY(), " ");
+            graphics.putString(stage.getX() + 2, stage.getY(), menu_titles[i]);
+        }
+        brownGraphics.putString(model.getX(), (model.getCross()+1)*5+7, "x");
     }
 }

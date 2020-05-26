@@ -30,8 +30,8 @@ public class ArenaCreatorTest {
         player_special.add(new SpecialCard(5, '/', "card no 5"));
 
         GameParticipant part = Mockito.mock(GameParticipant.class);
-        Mockito.when(part.getMana()).thenReturn(10);
-        Mockito.when(part.getHealth()).thenReturn(10);
+        Mockito.when(part.getMana()).thenReturn(20);
+        Mockito.when(part.getHealth()).thenReturn(20);
         Mockito.when(part.getPlayDeck()).thenReturn(player_special);
 
         creator.create(controller);

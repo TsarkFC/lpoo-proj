@@ -35,7 +35,7 @@ public class MenuController implements Controller {
     }
 
     private void moveDown(){
-        if (model.getCross() < 4 && model.getNextCross()) model.crossMoveDown();
+        if (model.getCross() < 3 && model.getNextCross()) model.crossMoveDown();
     }
     private void moveUp() { if (model.getCross() > 0) model.crossMoveUp(); }
 
