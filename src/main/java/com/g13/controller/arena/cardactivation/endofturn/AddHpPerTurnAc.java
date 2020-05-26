@@ -16,6 +16,8 @@ public class AddHpPerTurnAc extends SpecialCardAc {
         this.card = card;
     }
 
+
+
     public void activate(SpecialCard.ACTIVATION_CONDITIONS condition, ArenaController arenaController){
 
         ParticipantController currentController = arenaController.getCurrent();
@@ -25,7 +27,10 @@ public class AddHpPerTurnAc extends SpecialCardAc {
             //Subtract mana on play
             currentController.getParticipant().setMana(currentController.getParticipant().getMana() - card.getCost());
             List<SpecialCard> a = currentController.getParticipant().getActiveCards();
-            a.add(card);
+
+            AddHpPerTurn c = card;
+
+            a.add(c);
             currentController.getParticipant().setActiveCards(a);
         }
 
