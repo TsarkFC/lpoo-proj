@@ -20,13 +20,21 @@ public class PlaySpecialCardCommand {
 
     public void execute() {
         int cardNum = currentController.getSelected();
+        if(cardNum == -1)
+            return;
         SpecialCard a = currentController.getParticipant().getPlayDeck().get(cardNum);
         currentController.setCardSelected(cardNum);
 
         if (a.getCost() <= currentController.getParticipant().getMana()) {
             arenaController.getActivationFactory().getActivation(a).activate(arenaController);
             List<SpecialCard> cards = currentController.getParticipant().getPlayDeck();
-            Collections.swap(cards, cardNum, cards.size() - 1);
+
+            if(cards.size() > 4) {
+                Collections.swap(cards, cardNum, 4);
+                SpecialCard card = cards.get(4);
+                cards.remove(4);
+                cards.add(card);
+            }
         }
     }
 }

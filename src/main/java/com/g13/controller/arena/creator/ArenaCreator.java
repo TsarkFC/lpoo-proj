@@ -35,6 +35,7 @@ public class ArenaCreator {
         player_special.add(new StaticModifier(3, '+', "Instantly adds 1 to your points this round", 1));
         player_special.add(new AddHpPerTurn(4, '-', "Heals for 5 per round for 1 round", 5, 1));
         player_special.add(new AddHpPerTurn(5, '/', "Heals for 2 per round for 4 rounds", 2, 4));
+        player_special.add(new StaticModifier(2, '+', "Instantly adds 2 to your points this round", 2));
         return player_special;
     }
 
