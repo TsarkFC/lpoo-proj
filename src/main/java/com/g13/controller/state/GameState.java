@@ -3,6 +3,7 @@ package com.g13.controller.state;
 import com.g13.controller.Controller;
 import com.g13.controller.arena.ArenaController;
 import com.g13.controller.arena.creator.ArenaCreator;
+import com.g13.controller.arena.strategies.PlayStrategy;
 import com.g13.model.Model;
 import com.g13.model.arena.Arena;
 import com.g13.view.View;
@@ -35,5 +36,9 @@ public class GameState implements State{
     public Controller getController() {return arenaController;}
 
     @Override
-    public void advance() { recognizer.setCurrentState(recognizer.getMenuState()); }
+    public void advance() { recognizer.setCurrentState(recognizer.getLevelState()); }
+
+    public void setStrategy(PlayStrategy strategy){
+        arenaController.setEnemyStrategy(strategy);
+    }
 }

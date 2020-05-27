@@ -198,16 +198,22 @@ public class ArenaController implements Controller {
 
     private boolean verifyEndOfGame() throws IOException {
         if (playerController.getHealth() <= 0) {
+            recognizer.getLevelState().lockStages();
             recognizer.setMenuState();
             enemyController.resetPlayer();
             playerController.resetPlayer();
             return true;
         }
         else if (enemyController.getHealth() <= 0){
+            recognizer.getLevelState().unlockNextStage();
             recognizer.setMenuState();
             enemyController.resetPlayer();
             return true;
         }
         else return false;
+    }
+
+    public void setEnemyStrategy(PlayStrategy strategy){
+        model.getEnemy().setPlayStrategy(strategy);
     }
 }
