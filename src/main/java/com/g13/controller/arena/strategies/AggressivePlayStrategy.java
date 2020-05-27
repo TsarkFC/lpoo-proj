@@ -68,10 +68,4 @@ public class AggressivePlayStrategy extends PlayStrategy{
 
         return has_drawn;
     }
-
-    @Override
-    public boolean CheckStaticModifier(ArenaController arenaController, int cost, int modNum) {
-        return true;
-    }
-
 }

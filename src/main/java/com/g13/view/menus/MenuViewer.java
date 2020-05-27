@@ -1,7 +1,7 @@
 package com.g13.view.menus;
 
 import com.g13.model.menus.button.Button;
-import com.g13.model.menus.Titles;
+import com.g13.model.menus.Menu;
 import com.g13.view.View;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
@@ -11,8 +11,8 @@ import com.googlecode.lanterna.screen.TerminalScreen;
 
 import java.io.IOException;
 
-public abstract class TitlesViewer implements View {
-    protected Titles model;
+public abstract class MenuViewer implements View {
+    protected Menu model;
     protected TerminalScreen screen;
     protected TextGraphics graphics;
     protected TextGraphics brownGraphics;
@@ -25,7 +25,7 @@ public abstract class TitlesViewer implements View {
         QUIT
     }
 
-    public TitlesViewer(Titles model, TerminalScreen screen){
+    public MenuViewer(Menu model, TerminalScreen screen){
         this.model = model;
         this.screen = screen;
         graphics = screen.newTextGraphics();

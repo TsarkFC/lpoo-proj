@@ -44,7 +44,8 @@ public class ParticipantController {
         setDrawDeck(deckCopy);
     }
 
-    public List<Card> getDrawDeck(){ return gameParticipant.getDrawDeck(); }
+    public List<Card> getDrawDeck() { return gameParticipant.getDrawDeck(); }
+    public List<SpecialCard> getPlayDeck() { return gameParticipant.getPlayDeck(); }
 
     public GameParticipant getParticipant(){
         return gameParticipant;
@@ -56,12 +57,12 @@ public class ParticipantController {
     public int getMaxPoints(){
         return gameParticipant.getMaxPoints();
     }
-    public void setPoints(int points){ gameParticipant.setPoints(points); }
+    public void setPoints(int points) { gameParticipant.setPoints(points); }
     public void subtractPoints(int points){
         gameParticipant.setPoints(gameParticipant.getPoints() - points);
     }
 
-    public int getHealth(){ return gameParticipant.getHealth();}
+    public int getHealth() { return gameParticipant.getHealth();}
     public void setHealth(int health) {gameParticipant.setHealth(health);}
     public void zeroHealth(){
         if (gameParticipant.getPoints() < 0)
@@ -74,12 +75,15 @@ public class ParticipantController {
     public int getMana() { return gameParticipant.getMana(); }
     public void setMana(int mana) { gameParticipant.setMana(mana); }
 
-    public void setCardSelected(int cardno, boolean value){
-        gameParticipant.getPlayDeck().get(cardno).setSelected(value);
+    public void setCardSelected(int cardno){
+        resetCardSelection(cardno);
+        getPlayDeck().get(cardno).setSelected(!getPlayDeck().get(cardno).getSelected());
     }
-    public void resetCardSelection(){
-        for (int i = 0; i<gameParticipant.getPlayDeck().size() && i<4; i++)
+    private void resetCardSelection(int cardno){
+        for (int i = 0; i<gameParticipant.getPlayDeck().size(); i++) {
+            if (i == cardno) continue;
             gameParticipant.getPlayDeck().get(i).setSelected(false);
+        }
     }
 
     public void setTurnOver(boolean value){
@@ -98,5 +102,12 @@ public class ParticipantController {
         setHealth(20);
         setMana(20);
         resetDrawDeck();
+    }
+
+    public int getSelected(){
+        for (int i = 0; i < getPlayDeck().size(); i++)
+            if (getPlayDeck().get(i).getSelected())
+                return i;
+        return -1;
     }
 }

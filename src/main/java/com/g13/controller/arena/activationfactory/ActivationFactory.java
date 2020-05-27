@@ -1,9 +1,10 @@
 package com.g13.controller.arena.activationfactory;
 
-import com.g13.controller.arena.cardactivation.SpecialCardAc;
-import com.g13.controller.arena.cardactivation.endofturn.AddHpPerTurnAc;
-import com.g13.controller.arena.cardactivation.instant.FluxModifierAtoBAc;
-import com.g13.controller.arena.cardactivation.instant.StaticModifierAc;
+import com.g13.controller.arena.cardactivation.AcSpecialCard;
+import com.g13.controller.arena.cardactivation.endofturn.AcAddHpPerTurn;
+import com.g13.controller.arena.cardactivation.endofturn.EndOfTurn;
+import com.g13.controller.arena.cardactivation.instant.AcFluxModifierAtoB;
+import com.g13.controller.arena.cardactivation.instant.AcStaticModifier;
 import com.g13.model.arena.specialcards.SpecialCard;
 import com.g13.model.arena.specialcards.endofturn.AddHpPerTurn;
 import com.g13.model.arena.specialcards.instant.FluxModifierAtoB;
@@ -11,13 +12,19 @@ import com.g13.model.arena.specialcards.instant.StaticModifier;
 
 public class ActivationFactory {
 
-    public SpecialCardAc getActivation(SpecialCard card){
+    public AcSpecialCard getActivation(SpecialCard card){
         if (card instanceof AddHpPerTurn)
-            return new AddHpPerTurnAc((AddHpPerTurn) card);
+            return new AcAddHpPerTurn((AddHpPerTurn) card);
         else if (card instanceof FluxModifierAtoB)
-            return new FluxModifierAtoBAc((FluxModifierAtoB) card);
+            return new AcFluxModifierAtoB((FluxModifierAtoB) card);
         else if (card instanceof StaticModifier)
-            return new StaticModifierAc((StaticModifier) card);
+            return new AcStaticModifier((StaticModifier) card);
+        return null;
+    }
+
+    public EndOfTurn getEndOfTurnActivation(SpecialCard card){
+        if (card instanceof AddHpPerTurn)
+            return new AcAddHpPerTurn((AddHpPerTurn) card);
         return null;
     }
 }

@@ -9,10 +9,11 @@ import com.googlecode.lanterna.screen.TerminalScreen;
 
 import java.io.IOException;
 
-public class LevelViewer extends TitlesViewer implements View {
+public class LevelViewer extends MenuViewer implements View {
     private Level model;
     private TerminalScreen screen;
-    private final String[] menu_titles = {"[Enemy 1] Normal mentality",
+    private final String[] menu_titles = {"[Previous menu]",
+                                        "[Enemy 1] Normal mentality",
                                         "[Enemy 2] Passive mentality",
                                         "[Enemy 3] Aggressive mentality"};
 

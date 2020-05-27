@@ -5,7 +5,7 @@ import com.g13.controller.state.StateRecognizer;
 import com.g13.model.menus.Start;
 import com.g13.view.menus.StartViewer;
 
-public class StartController extends TitlesController implements Controller {
+public class StartController extends MenuController implements Controller {
     private Start model;
 
     public StartController(Start model, StartViewer view, StateRecognizer recognizer){

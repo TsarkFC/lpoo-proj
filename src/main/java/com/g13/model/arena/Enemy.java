@@ -6,6 +6,7 @@ import com.g13.model.arena.specialcards.SpecialCard;
 import java.util.List;
 
 public class Enemy extends GameParticipant{
+
     PlayStrategy playStrategy;
 
     public Enemy(List<SpecialCard> play_deck, BarSet barSet, PlayStrategy playStrategy) {
@@ -16,4 +17,5 @@ public class Enemy extends GameParticipant{
     public PlayStrategy getPlayStrategy(){
         return playStrategy;
     }
+    public void setPlayStrategy(PlayStrategy playStrategy) { this.playStrategy = playStrategy; }
 }

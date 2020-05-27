@@ -6,15 +6,16 @@ import java.io.IOException;
 
 public class StateRecognizer {
     private GameState gameState;
+
     private StartState startState;
-    private MenuState menuState;
+    private LevelState levelState;
     private State currentState;
     private TerminalScreen screen;
 
     public StateRecognizer(TerminalScreen screen) throws IOException {
         this.screen = screen;
         startState = new StartState(this);
-        menuState = new MenuState(this);
+        levelState = new LevelState(this);
         gameState = new GameState(this);
         currentState = startState;
     }
@@ -22,14 +23,19 @@ public class StateRecognizer {
     public void setCurrentState(State currentState) { this.currentState = currentState; }
 
     public GameState getGameState() { return gameState; }
-    public MenuState getMenuState() { return menuState; }
+    public LevelState getLevelState() { return levelState; }
+    public StartState getStartState() { return startState; }
 
     public void setGameState() throws IOException {
         currentState = gameState;
         currentState.getView().draw();
     }
     public void setMenuState() throws IOException {
-        currentState = menuState;
+        currentState = levelState;
+        currentState.getView().draw();
+    }
+    public void setStartState() throws IOException {
+        currentState = startState;
         currentState.getView().draw();
     }
 

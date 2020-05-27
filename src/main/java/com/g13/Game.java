@@ -7,8 +7,7 @@ import java.io.IOException;
 
 public class Game {
     public static void main(String[] args) throws IOException {
-        ScreenFactory factory = new ScreenFactory();
-        StateRecognizer recognizer = new StateRecognizer(factory.getScreen());
+        StateRecognizer recognizer = new StateRecognizer(new ScreenFactory().getScreen());
         recognizer.getCurrentState().getView().draw();
         while(!recognizer.getCurrentState().getModel().isFinished())
             recognizer.getCurrentState().getController().start();
