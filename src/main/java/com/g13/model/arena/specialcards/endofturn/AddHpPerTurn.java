@@ -6,6 +6,11 @@ public class AddHpPerTurn extends SpecialCard {
 
     private int HPPerTurn;
 
+    public AddHpPerTurn(AddHpPerTurn a){
+        super(a.getCost(), a.getSymbol(), a.getCardInfo());
+        this.HPPerTurn = a.HPPerTurn;
+    }
+
     public AddHpPerTurn(int cost, char symbol, String cardInfo, int HPPerTurn, int numRounds) {
         super(cost, symbol, cardInfo);
         this.HPPerTurn = HPPerTurn;
