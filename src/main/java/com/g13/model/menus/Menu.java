@@ -2,7 +2,7 @@ package com.g13.model.menus;
 
 import com.g13.model.Model;
 
-public abstract class Titles implements Model {
+public abstract class Menu implements Model {
     protected boolean isFinished;
     protected final char[][] title_void = {{'*',' ','*',' ','*','*','*',' ','*','*','*',' ','*','*',' '},
             {'*',' ','*',' ','*',' ','*',' ',' ','*',' ',' ','*',' ','*'},
@@ -14,7 +14,7 @@ public abstract class Titles implements Model {
     public char[][] getTitle_void() { return title_void; }
     public char[][] getTitle_tyrant() { return title_tyrant; }
 
-    public Titles(boolean isFinished) {
+    public Menu(boolean isFinished) {
         this.isFinished = isFinished;
     }
 

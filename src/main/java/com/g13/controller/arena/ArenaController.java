@@ -39,7 +39,6 @@ public class ArenaController implements Controller {
     }
 
     public void start() throws IOException {
-        playerController.resetCardSelection();
         int select = -1;
 
         if (verifyEndOfGame()) return;
@@ -50,7 +49,7 @@ public class ArenaController implements Controller {
         else if(command == ArenaViewer.COMMAND.TWO) select = 1;
         else if(command == ArenaViewer.COMMAND.THREE) select = 2;
         else if(command == ArenaViewer.COMMAND.FOUR) select = 3;
-        if (select != -1) playerController.setCardSelected(select, true);
+        if (select != -1) playerController.setCardSelected(select);
 
         if (command == ArenaViewer.COMMAND.SWITCH) {
             if (endOfRound())
@@ -66,16 +65,8 @@ public class ArenaController implements Controller {
                 playEnemyTurn();
         }
 
-        if(!playerController.getTurnOver()) {
-            int cardno = 0;
-            if (command == ArenaViewer.COMMAND.PLAYCARD1) cardno = 1;
-            else if (command == ArenaViewer.COMMAND.PLAYCARD2) cardno = 2;
-            else if (command == ArenaViewer.COMMAND.PLAYCARD3) cardno = 3;
-            else if (command == ArenaViewer.COMMAND.PLAYCARD4) cardno = 4;
-
-            if (cardno != 0)
-                new PlaySpecialCardCommand(cardno, this).execute();
-        }
+        if(!playerController.getTurnOver() && command == ArenaViewer.COMMAND.PLAYCARD)
+            new PlaySpecialCardCommand(this).execute();
 
         view.draw();
 
@@ -143,9 +134,9 @@ public class ArenaController implements Controller {
         enemyController.setTurnOver(false);
         playerController.setPoints(0);
         enemyController.setPoints(0);
-        ProcessPlayerCards(SpecialCard.ACTIVATION_CONDITIONS.ON_END_TURN);
+        ProcessPlayerCards();
         model.setPlayersTurn(false);
-        ProcessEnemyCards(SpecialCard.ACTIVATION_CONDITIONS.ON_END_TURN);
+        ProcessEnemyCards();
         model.setPlayersTurn(true);
     }
 
@@ -167,23 +158,20 @@ public class ArenaController implements Controller {
         }
     }
 
-    public void ProcessPlayerCards(SpecialCard.ACTIVATION_CONDITIONS activationConditions){
+    public void ProcessPlayerCards(){
         List<SpecialCard> a = playerController.getParticipant().getActiveCards();
         for(int i = 0; i < a.size(); i++){
-            activationFactory.getActivation(a.get(i)).activate(activationConditions, this);
+            activationFactory.getEndOfTurnActivation(a.get(i)).activateEndOfTurn(this);
             if(a.get(i).getRoundsLeft() <= 0)
                 a.remove(i);
         }
         playerController.getParticipant().setActiveCards(a);
     }
 
-    public void ProcessEnemyCards(SpecialCard.ACTIVATION_CONDITIONS activationConditions){
-        for(int i = 0; i < enemyController.getParticipant().getActiveCards().size(); i++){
-            System.out.println("Old hp: " + enemyController.getParticipant().getHealth());
-            activationFactory.getActivation(enemyController.getParticipant().getActiveCards().get(i))
-                .activate(activationConditions, this);
-            System.out.println("New hp: " + enemyController.getParticipant().getHealth());
-        }
+    public void ProcessEnemyCards(){
+        for(int i = 0; i < enemyController.getParticipant().getActiveCards().size(); i++)
+            activationFactory.getEndOfTurnActivation(enemyController.getParticipant().getActiveCards().get(i))
+                .activateEndOfTurn(this);
     }
 
     public ParticipantController getCurrent(){

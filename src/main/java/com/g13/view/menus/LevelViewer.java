@@ -9,7 +9,7 @@ import com.googlecode.lanterna.screen.TerminalScreen;
 
 import java.io.IOException;
 
-public class LevelViewer extends TitlesViewer implements View {
+public class LevelViewer extends MenuViewer implements View {
     private Level model;
     private TerminalScreen screen;
     private final String[] menu_titles = {"[Previous menu]",

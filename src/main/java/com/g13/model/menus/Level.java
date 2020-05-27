@@ -6,7 +6,7 @@ import com.g13.model.menus.button.Stage;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Level extends Titles implements Model {
+public class Level extends Menu implements Model {
     private List<Stage> stages;
     private int cross;
     private int x = 12;

@@ -8,11 +8,6 @@ public class SpecialCard {
 
     protected int roundsLeft = 0;
 
-    public enum ACTIVATION_CONDITIONS{
-        ON_PLAY,
-        ON_END_TURN
-    }
-
     public enum CARD_TYPE{
         HEAL_INSTANT,
         HEAL_ON_END_TURN,

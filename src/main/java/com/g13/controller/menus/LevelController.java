@@ -6,7 +6,7 @@ import com.g13.model.menus.Level;
 import com.g13.model.menus.button.Stage;
 import com.g13.view.menus.LevelViewer;
 
-public class LevelController extends TitlesController implements Controller {
+public class LevelController extends MenuController implements Controller {
     private Level model;
 
     public LevelController(Level model, LevelViewer view, StateRecognizer recognizer){

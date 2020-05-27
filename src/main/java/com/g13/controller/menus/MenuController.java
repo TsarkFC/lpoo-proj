@@ -2,21 +2,21 @@ package com.g13.controller.menus;
 
 import com.g13.controller.Controller;
 import com.g13.controller.state.StateRecognizer;
-import com.g13.model.menus.Titles;
-import com.g13.view.menus.TitlesViewer;
+import com.g13.model.menus.Menu;
+import com.g13.view.menus.MenuViewer;
 import com.g13.view.menus.LevelViewer;
 
 import java.io.IOException;
 
-import static com.g13.view.menus.TitlesViewer.COMMAND.*;
-import static com.g13.view.menus.TitlesViewer.COMMAND.QUIT;
+import static com.g13.view.menus.MenuViewer.COMMAND.*;
+import static com.g13.view.menus.MenuViewer.COMMAND.QUIT;
 
-public abstract class TitlesController implements Controller {
-    protected Titles model;
-    protected TitlesViewer view;
+public abstract class MenuController implements Controller {
+    protected Menu model;
+    protected MenuViewer view;
     protected StateRecognizer recognizer;
 
-    public TitlesController(Titles model, TitlesViewer view, StateRecognizer recognizer){
+    public MenuController(Menu model, MenuViewer view, StateRecognizer recognizer){
         this.model = model;
         this.view = view;
         this.recognizer = recognizer;

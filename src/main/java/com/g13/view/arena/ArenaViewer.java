@@ -19,6 +19,7 @@ public class ArenaViewer implements View {
     private GameParticipantViewer gameParticipantViewer;
     private Arena arena;
     private TextGraphics graphics;
+    private boolean selected = false;
 
     public enum COMMAND {
         SWITCH,
@@ -29,14 +30,8 @@ public class ArenaViewer implements View {
         TWO,
         THREE,
         FOUR,
-        PLAYCARD1,
-        PLAYCARD2,
-        PLAYCARD3,
-        PLAYCARD4,
-        NOPLAYCARD
+        PLAYCARD
     }
-    COMMAND specialCmd = COMMAND.NOPLAYCARD;
-    COMMAND safeSpecialCmd;
 
     public ArenaViewer(Arena arena, TerminalScreen screen) throws IOException {
         this.screen = screen;
@@ -73,39 +68,31 @@ public class ArenaViewer implements View {
             screen.close();
             return COMMAND.QUIT;
         }
-
         if (input.getKeyType() == KeyType.Character && input.getCharacter() == '1') {
-            specialCmd = COMMAND.PLAYCARD1;
+            selected = true;
             return COMMAND.ONE;
         }
         if (input.getKeyType() == KeyType.Character && input.getCharacter() == '2') {
-            specialCmd = COMMAND.PLAYCARD2;
+            selected = true;
             return COMMAND.TWO;
         }
         if (input.getKeyType() == KeyType.Character && input.getCharacter() == '3') {
-            specialCmd = COMMAND.PLAYCARD3;
+            selected = true;
             return COMMAND.THREE;
         }
         if (input.getKeyType() == KeyType.Character && input.getCharacter() == '4') {
-            specialCmd = COMMAND.PLAYCARD4;
+            selected = true;
             return COMMAND.FOUR;
         }
-
         if (input.getKeyType() == KeyType.Character && input.getCharacter() == 'd') {
-            specialCmd = COMMAND.NOPLAYCARD;
             return COMMAND.DRAW;
         }
-        if (input.getKeyType() == KeyType.Enter){
-            specialCmd = COMMAND.NOPLAYCARD;
+        if (input.getKeyType() == KeyType.Enter) {
             return COMMAND.SWITCH;
         }
-
-        if(input.getKeyType() == KeyType.Tab){
-            safeSpecialCmd = specialCmd;
-            specialCmd = COMMAND.NOPLAYCARD;
-            return safeSpecialCmd;
+        if(input.getKeyType() == KeyType.Tab) {
+            if (selected) return COMMAND.PLAYCARD;
         }
-
         return COMMAND.NOTHING;
     }
 

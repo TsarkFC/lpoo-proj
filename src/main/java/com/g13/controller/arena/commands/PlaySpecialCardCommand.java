@@ -11,24 +11,22 @@ public class PlaySpecialCardCommand {
     private ArenaController arenaController;
     private ParticipantController currentController;
     private ParticipantController oppositeController;
-    int cardNum;
 
-    public PlaySpecialCardCommand(int cardNum , ArenaController arenaController){
+    public PlaySpecialCardCommand(ArenaController arenaController){
         this.arenaController = arenaController;
         this.currentController = arenaController.getCurrent();
         this.oppositeController = arenaController.getOpponent();
-        this.cardNum = cardNum - 1;
     }
 
     public void execute() {
+        int cardNum = currentController.getSelected();
         SpecialCard a = currentController.getParticipant().getPlayDeck().get(cardNum);
+        currentController.setCardSelected(cardNum);
 
         if (a.getCost() <= currentController.getParticipant().getMana()) {
-            arenaController.getActivationFactory().getActivation(a)
-                .activate(SpecialCard.ACTIVATION_CONDITIONS.ON_PLAY, arenaController);
+            arenaController.getActivationFactory().getActivation(a).activate(arenaController);
             List<SpecialCard> cards = currentController.getParticipant().getPlayDeck();
             Collections.swap(cards, cardNum, cards.size() - 1);
         }
     }
-
 }

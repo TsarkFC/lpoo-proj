@@ -1,7 +1,6 @@
 package com.g13.view.menus;
 
 import com.g13.model.menus.Start;
-import com.g13.model.menus.button.Button;
 import com.g13.view.View;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
@@ -9,7 +8,7 @@ import com.googlecode.lanterna.screen.TerminalScreen;
 
 import java.io.IOException;
 
-public class StartViewer extends TitlesViewer implements View {
+public class StartViewer extends MenuViewer implements View {
     private Start model;
     private int line = 0;
     private final String[][] instructions = {

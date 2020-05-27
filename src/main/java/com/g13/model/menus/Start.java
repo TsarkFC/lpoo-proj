@@ -6,7 +6,7 @@ import com.g13.model.menus.button.Button;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Start extends Titles implements Model {
+public class Start extends Menu implements Model {
     private List<Button> buttons = new ArrayList<>();
     private int selection = 0;
 
