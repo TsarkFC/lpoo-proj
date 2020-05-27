@@ -3,11 +3,8 @@ package com.g13.view.arena;
 import com.g13.model.arena.BarSet;
 import com.g13.model.arena.GameParticipant;
 import com.g13.model.arena.specialcards.SpecialCard;
-import com.g13.view.arena.BarViewer;
-import com.g13.view.arena.CardViewer;
-import com.g13.view.arena.GameParticipantViewer;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.util.ArrayList;
@@ -55,6 +52,14 @@ public class PlayerViewerTest {
                 .drawManaBar(15, 22, 0, 0);
         Mockito.verify(barViewer, Mockito.times(1))
                 .drawPointBar(15, 12, 0, 0);
+        Mockito.verify(graphics, Mockito.times(1))
+                .putString(20, 11, "Drawing...");
+
+        player.setTurnOver(true);
+        viewer.drawPlayer(player);
+
+        Mockito.verify(graphics, Mockito.times(1))
+                .putString(20, 11, "Finished!");
     }
 
     @Test
@@ -81,5 +86,13 @@ public class PlayerViewerTest {
                 .drawManaBar(15, 2, 0, 0);
         Mockito.verify(barViewer, Mockito.times(1))
                 .drawPointBar(15, 8, 0, 12);
+        Mockito.verify(graphics, Mockito.times(1))
+                .putString(20, 7, "Drawing...");
+
+        enemy.setTurnOver(true);
+        viewer.drawPlayer(enemy);
+
+        Mockito.verify(graphics, Mockito.times(1))
+                .putString(20, 11, "Finished!");
     }
 }

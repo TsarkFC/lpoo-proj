@@ -2,19 +2,18 @@ package com.g13.controller.arena;
 
 import com.g13.controller.arena.strategies.NormalPlayStrategy;
 import com.g13.controller.arena.strategies.PlayStrategy;
-import com.g13.controller.state.State;
 import com.g13.controller.state.StateRecognizer;
 import com.g13.model.arena.Arena;
 import com.g13.model.arena.BarSet;
 import com.g13.model.arena.Enemy;
 import com.g13.model.arena.GameParticipant;
 import com.g13.view.arena.ArenaViewer;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.util.ArrayList;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ArenaControllerTest {
     @Test

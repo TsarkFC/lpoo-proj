@@ -1,9 +1,8 @@
 package com.g13.view.arena;
 
-import com.g13.view.arena.BarViewer;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 public class BarViewerTest {

@@ -7,13 +7,14 @@ import com.g13.controller.arena.strategies.PlayStrategy;
 import com.g13.controller.state.StateRecognizer;
 import com.g13.model.arena.*;
 import com.g13.view.arena.ArenaViewer;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 public class DrawCardCommandTest {
     @Test

@@ -1,12 +1,7 @@
 package com.g13.model.arena;
 
-import com.g13.view.arena.ArenaViewer;
-import org.junit.Test;
-import org.mockito.Mockito;
-
-import java.util.ArrayList;
-
-import static org.junit.Assert.assertEquals;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ArenaTest {
     @Test

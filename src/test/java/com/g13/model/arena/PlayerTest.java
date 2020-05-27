@@ -1,12 +1,12 @@
 package com.g13.model.arena;
 
 import com.g13.model.arena.specialcards.SpecialCard;
-import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PlayerTest {
     @Test

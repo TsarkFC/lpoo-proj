@@ -15,8 +15,15 @@ application {
     mainClassName = 'com.g13.Game'
 }
 
+test {
+    useJUnitPlatform {
+        includeEngines ('junit-jupiter', 'jqwik')
+    }
+}
+
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
     compile group: 'com.googlecode.lanterna', name: 'lanterna', version: '3.0.1'
     testCompile group: 'org.mockito', name: 'mockito-core', version: '2.25.0'
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter', version: '5.6.2'
+    testCompile group: 'net.jqwik', name: 'jqwik', version: '1.2.7'
 }

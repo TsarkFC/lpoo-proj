@@ -2,12 +2,12 @@ package com.g13.model.arena;
 
 import com.g13.controller.arena.strategies.NormalPlayStrategy;
 import com.g13.controller.arena.strategies.PlayStrategy;
-import org.junit.Test;
 import org.mockito.Mockito;
 
 import java.util.ArrayList;
 
-import static org.junit.Assert.assertEquals;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class EnemyTest {
     @Test
