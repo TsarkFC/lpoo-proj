@@ -25,6 +25,11 @@ public class LevelController extends TitlesController implements Controller {
                 stage.setUnlocked(true);
                 break;
             }
+    }
 
+    public void lockStages(){
+        model.resetCross();
+        model.getStages().get(2).setUnlocked(false);
+        model.getStages().get(3).setUnlocked(false);
     }
 }

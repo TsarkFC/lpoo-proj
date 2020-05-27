@@ -28,5 +28,5 @@ public class Level extends Titles implements Model {
 
     public List<Stage> getStages() { return stages; }
     public boolean getNextCross() { return stages.get(cross+1).isUnlocked(); }
-
+    public void resetCross() { cross = 0; }
 }

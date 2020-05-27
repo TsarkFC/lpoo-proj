@@ -55,4 +55,5 @@ public class LevelState implements State{
     public void unlockNextStage(){
         levelController.unlockNextStage();
     }
+    public void lockStages() { levelController.lockStages(); }
 }

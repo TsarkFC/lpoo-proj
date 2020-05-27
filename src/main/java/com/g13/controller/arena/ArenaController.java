@@ -198,6 +198,7 @@ public class ArenaController implements Controller {
 
     private boolean verifyEndOfGame() throws IOException {
         if (playerController.getHealth() <= 0) {
+            recognizer.getLevelState().lockStages();
             recognizer.setMenuState();
             enemyController.resetPlayer();
             playerController.resetPlayer();
