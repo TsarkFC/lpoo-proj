@@ -60,4 +60,8 @@ public class AggressivePlayStrategy extends PlayStrategy{
 
         return has_drawn;
     }
+
+    private void modifiersCondition(){
+
+    }
 }
