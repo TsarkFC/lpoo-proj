@@ -56,4 +56,14 @@ public class AcAddHpPerTurn extends AcSpecialCard implements EndOfTurn{
         }
         card.decrementRoundsLeft();
     }
+
+    private boolean hasHealCardAlready(ArenaController arenaController){
+        boolean hasHealCardAlready = false;
+        for(SpecialCard spec: arenaController.getEnemy().getActiveCards()){
+            if (spec instanceof AddHpPerTurn){
+                hasHealCardAlready = true;
+            }
+        }
+        return hasHealCardAlready;
+    }
 }

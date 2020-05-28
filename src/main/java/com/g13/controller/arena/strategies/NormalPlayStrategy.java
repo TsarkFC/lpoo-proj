@@ -29,7 +29,7 @@ public class NormalPlayStrategy extends PlayStrategy{
         }
 
         //Vais querer fazer draw na próxima ronda?
-        if(arenaController.getEnemyController().getPoints() >= arenaController.getEnemyController().getMaxPoints() - 5){
+        if(arenaController.getEnemyController().getPoints() > arenaController.getEnemyController().getMaxPoints() - 5){
             draw_limit_reached = true;
         }
 
