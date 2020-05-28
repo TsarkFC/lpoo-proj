@@ -3,6 +3,9 @@ package com.g13.controller.arena.cardactivation;
 import com.g13.controller.arena.ArenaController;
 import com.g13.model.arena.specialcards.SpecialCard;
 
+import java.util.Collections;
+import java.util.List;
+
 public abstract class AcSpecialCard {
 
     private SpecialCard card;
@@ -14,5 +17,15 @@ public abstract class AcSpecialCard {
     }
 
     public abstract void activate(ArenaController arenaController);
-    public abstract boolean checkEnemyPlay(ArenaController arenaController);
+    public abstract boolean checkEnemyPlay(ArenaController arenaController, int cardPos);
+    protected void RotateCards(ArenaController arenaController, int cardPos){
+        List<SpecialCard> cards = arenaController.getEnemy().getPlayDeck();
+
+        if(cards.size() > 4) {
+            Collections.swap(cards, cardPos, 4);
+            SpecialCard card = cards.get(4);
+            cards.remove(4);
+            cards.add(card);
+        }
+    }
 }

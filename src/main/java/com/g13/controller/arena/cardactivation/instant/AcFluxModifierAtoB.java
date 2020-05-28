@@ -16,7 +16,7 @@ public class AcFluxModifierAtoB extends AcSpecialCard {
     }
 
     @Override
-    public boolean checkEnemyPlay(ArenaController arenaController){
+    public boolean checkEnemyPlay(ArenaController arenaController, int cardPos){
         if (checkPlay(arenaController))
             return false;
 
@@ -26,6 +26,8 @@ public class AcFluxModifierAtoB extends AcSpecialCard {
         if(!arenaController.getEnemy().getPlayStrategy().CheckFluxModifier(arenaController, card.getCost(), card.getMinModNum(), card.getMaxModNum()))
             return false;
 
+        System.out.println("B");
+        RotateCards(arenaController, cardPos);
         activate(arenaController);
         return true;
     }

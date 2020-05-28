@@ -29,7 +29,6 @@ public class AcAddHpPerTurn extends AcSpecialCard implements EndOfTurn{
     }
 
     @Override
-    public boolean checkEnemyPlay(ArenaController arenaController) {
         if (checkPlay(arenaController))
             return false;
 
