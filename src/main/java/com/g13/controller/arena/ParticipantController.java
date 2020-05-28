@@ -74,6 +74,9 @@ public class ParticipantController {
 
     public int getMana() { return gameParticipant.getMana(); }
     public void setMana(int mana) { gameParticipant.setMana(mana); }
+    public void subtractMana(int value){
+        gameParticipant.setMana(gameParticipant.getMana() - value);
+    }
 
     public void setCardSelected(int cardno){
         resetCardSelection(cardno);
@@ -93,8 +96,8 @@ public class ParticipantController {
 
     public void setDrawDeck(List<Card> deck){ gameParticipant.setDrawDeck(deck); }
 
-    public SpecialCard.CARD_TYPE getCardType(int cardno){
-       return gameParticipant.getPlayDeck().get(cardno).getCardType();
+    public SpecialCard getCard(int cardno){
+       return gameParticipant.getPlayDeck().get(cardno);
     }
 
     public void resetPlayer(){

@@ -1,11 +1,12 @@
-package com.g13.model.arena.specialcards.instant;
+package com.g13.model.arena.specialcards.endofturn;
 
 import com.g13.model.arena.specialcards.SpecialCard;
 
-public class InstantDamage extends SpecialCard {
+public class OnWinDamage extends SpecialCard {
     private int damage;
+    private int numrounds;
 
-    public InstantDamage(int cost, char symbol, String cardInfo, int damage) {
+    public OnWinDamage(int cost, char symbol, String cardInfo, int damage) {
         super(cost, symbol, cardInfo);
         this.damage = damage;
     }

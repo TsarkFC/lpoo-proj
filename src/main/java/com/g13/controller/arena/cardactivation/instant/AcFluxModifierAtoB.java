@@ -37,8 +37,7 @@ public class AcFluxModifierAtoB extends AcSpecialCard {
         //Add a random number --Has to be in the function itself, if it were in the constructor, it'd always add the same number
         int modNum = ThreadLocalRandom.current().nextInt(card.getMinModNum(), card.getMaxModNum() + 1);
 
-        //Subtract mana
-        currentController.getParticipant().setMana(currentController.getParticipant().getMana() - card.getCost());
+        currentController.subtractMana(card.getCost());
         currentController.setPoints(currentController.getPoints() + modNum);
         arenaController.checkControllerPoints();
     }

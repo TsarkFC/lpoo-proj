@@ -8,17 +8,6 @@ public class SpecialCard {
 
     protected int roundsLeft = 0;
 
-    public enum CARD_TYPE{
-        HEAL_INSTANT,
-        HEAL_ON_END_TURN,
-        FLUX_MODIFIER_A_TO_B,
-        FLUX_MODIFIER_X_Y_OR_Z,
-        STATIC_MODIFIER,
-        INSTANT_DAMAGE
-    }
-
-    protected CARD_TYPE cardType;
-
     protected int duration = 0;
 
     public SpecialCard(int cost, char symbol, String cardInfo){
@@ -47,9 +36,4 @@ public class SpecialCard {
         return roundsLeft;
     }
     public void decrementRoundsLeft() {roundsLeft--;}
-
-
-    public CARD_TYPE getCardType(){
-        return cardType;
-    }
 }

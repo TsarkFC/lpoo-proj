@@ -13,8 +13,8 @@ public class LevelViewer extends MenuViewer implements View {
     private Level model;
     private TerminalScreen screen;
     private final String[] menu_titles = {"[Previous menu]",
-                                        "[Enemy 1] Normal mentality",
-                                        "[Enemy 2] Passive mentality",
+                                        "[Enemy 1] Careful mentality",
+                                        "[Enemy 2] Normal mentality",
                                         "[Enemy 3] Aggressive mentality"};
 
     public LevelViewer(Level model, TerminalScreen screen) {
