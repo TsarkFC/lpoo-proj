@@ -39,6 +39,9 @@ public class AcAddHpPerTurn extends AcSpecialCard implements EndOfTurn{
         if(!arenaController.getEnemy().getPlayStrategy().CheckOverTimeHeal(arenaController, card.getCost()))
             return false;
 
+        if (hasHealCardAlready(arenaController))
+            return false;
+
         activate(arenaController);
         return true;
     }
@@ -51,5 +54,15 @@ public class AcAddHpPerTurn extends AcSpecialCard implements EndOfTurn{
             currentController.getParticipant().setHealth(currentController.getParticipant().getMaxHealth());
         }
         card.decrementRoundsLeft();
+    }
+
+    private boolean hasHealCardAlready(ArenaController arenaController){
+        boolean hasHealCardAlready = false;
+        for(SpecialCard spec: arenaController.getEnemy().getActiveCards()){
+            if (spec instanceof AddHpPerTurn){
+                hasHealCardAlready = true;
+            }
+        }
+        return hasHealCardAlready;
     }
 }

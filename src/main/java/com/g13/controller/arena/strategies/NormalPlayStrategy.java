@@ -29,14 +29,16 @@ public class NormalPlayStrategy extends PlayStrategy{
         }
 
         //Vais querer fazer draw na próxima ronda?
-        if(arenaController.getEnemyController().getPoints() >= arenaController.getEnemyController().getMaxPoints() - 5){
+        if(arenaController.getEnemyController().getPoints() > arenaController.getEnemyController().getMaxPoints() - 5){
             draw_limit_reached = true;
         }
 
-        for(int i = 0; i < 4; i++){
-            SpecialCard card = arenaController.getEnemyController().getCard(i);
-            if(card instanceof StaticModifier || card instanceof FluxModifierAtoB)
-                arenaController.getActivationFactory().getActivation(card).checkEnemyPlay(arenaController);
+        if (draw_limit_reached) {
+            for (int i = 0; i < 4; i++) {
+                SpecialCard card = arenaController.getEnemyController().getCard(i);
+                if (card instanceof StaticModifier || card instanceof FluxModifierAtoB)
+                    arenaController.getActivationFactory().getActivation(card).checkEnemyPlay(arenaController);
+            }
         }
 
         //Heal (End turn)
