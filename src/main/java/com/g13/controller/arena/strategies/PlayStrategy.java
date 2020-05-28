@@ -10,6 +10,8 @@ abstract public class PlayStrategy {
 
     protected double flux_percentage_accept = 0.75;
 
+    protected double damage_percentage_accept = 0.33; //The higher, the more kill happy the ai is
+
     protected boolean draw_limit_reached = false;
 
     abstract public boolean playTurn(ArenaController arenaController);
@@ -38,6 +40,11 @@ abstract public class PlayStrategy {
         return result <= arenaController.getEnemy().getMaxPoints() - arenaController.getEnemy().getPoints() && HasEnoughManaToWantToPlay(arenaController, cost);
     }
 
+    public boolean CheckInstantDamage(ArenaController arenaController, int cost, int minDamage, int maxDamage){
+        int result =  (int) Math.floor(damage_percentage_accept * (maxDamage - minDamage + 1) + minDamage);
+
+        return arenaController.getPlayer().getHealth()  <=  result || HasEnoughManaToWantToPlay(arenaController, cost);
+    }
 
     private boolean HasEnoughManaToWantToPlay(ArenaController arenaController, int cost){
         return mana_saved <= arenaController.getEnemy().getMana() - cost;

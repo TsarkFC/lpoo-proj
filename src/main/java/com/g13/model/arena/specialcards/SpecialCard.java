@@ -13,7 +13,8 @@ public class SpecialCard {
         HEAL_ON_END_TURN,
         FLUX_MODIFIER_A_TO_B,
         FLUX_MODIFIER_X_Y_OR_Z,
-        STATIC_MODIFIER
+        STATIC_MODIFIER,
+        INSTANT_DAMAGE
     }
 
     protected CARD_TYPE cardType;
