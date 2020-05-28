@@ -132,12 +132,12 @@ public class ArenaController implements Controller {
     private void resetRound(){
         playerController.setTurnOver(false);
         enemyController.setTurnOver(false);
-        playerController.setPoints(0);
-        enemyController.setPoints(0);
         ProcessPlayerCards();
         model.setPlayersTurn(false);
         ProcessEnemyCards();
         model.setPlayersTurn(true);
+        playerController.setPoints(0);
+        enemyController.setPoints(0);
     }
 
     public void checkControllerPoints(){
@@ -159,19 +159,19 @@ public class ArenaController implements Controller {
     }
 
     public void ProcessPlayerCards(){
-        List<SpecialCard> a = playerController.getParticipant().getActiveCards();
-        for(int i = 0; i < a.size(); i++){
-            activationFactory.getEndOfTurnActivation(a.get(i)).activateEndOfTurn(this);
-            if(a.get(i).getRoundsLeft() <= 0)
-                a.remove(i);
+        List<SpecialCard> deck = playerController.getParticipant().getActiveCards();
+        for(int i = 0; i < deck.size(); i++){
+            activationFactory.getEndOfTurnActivation(deck.get(i)).activateEndOfTurn(this);
+            if(deck.get(i).getRoundsLeft() <= 0)
+                deck.remove(i);
         }
-        playerController.getParticipant().setActiveCards(a);
+        playerController.getParticipant().setActiveCards(deck);
     }
 
     public void ProcessEnemyCards(){
-        for(int i = 0; i < enemyController.getParticipant().getActiveCards().size(); i++)
-            activationFactory.getEndOfTurnActivation(enemyController.getParticipant().getActiveCards().get(i))
-                .activateEndOfTurn(this);
+        List<SpecialCard> deck = enemyController.getParticipant().getActiveCards();
+        for(int i = 0; i < deck.size(); i++)
+            activationFactory.getEndOfTurnActivation(deck.get(i)).activateEndOfTurn(this);
     }
 
     public ParticipantController getCurrent(){

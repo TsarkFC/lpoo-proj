@@ -10,7 +10,6 @@ public class AddHpPerTurn extends SpecialCard {
         super(cost, symbol, cardInfo);
         this.HPPerTurn = HPPerTurn;
         this.roundsLeft = numRounds;
-        cardType = SpecialCard.CARD_TYPE.HEAL_ON_END_TURN;
     }
 
     public int getHPPerTurn(){ return HPPerTurn; }

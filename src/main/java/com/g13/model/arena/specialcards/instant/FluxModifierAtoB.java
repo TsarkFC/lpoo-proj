@@ -11,7 +11,6 @@ public class FluxModifierAtoB extends SpecialCard {
         super(cost, symbol, cardInfo);
         this.minModNum = minModNum;
         this.maxModNum = maxModNum;
-        cardType = SpecialCard.CARD_TYPE.FLUX_MODIFIER_A_TO_B;
     }
 
     public int getMinModNum(){ return minModNum; }

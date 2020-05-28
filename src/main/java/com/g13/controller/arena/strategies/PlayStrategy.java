@@ -15,29 +15,25 @@ abstract public class PlayStrategy {
     abstract public boolean playTurn(ArenaController arenaController);
 
     public boolean CheckStaticModifier(ArenaController arenaController, int cost, int modNum) {
-        if(arenaController.getEnemy().getPoints() <= arenaController.getPlayer().getPoints() && draw_limit_reached)
-            HasEnoughManaToWantToPlay(arenaController, cost);
-        return false;
-    }
-
-    public boolean CheckInstantHeal(ArenaController arenaController, int cost) {
-        if(arenaController.getEnemy().getHealth() <= health_to_heal)
-            HasEnoughManaToWantToPlay(arenaController, cost);
+        int enemy_points = arenaController.getEnemy().getPoints();
+        if(enemy_points <= arenaController.getPlayer().getPoints() && draw_limit_reached
+            && enemy_points + modNum < arenaController.getEnemy().getMaxPoints())
+            return HasEnoughManaToWantToPlay(arenaController, cost);
         return false;
     }
 
     public boolean CheckOverTimeHeal(ArenaController arenaController, int cost) {
         if(arenaController.getEnemy().getHealth() <= health_to_heal)
-            HasEnoughManaToWantToPlay(arenaController, cost);
+            return HasEnoughManaToWantToPlay(arenaController, cost);
         return false;
     }
 
     public boolean CheckFluxModifier(ArenaController arenaController, int cost, int minModNum, int maxModNum){
         int result =  (int) Math.ceil(flux_percentage_accept * (maxModNum - minModNum + 1) + minModNum);
 
-        return result <= arenaController.getEnemy().getMaxPoints() - arenaController.getEnemy().getPoints() && HasEnoughManaToWantToPlay(arenaController, cost);
+        return result <= arenaController.getEnemy().getMaxPoints() - arenaController.getEnemy().getPoints()
+                && HasEnoughManaToWantToPlay(arenaController, cost);
     }
-
 
     private boolean HasEnoughManaToWantToPlay(ArenaController arenaController, int cost){
         return mana_saved <= arenaController.getEnemy().getMana() - cost;

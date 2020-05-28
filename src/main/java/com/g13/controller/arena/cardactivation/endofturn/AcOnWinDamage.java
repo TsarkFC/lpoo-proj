@@ -4,25 +4,26 @@ import com.g13.controller.arena.ArenaController;
 import com.g13.controller.arena.ParticipantController;
 import com.g13.controller.arena.cardactivation.AcSpecialCard;
 import com.g13.model.arena.specialcards.SpecialCard;
-import com.g13.model.arena.specialcards.endofturn.AddHpPerTurn;
+import com.g13.model.arena.specialcards.endofturn.OnWinDamage;
 
 import java.util.List;
 
-public class AcAddHpPerTurn extends AcSpecialCard implements EndOfTurn{
-    private AddHpPerTurn card;
+public class AcOnWinDamage extends AcSpecialCard implements EndOfTurn {
+    OnWinDamage card;
 
-    public AcAddHpPerTurn(AddHpPerTurn card){
+    public AcOnWinDamage(OnWinDamage card) {
         super(card);
         this.card = card;
     }
 
     @Override
-    public void activate(ArenaController arenaController){
+    public void activate(ArenaController arenaController) {
         ParticipantController currentController = arenaController.getCurrent();
+
         currentController.subtractMana(card.getCost());
         List<SpecialCard> deck = currentController.getParticipant().getActiveCards();
 
-        AddHpPerTurn c = card;
+        OnWinDamage c = card;
 
         deck.add(c);
         currentController.getParticipant().setActiveCards(deck);
@@ -32,13 +33,6 @@ public class AcAddHpPerTurn extends AcSpecialCard implements EndOfTurn{
     public boolean checkEnemyPlay(ArenaController arenaController) {
         if (checkPlay(arenaController))
             return false;
-
-        if(arenaController.getEnemy().getHealth() >= arenaController.getEnemy().getMaxHealth())
-            return false;
-
-        if(!arenaController.getEnemy().getPlayStrategy().CheckOverTimeHeal(arenaController, card.getCost()))
-            return false;
-
         activate(arenaController);
         return true;
     }
@@ -46,10 +40,10 @@ public class AcAddHpPerTurn extends AcSpecialCard implements EndOfTurn{
     @Override
     public void activateEndOfTurn(ArenaController arenaController) {
         ParticipantController currentController = arenaController.getCurrent();
-        currentController.getParticipant().setHealth(currentController.getParticipant().getHealth() + card.getHPPerTurn());
-        if(currentController.getParticipant().getHealth() > currentController.getParticipant().getMaxHealth()){
-            currentController.getParticipant().setHealth(currentController.getParticipant().getMaxHealth());
+        ParticipantController opponentController = arenaController.getOpponent();
+
+        if (currentController.getPoints() != 0) {
+            opponentController.subtractHealth(card.getDamage());
         }
-        card.decrementRoundsLeft();
     }
 }
