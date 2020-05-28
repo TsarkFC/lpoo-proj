@@ -4,7 +4,6 @@ import com.g13.controller.arena.ArenaController;
 import com.g13.controller.arena.ParticipantController;
 import com.g13.controller.arena.cardactivation.AcSpecialCard;
 import com.g13.model.arena.specialcards.SpecialCard;
-import com.g13.model.arena.specialcards.endofturn.AddHpPerTurn;
 import com.g13.model.arena.specialcards.endofturn.OnWinDamage;
 
 import java.util.List;
@@ -20,19 +19,22 @@ public class AcOnWinDamage extends AcSpecialCard implements EndOfTurn {
     @Override
     public void activate(ArenaController arenaController) {
         ParticipantController currentController = arenaController.getCurrent();
-        //Subtract mana on play
-        currentController.getParticipant().setMana(currentController.getParticipant().getMana() - card.getCost());
-        List<SpecialCard> a = currentController.getParticipant().getActiveCards();
+
+        currentController.subtractMana(card.getCost());
+        List<SpecialCard> deck = currentController.getParticipant().getActiveCards();
 
         OnWinDamage c = card;
 
-        a.add(c);
-        currentController.getParticipant().setActiveCards(a);
+        deck.add(c);
+        currentController.getParticipant().setActiveCards(deck);
     }
 
     @Override
     public boolean checkEnemyPlay(ArenaController arenaController) {
-        return false;
+        if (checkPlay(arenaController))
+            return false;
+        activate(arenaController);
+        return true;
     }
 
     @Override
@@ -40,7 +42,8 @@ public class AcOnWinDamage extends AcSpecialCard implements EndOfTurn {
         ParticipantController currentController = arenaController.getCurrent();
         ParticipantController opponentController = arenaController.getOpponent();
 
-        if (currentController == arenaController.getWinner())
+        if (currentController.getPoints() != 0) {
             opponentController.subtractHealth(card.getDamage());
+        }
     }
 }

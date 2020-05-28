@@ -132,12 +132,12 @@ public class ArenaController implements Controller {
     private void resetRound(){
         playerController.setTurnOver(false);
         enemyController.setTurnOver(false);
-        playerController.setPoints(0);
-        enemyController.setPoints(0);
         ProcessPlayerCards();
         model.setPlayersTurn(false);
         ProcessEnemyCards();
         model.setPlayersTurn(true);
+        playerController.setPoints(0);
+        enemyController.setPoints(0);
     }
 
     public void checkControllerPoints(){
@@ -170,8 +170,7 @@ public class ArenaController implements Controller {
 
     public void ProcessEnemyCards(){
         for(int i = 0; i < enemyController.getParticipant().getActiveCards().size(); i++)
-            activationFactory.getEndOfTurnActivation(enemyController.getParticipant().getActiveCards().get(i))
-                .activateEndOfTurn(this);
+            activationFactory.getEndOfTurnActivation(enemyController.getCard(i)).activateEndOfTurn(this);
     }
 
     public ParticipantController getCurrent(){

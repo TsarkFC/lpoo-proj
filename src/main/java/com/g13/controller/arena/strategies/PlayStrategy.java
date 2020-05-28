@@ -20,12 +20,6 @@ abstract public class PlayStrategy {
         return false;
     }
 
-    public boolean CheckInstantHeal(ArenaController arenaController, int cost) {
-        if(arenaController.getEnemy().getHealth() <= health_to_heal)
-            HasEnoughManaToWantToPlay(arenaController, cost);
-        return false;
-    }
-
     public boolean CheckOverTimeHeal(ArenaController arenaController, int cost) {
         if(arenaController.getEnemy().getHealth() <= health_to_heal)
             HasEnoughManaToWantToPlay(arenaController, cost);
@@ -35,9 +29,9 @@ abstract public class PlayStrategy {
     public boolean CheckFluxModifier(ArenaController arenaController, int cost, int minModNum, int maxModNum){
         int result =  (int) Math.ceil(flux_percentage_accept * (maxModNum - minModNum + 1) + minModNum);
 
-        return result <= arenaController.getEnemy().getMaxPoints() - arenaController.getEnemy().getPoints() && HasEnoughManaToWantToPlay(arenaController, cost);
+        return result <= arenaController.getEnemy().getMaxPoints() - arenaController.getEnemy().getPoints()
+                && HasEnoughManaToWantToPlay(arenaController, cost);
     }
-
 
     private boolean HasEnoughManaToWantToPlay(ArenaController arenaController, int cost){
         return mana_saved <= arenaController.getEnemy().getMana() - cost;

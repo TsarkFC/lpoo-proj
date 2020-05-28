@@ -17,9 +17,6 @@ public class CarefulPlayStrategy extends PlayStrategy{
             command.execute();
             has_drawn = true;
         }
-
-
-
         return has_drawn;
     }
 

@@ -32,8 +32,7 @@ public class AcStaticModifier extends AcSpecialCard {
     public void activate(ArenaController arenaController){
         ParticipantController currentController = arenaController.getCurrent();
 
-        //Subtract mana
-        currentController.getParticipant().setMana(currentController.getParticipant().getMana() - card.getCost());
+        currentController.subtractMana(card.getCost());
         currentController.setPoints(currentController.getPoints() + card.getModNum());
         arenaController.checkControllerPoints();
     }

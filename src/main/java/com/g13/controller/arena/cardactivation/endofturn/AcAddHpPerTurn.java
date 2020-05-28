@@ -19,14 +19,13 @@ public class AcAddHpPerTurn extends AcSpecialCard implements EndOfTurn{
     @Override
     public void activate(ArenaController arenaController){
         ParticipantController currentController = arenaController.getCurrent();
-        //Subtract mana on play
-        currentController.getParticipant().setMana(currentController.getParticipant().getMana() - card.getCost());
-        List<SpecialCard> a = currentController.getParticipant().getActiveCards();
+        currentController.subtractMana(card.getCost());
+        List<SpecialCard> deck = currentController.getParticipant().getActiveCards();
 
         AddHpPerTurn c = card;
 
-        a.add(c);
-        currentController.getParticipant().setActiveCards(a);
+        deck.add(c);
+        currentController.getParticipant().setActiveCards(deck);
     }
 
     @Override

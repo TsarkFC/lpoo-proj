@@ -18,13 +18,15 @@ public class AcInstantDamage extends AcSpecialCard {
         ParticipantController currentController = arenaController.getCurrent();
         ParticipantController opponentController = arenaController.getOpponent();
 
-        //Subtract mana
-        currentController.getParticipant().setMana(currentController.getParticipant().getMana() - card.getCost());
+        currentController.subtractMana(card.getCost());
         opponentController.subtractHealth(card.getDamage());
     }
 
     @Override
     public boolean checkEnemyPlay(ArenaController arenaController) {
-        return false;
+        if (checkPlay(arenaController))
+            return false;
+        activate(arenaController);
+        return true;
     }
 }
