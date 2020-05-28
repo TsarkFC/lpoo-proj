@@ -1,6 +1,7 @@
 package com.g13.controller.arena.creator;
 
 import com.g13.controller.arena.ArenaController;
+import com.g13.controller.arena.strategies.CarefulPlayStrategy;
 import com.g13.controller.arena.strategies.NormalPlayStrategy;
 import com.g13.model.arena.Bar;
 import com.g13.model.arena.BarSet;
@@ -28,7 +29,7 @@ public class ArenaCreator {
         List<SpecialCard> player_special = createSpecialDeck();
         BarSet barSet = createBarSet();
 
-        return new Enemy(player_special, barSet, new NormalPlayStrategy());
+        return new Enemy(player_special, barSet, new CarefulPlayStrategy());
     }
 
     private List<SpecialCard> createSpecialDeck(){

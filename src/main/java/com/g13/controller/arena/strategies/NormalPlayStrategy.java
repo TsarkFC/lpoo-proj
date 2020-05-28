@@ -54,17 +54,19 @@ public class NormalPlayStrategy extends PlayStrategy{
         if(arenaController.getEnemy().getPoints() < arenaController.getPlayer().getPoints() && draw_limit_reached){
             for (int i = 0; i < 4; i++){
                 SpecialCard card = arenaController.getEnemyController().getCard(i);
+                int increment = 0;
                 if(card instanceof StaticModifier){
                     StaticModifier mod = (StaticModifier) card;
-                    if (mod.getModNum() + arenaController.getEnemyController().getPoints() <=
-                            arenaController.getEnemyController().getMaxPoints()){
-                        arenaController.getActivationFactory().getActivation(card).checkEnemyPlay(arenaController);
-                    }
+                    increment = mod.getModNum();
                 }
                 else if (card instanceof FluxModifierAtoB){
                     FluxModifierAtoB mod = (FluxModifierAtoB) card;
-                    if (mod.getMaxModNum() + arenaController.getEnemyController().getPoints() <=
-                            arenaController.getEnemyController().getMaxPoints()){
+                    increment = mod.getMaxModNum();
+                }
+                if (increment != 0){
+                    int future_score = increment + arenaController.getEnemyController().getPoints();
+                    if (future_score <= arenaController.getEnemyController().getMaxPoints() &&
+                            future_score >= arenaController.getPlayerController().getPoints()){
                         arenaController.getActivationFactory().getActivation(card).checkEnemyPlay(arenaController);
                     }
                 }
@@ -88,7 +90,7 @@ public class NormalPlayStrategy extends PlayStrategy{
                 AND
                 -The opponent has more points than you. [CHECKED]
                 AND
-                -You will have at least the same points as the player.
+                -You will have at least the same points as the player. [CHECKED]
                 )
                 OR
                 (
