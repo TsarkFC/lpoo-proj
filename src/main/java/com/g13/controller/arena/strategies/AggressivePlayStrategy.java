@@ -33,12 +33,10 @@ public class AggressivePlayStrategy extends PlayStrategy{
             draw_limit_reached = true;
         }
 
-        System.out.println(draw_limit_reached);
         if(arenaController.getEnemy().getPoints() <= arenaController.getPlayer().getPoints() && draw_limit_reached) {
             for (int i = 0; i < 4; i++) {
                 SpecialCard card = arenaController.getEnemyController().getCard(i);
                 if (card instanceof StaticModifier || card instanceof FluxModifierAtoB) {
-                    System.out.println("A");
                     arenaController.getActivationFactory().getActivation(card).checkEnemyPlay(arenaController, i);
                 }
             }

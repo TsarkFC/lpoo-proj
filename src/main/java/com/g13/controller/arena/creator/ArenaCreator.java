@@ -37,8 +37,8 @@ public class ArenaCreator {
         player_special.add(new FluxModifierAtoB(2, '+', "Instantly adds 1 to 3 to your points this round", 1, 3));
         player_special.add(new AddHpPerTurn(5, 'H', "Heals for 2 per round for 4 rounds", 2, 4));
         player_special.add(new StaticModifier(3, '+', "Instantly adds 1 to your points this round", 1));
-        player_special.add(new OnWinDamage(10, 'F', "7 points of damage in case of stage victory", 7));
-        player_special.add(new InstantDamage(4, 'F', "Instantly damages opponent with 4 points", 4));
+        player_special.add(new OnWinDamage(10, 'W', "7 points of damage in case of stage victory", 7));
+        player_special.add(new InstantDamage(4, 'D', "Instantly damages opponent with 4 points", 4));
         player_special.add(new AddHpPerTurn(4, 'H', "Heals for 5 per round for 1 round", 5, 1));
         player_special.add(new StaticModifier(2, '+', "Instantly adds 2 to your points this round", 2));
         return player_special;

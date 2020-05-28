@@ -26,7 +26,6 @@ public class AcFluxModifierAtoB extends AcSpecialCard {
         if(!arenaController.getEnemy().getPlayStrategy().CheckFluxModifier(arenaController, card.getCost(), card.getMinModNum(), card.getMaxModNum()))
             return false;
 
-        System.out.println("B");
         RotateCards(arenaController, cardPos);
         activate(arenaController);
         return true;

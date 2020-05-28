@@ -23,7 +23,7 @@ public class AcStaticModifier extends AcSpecialCard {
 
         if(!arenaController.getEnemy().getPlayStrategy().CheckStaticModifier(arenaController, card.getCost(), card.getModNum()))
             return false;
-        System.out.println("B");
+
         RotateCards(arenaController, cardPos);
         activate(arenaController);
         return true;
