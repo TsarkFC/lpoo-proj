@@ -4,6 +4,10 @@ import com.g13.controller.state.StateRecognizer;
 import com.g13.model.menus.Level;
 import com.g13.model.menus.button.Stage;
 import com.g13.view.menus.LevelViewer;
+import net.jqwik.api.ForAll;
+import net.jqwik.api.Property;
+import net.jqwik.api.constraints.IntRange;
+import net.jqwik.api.constraints.Positive;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -35,6 +39,51 @@ public class LevelControllerTest {
         int count = countUnlocked(model);
         controller.unlockNextStage();
         assertEquals(count, countUnlocked(model));
+    }
+
+    @Test
+    public void lockStagesTest(){
+        Level model = new Level();
+        LevelViewer viewer = Mockito.mock(LevelViewer.class);
+        StateRecognizer recognizer = Mockito.mock(StateRecognizer.class);
+        LevelController controller = new LevelController(model, viewer, recognizer);
+        controller.unlockNextStage();
+        controller.unlockNextStage();
+
+        controller.lockStages();
+
+        assertEquals(countUnlocked(model), 2);
+    }
+
+    @Property
+    public void testCrossMovement(@ForAll @IntRange(min = 1, max = 10) int iterations){
+        Level model = new Level();
+        LevelViewer viewer = Mockito.mock(LevelViewer.class);
+        StateRecognizer recognizer = Mockito.mock(StateRecognizer.class);
+        LevelController controller = new LevelController(model, viewer, recognizer);
+        controller.unlockNextStage();
+        controller.unlockNextStage();
+
+        assertEquals(0, model.getCross());
+
+        for (int i = 0; i < iterations; i++){
+            controller.moveDown();
+            controller.moveUp();
+        }
+        assertEquals(0, model.getCross());
+
+        for (int i = 0; i < iterations; i++)
+            controller.moveUp();
+
+        assertEquals(0, model.getCross());
+
+        for (int i = 0; i < iterations; i++)
+            controller.moveDown();
+
+        if (iterations < 4)
+            assertEquals(iterations, model.getCross());
+        else
+            assertEquals(3, model.getCross());
     }
 
     private int countUnlocked(Level model){
