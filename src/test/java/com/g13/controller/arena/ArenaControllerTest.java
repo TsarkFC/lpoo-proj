@@ -91,7 +91,6 @@ public class ArenaControllerTest {
 
         controller.setPlayerController(player);
         controller.processPlayerCards(controller.getPlayerController());
-        System.out.println(player.getActiveCards());
         assertEquals(1, player.getActiveCards().size());
     }
 
