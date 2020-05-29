@@ -112,7 +112,7 @@ public class ArenaController implements Controller {
         return model.getPlayer().getTurnOver() && model.getEnemy().getTurnOver();
     }
 
-    public ParticipantController getLooser(){
+    public ParticipantController getLoser(){
         return enemyController.getPoints() == 0 ? enemyController : playerController;
     }
 
@@ -163,7 +163,7 @@ public class ArenaController implements Controller {
         for(int i = 0; i < deck.size(); i++){
             activationFactory.getEndOfTurnActivation(deck.get(i)).activateEndOfTurn(this);
             if(deck.get(i).getRoundsLeft() <= 0)
-                deck.remove(i);
+                deck.remove(i--);
         }
         controller.getParticipant().setActiveCards(deck);
     }

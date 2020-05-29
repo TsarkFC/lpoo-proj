@@ -10,7 +10,7 @@ public class ApplyDiffCommand implements  Command{
     }
 
     public void execute(){
-        controller.getLooser().subtractHealth(controller.getWinner().getPoints());
-        controller.getLooser().zeroHealth();
+        controller.getLoser().subtractHealth(controller.getWinner().getPoints());
+        controller.getLoser().zeroHealth();
     }
 }
