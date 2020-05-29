@@ -27,6 +27,7 @@ public class PlaySpecialCardCommand {
 
         if (a.getCost() <= currentController.getParticipant().getMana()) {
             arenaController.getActivationFactory().getActivation(a).activate(arenaController);
+
             List<SpecialCard> cards = currentController.getParticipant().getPlayDeck();
 
             if(cards.size() > 4) {

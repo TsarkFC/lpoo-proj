@@ -29,7 +29,7 @@ public class AcAddHpPerTurn extends AcSpecialCard implements EndOfTurn{
     }
 
     @Override
-    public boolean checkEnemyPlay(ArenaController arenaController) {
+    public boolean checkEnemyPlay(ArenaController arenaController, int cardPos) {
         if (checkPlay(arenaController))
             return false;
 
@@ -42,6 +42,7 @@ public class AcAddHpPerTurn extends AcSpecialCard implements EndOfTurn{
         if (hasHealCardAlready(arenaController))
             return false;
 
+        RotateCards(arenaController, cardPos);
         activate(arenaController);
         return true;
     }

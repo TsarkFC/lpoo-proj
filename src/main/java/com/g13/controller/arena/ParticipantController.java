@@ -74,6 +74,9 @@ public class ParticipantController {
         gameParticipant.setHealth(gameParticipant.getHealth() - value);
     }
 
+    public int getMaxMana() { return gameParticipant.getMaxMana();}
+
+    public int getMana() { return gameParticipant.getMana();}
     public void setMana(int mana) { gameParticipant.setMana(mana); }
     public void subtractMana(int value){
         gameParticipant.setMana(gameParticipant.getMana() - value);

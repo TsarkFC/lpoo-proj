@@ -14,7 +14,7 @@ public class AcStaticModifier extends AcSpecialCard {
     }
 
     @Override
-    public boolean checkEnemyPlay(ArenaController arenaController){
+    public boolean checkEnemyPlay(ArenaController arenaController, int cardPos){
         if (checkPlay(arenaController))
             return false;
 
@@ -24,6 +24,7 @@ public class AcStaticModifier extends AcSpecialCard {
         if(!arenaController.getEnemy().getPlayStrategy().CheckStaticModifier(arenaController, card.getCost(), card.getModNum()))
             return false;
 
+        RotateCards(arenaController, cardPos);
         activate(arenaController);
         return true;
     }

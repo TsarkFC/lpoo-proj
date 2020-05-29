@@ -23,9 +23,10 @@ public class AcInstantDamage extends AcSpecialCard {
     }
 
     @Override
-    public boolean checkEnemyPlay(ArenaController arenaController) {
+    public boolean checkEnemyPlay(ArenaController arenaController, int cardPos) {
         if (checkPlay(arenaController))
             return false;
+        RotateCards(arenaController, cardPos);
         activate(arenaController);
         return true;
     }

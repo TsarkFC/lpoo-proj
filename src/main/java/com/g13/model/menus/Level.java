@@ -16,7 +16,7 @@ public class Level extends Menu implements Model {
         stages = new ArrayList<>();
         stages.add(new Stage(x, 12, true));
         stages.add(new Stage(x, 17, true));
-        stages.add(new Stage(x, 22, true));
+        stages.add(new Stage(x, 22, false));
         stages.add(new Stage(x, 27, false));
         cross = 0;
     }

@@ -15,7 +15,7 @@ public class NormalPlayStrategy extends PlayStrategy{
     public boolean playTurn(ArenaController arenaController) {
 
         mana_saved = 0;
-        flux_percentage_accept = 0.75;
+        flux_percentage_accept = 0.34;
 
         boolean draw_limit_reached = false;
 
@@ -37,7 +37,7 @@ public class NormalPlayStrategy extends PlayStrategy{
             for (int i = 0; i < 4; i++) {
                 SpecialCard card = arenaController.getEnemyController().getCard(i);
                 if (card instanceof StaticModifier || card instanceof FluxModifierAtoB)
-                    arenaController.getActivationFactory().getActivation(card).checkEnemyPlay(arenaController);
+                    arenaController.getActivationFactory().getActivation(card).checkEnemyPlay(arenaController, i);
             }
         }
 
@@ -46,7 +46,7 @@ public class NormalPlayStrategy extends PlayStrategy{
         for(int i = 0; i < 4; i++){
             SpecialCard card = arenaController.getEnemyController().getCard(i);
             if(card instanceof AddHpPerTurn && arenaController.getEnemyController().getHealth() < 5)
-                arenaController.getActivationFactory().getActivation(card).checkEnemyPlay(arenaController);
+                arenaController.getActivationFactory().getActivation(card).checkEnemyPlay(arenaController, i);
         }
 
 
@@ -66,7 +66,7 @@ public class NormalPlayStrategy extends PlayStrategy{
                 if (increment != 0){
                     int future_score = increment + arenaController.getEnemyController().getPoints();
                     if (future_score >= arenaController.getPlayerController().getPoints())
-                        arenaController.getActivationFactory().getActivation(card).checkEnemyPlay(arenaController);
+                        arenaController.getActivationFactory().getActivation(card).checkEnemyPlay(arenaController, i);
                 }
             }
         }
@@ -76,9 +76,9 @@ public class NormalPlayStrategy extends PlayStrategy{
             for (int i = 0; i < 4; i++){
                 SpecialCard card = arenaController.getEnemyController().getCard(i);
                 if (card instanceof InstantDamage)
-                    arenaController.getActivationFactory().getActivation(card).checkEnemyPlay(arenaController);
+                    arenaController.getActivationFactory().getActivation(card).checkEnemyPlay(arenaController, i);
                 else if (card instanceof OnWinDamage && arenaController.getPlayerController().getTurnOver())
-                    arenaController.getActivationFactory().getActivation(card).checkEnemyPlay(arenaController);
+                    arenaController.getActivationFactory().getActivation(card).checkEnemyPlay(arenaController, i);
             }
         }
         return has_drawn;

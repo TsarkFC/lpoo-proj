@@ -2,6 +2,7 @@ package com.g13.controller.arena.activationfactory;
 
 import com.g13.controller.arena.cardactivation.AcSpecialCard;
 import com.g13.controller.arena.cardactivation.endofturn.AcAddHpPerTurn;
+import com.g13.controller.arena.cardactivation.endofturn.AcDamageGamble;
 import com.g13.controller.arena.cardactivation.endofturn.AcOnWinDamage;
 import com.g13.controller.arena.cardactivation.endofturn.EndOfTurn;
 import com.g13.controller.arena.cardactivation.instant.AcFluxModifierAtoB;
@@ -9,6 +10,7 @@ import com.g13.controller.arena.cardactivation.instant.AcInstantDamage;
 import com.g13.controller.arena.cardactivation.instant.AcStaticModifier;
 import com.g13.model.arena.specialcards.SpecialCard;
 import com.g13.model.arena.specialcards.endofturn.AddHpPerTurn;
+import com.g13.model.arena.specialcards.endofturn.DamageGamble;
 import com.g13.model.arena.specialcards.endofturn.OnWinDamage;
 import com.g13.model.arena.specialcards.instant.FluxModifierAtoB;
 import com.g13.model.arena.specialcards.instant.InstantDamage;
@@ -27,6 +29,8 @@ public class ActivationFactory {
             return new AcInstantDamage((InstantDamage) card);
         else if (card instanceof OnWinDamage)
             return new AcOnWinDamage((OnWinDamage) card);
+        else if (card instanceof DamageGamble)
+            return new AcDamageGamble((DamageGamble) card);
         return null;
     }
 
@@ -35,6 +39,8 @@ public class ActivationFactory {
             return new AcAddHpPerTurn((AddHpPerTurn) card);
         else if (card instanceof OnWinDamage)
             return new AcOnWinDamage((OnWinDamage) card);
+        else if (card instanceof DamageGamble)
+            return new AcDamageGamble((DamageGamble) card);
         return null;
     }
 }
