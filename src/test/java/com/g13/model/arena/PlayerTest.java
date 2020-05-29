@@ -10,14 +10,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PlayerTest {
     @Test
-    public void testConstructor(){ //TODO: Use stub for creating cards and create multiple cards
+    public void testConstructor(){
         List<SpecialCard> play_deck = new ArrayList<>();
         GameParticipant player = new GameParticipant(play_deck, initBarSet());
+        player.setMana(10);
+        player.setHealth(5);
 
         assertEquals(play_deck, player.getPlayDeck());
         assertEquals(0, player.getPoints());
-        assertEquals(2, player.getHealth());
-        assertEquals(5, player.getMana());
+        assertEquals(5, player.getHealth());
+        assertEquals(10, player.getMana());
         assertEquals(12, player.getMaxMana());
         assertEquals(12, player.getMaxHealth());
         assertEquals(12, player.getMaxPoints());
@@ -36,6 +38,9 @@ public class PlayerTest {
         player.setBothDrawDecks(normal_deck2);
         assertEquals(player.getDefaultDrawDeck(), normal_deck2);
         assertEquals(player.getDrawDeck(), normal_deck2);
+
+        player.setActiveCards(new ArrayList<>());
+        assertEquals(player.getActiveCards().size(), 0);
     }
 
     private BarSet initBarSet(){

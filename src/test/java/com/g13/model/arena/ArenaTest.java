@@ -14,9 +14,11 @@ public class ArenaTest {
     }
 
     @Test
-    public void testFinish(){
+    public void testMethods(){
         Arena arena = new Arena(10, 10);
         arena.finish();
         assertEquals(true, arena.isFinished());
+        arena.setPlayersTurn(false);
+        assertEquals(false, arena.getPlayersTurn());
     }
 }

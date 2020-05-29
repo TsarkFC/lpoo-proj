@@ -1,5 +1,6 @@
 package com.g13.model.arena;
 
+import com.g13.controller.arena.strategies.CarefulPlayStrategy;
 import com.g13.controller.arena.strategies.NormalPlayStrategy;
 import com.g13.controller.arena.strategies.PlayStrategy;
 import org.mockito.Mockito;
@@ -16,5 +17,7 @@ public class EnemyTest {
         PlayStrategy strategy = new NormalPlayStrategy();
         Enemy enemy = new Enemy(new ArrayList<>(), barSet, strategy);
         assertEquals(strategy, enemy.getPlayStrategy());
+        enemy.setPlayStrategy(new CarefulPlayStrategy());
+        assertEquals(true, enemy.getPlayStrategy() instanceof CarefulPlayStrategy);
     }
 }
