@@ -8,6 +8,7 @@ import com.g13.model.arena.BarSet;
 import com.g13.model.arena.Enemy;
 import com.g13.model.arena.GameParticipant;
 import com.g13.model.arena.specialcards.endofturn.AddHpPerTurn;
+import com.g13.model.arena.specialcards.endofturn.DamageGamble;
 import com.g13.model.arena.specialcards.endofturn.OnWinDamage;
 import com.g13.model.arena.specialcards.instant.FluxModifierAtoB;
 import com.g13.model.arena.specialcards.SpecialCard;
@@ -41,6 +42,7 @@ public class ArenaCreator {
         player_special.add(new InstantDamage(4, 'D', "Instantly damages opponent with 4 points", 4));
         player_special.add(new AddHpPerTurn(4, 'H', "Heals for 5 per round for 1 round", 5, 1));
         player_special.add(new StaticModifier(2, '+', "Instantly adds 2 to your points this round", 2));
+        player_special.add(new DamageGamble(5, 'G', "Recover 2 mana for every point you lose this round", 2));
         return player_special;
     }
 
