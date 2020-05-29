@@ -20,8 +20,4 @@ public class Bar {
     public int getMax_value() {
         return max_value;
     }
-
-    public void setMax_value(int max_value) {
-        this.max_value = max_value;
-    }
 }

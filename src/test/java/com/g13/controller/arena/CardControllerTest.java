@@ -4,11 +4,11 @@ import com.g13.model.arena.Bar;
 import com.g13.model.arena.BarSet;
 import com.g13.model.arena.Card;
 import com.g13.model.arena.GameParticipant;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CardControllerTest {
 

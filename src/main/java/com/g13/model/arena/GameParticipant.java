@@ -48,8 +48,6 @@ public class GameParticipant {
         return play_deck;
     }
 
-    public String getCardInfo(int i){ return play_deck.get(i).getCardInfo(); }
-
     public int getHealth() {
         return barSet.getHealth();
     }

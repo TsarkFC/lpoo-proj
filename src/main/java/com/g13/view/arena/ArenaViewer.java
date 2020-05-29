@@ -19,7 +19,6 @@ public class ArenaViewer implements View {
     private GameParticipantViewer gameParticipantViewer;
     private Arena arena;
     private TextGraphics graphics;
-    private boolean selected = false;
 
     public enum COMMAND {
         SWITCH,
@@ -33,7 +32,7 @@ public class ArenaViewer implements View {
         PLAYCARD
     }
 
-    public ArenaViewer(Arena arena, TerminalScreen screen) throws IOException {
+    public ArenaViewer(Arena arena, TerminalScreen screen) {
         this.screen = screen;
 
         graphics = screen.newTextGraphics();
@@ -49,10 +48,8 @@ public class ArenaViewer implements View {
     public void draw() throws IOException {
         screen.clear();
         drawBackground();
-
         gameParticipantViewer.drawPlayer(arena.getPlayer());
         gameParticipantViewer.drawEnemy(arena.getEnemy());
-
         screen.refresh();
     }
 
@@ -68,30 +65,26 @@ public class ArenaViewer implements View {
             screen.close();
             return COMMAND.QUIT;
         }
-        if (input.getKeyType() == KeyType.Character && input.getCharacter() == '1') {
-            selected = true;
+        else if (input.getKeyType() == KeyType.Character && input.getCharacter() == '1') {
             return COMMAND.ONE;
         }
-        if (input.getKeyType() == KeyType.Character && input.getCharacter() == '2') {
-            selected = true;
+        else if (input.getKeyType() == KeyType.Character && input.getCharacter() == '2') {
             return COMMAND.TWO;
         }
-        if (input.getKeyType() == KeyType.Character && input.getCharacter() == '3') {
-            selected = true;
+        else if (input.getKeyType() == KeyType.Character && input.getCharacter() == '3') {
             return COMMAND.THREE;
         }
-        if (input.getKeyType() == KeyType.Character && input.getCharacter() == '4') {
-            selected = true;
+        else if (input.getKeyType() == KeyType.Character && input.getCharacter() == '4') {
             return COMMAND.FOUR;
         }
-        if (input.getKeyType() == KeyType.Character && input.getCharacter() == 'd') {
+        else if (input.getKeyType() == KeyType.Character && input.getCharacter() == 'd') {
             return COMMAND.DRAW;
         }
-        if (input.getKeyType() == KeyType.Enter) {
+        else if (input.getKeyType() == KeyType.Enter) {
             return COMMAND.SWITCH;
         }
-        if(input.getKeyType() == KeyType.Tab) {
-            if (selected) return COMMAND.PLAYCARD;
+        else if(input.getKeyType() == KeyType.Tab) {
+            return COMMAND.PLAYCARD;
         }
         return COMMAND.NOTHING;
     }

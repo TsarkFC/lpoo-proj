@@ -6,9 +6,7 @@ public class SpecialCard {
     private String cardInfo;
     private boolean selected = false;
 
-    protected int roundsLeft = 0;
-
-    protected int duration = 0;
+    protected int roundsLeft;
 
     public SpecialCard(int cost, char symbol, String cardInfo){
         this.cost = cost;

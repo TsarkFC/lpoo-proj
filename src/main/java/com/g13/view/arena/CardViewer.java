@@ -32,7 +32,7 @@ public class CardViewer {
         graphics.putString(x + 2, 17 - offset, String.valueOf(specialCard.getSymbol()));
     }
 
-    public void drawCardInfo(String info){
+    private void drawCardInfo(String info){
         setGraphics("#336699", "#FFFFFF");
         graphics.putString(20, 24, "Card Info:");
         graphics.putString(1, 25, info);

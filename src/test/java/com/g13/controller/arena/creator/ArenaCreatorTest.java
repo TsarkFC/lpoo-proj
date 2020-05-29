@@ -6,13 +6,13 @@ import com.g13.model.arena.Arena;
 import com.g13.model.arena.GameParticipant;
 import com.g13.model.arena.specialcards.SpecialCard;
 import com.g13.view.arena.ArenaViewer;
-import org.junit.Test;
 import org.mockito.Mockito;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ArenaCreatorTest {
 
@@ -30,6 +30,7 @@ public class ArenaCreatorTest {
         player_special.add(new SpecialCard(5, '/', "card no 5"));
         player_special.add(new SpecialCard(7, '+', "card no 7"));
         player_special.add(new SpecialCard(4, '-', "card no 4"));
+        player_special.add(new SpecialCard(5, '/', "card no 5"));
         player_special.add(new SpecialCard(5, '/', "card no 5"));
 
         GameParticipant part = Mockito.mock(GameParticipant.class);

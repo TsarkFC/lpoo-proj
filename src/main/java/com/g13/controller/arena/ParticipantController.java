@@ -1,12 +1,9 @@
 package com.g13.controller.arena;
 
-import com.g13.controller.arena.activationfactory.ActivationFactory;
 import com.g13.controller.arena.commands.DeckShuffler;
 import com.g13.model.arena.Card;
 import com.g13.model.arena.GameParticipant;
 import com.g13.model.arena.specialcards.SpecialCard;
-
-import java.rmi.activation.ActivateFailedException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,12 +63,10 @@ public class ParticipantController {
 
     public int getHealth() { return gameParticipant.getHealth();}
     public void setHealth(int health) {gameParticipant.setHealth(health);}
-    public void zeroHealth(){
-        if (gameParticipant.getPoints() < 0)
-            gameParticipant.setHealth(0);
-    }
     public void subtractHealth(int value){
         gameParticipant.setHealth(gameParticipant.getHealth() - value);
+        if (gameParticipant.getHealth() < 0)
+            gameParticipant.setHealth(0);
     }
 
     public int getMaxMana() { return gameParticipant.getMaxMana();}
@@ -80,6 +75,8 @@ public class ParticipantController {
     public void setMana(int mana) { gameParticipant.setMana(mana); }
     public void subtractMana(int value){
         gameParticipant.setMana(gameParticipant.getMana() - value);
+        if (gameParticipant.getMana() < 0)
+            gameParticipant.setMana(0);
     }
 
     public void setCardSelected(int cardno){
@@ -106,20 +103,20 @@ public class ParticipantController {
 
     public void resetPlayer(){
         setPoints(0);
-        setHealth(20);
-        setMana(20);
+        setHealth(gameParticipant.getMaxHealth());
+        setMana(gameParticipant.getMaxMana());
         resetDrawDeck();
         gameParticipant.setActiveCards(new ArrayList<>());
     }
 
     public void resetOnWin(){
-        setMana(20);
+        setMana(gameParticipant.getMaxMana());
         setPoints(0);
         gameParticipant.setActiveCards(new ArrayList<>());
     }
 
     public int getSelected(){
-        for (int i = 0; i < getPlayDeck().size(); i++)
+        for (int i = 0; i < getPlayDeck().size() && i < 4; i++)
             if (getPlayDeck().get(i).getSelected())
                 return i;
         return -1;

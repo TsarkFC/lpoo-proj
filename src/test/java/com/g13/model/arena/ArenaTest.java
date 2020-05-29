@@ -1,12 +1,7 @@
 package com.g13.model.arena;
 
-import com.g13.view.arena.ArenaViewer;
-import org.junit.Test;
-import org.mockito.Mockito;
-
-import java.util.ArrayList;
-
-import static org.junit.Assert.assertEquals;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ArenaTest {
     @Test
@@ -19,9 +14,11 @@ public class ArenaTest {
     }
 
     @Test
-    public void testFinish(){
+    public void testMethods(){
         Arena arena = new Arena(10, 10);
         arena.finish();
         assertEquals(true, arena.isFinished());
+        arena.setPlayersTurn(false);
+        assertEquals(false, arena.getPlayersTurn());
     }
 }
