@@ -31,6 +31,7 @@ public class ArenaCreatorTest {
         player_special.add(new SpecialCard(7, '+', "card no 7"));
         player_special.add(new SpecialCard(4, '-', "card no 4"));
         player_special.add(new SpecialCard(5, '/', "card no 5"));
+        player_special.add(new SpecialCard(5, '/', "card no 5"));
 
         GameParticipant part = Mockito.mock(GameParticipant.class);
         Mockito.when(part.getMana()).thenReturn(20);
