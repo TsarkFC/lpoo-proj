@@ -3,6 +3,11 @@ package com.g13.controller.arena.strategies;
 import com.g13.controller.arena.ArenaController;
 import com.g13.controller.arena.commands.DrawCardCommand;
 import com.g13.model.arena.specialcards.SpecialCard;
+import com.g13.model.arena.specialcards.endofturn.AddHpPerTurn;
+import com.g13.model.arena.specialcards.endofturn.OnWinDamage;
+import com.g13.model.arena.specialcards.instant.FluxModifierAtoB;
+import com.g13.model.arena.specialcards.instant.InstantDamage;
+import com.g13.model.arena.specialcards.instant.StaticModifier;
 
 public class AggressivePlayStrategy extends PlayStrategy{
 
@@ -14,29 +19,52 @@ public class AggressivePlayStrategy extends PlayStrategy{
         boolean has_drawn = false;
         boolean draw_limit_reached = false;
 
-        flux_percentage_accept = 50;
+        flux_percentage_accept = 0.75;
 
         //Fazer draw?
         if(arenaController.getEnemy().getPoints() <= arenaController.getEnemy().getMaxPoints() - 4){
             DrawCardCommand command = new DrawCardCommand(arenaController);
             command.execute();
             has_drawn = true;
-            draw_limit_reached = true;
         }
 
         //Vais querer fazer draw na próxima ronda?
-        if(arenaController.getEnemy().getPoints() >= arenaController.getEnemy().getMaxPoints() - 4){
+        if(arenaController.getEnemy().getPoints() > arenaController.getEnemy().getMaxPoints() - 4){
             draw_limit_reached = true;
         }
 
-        for(int i = 0; i < 4; i++){
-            if(arenaController.getEnemyController().getCardType(i) == SpecialCard.CARD_TYPE.STATIC_MODIFIER
-                || arenaController.getEnemyController().getCardType(i) == SpecialCard.CARD_TYPE.FLUX_MODIFIER_A_TO_B
-                || arenaController.getEnemyController().getCardType(i) == SpecialCard.CARD_TYPE.FLUX_MODIFIER_X_Y_OR_Z)
-                arenaController.getActivationFactory().getActivation(arenaController.getEnemy().getPlayDeck().get(i))
-                    .checkEnemyPlay(arenaController);
+        if(arenaController.getEnemy().getPoints() <= arenaController.getPlayer().getPoints() && draw_limit_reached) {
+            for (int i = 0; i < 4; i++) {
+                SpecialCard card = arenaController.getEnemyController().getCard(i);
+                if (card instanceof StaticModifier || card instanceof FluxModifierAtoB) {
+                    arenaController.getActivationFactory().getActivation(card).checkEnemyPlay(arenaController, i);
+                }
+            }
         }
 
+
+        //Se puder garantir matar o inimigo, usa a carta
+        for (int i = 0; i < 4; i++) {
+            SpecialCard card = arenaController.getEnemyController().getCard(i);
+            if (card instanceof InstantDamage) {
+                if (((InstantDamage) card).getDamage() >= arenaController.getPlayerController().getHealth()) {
+                    if (card instanceof InstantDamage)
+                        arenaController.getActivationFactory().getActivation(card).checkEnemyPlay(arenaController, i);
+                }
+
+            }
+        }
+
+        //Winning and don't wanna draw? Play a win-more card!
+        if(arenaController.getEnemy().getPoints() > arenaController.getPlayer().getPoints() && draw_limit_reached){
+            for (int i = 0; i < 4; i++){
+                SpecialCard card = arenaController.getEnemyController().getCard(i);
+                if (card instanceof InstantDamage)
+                    arenaController.getActivationFactory().getActivation(card).checkEnemyPlay(arenaController, i);
+                else if (card instanceof OnWinDamage && arenaController.getPlayerController().getTurnOver())
+                    arenaController.getActivationFactory().getActivation(card).checkEnemyPlay(arenaController, i);
+            }
+        }
 
 
         //Fazer draw [2]?
@@ -51,21 +79,15 @@ public class AggressivePlayStrategy extends PlayStrategy{
             draw_limit_reached = true;
         }
 
-        //Heal (Instant)
-        health_to_heal = 2;
-        for(int i = 0; i < 4; i++){
-            if(arenaController.getEnemyController().getCardType(i) == SpecialCard.CARD_TYPE.HEAL_INSTANT)
-                arenaController.getActivationFactory().getActivation(arenaController.getEnemy().getPlayDeck().get(i))
-                        .checkEnemyPlay(arenaController);
-        }
-        //Heal (End turn)
+        //Heal
         health_to_heal = 5;
         for(int i = 0; i < 4; i++){
-            if(arenaController.getEnemyController().getCardType(i) == SpecialCard.CARD_TYPE.HEAL_ON_END_TURN)
-                arenaController.getActivationFactory().getActivation(arenaController.getEnemy().getPlayDeck().get(i))
-                        .checkEnemyPlay(arenaController);
+            SpecialCard card = arenaController.getEnemyController().getCard(i);
+            if(card instanceof AddHpPerTurn && arenaController.getEnemyController().getHealth() < 3)
+                arenaController.getActivationFactory().getActivation(card).checkEnemyPlay(arenaController, i);
         }
 
         return has_drawn;
     }
+
 }

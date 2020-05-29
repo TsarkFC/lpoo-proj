@@ -1,10 +1,12 @@
 package com.g13.controller.arena;
 
+import com.g13.controller.arena.activationfactory.ActivationFactory;
 import com.g13.controller.arena.commands.DeckShuffler;
 import com.g13.model.arena.Card;
 import com.g13.model.arena.GameParticipant;
 import com.g13.model.arena.specialcards.SpecialCard;
 
+import java.rmi.activation.ActivateFailedException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -72,8 +74,10 @@ public class ParticipantController {
         gameParticipant.setHealth(gameParticipant.getHealth() - value);
     }
 
-    public int getMana() { return gameParticipant.getMana(); }
     public void setMana(int mana) { gameParticipant.setMana(mana); }
+    public void subtractMana(int value){
+        gameParticipant.setMana(gameParticipant.getMana() - value);
+    }
 
     public void setCardSelected(int cardno){
         resetCardSelection(cardno);
@@ -93,8 +97,8 @@ public class ParticipantController {
 
     public void setDrawDeck(List<Card> deck){ gameParticipant.setDrawDeck(deck); }
 
-    public SpecialCard.CARD_TYPE getCardType(int cardno){
-       return gameParticipant.getPlayDeck().get(cardno).getCardType();
+    public SpecialCard getCard(int cardno){
+       return gameParticipant.getPlayDeck().get(cardno);
     }
 
     public void resetPlayer(){
@@ -102,6 +106,13 @@ public class ParticipantController {
         setHealth(20);
         setMana(20);
         resetDrawDeck();
+        gameParticipant.setActiveCards(new ArrayList<>());
+    }
+
+    public void resetOnWin(){
+        setMana(20);
+        setPoints(0);
+        gameParticipant.setActiveCards(new ArrayList<>());
     }
 
     public int getSelected(){

@@ -9,7 +9,6 @@ public class StaticModifier extends SpecialCard {
     public StaticModifier(int cost, char symbol, String cardInfo, int modNum) {
         super(cost, symbol, cardInfo);
         this.modNum = modNum;
-        cardType = CARD_TYPE.STATIC_MODIFIER;
     }
 
     public int getModNum(){ return modNum; }

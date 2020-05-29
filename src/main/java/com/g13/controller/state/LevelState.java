@@ -44,9 +44,9 @@ public class LevelState implements State{
         }
 
         if (level.getCross() == 1)
-            recognizer.getGameState().setStrategy(new NormalPlayStrategy());
-        else if (level.getCross() == 2)
             recognizer.getGameState().setStrategy(new CarefulPlayStrategy());
+        else if (level.getCross() == 2)
+            recognizer.getGameState().setStrategy(new NormalPlayStrategy());
         else if (level.getCross() == 3)
             recognizer.getGameState().setStrategy(new AggressivePlayStrategy());
         recognizer.setGameState();

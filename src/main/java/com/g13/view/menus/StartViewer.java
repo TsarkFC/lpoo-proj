@@ -46,6 +46,7 @@ public class StartViewer extends MenuViewer implements View {
 
     public void drawInstructions() throws IOException {
         screen.clear();
+        graphics.putString(4, -1, "[Press any key to advance]");
         graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(50, 30), ' ');
         for (int i = 0; i < instructions.length; i++) {
             line++;

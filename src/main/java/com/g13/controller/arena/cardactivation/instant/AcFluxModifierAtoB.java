@@ -16,7 +16,7 @@ public class AcFluxModifierAtoB extends AcSpecialCard {
     }
 
     @Override
-    public boolean checkEnemyPlay(ArenaController arenaController){
+    public boolean checkEnemyPlay(ArenaController arenaController, int cardPos){
         if (checkPlay(arenaController))
             return false;
 
@@ -26,6 +26,7 @@ public class AcFluxModifierAtoB extends AcSpecialCard {
         if(!arenaController.getEnemy().getPlayStrategy().CheckFluxModifier(arenaController, card.getCost(), card.getMinModNum(), card.getMaxModNum()))
             return false;
 
+        RotateCards(arenaController, cardPos);
         activate(arenaController);
         return true;
     }
@@ -37,8 +38,7 @@ public class AcFluxModifierAtoB extends AcSpecialCard {
         //Add a random number --Has to be in the function itself, if it were in the constructor, it'd always add the same number
         int modNum = ThreadLocalRandom.current().nextInt(card.getMinModNum(), card.getMaxModNum() + 1);
 
-        //Subtract mana
-        currentController.getParticipant().setMana(currentController.getParticipant().getMana() - card.getCost());
+        currentController.subtractMana(card.getCost());
         currentController.setPoints(currentController.getPoints() + modNum);
         arenaController.checkControllerPoints();
     }

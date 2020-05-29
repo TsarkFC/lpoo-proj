@@ -19,18 +19,17 @@ public class AcAddHpPerTurn extends AcSpecialCard implements EndOfTurn{
     @Override
     public void activate(ArenaController arenaController){
         ParticipantController currentController = arenaController.getCurrent();
-        //Subtract mana on play
-        currentController.getParticipant().setMana(currentController.getParticipant().getMana() - card.getCost());
-        List<SpecialCard> a = currentController.getParticipant().getActiveCards();
+        currentController.subtractMana(card.getCost());
+        List<SpecialCard> deck = currentController.getParticipant().getActiveCards();
 
         AddHpPerTurn c = card;
 
-        a.add(c);
-        currentController.getParticipant().setActiveCards(a);
+        deck.add(c);
+        currentController.getParticipant().setActiveCards(deck);
     }
 
     @Override
-    public boolean checkEnemyPlay(ArenaController arenaController) {
+    public boolean checkEnemyPlay(ArenaController arenaController, int cardPos) {
         if (checkPlay(arenaController))
             return false;
 
@@ -40,6 +39,10 @@ public class AcAddHpPerTurn extends AcSpecialCard implements EndOfTurn{
         if(!arenaController.getEnemy().getPlayStrategy().CheckOverTimeHeal(arenaController, card.getCost()))
             return false;
 
+        if (hasHealCardAlready(arenaController))
+            return false;
+
+        RotateCards(arenaController, cardPos);
         activate(arenaController);
         return true;
     }
@@ -52,5 +55,15 @@ public class AcAddHpPerTurn extends AcSpecialCard implements EndOfTurn{
             currentController.getParticipant().setHealth(currentController.getParticipant().getMaxHealth());
         }
         card.decrementRoundsLeft();
+    }
+
+    private boolean hasHealCardAlready(ArenaController arenaController){
+        boolean hasHealCardAlready = false;
+        for(SpecialCard spec: arenaController.getEnemy().getActiveCards()){
+            if (spec instanceof AddHpPerTurn){
+                hasHealCardAlready = true;
+            }
+        }
+        return hasHealCardAlready;
     }
 }

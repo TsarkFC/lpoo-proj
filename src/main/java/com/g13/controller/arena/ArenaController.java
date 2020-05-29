@@ -132,12 +132,12 @@ public class ArenaController implements Controller {
     private void resetRound(){
         playerController.setTurnOver(false);
         enemyController.setTurnOver(false);
+        processPlayerCards(playerController);
+        model.setPlayersTurn(false);
+        processPlayerCards(enemyController);
+        model.setPlayersTurn(true);
         playerController.setPoints(0);
         enemyController.setPoints(0);
-        ProcessPlayerCards();
-        model.setPlayersTurn(false);
-        ProcessEnemyCards();
-        model.setPlayersTurn(true);
     }
 
     public void checkControllerPoints(){
@@ -158,20 +158,14 @@ public class ArenaController implements Controller {
         }
     }
 
-    public void ProcessPlayerCards(){
-        List<SpecialCard> a = playerController.getParticipant().getActiveCards();
-        for(int i = 0; i < a.size(); i++){
-            activationFactory.getEndOfTurnActivation(a.get(i)).activateEndOfTurn(this);
-            if(a.get(i).getRoundsLeft() <= 0)
-                a.remove(i);
+    public void processPlayerCards(ParticipantController controller){
+        List<SpecialCard> deck = controller.getParticipant().getActiveCards();
+        for(int i = 0; i < deck.size(); i++){
+            activationFactory.getEndOfTurnActivation(deck.get(i)).activateEndOfTurn(this);
+            if(deck.get(i).getRoundsLeft() <= 0)
+                deck.remove(i);
         }
-        playerController.getParticipant().setActiveCards(a);
-    }
-
-    public void ProcessEnemyCards(){
-        for(int i = 0; i < enemyController.getParticipant().getActiveCards().size(); i++)
-            activationFactory.getEndOfTurnActivation(enemyController.getParticipant().getActiveCards().get(i))
-                .activateEndOfTurn(this);
+        controller.getParticipant().setActiveCards(deck);
     }
 
     public ParticipantController getCurrent(){
@@ -195,6 +189,7 @@ public class ArenaController implements Controller {
         else if (enemyController.getHealth() <= 0){
             recognizer.getLevelState().unlockNextStage();
             recognizer.setMenuState();
+            playerController.resetOnWin();
             enemyController.resetPlayer();
             return true;
         }
