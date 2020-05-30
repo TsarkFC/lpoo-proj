@@ -23,7 +23,6 @@ public class StateRecognizer {
         currentState = startState;
     }
     public State getCurrentState() { return currentState; }
-    public GameState getGameState() { return gameState; }
     public LevelState getLevelState() { return levelState; }
 
     public void setGameState(PlayStrategy strategy) throws IOException {
