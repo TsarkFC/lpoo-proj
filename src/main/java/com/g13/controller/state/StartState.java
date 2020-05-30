@@ -38,13 +38,9 @@ public class StartState implements State{
     public void advance() throws IOException {
         if (start.getSelection() == 0)
             recognizer.setLevelState();
-        else if (start.getSelection() == -1){
+        else if (start.getSelection() == -1)
             start.setSelection(1);
-            recognizer.getCurrentState().getView().draw();
-        }
-        else if (start.getSelection() == 1){
+        else if (start.getSelection() == 1)
             start.setSelection(-1);
-            startViewer.drawInstructions();
-        }
     }
 }

@@ -7,6 +7,7 @@ import com.g13.controller.state.statefactory.GameStateFactory;
 import static org.mockito.ArgumentMatchers.*;
 
 import com.g13.model.arena.Arena;
+import com.g13.view.arena.ArenaViewer;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.TerminalScreen;
@@ -61,6 +62,7 @@ public class GameStateTest {
         GameStateFactory gameStateFactory = new GameStateFactory(recognizer);
         GameState state = new GameState(recognizer, gameStateFactory);
         assertTrue(state.getModel() instanceof Arena);
+        assertTrue(state.getView() instanceof ArenaViewer);
         assertTrue(state.getController() instanceof ArenaController);
 
         assertTrue(!(gameStateFactory.getArena().getEnemy().getPlayStrategy() instanceof AggressivePlayStrategy));

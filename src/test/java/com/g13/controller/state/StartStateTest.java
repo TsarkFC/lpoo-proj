@@ -3,6 +3,7 @@ package com.g13.controller.state;
 import com.g13.controller.menus.StartController;
 import com.g13.controller.state.statefactory.StartStateFactory;
 import com.g13.model.menus.Start;
+import com.g13.view.menus.StartViewer;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.TerminalScreen;
@@ -30,6 +31,7 @@ public class StartStateTest {
         StartStateFactory startStateFactory = new StartStateFactory(recognizer);
         StartState state = new StartState(recognizer, startStateFactory);
         assertTrue(state.getModel() instanceof Start);
+        assertTrue(state.getView() instanceof StartViewer);
         assertTrue(state.getController() instanceof StartController);
 
         state.advance();

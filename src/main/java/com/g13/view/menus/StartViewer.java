@@ -34,8 +34,12 @@ public class StartViewer extends MenuViewer implements View {
     public void draw() throws IOException {
         screen.clear();
         graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(50, 30), ' ');
-        drawStartComponents();
-        drawTitle();
+        if (model.getSelection() == -1)
+            drawInstructions();
+        else {
+            drawStartComponents();
+            drawTitle();
+        }
         screen.refresh();
     }
 
@@ -44,9 +48,8 @@ public class StartViewer extends MenuViewer implements View {
             drawButton(model.getButtons().get(i), model.getSelection() == i, graphics);
     }
 
-    public void drawInstructions() throws IOException {
+    private void drawInstructions() throws IOException {
         screen.clear();
-        graphics.putString(4, -1, "[Press any key to advance]");
         graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(50, 30), ' ');
         for (int i = 0; i < instructions.length; i++) {
             line++;

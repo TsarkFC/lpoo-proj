@@ -33,7 +33,6 @@ public abstract class MenuController implements Controller {
             return;
         }
         else if (command == QUIT) model.setFinished(true);
-        view.draw();
     }
 
     public abstract void moveDown();

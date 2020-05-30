@@ -25,18 +25,15 @@ public class StateRecognizer {
     public State getCurrentState() { return currentState; }
     public LevelState getLevelState() { return levelState; }
 
-    public void setGameState(PlayStrategy strategy) throws IOException {
+    public void setGameState(PlayStrategy strategy) {
         gameState.setStrategy(strategy);
         currentState = gameState;
-        currentState.getView().draw();
     }
-    public void setLevelState() throws IOException {
+    public void setLevelState() {
         currentState = levelState;
-        currentState.getView().draw();
     }
-    public void setStartState() throws IOException {
+    public void setStartState()  {
         currentState = startState;
-        currentState.getView().draw();
     }
 
     public TerminalScreen getScreen() { return screen; }

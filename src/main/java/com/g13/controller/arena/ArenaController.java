@@ -68,8 +68,6 @@ public class ArenaController implements Controller {
         if(!playerController.getTurnOver() && command == ArenaViewer.COMMAND.PLAYCARD)
             new PlaySpecialCardCommand(this).execute();
 
-        view.draw();
-
         if (command == ArenaViewer.COMMAND.QUIT)
             model.finish();
     }

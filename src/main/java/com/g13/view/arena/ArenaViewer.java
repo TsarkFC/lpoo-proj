@@ -45,6 +45,7 @@ public class ArenaViewer implements View {
         this.gameParticipantViewer = new GameParticipantViewer(barViewer, cardViewer, graphics);
     }
 
+    @Override
     public void draw() throws IOException {
         screen.clear();
         drawBackground();
