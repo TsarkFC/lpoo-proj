@@ -2,6 +2,7 @@ package com.g13.controller.state;
 
 import com.g13.controller.Controller;
 import com.g13.controller.menus.StartController;
+import com.g13.controller.state.statefactory.StartStateFactory;
 import com.g13.model.Model;
 import com.g13.model.menus.Start;
 import com.g13.view.View;
@@ -15,11 +16,11 @@ public class StartState implements State{
     private StartController startController;
     private StateRecognizer recognizer;
 
-    public StartState(StateRecognizer recognizer){
+    public StartState(StateRecognizer recognizer, StartStateFactory factory){
         this.recognizer = recognizer;
-        start = new Start();
-        startViewer = new StartViewer(start, recognizer.getScreen());
-        startController = new StartController(start, startViewer, recognizer);
+        start = factory.getStart();
+        startViewer = factory.getStartViewer();
+        startController = factory.getStartController();
     }
 
     @Override
@@ -36,14 +37,10 @@ public class StartState implements State{
     @Override
     public void advance() throws IOException {
         if (start.getSelection() == 0)
-            recognizer.setMenuState();
-        else if (start.getSelection() == -1){
+            recognizer.setLevelState();
+        else if (start.getSelection() == -1)
             start.setSelection(1);
-            recognizer.getCurrentState().getView().draw();
-        }
-        else if (start.getSelection() == 1){
+        else if (start.getSelection() == 1)
             start.setSelection(-1);
-            startViewer.drawInstructions();
-        }
     }
 }

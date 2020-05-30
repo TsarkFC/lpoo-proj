@@ -68,8 +68,6 @@ public class ArenaController implements Controller {
         if(!playerController.getTurnOver() && command == ArenaViewer.COMMAND.PLAYCARD)
             new PlaySpecialCardCommand(this).execute();
 
-        view.draw();
-
         if (command == ArenaViewer.COMMAND.QUIT)
             model.finish();
     }
@@ -179,18 +177,8 @@ public class ArenaController implements Controller {
     public ActivationFactory getActivationFactory() { return activationFactory; }
 
     private boolean verifyEndOfGame() throws IOException {
-        if (playerController.getHealth() <= 0) {
-            recognizer.getLevelState().lockStages();
-            recognizer.setMenuState();
-            enemyController.resetPlayer();
-            playerController.resetPlayer();
-            return true;
-        }
-        else if (enemyController.getHealth() <= 0){
-            recognizer.getLevelState().unlockNextStage();
-            recognizer.setMenuState();
-            playerController.resetOnWin();
-            enemyController.resetPlayer();
+        if (playerController.getHealth() <= 0 || enemyController.getHealth() <= 0) {
+            recognizer.getCurrentState().advance();
             return true;
         }
         else return false;

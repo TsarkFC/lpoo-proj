@@ -5,6 +5,7 @@ import com.g13.controller.arena.strategies.AggressivePlayStrategy;
 import com.g13.controller.arena.strategies.CarefulPlayStrategy;
 import com.g13.controller.arena.strategies.NormalPlayStrategy;
 import com.g13.controller.menus.LevelController;
+import com.g13.controller.state.statefactory.LevelStateFactory;
 import com.g13.model.Model;
 import com.g13.model.menus.Level;
 import com.g13.view.View;
@@ -18,11 +19,11 @@ public class LevelState implements State{
     private final LevelController levelController;
     private final StateRecognizer recognizer;
 
-    public LevelState(StateRecognizer recognizer){
+    public LevelState(StateRecognizer recognizer, LevelStateFactory factory){
         this.recognizer = recognizer;
-        level = new Level();
-        levelViewer = new LevelViewer(level, recognizer.getScreen());
-        levelController = new LevelController(level, levelViewer, recognizer);
+        level = factory.getLevel();
+        levelViewer = factory.getLevelViewer();
+        levelController = factory.getLevelController();
     }
 
     @Override
@@ -44,12 +45,11 @@ public class LevelState implements State{
         }
 
         if (level.getCross() == 1)
-            recognizer.getGameState().setStrategy(new CarefulPlayStrategy());
+            recognizer.setGameState(new CarefulPlayStrategy());
         else if (level.getCross() == 2)
-            recognizer.getGameState().setStrategy(new NormalPlayStrategy());
+            recognizer.setGameState(new NormalPlayStrategy());
         else if (level.getCross() == 3)
-            recognizer.getGameState().setStrategy(new AggressivePlayStrategy());
-        recognizer.setGameState();
+            recognizer.setGameState(new AggressivePlayStrategy());
     }
 
     public void unlockNextStage(){

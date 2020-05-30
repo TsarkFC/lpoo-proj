@@ -1,42 +1,39 @@
 package com.g13.controller.state;
 
+import com.g13.controller.arena.strategies.PlayStrategy;
+import com.g13.controller.state.statefactory.GameStateFactory;
+import com.g13.controller.state.statefactory.LevelStateFactory;
+import com.g13.controller.state.statefactory.StartStateFactory;
 import com.googlecode.lanterna.screen.TerminalScreen;
 
 import java.io.IOException;
 
 public class StateRecognizer {
     private GameState gameState;
-
     private StartState startState;
     private LevelState levelState;
     private State currentState;
     private TerminalScreen screen;
 
-    public StateRecognizer(TerminalScreen screen) throws IOException {
+    public StateRecognizer(TerminalScreen screen) {
         this.screen = screen;
-        startState = new StartState(this);
-        levelState = new LevelState(this);
-        gameState = new GameState(this);
+        startState = new StartState(this, new StartStateFactory(this));
+        levelState = new LevelState(this, new LevelStateFactory(this));
+        gameState = new GameState(this, new GameStateFactory(this));
         currentState = startState;
     }
     public State getCurrentState() { return currentState; }
-    public void setCurrentState(State currentState) { this.currentState = currentState; }
-
-    public GameState getGameState() { return gameState; }
     public LevelState getLevelState() { return levelState; }
-    public StartState getStartState() { return startState; }
 
-    public void setGameState() throws IOException {
+    public void setGameState(PlayStrategy strategy) {
+        gameState.setStrategy(strategy);
         currentState = gameState;
-        currentState.getView().draw();
     }
-    public void setMenuState() throws IOException {
+    public void setLevelState() {
         currentState = levelState;
-        currentState.getView().draw();
     }
-    public void setStartState() throws IOException {
+    public void setStartState()  {
         currentState = startState;
-        currentState.getView().draw();
     }
 
     public TerminalScreen getScreen() { return screen; }

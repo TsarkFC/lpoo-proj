@@ -4,6 +4,7 @@ import com.g13.controller.Controller;
 import com.g13.controller.arena.ArenaController;
 import com.g13.controller.arena.creator.ArenaCreator;
 import com.g13.controller.arena.strategies.PlayStrategy;
+import com.g13.controller.state.statefactory.GameStateFactory;
 import com.g13.model.Model;
 import com.g13.model.arena.Arena;
 import com.g13.view.View;
@@ -17,13 +18,13 @@ public class GameState implements State{
     private ArenaController arenaController;
     private StateRecognizer recognizer;
 
-    public GameState(StateRecognizer recognizer)  {
-        arena = new Arena(50, 30);
-        arenaViewer = new ArenaViewer(arena, recognizer.getScreen());
-        arenaController = new ArenaController(arenaViewer, arena, recognizer);
+    public GameState(StateRecognizer recognizer, GameStateFactory factory)  {
+        this.recognizer = recognizer;
+        arena = factory.getArena();
+        arenaViewer = factory.getArenaViewer();
+        arenaController = factory.getArenaController();
         ArenaCreator creator = new ArenaCreator();
         creator.create(arenaController);
-        this.recognizer = recognizer;
     }
 
     @Override
@@ -36,7 +37,20 @@ public class GameState implements State{
     public Controller getController() {return arenaController;}
 
     @Override
-    public void advance() { recognizer.setCurrentState(recognizer.getLevelState()); }
+    public void advance() throws IOException {
+        if (arenaController.getPlayerController().getHealth() <= 0) {
+            recognizer.getLevelState().lockStages();
+            recognizer.setLevelState();
+            arenaController.getEnemyController().resetPlayer();
+            arenaController.getPlayerController().resetPlayer();
+        }
+        else if (arenaController.getEnemyController().getHealth() <= 0){
+            recognizer.getLevelState().unlockNextStage();
+            recognizer.setLevelState();
+            arenaController.getPlayerController().resetOnWin();
+            arenaController.getEnemyController().resetPlayer();
+        }
+    }
 
     public void setStrategy(PlayStrategy strategy){
         arenaController.setEnemyStrategy(strategy);
