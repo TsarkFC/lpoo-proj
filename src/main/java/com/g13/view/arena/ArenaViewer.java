@@ -32,17 +32,13 @@ public class ArenaViewer implements View {
         PLAYCARD
     }
 
-    public ArenaViewer(Arena arena, TerminalScreen screen) {
+    public ArenaViewer(Arena arena, TerminalScreen screen, ComponentFactory component) {
         this.screen = screen;
-
-        graphics = screen.newTextGraphics();
-        graphics.setBackgroundColor(TextColor.Factory.fromString("#336699"));
-        graphics.setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
-
+        this.cardViewer = component.getCardViewer();
+        this.barViewer = component.getBarViewer();
+        this.gameParticipantViewer = component.getGameParticipantViewer();
+        this.graphics = component.getGraphics();
         this.arena = arena;
-        this.cardViewer = new CardViewer(screen.newTextGraphics());
-        this.barViewer = new BarViewer(screen.newTextGraphics(), screen.newTextGraphics(), screen.newTextGraphics());
-        this.gameParticipantViewer = new GameParticipantViewer(barViewer, cardViewer, graphics);
     }
 
     @Override

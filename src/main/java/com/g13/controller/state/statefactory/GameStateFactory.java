@@ -4,6 +4,7 @@ import com.g13.controller.arena.ArenaController;
 import com.g13.controller.state.StateRecognizer;
 import com.g13.model.arena.Arena;
 import com.g13.view.arena.ArenaViewer;
+import com.g13.view.arena.ComponentFactory;
 
 public class GameStateFactory {
     private Arena arena;
@@ -12,7 +13,7 @@ public class GameStateFactory {
 
     public GameStateFactory(StateRecognizer recognizer){
         arena = new Arena(50, 30);
-        arenaViewer = new ArenaViewer(arena, recognizer.getScreen());
+        arenaViewer = new ArenaViewer(arena, recognizer.getScreen(), new ComponentFactory(recognizer.getScreen()));
         arenaController = new ArenaController(arenaViewer, arena, recognizer);
     }
 
