@@ -2,6 +2,7 @@ package com.g13.model.arena;
 
 import com.g13.model.arena.specialcards.SpecialCard;
 import com.g13.model.arena.specialcards.endofturn.AddHpPerTurn;
+import com.g13.model.arena.specialcards.endofturn.DamageGamble;
 import com.g13.model.arena.specialcards.endofturn.OnWinDamage;
 import com.g13.model.arena.specialcards.instant.FluxModifierAtoB;
 import com.g13.model.arena.specialcards.instant.InstantDamage;
@@ -27,9 +28,11 @@ public class SpecialCardTest {
         InstantDamage card2 = new InstantDamage(2, '*', " ", 5);
         OnWinDamage card3 = new OnWinDamage(2, '*', " ", 5);
         AddHpPerTurn card4 = new AddHpPerTurn(4, '*', " ", 5, 2);
+        DamageGamble card5 = new DamageGamble(2, '*', " ", 5);
         assertEquals(card1.getModNum(), card2.getDamage());
         assertEquals(card2.getDamage(), card3.getDamage());
         assertEquals(card3.getDamage(), card4.getHPPerTurn());
+        assertEquals(card4.getHPPerTurn(), card5.getmanaPerDamageTaken());
 
         card4.decrementRoundsLeft();
         assertEquals(1, card4.getRoundsLeft());

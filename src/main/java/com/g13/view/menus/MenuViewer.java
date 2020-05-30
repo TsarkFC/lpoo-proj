@@ -53,7 +53,7 @@ public abstract class MenuViewer implements View {
     }
 
     private void drawGenericTitle(int x, int y, char[][] title){
-        int safex = x;
+        int safe_x = x;
         for (int i = 0; i < title.length; i++){
             for (int j = 0; j < title[i].length; j++){
                 if (title[i][j] == '*')
@@ -62,7 +62,7 @@ public abstract class MenuViewer implements View {
                     graphics.putString(x, y, " ");
                 x += 1;
             }
-            x = safex;
+            x = safe_x;
             y += 1;
         }
     }
