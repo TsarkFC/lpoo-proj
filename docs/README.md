@@ -1,49 +1,60 @@
 
 # LPOO_13 - VOID TYRANT (card game)
 
-Este projeto tem como inspiração o jogo "Void Tyrant", onde o utilizador tem como objetivo derrotar um enimigo, utilizando as cartas que tem ao seu dispor. 
+Este projeto tem como inspiração o jogo "Void Tyrant", onde o utilizador tem como objetivo derrotar um inimigo, utilizando as cartas que tem ao seu dispor. 
 Ambos os participantes possuem dois baralhos: um baralho de cartas normais e um baralho de cartas especiais cujas habilidades poderão ser ativadas com o decorrer do jogo.
 
 As cartas normais possuem valores entre 1 a 6 e cada jogador tem como objetivo ir tirando cartas do baralho até que o valor somado das cartas retiradas esteja o mais próximo possível de 12.
 Quando ambos os jogadores derem o seu turno por terminado, ataca o jogador com pontuação mais próxima de 12, um número de vezes correspondente à diferença de pontuações.
 
-A ser desenvolvido por [João Cardoso](https://github.com/joaoalc) (up201806531@fe.up.pt) e [João Romão](https://github.com/TsarkFC) (up201806779@fe.up.pt).
+As diversas cartas especiais que cada jogador possui ao seu dispor podem ser utilizadas sempre que o jogador possuir mana para tal, sendo que o jogador tem na "mão" apenas as primeiras quatro cartas do baralho.
+
+Desenvolvido por [João Cardoso](https://github.com/joaoalc) (up201806531@fe.up.pt) e [João Romão](https://github.com/TsarkFC) (up201806779@fe.up.pt).
 
 ## Features implementadas
+ - Numa fase incial do jogo o utilizador pode selecionar o menu Instructions onde lhe serão apresentadas instruções iniciais de como jogar o jogo.
 
- - Atualmente, o jogador e o computador podem fazer draw de cartas do baralho normal, há deteção de overflow do draw.
+Menu inicial | Intruções de jogo
+ :--------------:|:---------------:
+ ![](img/initial_menu.png) | ![](img/instructions.png)
+
+ - O computador apresenta, neste momento, três "personalidades" distintas:
+    - Cuidadosa: Faz draw de cartas até ter 6 ou mais pontos;
+    - Normal: Faz draw de cartas até ter 7 ou mais pontos;
+    - Agressiva: Faz draw de cartas até ter 8 ou mais pontos, também faz draw se o jogador tiver os mesmos ou mais pontos.
  
- - O computador pode apresentar, neste momento, três "personalidades" distintas:
-    - Normal: Faz draw de cartas até ter 9 ou mais pontos;
-    - Cuidadosa: Faz draw de cartas até ter 7 ou mais pontos;
-    - Agressiva: Faz draw de cartas até ter 9 ou mais pontos, também faz draw se o jogador tiver os mesmos ou mais pontos.
- 
- - O utilizador pode obter informação relativa às quatro cartas que tem na "mão" premindo {1, 2, 3, 4}.
- 
+ - O jogador começa inicialmente por defrontar o enimigo com personalidade cuidadosa encontrando-se os restantes inimigos bloqueados. O jogador tem assim como objetivo derrotar os três inimigos sendo que cada vez que derrota um novo inimigo o próximo é desbloqueado.
+
+  Estado inicial do jogo | Estado após o utilizador ter completado o jogo
+ :--------------:|:---------------:
+ ![](img/begin.png) | ![](img/final.png)
+
+ - O jogador e o computador podem fazer draw de cartas do baralho normal, há deteção de overflow do draw.
+
  - O utilizador pode terminar o seu turno premindo ENTER.
  
  Início da ronda | Fim de uma ronda
  :--------------:|:---------------:
  ![](img/img1.png) | ![](img/img2.png)
 
-## Features a implementar
+ - O utilizador pode obter informação relativa às quatro cartas que tem na "mão" premindo {1, 2, 3, 4}, uma vez selecionada a carta pode ser ativada premindo TAB. Premindo novamente {1, 2, 3, 4} a carta deixa de se encontrar selecionada.
 
- - Ativação de cartas especiais por parte do utilizador.
+ Exemplo de seleção de carta |
+ :--------------:|
+ ![](img/special_card.png) |
 
- - Ativação de cartas especiais por parte do computador, dependendo da personalidade do mesmo.
 
- - Cálculo do dano feito/recebido no final de cada turno, dependendo dos pontos e cartas do jogador e inimigo.
+## Features que gostaríamos de implementar
 
- - Existência de vários níveis, onde o computador teria diferentes comportamentos a jogar (mais agressivo, equilibrado, passivo, etc.).
+ - Gostaríamos de ter criado um baralho de cartas especiais mais completo com as cartas que constam no jogo real Void Tyrant. No entanto teríamos que introduzir uma nova situação em que o computador jogaria cada carta na estrtégia do inimigo, pelo que optámos por ter um baralho mais simples com oito cartas especiais.
+
+ - Dentro da mesma linha, gostaríamos que o acesso a algumas cartas apenas fosse desbloqueado quando o jogador desbloqueasse uma nova etapa do jogo.
  
- - O jogador vai desbloqueando novas cartas à medida que vai derrotando inimigos.
- 
- - Implementação de menus e de um mapa por onde o utilizador se pode deslocar, escolhendo com qual enimigo quer batalhar.
- Só poderá enfrentar enimigos já derrotados ou o pŕoximo não derrotado.
+ - Uma vez que apenas criámos três inimigos distintos, a criação de um menu dinâmico, anteriormente referido como feature planeada,  onde o utilizador se fosse deslocando num mapa acabou por se demonstrar desnecessário, pelo que optámos por um menu mais simples já anteriormente apresentado.
 
-  Invocação de cartas especiais e atualização das barras de vida e mana | Mapa ilustrativo de como o utilizador se poderia movimentar (baseado no jogo SuperTux)
-  :--------------:|:---------------:
-  ![](img/img3.png) | ![](img/map.png)
+  | Mapa ilustrativo de como o utilizador se poderia movimentar (baseado no jogo SuperTux)
+  :---------------:
+   ![](img/map.png) |
   
 
 ## Design Patterns
