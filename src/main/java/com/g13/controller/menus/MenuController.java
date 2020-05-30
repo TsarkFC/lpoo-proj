@@ -26,13 +26,14 @@ public abstract class MenuController implements Controller {
     public void start() throws IOException {
         LevelViewer.COMMAND command = view.getNextCommand();
 
-        if (command == DOWN) moveDown();
-        else if (command == UP) moveUp();
-        else if (command == SELECT) {
+        if (command == DOWN)
+            moveDown();
+        else if (command == UP)
+            moveUp();
+        else if (command == SELECT)
             recognizer.getCurrentState().advance();
-            return;
-        }
-        else if (command == QUIT) model.setFinished(true);
+        else if (command == QUIT)
+            model.setFinished(true);
     }
 
     public abstract void moveDown();
