@@ -2,11 +2,11 @@ package com.g13.controller.state;
 
 import com.g13.controller.arena.ArenaController;
 import com.g13.controller.arena.strategies.AggressivePlayStrategy;
+import com.g13.controller.arena.strategies.NormalPlayStrategy;
 import com.g13.controller.state.statefactory.GameStateFactory;
 import static org.mockito.ArgumentMatchers.*;
 
 import com.g13.model.arena.Arena;
-import com.g13.view.arena.ArenaViewer;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.TerminalScreen;
@@ -27,7 +27,7 @@ public class GameStateTest {
         Mockito.when(graphics.putString(anyInt(), anyInt(), anyString())).thenReturn(graphics);
 
         StateRecognizer recognizer = new StateRecognizer(screen);
-        recognizer.setGameState();
+        recognizer.setGameState(new NormalPlayStrategy());
         GameStateFactory gameStateFactory = new GameStateFactory(recognizer);
         GameState state = new GameState(recognizer, gameStateFactory);
         state.advance();
@@ -39,7 +39,7 @@ public class GameStateTest {
 
         assertTrue(recognizer.getCurrentState() instanceof LevelState);
 
-        recognizer.setGameState();
+        recognizer.setGameState(new NormalPlayStrategy());
         gameStateFactory.getArena().getEnemy().setHealth(1);
         gameStateFactory.getArena().getPlayer().setHealth(0);
         state.advance();

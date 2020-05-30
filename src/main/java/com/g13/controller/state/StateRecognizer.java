@@ -1,5 +1,6 @@
 package com.g13.controller.state;
 
+import com.g13.controller.arena.strategies.PlayStrategy;
 import com.g13.controller.state.statefactory.GameStateFactory;
 import com.g13.controller.state.statefactory.LevelStateFactory;
 import com.g13.controller.state.statefactory.StartStateFactory;
@@ -25,7 +26,8 @@ public class StateRecognizer {
     public GameState getGameState() { return gameState; }
     public LevelState getLevelState() { return levelState; }
 
-    public void setGameState() throws IOException {
+    public void setGameState(PlayStrategy strategy) throws IOException {
+        gameState.setStrategy(strategy);
         currentState = gameState;
         currentState.getView().draw();
     }
