@@ -1,5 +1,14 @@
 package com.g13.controller.state;
 
+import com.g13.controller.arena.ArenaController;
+import com.g13.controller.arena.strategies.AggressivePlayStrategy;
+import com.g13.controller.state.statefactory.GameStateFactory;
+import static org.mockito.ArgumentMatchers.*;
+
+import com.g13.model.arena.Arena;
+import com.g13.view.arena.ArenaViewer;
+import com.googlecode.lanterna.TextColor;
+import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -10,12 +19,55 @@ public class GameStateTest {
     @Test
     public void gameStateTest() throws IOException {
         TerminalScreen screen = Mockito.mock(TerminalScreen.class);
+        TextGraphics graphics = Mockito.mock(TextGraphics.class);
+
+        Mockito.when(screen.newTextGraphics()).thenReturn(graphics);
+        Mockito.when(graphics.setBackgroundColor(any(TextColor.class))).thenReturn(graphics);
+        Mockito.when(graphics.setForegroundColor(any(TextColor.class))).thenReturn(graphics);
+        Mockito.when(graphics.putString(anyInt(), anyInt(), anyString())).thenReturn(graphics);
+
         StateRecognizer recognizer = new StateRecognizer(screen);
         recognizer.setGameState();
-        GameState state = new GameState(recognizer);
-
+        GameStateFactory gameStateFactory = new GameStateFactory(recognizer);
+        GameState state = new GameState(recognizer, gameStateFactory);
         state.advance();
 
         assertTrue(recognizer.getCurrentState() instanceof GameState);
+
+        gameStateFactory.getArena().getEnemy().setHealth(0);
+        state.advance();
+
+        assertTrue(recognizer.getCurrentState() instanceof LevelState);
+
+        recognizer.setGameState();
+        gameStateFactory.getArena().getEnemy().setHealth(1);
+        gameStateFactory.getArena().getPlayer().setHealth(0);
+        state.advance();
+
+        assertTrue(recognizer.getCurrentState() instanceof LevelState);
+    }
+
+    @Test
+    public void setStrategyTest(){
+        TerminalScreen screen = Mockito.mock(TerminalScreen.class);
+        TextGraphics graphics = Mockito.mock(TextGraphics.class);
+
+        Mockito.when(screen.newTextGraphics()).thenReturn(graphics);
+        Mockito.when(graphics.setBackgroundColor(any(TextColor.class))).thenReturn(graphics);
+        Mockito.when(graphics.setForegroundColor(any(TextColor.class))).thenReturn(graphics);
+        Mockito.when(graphics.putString(anyInt(), anyInt(), anyString())).thenReturn(graphics);
+
+        StateRecognizer recognizer = new StateRecognizer(screen);
+        GameStateFactory gameStateFactory = new GameStateFactory(recognizer);
+        GameState state = new GameState(recognizer, gameStateFactory);
+        assertTrue(state.getModel() instanceof Arena);
+        assertTrue(state.getController() instanceof ArenaController);
+
+        assertTrue(!(gameStateFactory.getArena().getEnemy().getPlayStrategy() instanceof AggressivePlayStrategy));
+
+        state.setStrategy(new AggressivePlayStrategy());
+
+        assertTrue(gameStateFactory.getArena().getEnemy().getPlayStrategy() instanceof AggressivePlayStrategy);
+
     }
 }
