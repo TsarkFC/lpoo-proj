@@ -305,7 +305,7 @@ Estas classes podem sem encontradas nos seguintes ficheiros:
  ![](./img/testsummary.png)
  <img src="img/coverage.png" alt="drawing" width="4000" height="400"/>
  
- - Coverage testing [link](./tests).
+ - Coverage testing [link](./coverage).
  
  ### Mutation testing 
  
