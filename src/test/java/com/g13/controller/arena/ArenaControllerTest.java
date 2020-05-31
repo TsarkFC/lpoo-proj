@@ -3,6 +3,7 @@ package com.g13.controller.arena;
 import com.g13.controller.arena.strategies.AggressivePlayStrategy;
 import com.g13.controller.arena.strategies.NormalPlayStrategy;
 import com.g13.controller.arena.strategies.PlayStrategy;
+import com.g13.controller.state.LevelState;
 import com.g13.controller.state.StateRecognizer;
 import com.g13.model.arena.*;
 import com.g13.model.arena.specialcards.SpecialCard;
@@ -12,11 +13,13 @@ import com.g13.view.arena.ArenaViewer;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
 
 public class ArenaControllerTest {
     @Test

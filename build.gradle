@@ -28,6 +28,6 @@ pitest {
 dependencies {
     compile group: 'com.googlecode.lanterna', name: 'lanterna', version: '3.0.1'
     testCompile group: 'org.mockito', name: 'mockito-core', version: '2.25.0'
-    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter', version: '5.6.2'
-    testCompile group: 'net.jqwik', name: 'jqwik', version: '1.2.7'
+    testImplementation "net.jqwik:jqwik:1.2.7"
+    testImplementation "org.junit.jupiter:junit-jupiter:5.6.2"
 }
