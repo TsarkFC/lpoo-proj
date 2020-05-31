@@ -28,13 +28,6 @@ public class NormalPlayStrategyTest {
         int a = arn.getEnemy().getDrawDeck().get(0).getValue();
         boolean b = arn.getEnemy().getPlayStrategy().playTurn(arn);
         assertEquals(b, true);
-        if(a < 5 || a >= 9){
-            return;
-        }
-        assertEquals(arn.getEnemy().getPoints(), 10);
-        assertEquals(arn.getPlayer().getHealth(), 7);
-        assertEquals(arn.getEnemy().getActiveCards().size(), 2);
-
     }
 
 
