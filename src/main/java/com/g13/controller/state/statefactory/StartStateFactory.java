@@ -18,6 +18,5 @@ public class StartStateFactory {
     }
 
     public Start getStart() { return start; }
-    public StartViewer getStartViewer() { return startViewer; }
     public StartController getStartController() { return startController; }
 }

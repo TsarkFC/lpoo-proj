@@ -72,6 +72,16 @@ public class ArenaController implements Controller {
             model.finish();
     }
 
+    @Override
+    public void render() throws IOException {
+        view.draw();
+    }
+
+    @Override
+    public boolean isFinished() {
+        return model.isFinished();
+    }
+
     public GameParticipant getPlayer() {return model.getPlayer();}
     public Enemy getEnemy() {return model.getEnemy();}
     public Arena getModel() {return model;}

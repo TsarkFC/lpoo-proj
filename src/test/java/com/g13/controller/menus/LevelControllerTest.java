@@ -11,6 +11,8 @@ import net.jqwik.api.constraints.Positive;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import java.io.IOException;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LevelControllerTest {
@@ -84,6 +86,27 @@ public class LevelControllerTest {
             assertEquals(iterations, model.getCross());
         else
             assertEquals(3, model.getCross());
+    }
+
+    @Test
+    public void renderTest() throws IOException {
+        Level model = new Level();
+        LevelViewer viewer = Mockito.mock(LevelViewer.class);
+        StateRecognizer recognizer = Mockito.mock(StateRecognizer.class);
+        LevelController controller = new LevelController(model, viewer, recognizer);
+        Mockito.doNothing().when(viewer).draw();
+        controller.render();
+
+        Mockito.verify(viewer, Mockito.times(1)).draw();
+    }
+
+    @Test
+    public void isFinishedTest(){
+        Level model = new Level();
+        LevelViewer viewer = Mockito.mock(LevelViewer.class);
+        StateRecognizer recognizer = Mockito.mock(StateRecognizer.class);
+        LevelController controller = new LevelController(model, viewer, recognizer);
+        assertEquals(false, controller.isFinished());
     }
 
     private int countUnlocked(Level model){

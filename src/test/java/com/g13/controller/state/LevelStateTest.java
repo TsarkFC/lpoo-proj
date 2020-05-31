@@ -5,21 +5,18 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import com.g13.controller.menus.LevelController;
 import com.g13.controller.state.statefactory.LevelStateFactory;
 import com.g13.model.menus.Level;
-import com.g13.view.menus.LevelViewer;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import java.io.IOException;
-
 import static org.mockito.ArgumentMatchers.*;
 
 public class LevelStateTest {
 
     @Test
-    public void levelStateTest() throws IOException {
+    public void levelStateTest() {
         TerminalScreen screen = Mockito.mock(TerminalScreen.class);
         TextGraphics graphics = Mockito.mock(TextGraphics.class);
 
@@ -31,8 +28,6 @@ public class LevelStateTest {
         StateRecognizer recognizer = new StateRecognizer(screen);
         LevelStateFactory levelStateFactory = new LevelStateFactory(recognizer);
         LevelState state = new LevelState(recognizer, levelStateFactory);
-        assertTrue(state.getModel() instanceof Level);
-        assertTrue(state.getView() instanceof LevelViewer);
         assertTrue(state.getController() instanceof LevelController);
 
         state.advance();

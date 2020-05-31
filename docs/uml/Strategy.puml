@@ -17,14 +17,18 @@ end note
 class NormalPlayStrategy{
     + void playTurn(ArenaController arenaController);
 }
+note bottom
+Concrete State
+end note
+
 class AggressivePlayStrategy{
     + void playTurn(ArenaController arenaController);
 }
 class CarefulPlayStrategy{
     + void playTurn(ArenaController arenaController);
 }
-class LevelState {}
-hide LevelState members
+class GameState {}
+hide GameState members
 
 note left
 Client
@@ -32,10 +36,10 @@ end note
 
 PlayStrategy <-right-o ArenaController
 
-LevelState -> ArenaController
-LevelState -> NormalPlayStrategy
-LevelState -> CarefulPlayStrategy
-LevelState -> AggressivePlayStrategy
+GameState -> ArenaController
+GameState -> NormalPlayStrategy
+GameState -> CarefulPlayStrategy
+GameState -> AggressivePlayStrategy
 
 skinparam groupInheritance 3
 

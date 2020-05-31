@@ -17,6 +17,5 @@ public class LevelStateFactory {
     }
 
     public Level getLevel() { return level; }
-    public LevelViewer getLevelViewer() { return levelViewer; }
     public LevelController getLevelController() { return levelController; }
 }

@@ -2,39 +2,49 @@
 
 interface State {
     Model getModel();
-    View getView();
     Controller getController();
     void advance();
 }
+note right
+State
+end note
 
 class StateRecognizer{
-    - State getCurrentState;
-    - StartState startState;
-    - LevelState LevelState;
-    - GameState gameState;
-    + void getCurrentState();
-    + setStartState(PlayStartegy strategy);
-    + setLevelState();
-    + setGameState();
+    - State getCurrentState
+    - StartState startState
+    - LevelState LevelState
+    - GameState gameState
+    + void getCurrentState()
+    + setStartState(PlayStartegy strategy)
+    + setLevelState()
+    + setGameState()
 }
+note left
+Context
+end note
 
 class StartState{
-    + Model getModel();
-    + View getView();
-    + Controller getController();
-    + void advance();
+    - StartController startController
+    - StateRecognizer recognizer
+    + Controller getController()
+    + void advance()
 }
+note left
+Concrete state
+end note
 class LevelState{
-    + Model getModel();
-    + View getView();
-    + Controller getController();
-    + void advance();
+    - Level level
+    - LevelController levelController
+    - StateRecognizer recognizer
+    + Controller getController()
+    + void advance()
 }
 class GameState{
-    + Model getModel();
-    + View getView();
-    + Controller getController();
-    + void advance();
+    - Arena arena
+    - ArenaController arenaController
+    - StateRecognizer recognizer
+    + Controller getController()
+    + void advance()
 }
 
 

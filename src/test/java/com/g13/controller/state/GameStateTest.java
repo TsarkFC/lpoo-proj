@@ -7,7 +7,6 @@ import com.g13.controller.state.statefactory.GameStateFactory;
 import static org.mockito.ArgumentMatchers.*;
 
 import com.g13.model.arena.Arena;
-import com.g13.view.arena.ArenaViewer;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.TerminalScreen;
@@ -18,7 +17,7 @@ import java.io.IOException;
 
 public class GameStateTest {
     @Test
-    public void gameStateTest() throws IOException {
+    public void gameStateTest() {
         TerminalScreen screen = Mockito.mock(TerminalScreen.class);
         TextGraphics graphics = Mockito.mock(TextGraphics.class);
 
@@ -61,8 +60,6 @@ public class GameStateTest {
         StateRecognizer recognizer = new StateRecognizer(screen);
         GameStateFactory gameStateFactory = new GameStateFactory(recognizer);
         GameState state = new GameState(recognizer, gameStateFactory);
-        assertTrue(state.getModel() instanceof Arena);
-        assertTrue(state.getView() instanceof ArenaViewer);
         assertTrue(state.getController() instanceof ArenaController);
 
         assertTrue(!(gameStateFactory.getArena().getEnemy().getPlayStrategy() instanceof AggressivePlayStrategy));

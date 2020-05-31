@@ -11,7 +11,7 @@ As diversas cartas especiais que cada jogador possui ao seu dispor podem ser uti
 
 Desenvolvido por [João Cardoso](https://github.com/joaoalc) (up201806531@fe.up.pt) e [João Romão](https://github.com/TsarkFC) (up201806779@fe.up.pt).
 
-<div style="text-align:center"><img src="img/void-tyrant.gif" /></div>
+![](img/void-tyrant.gif)
 
 ## Features implementadas
  - Numa fase incial do jogo o utilizador pode selecionar o menu Instructions onde lhe serão apresentadas instruções iniciais de como jogar o jogo.
@@ -97,10 +97,34 @@ Menu inicial | Intruções de jogo
   
   - [GameState](../src/main/java/com/g13/state/GameState.java)
 
+  **Máquina de estados**
+
+  ![](uml/statemachine.png)
+
   **Consequências**
 
   Ao atribuirmos diversos estados ao jogo permitui-nos, como já foi referido, conservar o código já desenvolvido anteriormente à etapa de desenvolvimento de menus e para além disso facilitou a aplicação do MVC bem como o "Game loop" que será descrito a seguir.
+
+ #### Game Loop (conjugação de MVC com State design pattern)
+
+ **Problema:**
+
+ Após a implementação de menus o jogo passou a ter vários loops que se encontravam em [ArenaController](../src/main/java/com/g13/controller/arena/ArenaController.java), [MenuController](../src/main/java/com/g13/controller/menus/MenuController.java) . Estes dois loops dificultavam os testes das respetivas classes e podiam facilmente concentrar-se num só.
+
+ **Design Pattern / solução:**
+
+ A solução encontrada apresenta-se associada ao State design pattern e ao MVC e passou por condensar os loops em [Game](../src/main/java/com/g13/Game.java):
+
+  | Loop genérico    | Solução adaptada | 
+  | :---        |    :----   | 
+  | while (true){<br>&nbsp;&nbsp;processInput();<br>&nbsp;&nbsp;update();<br>&nbsp;&nbsp;render();<br>} | ![](img/whileloop.png)
+
+Neste caso o processamento do input do utilizador e a atulização do jogo são ambos realizados pela função start(). Uma vez que o jogo apenas avança com o input do utilizador não foi necessário o controlo da frequência de atualização dos frames da aplicação.
  
+ **Implementação:**
+
+
+
  #### Strategy
  
  **Problema:**
@@ -121,15 +145,15 @@ Menu inicial | Intruções de jogo
   
   Estas classes podem sem encontradas nos seguintes ficheiros:
   
-  - [NormalPlayStrategy](../src/main/java/com/g13/controller/strategies/NormalPlayStrategy.java)
+  - [NormalPlayStrategy](../src/main/java/com/g13/controller/arena/strategies/NormalPlayStrategy.java)
   
-  - [AggressivePlayStrategy](../src/main/java/com/g13/controller/strategies/AggressivePlayStrategy.java)
+  - [AggressivePlayStrategy](../src/main/java/com/g13/controller/arena/strategies/AggressivePlayStrategy.java)
   
-  - [CarefulPlayStrategy](../src/main/java/com/g13/controller/strategies/CarefulPlayStrategy.java)
+  - [CarefulPlayStrategy](../src/main/java/com/g13/controller/arena/strategies/CarefulPlayStrategy.java)
   
-  - [PlayStrategy](../src/main/java/com/g13/controller/strategies/PlayStrategy.java)
+  - [PlayStrategy](../src/main/java/com/g13/controller/arena/strategies/PlayStrategy.java)
   
-  - [ArenaController](../src/main/java/com/g13/controller/ArenaController.java)
+  - [ArenaController](../src/main/java/com/g13/controller/arena/ArenaController.java)
   
   **Consequências**
   
@@ -139,15 +163,13 @@ Menu inicial | Intruções de jogo
 
  ### Lazy Class
  
- - [CardController](../src/main/java/com/g13/controller/CardController.java) e [SpecialCardController](../src/main/java/com/g13/controller/SpecialCardController.java)
- não apresentam muita utilidade ao programa neste momento, uma vez que poucas instruções podem ser aplicadas a uma só carta. Deste modo no futuro poder-se-á criar
- um classe DeckController que manipulasse os baralhos dos jogadores, substituindo estas classes e alguns dos métodos de [GameParticipantController](../src/main/java/com/g13/controller/GameParticipantController.java).
+ 
 
  ### Switch statement
  
  - Numa fase inicial do desenvolvimento tínhamos implementado o design pattern Command, numa altura em que a arquitetura
  MVC não era respeitada e o modelo possuía a capacidade de se modelar. A classe [Gui](../src/main/java/com/g13/view/Gui.java) 
- era reponsável por enviar ao [ArenaController](../src/main/java/com/g13/controller/ArenaController.java) um comando 
+ era reponsável por enviar ao [ArenaController](../src/main/java/com/g13/controller/arena/ArenaController.java) um comando 
  dependendo da tecla que o utilizador premisse. 
  
  - Isto passou a constituir problema quando os métodos que alteram o modelo foram
@@ -155,7 +177,7 @@ Menu inicial | Intruções de jogo
  
  - Pensámos em aplicar o design pattern Singleton, numa fase inicial, mas relembrando o que nos foi transmitido em diversas aulas, este design pattern poderia provocar mais problemas futuramente.
  
- - Optou-se por criar uma enumeração em [Gui](../src/main/java/com/g13/view/Gui.java), onde cada atributo representa
+ - Optou-se por criar uma enumeração em [ArenaViewer](../src/main/java/com/g13/view/arena/ArenaViewer.java), onde cada atributo representa
  um comando a ser executado por [start()](../src/main/java/com/g13/controller/Controller.java) em Controller (implementação distinta para cada estado).
  Para reconhecer o atributo utiliza-se uma cadeia de ifs.
  
