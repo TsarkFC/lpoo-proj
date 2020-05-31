@@ -35,7 +35,7 @@ public class StartState implements State{
     }
 
     @Override
-    public void advance() throws IOException {
+    public void advance() {
         if (start.getSelection() == 0)
             recognizer.setLevelState();
         else if (start.getSelection() == -1)

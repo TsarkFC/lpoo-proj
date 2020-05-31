@@ -37,7 +37,7 @@ public class GameState implements State{
     public Controller getController() {return arenaController;}
 
     @Override
-    public void advance() throws IOException {
+    public void advance()  {
         if (arenaController.getPlayerController().getHealth() <= 0) {
             recognizer.getLevelState().lockStages();
             recognizer.setLevelState();

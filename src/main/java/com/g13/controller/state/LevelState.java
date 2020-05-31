@@ -38,7 +38,7 @@ public class LevelState implements State{
     }
 
     @Override
-    public void advance() throws IOException {
+    public void advance() {
         if (level.getCross() == 0){
             recognizer.setStartState();
             return;

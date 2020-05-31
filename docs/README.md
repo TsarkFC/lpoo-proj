@@ -58,36 +58,6 @@ Menu inicial | Intruções de jogo
   
 
 ## Design Patterns
-
- ### Observer
- 
- **Problema:**
- 
- Uma vez que o jogo apenas sofre alterações uma vez que o utilizador prima teclas do teclado, seria vantajoso apenas desenhar o jogo ([draw()](../src/main/java/com/g13/view/Gui.java))
- caso a modelo da arena sofresse alterações.
- 
- **Design Pattern / Solução**
- 
- Uma possível solução seria aplicar o design pattern Observer. Neste design pattern estão presentes vários observadores que executam uma determinada ação apenas quando notificados 
- para tal. 
- 
- **Implementação**
- 
-  ![](./uml/Observer_Pattern.png)
-  
-  Estas classes podem sem encontradas nos seguintes ficheiros:
-  
-  - [ArenaController](../src/main/java/com/g13/controller/ArenaController.java)
-  
-  - [ArenaObserver](../src/main/java/com/g13/controller/observer/ArenaObserver.java)
-  
-  - [Gui](../src/main/java/com/g13/view/Gui.java)
-  
- 
- **Consequências**
- 
- Apesar de neste momento apenas termos um observador ([Gui](../src/main/java/com/g13/view/Gui.java)), decidimos implementar o design pattern uma vez que será útil no futuro
- quando o código for simplificado e novas componentes forem introduzidas na Arena, não sendo necessária uma atualização contínua de cada compenente da vista do jogo.
  
  #### Strategy
  

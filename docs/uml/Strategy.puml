@@ -1,14 +1,19 @@
-@startuml
-!define DARKBLUE
-!includeurl https://raw.githubusercontent.com/Drakemor/RedDress-PlantUML/master/style.puml
+@startuml strategy
 
-interface PlayStrategy{
+interface PlayStrategy {
     void playTurn(ArenaController arenaController);
 }
+note right 
+Strategy
+end note
 
 class ArenaController{
-    + void PlayEnemyTurn();
+    + void playEnemyTurn();
 }
+note top
+Context
+end note
+
 class NormalPlayStrategy{
     + void playTurn(ArenaController arenaController);
 }
@@ -18,9 +23,19 @@ class AggressivePlayStrategy{
 class CarefulPlayStrategy{
     + void playTurn(ArenaController arenaController);
 }
+class LevelState {}
+hide LevelState members
 
+note left
+Client
+end note
 
 PlayStrategy <-right-o ArenaController
+
+LevelState -> ArenaController
+LevelState -> NormalPlayStrategy
+LevelState -> CarefulPlayStrategy
+LevelState -> AggressivePlayStrategy
 
 skinparam groupInheritance 3
 
