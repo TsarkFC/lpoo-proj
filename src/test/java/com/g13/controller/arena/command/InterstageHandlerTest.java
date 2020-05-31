@@ -2,25 +2,22 @@ package com.g13.controller.arena.command;
 
 import com.g13.controller.arena.ArenaController;
 import com.g13.controller.arena.ParticipantController;
-import com.g13.controller.arena.commands.PointDiffCommand;
+import com.g13.controller.arena.commands.InterstageHandler;
 import com.g13.controller.arena.strategies.PlayStrategy;
 import com.g13.controller.state.StateRecognizer;
 import com.g13.model.arena.*;
-import com.g13.model.arena.specialcards.instant.FluxModifierAtoB;
 import com.g13.view.arena.ArenaViewer;
 import net.jqwik.api.ForAll;
 import net.jqwik.api.Property;
 import net.jqwik.api.constraints.IntRange;
-import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.util.ArrayList;
 
 import static java.lang.Integer.max;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class PointDiffCommandTest {
+public class InterstageHandlerTest {
 
     @Property
     public void CombatTest(@ForAll @IntRange(min = 0, max = 12) int playerPoints, @ForAll @IntRange(min = 0, max = 12) int enemyPoints){
@@ -33,13 +30,29 @@ public class PointDiffCommandTest {
         playerController.setPoints(playerPoints);
         enemyController.setPoints(enemyPoints);
 
-        PointDiffCommand cmd = new PointDiffCommand(arenaController);
+        InterstageHandler cmd = new InterstageHandler(arenaController);
         cmd.execute();
 
         assertEquals(arenaController.getPlayerController().getPoints(), max(playerPoints - enemyPoints, 0));
         assertEquals(arenaController.getEnemyController().getPoints(), max(enemyPoints - playerPoints, 0));
     }
 
+    @Property
+    public void CheckSubtractionPlayer(@ForAll @IntRange(min = 0,max = 10) int enemyPoints){
+        ArenaController arn = initArena();
+
+        arn.getPlayerController().setHealth(11);
+        arn.getPlayerController().setPoints(0);
+
+        arn.getPlayerController().setPoints(0);
+        arn.getEnemyController().setPoints(enemyPoints);
+        arn.advanceCmdStage();
+
+        InterstageHandler cmd = new InterstageHandler(arn);
+        cmd.execute();
+
+        assertEquals(arn.getPlayerController().getHealth(), 11 - enemyPoints);
+    }
 
     private ArenaController initArena() {
         GameParticipant player = new GameParticipant(new ArrayList<>(), initBar());

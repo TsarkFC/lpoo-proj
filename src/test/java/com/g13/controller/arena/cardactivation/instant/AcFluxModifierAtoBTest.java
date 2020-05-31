@@ -6,7 +6,6 @@ import com.g13.controller.state.StateRecognizer;
 import com.g13.model.arena.*;
 import com.g13.model.arena.specialcards.SpecialCard;
 import com.g13.model.arena.specialcards.instant.FluxModifierAtoB;
-import com.g13.model.arena.specialcards.instant.StaticModifier;
 import com.g13.view.arena.ArenaViewer;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -61,7 +60,7 @@ public class AcFluxModifierAtoBTest {
 
         arenaController.setEnemyController(enemy);
         arenaController.setPlayerController(player);
-        Mockito.when(strategy.CheckFluxModifier(any(ArenaController.class), Mockito.anyInt(), Mockito.anyInt(), Mockito.anyInt())).thenReturn(true);
+        Mockito.when(strategy.checkFluxModifier(any(ArenaController.class), Mockito.anyInt(), Mockito.anyInt(), Mockito.anyInt())).thenReturn(true);
 
         return arenaController;
     }

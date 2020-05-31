@@ -8,7 +8,6 @@ import com.g13.model.arena.specialcards.SpecialCard;
 import com.g13.model.arena.specialcards.instant.StaticModifier;
 import com.g13.view.arena.ArenaViewer;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import java.util.ArrayList;
@@ -64,7 +63,7 @@ public class AcStaticModifierTest {
 
         arenaController.setEnemyController(enemy);
         arenaController.setPlayerController(player);
-        Mockito.when(strategy.CheckStaticModifier(any(ArenaController.class), Mockito.anyInt(), Mockito.anyInt())).thenReturn(true);
+        Mockito.when(strategy.checkStaticModifier(any(ArenaController.class), Mockito.anyInt(), Mockito.anyInt())).thenReturn(true);
 
         return arenaController;
     }

@@ -12,7 +12,6 @@ import com.g13.model.arena.specialcards.SpecialCard;
 import com.g13.view.arena.ArenaViewer;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.Integer.min;
@@ -24,7 +23,7 @@ public class ArenaController implements Controller {
     private ParticipantController playerController;
     private ParticipantController enemyController;
     private ActivationFactory activationFactory;
-    private List<Command> commands;
+
     private int cmdStage = 0;
 
 
@@ -32,46 +31,27 @@ public class ArenaController implements Controller {
         this.view = arenaViewer;
         this.model = arena;
         this.recognizer = recognizer;
-        commands = new ArrayList<>();
-        commands.add(new PointDiffCommand(this));
-        commands.add(new ApplyDiffCommand(this));
         activationFactory = new ActivationFactory();
     }
 
+    @Override
     public void start() throws IOException {
-        int select = -1;
-
         if (verifyEndOfGame()) return;
 
         ArenaViewer.COMMAND command = view.getNextCommand();
+        CommandParser parser = new CommandParser(this);
+        for (Command cmd : parser.parse(command))
+            cmd.execute();
+    }
 
-        if (command == ArenaViewer.COMMAND.ONE) select = 0;
-        else if(command == ArenaViewer.COMMAND.TWO) select = 1;
-        else if(command == ArenaViewer.COMMAND.THREE) select = 2;
-        else if(command == ArenaViewer.COMMAND.FOUR) select = 3;
-        if (select != -1) playerController.setCardSelected(select);
-
-        if (command == ArenaViewer.COMMAND.SWITCH) {
-            if (endOfRound())
-                interStageHandler();
-            else
-                new SkipTurnCommand(playerController).execute();
-        }
-
-        if (command == ArenaViewer.COMMAND.DRAW){
-            if(!playerController.getTurnOver())
-                new DrawCardCommand(this).execute();
-            if(!enemyController.getTurnOver())
-                playEnemyTurn();
-        }
-
-        if(!playerController.getTurnOver() && command == ArenaViewer.COMMAND.PLAYCARD)
-            new PlaySpecialCardCommand(this).execute();
-
+    @Override
+    public void render() throws IOException {
         view.draw();
+    }
 
-        if (command == ArenaViewer.COMMAND.QUIT)
-            model.finish();
+    @Override
+    public boolean isFinished() {
+        return model.isFinished();
     }
 
     public GameParticipant getPlayer() {return model.getPlayer();}
@@ -98,17 +78,7 @@ public class ArenaController implements Controller {
         enemyController.setDefaultDeck();
     }
 
-    public void playEnemyTurn(){
-        model.setPlayersTurn(false);
-        PlayStrategy strategy = getEnemy().getPlayStrategy();
-        if (!strategy.playTurn(this)) {
-            SkipTurnCommand skipTurnCommand = new SkipTurnCommand(enemyController);
-            skipTurnCommand.execute();
-        }
-        model.setPlayersTurn(true);
-    }
-
-    private boolean endOfRound(){
+    public boolean endOfRound(){
         return model.getPlayer().getTurnOver() && model.getEnemy().getTurnOver();
     }
 
@@ -120,16 +90,7 @@ public class ArenaController implements Controller {
         return enemyController.getPoints() != 0 ? enemyController : playerController;
     }
 
-    private void interStageHandler(){
-        commands.get(cmdStage).execute();
-        cmdStage++;
-        if (cmdStage == commands.size()) {
-            resetRound();
-            cmdStage = 0;
-        }
-    }
-
-    private void resetRound(){
+    public void resetRound(){
         playerController.setTurnOver(false);
         enemyController.setTurnOver(false);
         processPlayerCards(playerController);
@@ -178,23 +139,16 @@ public class ArenaController implements Controller {
 
     public ActivationFactory getActivationFactory() { return activationFactory; }
 
-    private boolean verifyEndOfGame() throws IOException {
-        if (playerController.getHealth() <= 0) {
-            recognizer.getLevelState().lockStages();
-            recognizer.setMenuState();
-            enemyController.resetPlayer();
-            playerController.resetPlayer();
-            return true;
-        }
-        else if (enemyController.getHealth() <= 0){
-            recognizer.getLevelState().unlockNextStage();
-            recognizer.setMenuState();
-            playerController.resetOnWin();
-            enemyController.resetPlayer();
+    private boolean verifyEndOfGame() {
+        if (playerController.getHealth() <= 0 || enemyController.getHealth() <= 0) {
+            recognizer.getCurrentState().advance();
             return true;
         }
         else return false;
     }
+
+    public int getCmdStage() { return cmdStage; }
+    public void advanceCmdStage() { cmdStage = (cmdStage+1) % 2; }
 
     public void setEnemyStrategy(PlayStrategy strategy){
         model.getEnemy().setPlayStrategy(strategy);

@@ -34,7 +34,7 @@ public class AcAddHpPerTurn extends AcSpecialCard implements EndOfTurn{
             return false;
         if(arenaController.getEnemy().getHealth() >= arenaController.getEnemy().getMaxHealth())
             return false;
-        if(!arenaController.getEnemy().getPlayStrategy().CheckOverTimeHeal(arenaController, card.getCost()))
+        if(!arenaController.getEnemy().getPlayStrategy().checkOverTimeHeal(arenaController, card.getCost()))
             return false;
         if (hasHealCardAlready(arenaController))
             return false;

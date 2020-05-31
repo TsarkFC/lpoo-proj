@@ -8,8 +8,10 @@ import java.io.IOException;
 public class Game {
     public static void main(String[] args) throws IOException {
         StateRecognizer recognizer = new StateRecognizer(new ScreenFactory().getScreen());
-        recognizer.getCurrentState().getView().draw();
-        while(!recognizer.getCurrentState().getModel().isFinished())
+        recognizer.getCurrentState().getController().render();
+        while(!recognizer.getCurrentState().getController().isFinished()) {
             recognizer.getCurrentState().getController().start();
+            recognizer.getCurrentState().getController().render();
+        }
     }
 }
