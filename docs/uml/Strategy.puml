@@ -1,6 +1,6 @@
 @startuml strategy
 
-interface PlayStrategy {
+abstract class PlayStrategy {
     void playTurn(ArenaController arenaController);
 }
 note right 
@@ -18,7 +18,7 @@ class NormalPlayStrategy{
     + void playTurn(ArenaController arenaController);
 }
 note bottom
-Concrete State
+Concrete startegy
 end note
 
 class AggressivePlayStrategy{
@@ -27,19 +27,8 @@ class AggressivePlayStrategy{
 class CarefulPlayStrategy{
     + void playTurn(ArenaController arenaController);
 }
-class GameState {}
-hide GameState members
-
-note left
-Client
-end note
 
 PlayStrategy <-right-o ArenaController
-
-GameState -> ArenaController
-GameState -> NormalPlayStrategy
-GameState -> CarefulPlayStrategy
-GameState -> AggressivePlayStrategy
 
 skinparam groupInheritance 3
 

@@ -38,6 +38,7 @@ public class ArenaController implements Controller {
         activationFactory = new ActivationFactory();
     }
 
+    @Override
     public void start() throws IOException {
         int select = -1;
 

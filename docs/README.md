@@ -103,9 +103,9 @@ Menu inicial | Intruções de jogo
 
   **Consequências**
 
-  Ao atribuirmos diversos estados ao jogo permitui-nos, como já foi referido, conservar o código já desenvolvido anteriormente à etapa de desenvolvimento de menus e para além disso facilitou a aplicação do MVC bem como o "Game loop" que será descrito a seguir.
+  Ao atribuirmos diversos estados ao jogo permitui-nos, como já foi referido, conservar o código já desenvolvido anteriormente à etapa de desenvolvimento de menus e para além disso facilitou a aplicação do MVC bem como é descrito a seguir.
 
- #### Game Loop (conjugação de MVC com State design pattern)
+ #### Conjugação de MVC com State design pattern
 
  **Problema:**
 
@@ -120,12 +120,8 @@ Menu inicial | Intruções de jogo
   | while (true){<br>&nbsp;&nbsp;processInput();<br>&nbsp;&nbsp;update();<br>&nbsp;&nbsp;render();<br>} | ![](img/whileloop.png)
 
 Neste caso o processamento do input do utilizador e a atulização do jogo são ambos realizados pela função start(). Uma vez que o jogo apenas avança com o input do utilizador não foi necessário o controlo da frequência de atualização dos frames da aplicação.
- 
- **Implementação:**
 
-
-
- #### Strategy
+ #### Strategy (mentalidade dos inimigos)
  
  **Problema:**
  
@@ -158,30 +154,119 @@ Neste caso o processamento do input do utilizador e a atulização do jogo são 
   **Consequências**
   
   Reduzimos exponencialmente o número de classes necessárias para os inimigos. Isto acontece pois já não é necessária uma subclasse do inimigo para cada estratégia diferente por cada tipo de inimigo. O código também fica mais legível e mais facilmente expansível.
+
+  ### Strategy (ativação de cartas especiais)
+
+  **Problema e solução:**
+
+  O problema e respetiva solução são bastante semelhantes ao anteriormente referido, sendo que neste caso aplica-se à forma como carda especial é ativada.
+
+  **Implementação:**
+
+  ![](uml/Strategy_Card_Pattern.png)
+
+  Estas classes podem sem encontradas nos seguintes ficheiros:
+  
+  - [ArenaController](../src/main/java/com/g13/controller/arena/ArenaController.java)
+  
+  - [PlaySpecialCardCommand](../src/main/java/com/g13/controller/arena/commands/PlaySpecialCardCommand.java)
+  
+  - [AcSpecialCard](../src/main/java/com/g13/controller/arena/cardactivation/AcSpecialCard.java)
+
+  - [AcAddHpPerturn](../src/main/java/com/g13/controller/arena/cardactivation/endofturn/AcAddHpPerTurn.java)
+
+  - [AcDamageGamble](../src/main/java/com/g13/controller/arena/cardactivation/endofturn/AcDamageGamble.java)
+
+  - [AcOnWinDamage](../src/main/java/com/g13/controller/arena/cardactivation/endofturn/AcOnWinDamage.java)
+
+  - [AcFluxModifierAtoB](../src/main/java/com/g13/controller/arena/cardactivation/instant/AcFluxModifierAtoB.java)
+
+  - [AcInstantDamage](../src/main/java/com/g13/controller/arena/cardactivation/instant/AcInstantDamage.java)
+
+  - [AcStaticModifier](../src/main/java/com/g13/controller/arena/cardactivation/instant/AcStaticModifier.java)
+
+  **Consequências:**
+
+   Com a aplicação do padrão as diversas classes cliente não precisam de saber qual a carta e respetiva ativação em questão, possibilitando a existência de um baralho de cartas especiais genérico.
+
+   **Nota:** Em ambos os casos está presente uma classe abstrata que representa a "strategy" ao invés de uma interface como manda a definição do padrão. Isto aconteceu pois existem métodos comuns a todas as estratégias e para evitar repetição de código foram colocados nestas classes como métodos protected.
+
+  ### Factory
+
+  **Problema:**
+
+  Inicialmente quando a habilidade de ativação de cartas especiais foi implementada, a forma da carta se ativar encontrava-se dentro do modelo da carta, algo que violava a arquitetura do MVC. Deste modo este código foi extraído para novas classes que controlassem cada carta. No entanto o problema ainda estava presente uma vez que o baralho de cartas é constituido por cartas especiais e não por controladores de cartas especiais e uma vez que certas cartas apenas têm o seu efeito no final da ronda.
+
+  **Design Patttern / Solução:**
+
+  Para contornar este problema optou-se pelo Factory design pattern. A classe [ActivationFactory](../src/main/java/com/g13/controller/arena/activationfactory/ActivationFactory.java) possui dois métodos distintos: um retorna a forma de ativação instantânea da carta (getActivation) e o outro retorna a forma de ativação da carta no final da ronda se for o caso (getEndOfTurnActivation). Sempre que fosse necessário ativar uma determinada carta, antes da ativação era chamado um dos métodos de ActivationFactory que retornava a forma como a carta deve ser ativada, forma essa que seria posteriormente executada.
+
+  **Implementação**
+
+![](uml/factory.png)
+
+![](uml/factory_end.png)
+
+Estas classes podem sem encontradas nos seguintes ficheiros:
+  
+  - [ActivationFactory](../src/main/java/com/g13/controller/arena/activationfactory/ActivationFactory.java)
+  
+  - [ArenaController](../src/main/java/com/g13/controller/arena/ArenaController.java)
+  
+  - [PlaySpecialCardCommand](../src/main/java/com/g13/controller/arena/commands/PlaySpecialCardCommand.java)
+  
+  - [AcSpecialCard](../src/main/java/com/g13/controller/arena/cardactivation/AcSpecialCard.java)
+  
+  - [EndOfTurn](../src/main/java/com/g13/controller/arena/cardactivation/endofturn/EndOfTurn.java)
+
+  - [AcAddHpPerturn](../src/main/java/com/g13/controller/arena/cardactivation/endofturn/AcAddHpPerTurn.java)
+
+  - [AcDamageGamble](../src/main/java/com/g13/controller/arena/cardactivation/endofturn/AcDamageGamble.java)
+
+  - [AcOnWinDamage](../src/main/java/com/g13/controller/arena/cardactivation/endofturn/AcOnWinDamage.java)
+
+  - [AcFluxModifierAtoB](../src/main/java/com/g13/controller/arena/cardactivation/instant/AcFluxModifierAtoB.java)
+
+  - [AcInstantDamage](../src/main/java/com/g13/controller/arena/cardactivation/instant/AcInstantDamage.java)
+
+  - [AcStaticModifier](../src/main/java/com/g13/controller/arena/cardactivation/instant/AcStaticModifier.java)
+
+  **Consequências**
+
+  Possibilitou o cumprimento da arquitetura MVC e permitiu manter o código para o modelo do jogador já desenvolvido, fazendo com que a ativação de cartas em nada interfira com o baralho que possui.
+
   
 ## Code Smells e possíveis Refactorings
 
  ### Lazy Class
  
- 
+ - Para simplificação de testes e melhor encapsulamento do código, optámos pela criação de várias factories que criam objetos elementares necessários a cada fase do programa. O código das factories limita-se à criação destes elementos nos repetivos contrutores e getters para cada elemento criado.
+ Para resolver este aspeto poder-se-ia incluir este código de criação no local onde os métodos de get são chamados, eliminando as factories envolvidas. No entanto isto dificultaria a fase de teste do código.
+
+ - As classes modelo apresentam o mesmo problema. No entanto isto é resultado do padrão arquitetural adotado (MVC), tendo sido transmitida a ideia de que o modelo deveria ser o mais simples e "estúpido" possível
 
  ### Switch statement
+
+  **Input do utilizador**
  
  - Numa fase inicial do desenvolvimento tínhamos implementado o design pattern Command, numa altura em que a arquitetura
- MVC não era respeitada e o modelo possuía a capacidade de se modelar. A classe [Gui](../src/main/java/com/g13/view/Gui.java) 
- era reponsável por enviar ao [ArenaController](../src/main/java/com/g13/controller/arena/ArenaController.java) um comando 
- dependendo da tecla que o utilizador premisse. 
+ MVC não era respeitada e o modelo possuía a capacidade de se modelar. As classes que implementam [View](../src/main/java/com/g13/view/View.java) 
+ eram reponsáveis por enviar ao respetivo [Controller](../src/main/java/com/g13/model/Model.java) um objeto comando que seria futuramente executado dependendo da tecla que o utilizador premisse. 
  
- - Isto passou a constituir problema quando os métodos que alteram o modelo foram
- tranferidos para controladores, deixando a vista de ter acesso a métodos que moldam o modelo.
+ - Isto passou a constituir problema quando os métodos que alteram o modelo foram tranferidos para controladores, deixando a vista de ter acesso a métodos que moldam o modelo.
  
  - Pensámos em aplicar o design pattern Singleton, numa fase inicial, mas relembrando o que nos foi transmitido em diversas aulas, este design pattern poderia provocar mais problemas futuramente.
  
- - Optou-se por criar uma enumeração em [ArenaViewer](../src/main/java/com/g13/view/arena/ArenaViewer.java), onde cada atributo representa
- um comando a ser executado por [start()](../src/main/java/com/g13/controller/Controller.java) em Controller (implementação distinta para cada estado).
+ - Optou-se por criar uma enumeração em cada vista, onde cada atributo representa um comando a ser executado por [start()](../src/main/java/com/g13/controller/Controller.java) em Controller (implementação distinta para cada estado).
  Para reconhecer o atributo utiliza-se uma cadeia de ifs.
  
  - Apesar de constituir um code smell, este apresenta-se neste caso como uma solução a um problema encontrado.
+
+  **Relação com o Factory design pattern**
+
+  - Aquando da implementação deste padrão teve-se também em conta o padrão Visitor, uma que quando uma carta especial fosse "visitada" poder-se-ia retornar o respetivo método de implementação. 
+  
+  - Neste caso em concreto, isto constituiria uma violação ao MVC pelo que se manteve o padrão implementado, com a cadeia de ifs presente a verificar qual a instância da carta especial que estamos perante. 
 
 ## Testes
  
