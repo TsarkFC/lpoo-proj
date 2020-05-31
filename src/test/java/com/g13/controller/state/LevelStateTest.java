@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.g13.controller.menus.LevelController;
 import com.g13.controller.state.statefactory.LevelStateFactory;
-import com.g13.model.menus.Level;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.TerminalScreen;
@@ -39,7 +38,7 @@ public class LevelStateTest {
 
         for (int i = 0; i < 2; i++) {
             recognizer.setLevelState();
-            levelStateFactory.getLevelController().unlockNextStage();
+            levelStateFactory.getLevelController().unlockNextStage(1);
             levelStateFactory.getLevelController().moveDown();
             state.advance();
             assertTrue(recognizer.getCurrentState() instanceof GameState);

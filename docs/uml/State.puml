@@ -1,7 +1,6 @@
 @startuml state
 
 interface State {
-    Model getModel();
     Controller getController();
     void advance();
 }
@@ -24,6 +23,7 @@ Context
 end note
 
 class StartState{
+    - Start start
     - StartController startController
     - StateRecognizer recognizer
     + Controller getController()
@@ -40,7 +40,6 @@ class LevelState{
     + void advance()
 }
 class GameState{
-    - Arena arena
     - ArenaController arenaController
     - StateRecognizer recognizer
     + Controller getController()

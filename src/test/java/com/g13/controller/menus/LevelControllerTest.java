@@ -7,7 +7,6 @@ import com.g13.view.menus.LevelViewer;
 import net.jqwik.api.ForAll;
 import net.jqwik.api.Property;
 import net.jqwik.api.constraints.IntRange;
-import net.jqwik.api.constraints.Positive;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -24,7 +23,7 @@ public class LevelControllerTest {
         LevelController controller = new LevelController(model, viewer, recognizer);
 
         int count = countUnlocked(model);
-        controller.unlockNextStage();
+        controller.unlockNextStage(1);
         assertEquals(Math.min(count + 1, model.getStages().size()), countUnlocked(model));
     }
 
@@ -39,7 +38,7 @@ public class LevelControllerTest {
             if (!stage.isUnlocked()) stage.setUnlocked(true);
 
         int count = countUnlocked(model);
-        controller.unlockNextStage();
+        controller.unlockNextStage(3);
         assertEquals(count, countUnlocked(model));
     }
 
@@ -49,8 +48,8 @@ public class LevelControllerTest {
         LevelViewer viewer = Mockito.mock(LevelViewer.class);
         StateRecognizer recognizer = Mockito.mock(StateRecognizer.class);
         LevelController controller = new LevelController(model, viewer, recognizer);
-        controller.unlockNextStage();
-        controller.unlockNextStage();
+        controller.unlockNextStage(1);
+        controller.unlockNextStage(2);
 
         controller.lockStages();
 
@@ -63,8 +62,8 @@ public class LevelControllerTest {
         LevelViewer viewer = Mockito.mock(LevelViewer.class);
         StateRecognizer recognizer = Mockito.mock(StateRecognizer.class);
         LevelController controller = new LevelController(model, viewer, recognizer);
-        controller.unlockNextStage();
-        controller.unlockNextStage();
+        controller.unlockNextStage(1);
+        controller.unlockNextStage(2);
 
         assertEquals(0, model.getCross());
 

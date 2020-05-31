@@ -23,7 +23,7 @@ public class AcFluxModifierAtoB extends AcSpecialCard {
         if(arenaController.getEnemy().getPoints() + card.getMinModNum() > arenaController.getEnemy().getMaxPoints())
             return false;
 
-        if(!arenaController.getEnemy().getPlayStrategy().CheckFluxModifier(arenaController, card.getCost(), card.getMinModNum(), card.getMaxModNum()))
+        if(!arenaController.getEnemy().getPlayStrategy().checkFluxModifier(arenaController, card.getCost(), card.getMinModNum(), card.getMaxModNum()))
             return false;
 
         RotateCards(arenaController, cardPos);

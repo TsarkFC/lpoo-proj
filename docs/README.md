@@ -111,7 +111,7 @@ Menu inicial | Intruções de jogo
 
  Após a implementação de menus o jogo passou a ter vários loops que se encontravam em [ArenaController](../src/main/java/com/g13/controller/arena/ArenaController.java), [MenuController](../src/main/java/com/g13/controller/menus/MenuController.java) . Estes dois loops dificultavam os testes das respetivas classes e podiam facilmente concentrar-se num só.
 
- **Design Pattern / solução:**
+ **Solução:**
 
  A solução encontrada apresenta-se associada ao State design pattern e ao MVC e passou por condensar os loops em [Game](../src/main/java/com/g13/Game.java):
 
@@ -120,6 +120,46 @@ Menu inicial | Intruções de jogo
   | while (true){<br>&nbsp;&nbsp;processInput();<br>&nbsp;&nbsp;update();<br>&nbsp;&nbsp;render();<br>} | ![](img/whileloop.png)
 
 Neste caso o processamento do input do utilizador e a atulização do jogo são ambos realizados pela função start(). Uma vez que o jogo apenas avança com o input do utilizador não foi necessário o controlo da frequência de atualização dos frames da aplicação.
+
+ #### Command
+
+ **Problema:**
+ 
+ Após o input do teclado do utilizador ser recebido, o método start() em [ArenaController](../src/main/java/com/g13/controller/arena/ArenaController.java) era responsável por criar um novo comando para cada caso e executá-lo. Esta dependência poderia ser removida desta classe, passando apenas a executar um comando genérico.
+
+ **Solução:**
+
+ Optou-se pela implementação do Command design pattern, criando-se uma classe [CommandParser](../src/main/java/com/g13/controller/arena/commands/CommandParser.java) que tem como função interpretar o input do utilizador e retornar o comando correspondente.
+
+ **Implementação:**
+ 
+ <img src="uml/Command_Pattern.png" alt="drawing" width="4000" height="300"/>
+
+ Estas classes podem sem encontradas nos seguintes ficheiros:
+  
+  - [Command](../src/main/java/com/g13/controller/arena/commands/Command.java)
+  
+  - [CommandParser](../src/main/java/com/g13/controller/arena/commands/CommandParser.java)
+  
+  - [DoNothing](../src/main/java/com/g13/controller/arena/commands/DoNothing.java)
+  
+  - [DrawCardCommand](../src/main/java/com/g13/controller/arena/commands/DrawCardCommand.java)
+  
+  - [InterStageHandler](../src/main/java/com/g13/controller/arena/commands/InterstageHandler.java)
+
+  - [PlayEnenmyTurn](src/main/java/com/g13/controller/arena/commands/PlayEnemyTurn.java)
+
+  - [PlaySpecialCardCommand](src/main/java/com/g13/controller/arena/commands/PlaySpecialCardCommand.java)
+
+  - [QuitCommand](../src/main/java/com/g13/controller/arena/commands/QuitCommand.java)
+
+  - [SelectCard](../src/main/java/com/g13/controller/arena/commands/SelectCard.java)
+
+  - [SkipTurnCommand](../src/main/java/com/g13/controller/arena/commands/SkipTurnCommand.java)
+
+ **Consequências**
+
+ A aplicação deste padrão simplificou o código em ArenaController, retirando-lhe responsabilidades desnecessárias, aumentando a também a modularidade do mesmo permitindo que seja mais fácil remover ou criar novos comandos em ocasiões futuras.
 
  #### Strategy (mentalidade dos inimigos)
  
@@ -163,7 +203,7 @@ Neste caso o processamento do input do utilizador e a atulização do jogo são 
 
   **Implementação:**
 
-  ![](uml/Strategy_Card_Pattern.png)
+  <img src="uml/Strategy_Card_Pattern.png" alt="drawing" width="4000" height="300"/>
 
   Estas classes podem sem encontradas nos seguintes ficheiros:
   
@@ -189,7 +229,7 @@ Neste caso o processamento do input do utilizador e a atulização do jogo são 
 
    Com a aplicação do padrão as diversas classes cliente não precisam de saber qual a carta e respetiva ativação em questão, possibilitando a existência de um baralho de cartas especiais genérico.
 
-   **Nota:** Em ambos os casos está presente uma classe abstrata que representa a "strategy" ao invés de uma interface como manda a definição do padrão. Isto aconteceu pois existem métodos comuns a todas as estratégias e para evitar repetição de código foram colocados nestas classes como métodos protected.
+   **Nota:** Em ambos os casos está presente uma classe abstrata que representa a "strategy" ao invés de uma interface como manda a definição do padrão. Isto aconteceu pois existem métodos comuns a todas as estratégias e para evitar repetição de código foram colocados nestas classes.
 
   ### Factory
 
@@ -203,7 +243,7 @@ Neste caso o processamento do input do utilizador e a atulização do jogo são 
 
   **Implementação**
 
-![](uml/factory.png)
+<img src="uml/factory.png" alt="drawing" width="4000" height="350"/>
 
 ![](uml/factory_end.png)
 
@@ -247,20 +287,9 @@ Estas classes podem sem encontradas nos seguintes ficheiros:
 
  ### Switch statement
 
-  **Input do utilizador**
- 
- - Numa fase inicial do desenvolvimento tínhamos implementado o design pattern Command, numa altura em que a arquitetura
- MVC não era respeitada e o modelo possuía a capacidade de se modelar. As classes que implementam [View](../src/main/java/com/g13/view/View.java) 
- eram reponsáveis por enviar ao respetivo [Controller](../src/main/java/com/g13/model/Model.java) um objeto comando que seria futuramente executado dependendo da tecla que o utilizador premisse. 
- 
- - Isto passou a constituir problema quando os métodos que alteram o modelo foram tranferidos para controladores, deixando a vista de ter acesso a métodos que moldam o modelo.
- 
- - Pensámos em aplicar o design pattern Singleton, numa fase inicial, mas relembrando o que nos foi transmitido em diversas aulas, este design pattern poderia provocar mais problemas futuramente.
- 
- - Optou-se por criar uma enumeração em cada vista, onde cada atributo representa um comando a ser executado por [start()](../src/main/java/com/g13/controller/Controller.java) em Controller (implementação distinta para cada estado).
- Para reconhecer o atributo utiliza-se uma cadeia de ifs.
- 
- - Apesar de constituir um code smell, este apresenta-se neste caso como uma solução a um problema encontrado.
+  **Estratégias do inimigo**
+
+  - As estratégias do inimigo possuem longas cadeias de ifs de modo a ser possível simular uma AI relativamente competente que tenha capacidade de jogar intelegentemente. Por vezes algumas destas cadeias porder-se-ão encontrar repetidas, uma vez que em muitos casos, apesar de terem uma "personalidade" distinta, "pensam" da mesma maneira. 
 
   **Relação com o Factory design pattern**
 
