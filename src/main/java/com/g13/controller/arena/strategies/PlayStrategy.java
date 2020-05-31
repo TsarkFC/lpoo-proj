@@ -40,4 +40,12 @@ abstract public class PlayStrategy {
     private boolean HasEnoughManaToWantToPlay(ArenaController arenaController, int cost){
         return mana_saved <= arenaController.getEnemy().getMana() - cost;
     }
+
+    public void setDraw_limit_reached(boolean draw_limit_reached){
+        this.draw_limit_reached = draw_limit_reached;
+    }
+
+    public boolean getDraw_limit_reached(){
+        return draw_limit_reached;
+    }
 }

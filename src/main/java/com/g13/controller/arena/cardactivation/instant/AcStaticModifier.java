@@ -20,10 +20,8 @@ public class AcStaticModifier extends AcSpecialCard {
 
         if(arenaController.getEnemy().getPoints() + card.getModNum() > arenaController.getEnemy().getMaxPoints())
             return false;
-
         if(!arenaController.getEnemy().getPlayStrategy().CheckStaticModifier(arenaController, card.getCost(), card.getModNum()))
             return false;
-
         RotateCards(arenaController, cardPos);
         activate(arenaController);
         return true;

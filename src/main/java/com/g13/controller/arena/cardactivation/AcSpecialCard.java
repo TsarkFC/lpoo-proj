@@ -20,7 +20,6 @@ public abstract class AcSpecialCard {
     public abstract boolean checkEnemyPlay(ArenaController arenaController, int cardPos);
     protected void RotateCards(ArenaController arenaController, int cardPos){
         List<SpecialCard> cards = arenaController.getEnemy().getPlayDeck();
-
         if(cards.size() > 4) {
             Collections.swap(cards, cardPos, 4);
             SpecialCard card = cards.get(4);
