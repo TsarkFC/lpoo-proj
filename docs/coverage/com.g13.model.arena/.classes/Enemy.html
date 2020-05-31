@@ -1,0 +1,183 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: Enemy</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.g13.model.arena</a> ]
+</div>
+
+<h1>Coverage Summary for Class: Enemy (com.g13.model.arena)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Enemy</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/ 3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/ 5)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">Enemy$MockitoMock$1201939010</td>
+  </tr>
+  <tr>
+    <td class="name">Enemy$MockitoMock$1201939010$auxiliary$1ujUmedz</td>
+  </tr>
+  <tr>
+    <td class="name">Enemy$MockitoMock$1201939010$auxiliary$2SJQ3oIX</td>
+  </tr>
+  <tr>
+    <td class="name">Enemy$MockitoMock$1201939010$auxiliary$4kjcwGyk</td>
+  </tr>
+  <tr>
+    <td class="name">Enemy$MockitoMock$1201939010$auxiliary$9hJuPXnh</td>
+  </tr>
+  <tr>
+    <td class="name">Enemy$MockitoMock$1201939010$auxiliary$CmtGed6F</td>
+  </tr>
+  <tr>
+    <td class="name">Enemy$MockitoMock$1201939010$auxiliary$cmtPsNyQ</td>
+  </tr>
+  <tr>
+    <td class="name">Enemy$MockitoMock$1201939010$auxiliary$fSdDUUmc</td>
+  </tr>
+  <tr>
+    <td class="name">Enemy$MockitoMock$1201939010$auxiliary$gdljZqVs</td>
+  </tr>
+  <tr>
+    <td class="name">Enemy$MockitoMock$1201939010$auxiliary$GvmO1oTI</td>
+  </tr>
+  <tr>
+    <td class="name">Enemy$MockitoMock$1201939010$auxiliary$hvlhEwe0</td>
+  </tr>
+  <tr>
+    <td class="name">Enemy$MockitoMock$1201939010$auxiliary$kSCSqRGA</td>
+  </tr>
+  <tr>
+    <td class="name">Enemy$MockitoMock$1201939010$auxiliary$lawzLhOL</td>
+  </tr>
+  <tr>
+    <td class="name">Enemy$MockitoMock$1201939010$auxiliary$Lbp3g81m</td>
+  </tr>
+  <tr>
+    <td class="name">Enemy$MockitoMock$1201939010$auxiliary$NMdrSDn5</td>
+  </tr>
+  <tr>
+    <td class="name">Enemy$MockitoMock$1201939010$auxiliary$pALyD1ow</td>
+  </tr>
+  <tr>
+    <td class="name">Enemy$MockitoMock$1201939010$auxiliary$QeoNhGDB</td>
+  </tr>
+  <tr>
+    <td class="name">Enemy$MockitoMock$1201939010$auxiliary$QzUoGggQ</td>
+  </tr>
+  <tr>
+    <td class="name">Enemy$MockitoMock$1201939010$auxiliary$SLxtzphZ</td>
+  </tr>
+  <tr>
+    <td class="name">Enemy$MockitoMock$1201939010$auxiliary$t0TbZN5I</td>
+  </tr>
+  <tr>
+    <td class="name">Enemy$MockitoMock$1201939010$auxiliary$T12BT2O2</td>
+  </tr>
+  <tr>
+    <td class="name">Enemy$MockitoMock$1201939010$auxiliary$T1m9xJWI</td>
+  </tr>
+  <tr>
+    <td class="name">Enemy$MockitoMock$1201939010$auxiliary$tarhdtTJ</td>
+  </tr>
+  <tr>
+    <td class="name">Enemy$MockitoMock$1201939010$auxiliary$XjM4lMzH</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/ 3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/ 5)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.g13.model.arena;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.g13.controller.arena.strategies.PlayStrategy;
+<i>4</i>&nbsp;import com.g13.model.arena.specialcards.SpecialCard;
+<i>5</i>&nbsp;
+<i>6</i>&nbsp;import java.util.List;
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;public class Enemy extends GameParticipant{
+<i>9</i>&nbsp;
+<i>10</i>&nbsp;    PlayStrategy playStrategy;
+<i>11</i>&nbsp;
+<i>12</i>&nbsp;    public Enemy(List&lt;SpecialCard&gt; play_deck, BarSet barSet, PlayStrategy playStrategy) {
+<b class="fc"><i>13</i>&nbsp;        super(play_deck, barSet);</b>
+<b class="fc"><i>14</i>&nbsp;        this.playStrategy = playStrategy;</b>
+<b class="fc"><i>15</i>&nbsp;    }</b>
+<i>16</i>&nbsp;
+<i>17</i>&nbsp;    public PlayStrategy getPlayStrategy(){
+<b class="fc"><i>18</i>&nbsp;        return playStrategy;</b>
+<i>19</i>&nbsp;    }
+<b class="fc"><i>20</i>&nbsp;    public void setPlayStrategy(PlayStrategy playStrategy) { this.playStrategy = playStrategy; }</b>
+<i>21</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-05-31 23:27</div>
+</div>
+</body>
+</html>

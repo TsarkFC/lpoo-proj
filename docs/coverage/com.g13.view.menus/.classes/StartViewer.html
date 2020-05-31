@@ -1,0 +1,180 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: StartViewer</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.g13.view.menus</a> ]
+</div>
+
+<h1>Coverage Summary for Class: StartViewer (com.g13.view.menus)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">StartViewer</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/ 5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (29/ 29)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">StartViewer$MockitoMock$405223393</td>
+  </tr>
+  <tr>
+    <td class="name">StartViewer$MockitoMock$405223393$auxiliary$5PwlFXdo</td>
+  </tr>
+  <tr>
+    <td class="name">StartViewer$MockitoMock$405223393$auxiliary$8ld6cTzf</td>
+  </tr>
+  <tr>
+    <td class="name">StartViewer$MockitoMock$405223393$auxiliary$Ed0A9szU</td>
+  </tr>
+  <tr>
+    <td class="name">StartViewer$MockitoMock$405223393$auxiliary$L0hn2qOJ</td>
+  </tr>
+  <tr>
+    <td class="name">StartViewer$MockitoMock$405223393$auxiliary$nNA2ukPz</td>
+  </tr>
+  <tr>
+    <td class="name">StartViewer$MockitoMock$405223393$auxiliary$ylINhP2r</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/ 5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (29/ 29)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.g13.view.menus;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.g13.model.menus.Start;
+<i>4</i>&nbsp;import com.g13.view.View;
+<i>5</i>&nbsp;import com.googlecode.lanterna.TerminalPosition;
+<i>6</i>&nbsp;import com.googlecode.lanterna.TerminalSize;
+<i>7</i>&nbsp;import com.googlecode.lanterna.screen.TerminalScreen;
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;import java.io.IOException;
+<i>10</i>&nbsp;
+<i>11</i>&nbsp;public class StartViewer extends MenuViewer implements View {
+<i>12</i>&nbsp;    private Start model;
+<b class="fc"><i>13</i>&nbsp;    private int line = 0;</b>
+<b class="fc"><i>14</i>&nbsp;    private final String[][] instructions = {</b>
+<i>15</i>&nbsp;            {&quot; Welcome to Void Tyrant! Here you will play&quot;, &quot;against three enemies trying to defeat every &quot;,
+<i>16</i>&nbsp;                    &quot;single one of them.&quot;,
+<i>17</i>&nbsp;                    &quot; Every time you lose you will return&quot;,  &quot;to the beginning.&quot;},
+<i>18</i>&nbsp;            { &quot; Firstly you have a draw deck and a play deck.&quot;,&quot;The draw deck contains 24 cards whose values go&quot;,&quot;from 1 to 6.&quot;,
+<i>19</i>&nbsp;                    &quot; Your objective is to continuously draw card&quot;,&quot;until you get as close as possible to 12.&quot;,
+<i>20</i>&nbsp;            &quot; Drawing from draw deck is performed by &quot;,&quot;pressing the &#39;d&#39; key&quot;},
+<i>21</i>&nbsp;            {&quot; Four cards will be displayed from your &quot;,&quot;play deck and which you can select on by&quot;,&quot;pressing the {1,2,3,4} number keys.&quot;,
+<i>22</i>&nbsp;                    &quot;To activate a selected card press TAB.&quot;},
+<i>23</i>&nbsp;            {&quot; Press ENTER to finish your turn. If enemy has &quot;,&quot;not finished yet keep pressing &#39;d&#39; until it&quot;,&quot;does.&quot;},
+<i>24</i>&nbsp;            {&quot; Once both players have finished press ENTER&quot;,&quot;two more times to perform end of turn actions.&quot;},
+<i>25</i>&nbsp;            {&quot; When both players are on drawing state again&quot;,&quot;you repeat the process until the game ends.&quot;}
+<i>26</i>&nbsp;    };
+<i>27</i>&nbsp;
+<i>28</i>&nbsp;    public StartViewer(Start model, TerminalScreen screen) {
+<b class="fc"><i>29</i>&nbsp;        super(model, screen);</b>
+<b class="fc"><i>30</i>&nbsp;        this.model = model;</b>
+<b class="fc"><i>31</i>&nbsp;    }</b>
+<i>32</i>&nbsp;
+<i>33</i>&nbsp;    @Override
+<i>34</i>&nbsp;    public void draw() throws IOException {
+<b class="fc"><i>35</i>&nbsp;        screen.clear();</b>
+<b class="fc"><i>36</i>&nbsp;        graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(50, 30), &#39; &#39;);</b>
+<b class="fc"><i>37</i>&nbsp;        if (model.getSelection() == -1)</b>
+<b class="fc"><i>38</i>&nbsp;            drawInstructions();</b>
+<i>39</i>&nbsp;        else {
+<b class="fc"><i>40</i>&nbsp;            drawStartComponents();</b>
+<b class="fc"><i>41</i>&nbsp;            drawTitle();</b>
+<i>42</i>&nbsp;        }
+<b class="fc"><i>43</i>&nbsp;        screen.refresh();</b>
+<b class="fc"><i>44</i>&nbsp;    }</b>
+<i>45</i>&nbsp;
+<i>46</i>&nbsp;    private void drawStartComponents(){
+<b class="fc"><i>47</i>&nbsp;        for (int i = 0; i &lt; model.getButtons().size();  i++)</b>
+<b class="fc"><i>48</i>&nbsp;            drawButton(model.getButtons().get(i), model.getSelection() == i, graphics);</b>
+<b class="fc"><i>49</i>&nbsp;    }</b>
+<i>50</i>&nbsp;
+<i>51</i>&nbsp;    private void drawInstructions() throws IOException {
+<b class="fc"><i>52</i>&nbsp;        screen.clear();</b>
+<b class="fc"><i>53</i>&nbsp;        graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(50, 30), &#39; &#39;);</b>
+<b class="fc"><i>54</i>&nbsp;        for (int i = 0; i &lt; instructions.length; i++) {</b>
+<b class="fc"><i>55</i>&nbsp;            line++;</b>
+<b class="fc"><i>56</i>&nbsp;            drawInstruction(0, line, instructions[i]);</b>
+<i>57</i>&nbsp;        }
+<b class="fc"><i>58</i>&nbsp;        line = 0;</b>
+<b class="fc"><i>59</i>&nbsp;        screen.refresh();</b>
+<b class="fc"><i>60</i>&nbsp;    }</b>
+<i>61</i>&nbsp;
+<i>62</i>&nbsp;    private void drawInstruction(int x, int y, String[] instruction){
+<b class="fc"><i>63</i>&nbsp;        brownGraphics.putString(x, y, &quot; &quot;);</b>
+<b class="fc"><i>64</i>&nbsp;        for (int i = 0; i &lt; instruction.length; i++){</b>
+<b class="fc"><i>65</i>&nbsp;            graphics.putString(x+2, line, instruction[i]);</b>
+<b class="fc"><i>66</i>&nbsp;            line++;</b>
+<i>67</i>&nbsp;        }
+<b class="fc"><i>68</i>&nbsp;    }</b>
+<i>69</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-05-31 23:27</div>
+</div>
+</body>
+</html>

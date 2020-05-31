@@ -1,0 +1,142 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: CommandParser</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.g13.controller.arena.commands</a> ]
+</div>
+
+<h1>Coverage Summary for Class: CommandParser (com.g13.controller.arena.commands)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">CommandParser</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (31/ 31)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.g13.controller.arena.commands;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.g13.controller.arena.ArenaController;
+<i>4</i>&nbsp;import com.g13.view.arena.ArenaViewer;
+<i>5</i>&nbsp;
+<i>6</i>&nbsp;import java.util.ArrayList;
+<i>7</i>&nbsp;import java.util.List;
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;public class CommandParser {
+<i>10</i>&nbsp;    private ArenaController controller;
+<i>11</i>&nbsp;    private int select;
+<i>12</i>&nbsp;
+<b class="fc"><i>13</i>&nbsp;    public CommandParser(ArenaController controller){</b>
+<b class="fc"><i>14</i>&nbsp;        this.controller = controller;</b>
+<b class="fc"><i>15</i>&nbsp;        select = -1;</b>
+<b class="fc"><i>16</i>&nbsp;    }</b>
+<i>17</i>&nbsp;
+<i>18</i>&nbsp;    public List&lt;Command&gt; parse(ArenaViewer.COMMAND command){
+<b class="fc"><i>19</i>&nbsp;        List&lt;Command&gt; commands = new ArrayList&lt;&gt;();</b>
+<b class="fc"><i>20</i>&nbsp;        if (command == ArenaViewer.COMMAND.ONE) select = 0;</b>
+<b class="fc"><i>21</i>&nbsp;        else if(command == ArenaViewer.COMMAND.TWO) select = 1;</b>
+<b class="fc"><i>22</i>&nbsp;        else if(command == ArenaViewer.COMMAND.THREE) select = 2;</b>
+<b class="fc"><i>23</i>&nbsp;        else if(command == ArenaViewer.COMMAND.FOUR) select = 3;</b>
+<b class="fc"><i>24</i>&nbsp;        if (select != -1) {</b>
+<b class="fc"><i>25</i>&nbsp;            commands.add(new SelectCard(controller, select));</b>
+<b class="fc"><i>26</i>&nbsp;            return commands;</b>
+<i>27</i>&nbsp;        }
+<i>28</i>&nbsp;
+<b class="fc"><i>29</i>&nbsp;        if (command == ArenaViewer.COMMAND.SWITCH) {</b>
+<b class="fc"><i>30</i>&nbsp;            if (controller.endOfRound())</b>
+<b class="fc"><i>31</i>&nbsp;                commands.add(new InterstageHandler(controller));</b>
+<i>32</i>&nbsp;            else
+<b class="fc"><i>33</i>&nbsp;                commands.add(new SkipTurnCommand(controller.getPlayerController()));</b>
+<b class="fc"><i>34</i>&nbsp;            return commands;</b>
+<i>35</i>&nbsp;        }
+<i>36</i>&nbsp;
+<b class="fc"><i>37</i>&nbsp;        if (command == ArenaViewer.COMMAND.DRAW){</b>
+<b class="fc"><i>38</i>&nbsp;            if(!controller.getPlayerController().getTurnOver())</b>
+<b class="fc"><i>39</i>&nbsp;                commands.add(new DrawCardCommand(controller));</b>
+<b class="fc"><i>40</i>&nbsp;            if(!controller.getEnemyController().getTurnOver())</b>
+<b class="fc"><i>41</i>&nbsp;                commands.add(new PlayEnemyTurn(controller));</b>
+<b class="fc"><i>42</i>&nbsp;            return commands;</b>
+<i>43</i>&nbsp;        }
+<i>44</i>&nbsp;
+<b class="fc"><i>45</i>&nbsp;        if(!controller.getPlayerController().getTurnOver() &amp;&amp; command == ArenaViewer.COMMAND.PLAYCARD) {</b>
+<b class="fc"><i>46</i>&nbsp;            commands.add(new PlaySpecialCardCommand(controller));</b>
+<b class="fc"><i>47</i>&nbsp;            return commands;</b>
+<i>48</i>&nbsp;        }
+<i>49</i>&nbsp;
+<b class="fc"><i>50</i>&nbsp;        if (command == ArenaViewer.COMMAND.QUIT) {</b>
+<b class="fc"><i>51</i>&nbsp;            commands.add(new QuitCommand(controller));</b>
+<b class="fc"><i>52</i>&nbsp;            return commands;</b>
+<i>53</i>&nbsp;        }
+<i>54</i>&nbsp;
+<b class="fc"><i>55</i>&nbsp;        commands.add(new DoNothing());</b>
+<b class="fc"><i>56</i>&nbsp;        return commands;</b>
+<i>57</i>&nbsp;    }
+<i>58</i>&nbsp;
+<i>59</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-05-31 23:27</div>
+</div>
+</body>
+</html>

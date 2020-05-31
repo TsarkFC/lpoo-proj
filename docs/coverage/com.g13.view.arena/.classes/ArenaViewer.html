@@ -1,0 +1,213 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: ArenaViewer</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.g13.view.arena</a> ]
+</div>
+
+<h1>Coverage Summary for Class: ArenaViewer (com.g13.view.arena)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ArenaViewer</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/ 4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (36/ 36)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">ArenaViewer$COMMAND</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (10/ 10)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">ArenaViewer$MockitoMock$319026556</td>
+  </tr>
+  <tr>
+    <td class="name">ArenaViewer$MockitoMock$319026556$auxiliary$5Od2yWpL</td>
+  </tr>
+  <tr>
+    <td class="name">ArenaViewer$MockitoMock$319026556$auxiliary$kLZDJbrb</td>
+  </tr>
+  <tr>
+    <td class="name">ArenaViewer$MockitoMock$319026556$auxiliary$nagxpOmu</td>
+  </tr>
+  <tr>
+    <td class="name">ArenaViewer$MockitoMock$319026556$auxiliary$sZQo7MRo</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (6/ 6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (46/ 46)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.g13.view.arena;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.g13.model.arena.Arena;
+<i>4</i>&nbsp;import com.g13.view.View;
+<i>5</i>&nbsp;import com.googlecode.lanterna.TerminalPosition;
+<i>6</i>&nbsp;import com.googlecode.lanterna.TerminalSize;
+<i>7</i>&nbsp;import com.googlecode.lanterna.TextColor;
+<i>8</i>&nbsp;import com.googlecode.lanterna.graphics.TextGraphics;
+<i>9</i>&nbsp;import com.googlecode.lanterna.input.KeyStroke;
+<i>10</i>&nbsp;import com.googlecode.lanterna.input.KeyType;
+<i>11</i>&nbsp;import com.googlecode.lanterna.screen.TerminalScreen;
+<i>12</i>&nbsp;
+<i>13</i>&nbsp;import java.io.IOException;
+<i>14</i>&nbsp;
+<i>15</i>&nbsp;public class ArenaViewer implements View {
+<i>16</i>&nbsp;    private TerminalScreen screen;
+<i>17</i>&nbsp;    private CardViewer cardViewer;
+<i>18</i>&nbsp;    private BarViewer barViewer;
+<i>19</i>&nbsp;    private GameParticipantViewer gameParticipantViewer;
+<i>20</i>&nbsp;    private Arena arena;
+<i>21</i>&nbsp;    private TextGraphics graphics;
+<i>22</i>&nbsp;
+<b class="fc"><i>23</i>&nbsp;    public enum COMMAND {</b>
+<b class="fc"><i>24</i>&nbsp;        SWITCH,</b>
+<b class="fc"><i>25</i>&nbsp;        NOTHING,</b>
+<b class="fc"><i>26</i>&nbsp;        DRAW,</b>
+<b class="fc"><i>27</i>&nbsp;        QUIT,</b>
+<b class="fc"><i>28</i>&nbsp;        ONE,</b>
+<b class="fc"><i>29</i>&nbsp;        TWO,</b>
+<b class="fc"><i>30</i>&nbsp;        THREE,</b>
+<b class="fc"><i>31</i>&nbsp;        FOUR,</b>
+<b class="fc"><i>32</i>&nbsp;        PLAYCARD</b>
+<i>33</i>&nbsp;    }
+<i>34</i>&nbsp;
+<b class="fc"><i>35</i>&nbsp;    public ArenaViewer(Arena arena, TerminalScreen screen, ComponentFactory component) {</b>
+<b class="fc"><i>36</i>&nbsp;        this.screen = screen;</b>
+<b class="fc"><i>37</i>&nbsp;        this.cardViewer = component.getCardViewer();</b>
+<b class="fc"><i>38</i>&nbsp;        this.barViewer = component.getBarViewer();</b>
+<b class="fc"><i>39</i>&nbsp;        this.gameParticipantViewer = component.getGameParticipantViewer();</b>
+<b class="fc"><i>40</i>&nbsp;        this.graphics = component.getGraphics();</b>
+<b class="fc"><i>41</i>&nbsp;        this.arena = arena;</b>
+<b class="fc"><i>42</i>&nbsp;    }</b>
+<i>43</i>&nbsp;
+<i>44</i>&nbsp;    @Override
+<i>45</i>&nbsp;    public void draw() throws IOException {
+<b class="fc"><i>46</i>&nbsp;        screen.clear();</b>
+<b class="fc"><i>47</i>&nbsp;        drawBackground();</b>
+<b class="fc"><i>48</i>&nbsp;        gameParticipantViewer.drawPlayer(arena.getPlayer());</b>
+<b class="fc"><i>49</i>&nbsp;        gameParticipantViewer.drawEnemy(arena.getEnemy());</b>
+<b class="fc"><i>50</i>&nbsp;        screen.refresh();</b>
+<b class="fc"><i>51</i>&nbsp;    }</b>
+<i>52</i>&nbsp;
+<i>53</i>&nbsp;    private void drawBackground(){
+<b class="fc"><i>54</i>&nbsp;        graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(arena.getWidth(), arena.getHeight()), &#39; &#39;);</b>
+<b class="fc"><i>55</i>&nbsp;    }</b>
+<i>56</i>&nbsp;
+<i>57</i>&nbsp;    public COMMAND getNextCommand() throws IOException {
+<b class="fc"><i>58</i>&nbsp;        KeyStroke input = screen.readInput();</b>
+<i>59</i>&nbsp;
+<b class="fc"><i>60</i>&nbsp;        if (input.getKeyType() == KeyType.EOF ||</b>
+<b class="fc"><i>61</i>&nbsp;            input.getKeyType() == KeyType.Character &amp;&amp; input.getCharacter() == &#39;q&#39;){</b>
+<b class="fc"><i>62</i>&nbsp;            screen.close();</b>
+<b class="fc"><i>63</i>&nbsp;            return COMMAND.QUIT;</b>
+<i>64</i>&nbsp;        }
+<b class="fc"><i>65</i>&nbsp;        else if (input.getKeyType() == KeyType.Character &amp;&amp; input.getCharacter() == &#39;1&#39;) {</b>
+<b class="fc"><i>66</i>&nbsp;            return COMMAND.ONE;</b>
+<i>67</i>&nbsp;        }
+<b class="fc"><i>68</i>&nbsp;        else if (input.getKeyType() == KeyType.Character &amp;&amp; input.getCharacter() == &#39;2&#39;) {</b>
+<b class="fc"><i>69</i>&nbsp;            return COMMAND.TWO;</b>
+<i>70</i>&nbsp;        }
+<b class="fc"><i>71</i>&nbsp;        else if (input.getKeyType() == KeyType.Character &amp;&amp; input.getCharacter() == &#39;3&#39;) {</b>
+<b class="fc"><i>72</i>&nbsp;            return COMMAND.THREE;</b>
+<i>73</i>&nbsp;        }
+<b class="fc"><i>74</i>&nbsp;        else if (input.getKeyType() == KeyType.Character &amp;&amp; input.getCharacter() == &#39;4&#39;) {</b>
+<b class="fc"><i>75</i>&nbsp;            return COMMAND.FOUR;</b>
+<i>76</i>&nbsp;        }
+<b class="fc"><i>77</i>&nbsp;        else if (input.getKeyType() == KeyType.Character &amp;&amp; input.getCharacter() == &#39;d&#39;) {</b>
+<b class="fc"><i>78</i>&nbsp;            return COMMAND.DRAW;</b>
+<i>79</i>&nbsp;        }
+<b class="fc"><i>80</i>&nbsp;        else if (input.getKeyType() == KeyType.Enter) {</b>
+<b class="fc"><i>81</i>&nbsp;            return COMMAND.SWITCH;</b>
+<i>82</i>&nbsp;        }
+<b class="fc"><i>83</i>&nbsp;        else if(input.getKeyType() == KeyType.Tab) {</b>
+<b class="fc"><i>84</i>&nbsp;            return COMMAND.PLAYCARD;</b>
+<i>85</i>&nbsp;        }
+<b class="fc"><i>86</i>&nbsp;        return COMMAND.NOTHING;</b>
+<i>87</i>&nbsp;    }
+<i>88</i>&nbsp;
+<i>89</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-05-31 23:27</div>
+</div>
+</body>
+</html>

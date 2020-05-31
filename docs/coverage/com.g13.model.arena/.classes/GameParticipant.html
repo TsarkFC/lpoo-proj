@@ -1,0 +1,240 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: GameParticipant</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.g13.model.arena</a> ]
+</div>
+
+<h1>Coverage Summary for Class: GameParticipant (com.g13.model.arena)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">GameParticipant</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (20/ 20)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (30/ 30)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">GameParticipant$MockitoMock$1187940402</td>
+  </tr>
+  <tr>
+    <td class="name">GameParticipant$MockitoMock$1187940402$auxiliary$8vMmTRI2</td>
+  </tr>
+  <tr>
+    <td class="name">GameParticipant$MockitoMock$1187940402$auxiliary$AoctyHIk</td>
+  </tr>
+  <tr>
+    <td class="name">GameParticipant$MockitoMock$1187940402$auxiliary$APl4yhSn</td>
+  </tr>
+  <tr>
+    <td class="name">GameParticipant$MockitoMock$1187940402$auxiliary$BzXM81H7</td>
+  </tr>
+  <tr>
+    <td class="name">GameParticipant$MockitoMock$1187940402$auxiliary$GTSRv7VA</td>
+  </tr>
+  <tr>
+    <td class="name">GameParticipant$MockitoMock$1187940402$auxiliary$HNajL0yV</td>
+  </tr>
+  <tr>
+    <td class="name">GameParticipant$MockitoMock$1187940402$auxiliary$hzJ4zjiL</td>
+  </tr>
+  <tr>
+    <td class="name">GameParticipant$MockitoMock$1187940402$auxiliary$ILdAIEbm</td>
+  </tr>
+  <tr>
+    <td class="name">GameParticipant$MockitoMock$1187940402$auxiliary$KMF0cJc3</td>
+  </tr>
+  <tr>
+    <td class="name">GameParticipant$MockitoMock$1187940402$auxiliary$LwmuKS6H</td>
+  </tr>
+  <tr>
+    <td class="name">GameParticipant$MockitoMock$1187940402$auxiliary$MvyxLeCH</td>
+  </tr>
+  <tr>
+    <td class="name">GameParticipant$MockitoMock$1187940402$auxiliary$n1C5QGNz</td>
+  </tr>
+  <tr>
+    <td class="name">GameParticipant$MockitoMock$1187940402$auxiliary$NWcx9In1</td>
+  </tr>
+  <tr>
+    <td class="name">GameParticipant$MockitoMock$1187940402$auxiliary$q7OSIi47</td>
+  </tr>
+  <tr>
+    <td class="name">GameParticipant$MockitoMock$1187940402$auxiliary$t0bZ0AOH</td>
+  </tr>
+  <tr>
+    <td class="name">GameParticipant$MockitoMock$1187940402$auxiliary$tdkunUUU</td>
+  </tr>
+  <tr>
+    <td class="name">GameParticipant$MockitoMock$1187940402$auxiliary$ueclEqUR</td>
+  </tr>
+  <tr>
+    <td class="name">GameParticipant$MockitoMock$1187940402$auxiliary$UJCpMAvm</td>
+  </tr>
+  <tr>
+    <td class="name">GameParticipant$MockitoMock$1187940402$auxiliary$WNA2ziXG</td>
+  </tr>
+  <tr>
+    <td class="name">GameParticipant$MockitoMock$1187940402$auxiliary$Xmium6qo</td>
+  </tr>
+  <tr>
+    <td class="name">GameParticipant$MockitoMock$1187940402$auxiliary$zmC4Ciex</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (20/ 20)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (30/ 30)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.g13.model.arena;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.g13.model.arena.specialcards.SpecialCard;
+<i>4</i>&nbsp;
+<i>5</i>&nbsp;import java.util.ArrayList;
+<i>6</i>&nbsp;import java.util.List;
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;public class GameParticipant {
+<i>9</i>&nbsp;    protected List&lt;Card&gt; draw_deck;
+<i>10</i>&nbsp;    protected List&lt;SpecialCard&gt; play_deck;
+<i>11</i>&nbsp;    protected List&lt;Card&gt; default_draw_deck;
+<i>12</i>&nbsp;
+<i>13</i>&nbsp;    protected BarSet barSet;
+<i>14</i>&nbsp;
+<i>15</i>&nbsp;    protected boolean turn_over;
+<i>16</i>&nbsp;
+<i>17</i>&nbsp;    protected List&lt;SpecialCard&gt; activeCards;
+<i>18</i>&nbsp;
+<b class="fc"><i>19</i>&nbsp;    public GameParticipant(List&lt;SpecialCard&gt; play_deck, BarSet barSet){</b>
+<b class="fc"><i>20</i>&nbsp;        this.play_deck = play_deck;</b>
+<b class="fc"><i>21</i>&nbsp;        this.barSet = barSet;</b>
+<b class="fc"><i>22</i>&nbsp;        this.turn_over = false;</b>
+<b class="fc"><i>23</i>&nbsp;        this.activeCards = new ArrayList&lt;&gt;();</b>
+<b class="fc"><i>24</i>&nbsp;    }</b>
+<i>25</i>&nbsp;
+<i>26</i>&nbsp;    public void setBothDrawDecks(List&lt;Card&gt; draw_deck) {
+<b class="fc"><i>27</i>&nbsp;        this.draw_deck = draw_deck;</b>
+<b class="fc"><i>28</i>&nbsp;        this.default_draw_deck = draw_deck;</b>
+<b class="fc"><i>29</i>&nbsp;    }</b>
+<i>30</i>&nbsp;
+<i>31</i>&nbsp;    public List&lt;Card&gt; getDefaultDrawDeck() {
+<b class="fc"><i>32</i>&nbsp;        return default_draw_deck;</b>
+<i>33</i>&nbsp;    }
+<i>34</i>&nbsp;
+<i>35</i>&nbsp;    public void setDefaultDrawDeck(List&lt;Card&gt; draw_deck) {
+<b class="fc"><i>36</i>&nbsp;        this.default_draw_deck = draw_deck;</b>
+<b class="fc"><i>37</i>&nbsp;    }</b>
+<i>38</i>&nbsp;
+<i>39</i>&nbsp;    public List&lt;Card&gt; getDrawDeck() {
+<b class="fc"><i>40</i>&nbsp;        return draw_deck;</b>
+<i>41</i>&nbsp;    }
+<i>42</i>&nbsp;
+<i>43</i>&nbsp;    public void setDrawDeck(List&lt;Card&gt; draw_deck) {
+<b class="fc"><i>44</i>&nbsp;        this.draw_deck = draw_deck;</b>
+<b class="fc"><i>45</i>&nbsp;    }</b>
+<i>46</i>&nbsp;
+<i>47</i>&nbsp;    public List&lt;SpecialCard&gt; getPlayDeck() {
+<b class="fc"><i>48</i>&nbsp;        return play_deck;</b>
+<i>49</i>&nbsp;    }
+<i>50</i>&nbsp;
+<i>51</i>&nbsp;    public int getHealth() {
+<b class="fc"><i>52</i>&nbsp;        return barSet.getHealth();</b>
+<i>53</i>&nbsp;    }
+<b class="fc"><i>54</i>&nbsp;    public void setHealth(int health) {barSet.setHealth(health);}</b>
+<i>55</i>&nbsp;    public int getMaxHealth(){
+<b class="fc"><i>56</i>&nbsp;        return barSet.getMaxHealth();</b>
+<i>57</i>&nbsp;    }
+<i>58</i>&nbsp;
+<i>59</i>&nbsp;    public int getMana() {
+<b class="fc"><i>60</i>&nbsp;        return barSet.getMana();</b>
+<i>61</i>&nbsp;    }
+<b class="fc"><i>62</i>&nbsp;    public void setMana(int mana) { barSet.setMana(mana);}</b>
+<i>63</i>&nbsp;    public int getMaxMana(){
+<b class="fc"><i>64</i>&nbsp;        return barSet.getMaxMana();</b>
+<i>65</i>&nbsp;    }
+<i>66</i>&nbsp;
+<i>67</i>&nbsp;    public int getPoints() {
+<b class="fc"><i>68</i>&nbsp;        return barSet.getPoints();</b>
+<i>69</i>&nbsp;    }
+<b class="fc"><i>70</i>&nbsp;    public void setPoints(int points) { barSet.setPoints(points); }</b>
+<i>71</i>&nbsp;    public int getMaxPoints() {
+<b class="fc"><i>72</i>&nbsp;        return barSet.getMaxPoints();</b>
+<i>73</i>&nbsp;    }
+<i>74</i>&nbsp;
+<i>75</i>&nbsp;    public boolean getTurnOver(){
+<b class="fc"><i>76</i>&nbsp;        return turn_over;</b>
+<i>77</i>&nbsp;    }
+<b class="fc"><i>78</i>&nbsp;    public void setTurnOver(boolean turn_over){ this.turn_over = turn_over; }</b>
+<i>79</i>&nbsp;
+<b class="fc"><i>80</i>&nbsp;    public List&lt;SpecialCard&gt; getActiveCards(){return activeCards;}</b>
+<i>81</i>&nbsp;    public void setActiveCards(List&lt;SpecialCard&gt; activeCards){
+<b class="fc"><i>82</i>&nbsp;        this.activeCards = activeCards;</b>
+<b class="fc"><i>83</i>&nbsp;    }</b>
+<i>84</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-05-31 23:27</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,148 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: AcAddHpPerTurn</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.g13.controller.arena.cardactivation.endofturn</a> ]
+</div>
+
+<h1>Coverage Summary for Class: AcAddHpPerTurn (com.g13.controller.arena.cardactivation.endofturn)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">AcAddHpPerTurn</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/ 5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    87.9%
+  </span>
+  <span class="absValue">
+    (29/ 33)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.g13.controller.arena.cardactivation.endofturn;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.g13.controller.arena.ArenaController;
+<i>4</i>&nbsp;import com.g13.controller.arena.ParticipantController;
+<i>5</i>&nbsp;import com.g13.controller.arena.cardactivation.AcSpecialCard;
+<i>6</i>&nbsp;import com.g13.model.arena.specialcards.SpecialCard;
+<i>7</i>&nbsp;import com.g13.model.arena.specialcards.endofturn.AddHpPerTurn;
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;import java.util.List;
+<i>10</i>&nbsp;
+<i>11</i>&nbsp;public class AcAddHpPerTurn extends AcSpecialCard implements EndOfTurn{
+<i>12</i>&nbsp;    private AddHpPerTurn card;
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;    public AcAddHpPerTurn(AddHpPerTurn card){
+<b class="fc"><i>15</i>&nbsp;        super(card);</b>
+<b class="fc"><i>16</i>&nbsp;        this.card = card;</b>
+<b class="fc"><i>17</i>&nbsp;    }</b>
+<i>18</i>&nbsp;
+<i>19</i>&nbsp;    @Override
+<i>20</i>&nbsp;    public void activate(ArenaController arenaController){
+<b class="fc"><i>21</i>&nbsp;        ParticipantController currentController = arenaController.getCurrent();</b>
+<b class="fc"><i>22</i>&nbsp;        currentController.subtractMana(card.getCost());</b>
+<b class="fc"><i>23</i>&nbsp;        List&lt;SpecialCard&gt; deck = currentController.getParticipant().getActiveCards();</b>
+<i>24</i>&nbsp;
+<b class="fc"><i>25</i>&nbsp;        AddHpPerTurn c = card;</b>
+<i>26</i>&nbsp;
+<b class="fc"><i>27</i>&nbsp;        deck.add(c);</b>
+<b class="fc"><i>28</i>&nbsp;        currentController.getParticipant().setActiveCards(deck);</b>
+<b class="fc"><i>29</i>&nbsp;    }</b>
+<i>30</i>&nbsp;
+<i>31</i>&nbsp;    @Override
+<i>32</i>&nbsp;    public boolean checkEnemyPlay(ArenaController arenaController, int cardPos) {
+<b class="fc"><i>33</i>&nbsp;        if (checkPlay(arenaController))</b>
+<b class="nc"><i>34</i>&nbsp;            return false;</b>
+<b class="fc"><i>35</i>&nbsp;        if(arenaController.getEnemy().getHealth() &gt;= arenaController.getEnemy().getMaxHealth())</b>
+<b class="nc"><i>36</i>&nbsp;            return false;</b>
+<b class="fc"><i>37</i>&nbsp;        if(!arenaController.getEnemy().getPlayStrategy().checkOverTimeHeal(arenaController, card.getCost()))</b>
+<b class="nc"><i>38</i>&nbsp;            return false;</b>
+<b class="fc"><i>39</i>&nbsp;        if (hasHealCardAlready(arenaController))</b>
+<b class="fc"><i>40</i>&nbsp;            return false;</b>
+<b class="fc"><i>41</i>&nbsp;        RotateCards(arenaController, cardPos);</b>
+<b class="fc"><i>42</i>&nbsp;        activate(arenaController);</b>
+<b class="fc"><i>43</i>&nbsp;        return true;</b>
+<i>44</i>&nbsp;    }
+<i>45</i>&nbsp;
+<i>46</i>&nbsp;    @Override
+<i>47</i>&nbsp;    public void activateEndOfTurn(ArenaController arenaController) {
+<b class="fc"><i>48</i>&nbsp;        ParticipantController currentController = arenaController.getCurrent();</b>
+<b class="fc"><i>49</i>&nbsp;        currentController.getParticipant().setHealth(currentController.getParticipant().getHealth() + card.getHPPerTurn());</b>
+<b class="fc"><i>50</i>&nbsp;        if(currentController.getParticipant().getHealth() &gt; currentController.getParticipant().getMaxHealth()){</b>
+<b class="nc"><i>51</i>&nbsp;            currentController.getParticipant().setHealth(currentController.getParticipant().getMaxHealth());</b>
+<i>52</i>&nbsp;        }
+<b class="fc"><i>53</i>&nbsp;        card.decrementRoundsLeft();</b>
+<b class="fc"><i>54</i>&nbsp;    }</b>
+<i>55</i>&nbsp;
+<i>56</i>&nbsp;    private boolean hasHealCardAlready(ArenaController arenaController){
+<b class="fc"><i>57</i>&nbsp;        boolean hasHealCardAlready = false;</b>
+<b class="fc"><i>58</i>&nbsp;        for(SpecialCard spec: arenaController.getEnemy().getActiveCards()){</b>
+<b class="fc"><i>59</i>&nbsp;            if (spec instanceof AddHpPerTurn){</b>
+<b class="fc"><i>60</i>&nbsp;                hasHealCardAlready = true;</b>
+<i>61</i>&nbsp;            }
+<b class="fc"><i>62</i>&nbsp;        }</b>
+<b class="fc"><i>63</i>&nbsp;        return hasHealCardAlready;</b>
+<i>64</i>&nbsp;    }
+<i>65</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-05-31 23:27</div>
+</div>
+</body>
+</html>

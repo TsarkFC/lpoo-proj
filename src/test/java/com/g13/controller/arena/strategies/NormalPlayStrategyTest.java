@@ -28,6 +28,7 @@ public class NormalPlayStrategyTest {
         int a = arn.getEnemy().getDrawDeck().get(0).getValue();
         boolean b = arn.getEnemy().getPlayStrategy().playTurn(arn);
         assertEquals(b, true);
+
     }
 
 

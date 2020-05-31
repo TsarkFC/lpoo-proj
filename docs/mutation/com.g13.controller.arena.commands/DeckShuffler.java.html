@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+<body>
+
+
+<h1>DeckShuffler.java</h1>
+
+<table class="src">
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@60e83cb9_1'/>
+1
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@60e83cb9_1'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>package com.g13.controller.arena.commands;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@60e83cb9_2'/>
+2
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@60e83cb9_2'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@60e83cb9_3'/>
+3
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@60e83cb9_3'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import com.g13.model.arena.Card;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@60e83cb9_4'/>
+4
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@60e83cb9_4'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@60e83cb9_5'/>
+5
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@60e83cb9_5'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.util.Collections;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@60e83cb9_6'/>
+6
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@60e83cb9_6'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.util.List;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@60e83cb9_7'/>
+7
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@60e83cb9_7'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@60e83cb9_8'/>
+8
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@60e83cb9_8'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>public class DeckShuffler implements Command{</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@60e83cb9_9'/>
+9
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@60e83cb9_9'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@60e83cb9_10'/>
+10
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@60e83cb9_10'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    List&#60;Card&#62; deck;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@60e83cb9_11'/>
+11
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@60e83cb9_11'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@60e83cb9_12'/>
+12
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@60e83cb9_12'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    public DeckShuffler(List&#60;Card&#62; deck){</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@60e83cb9_13'/>
+13
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@60e83cb9_13'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        this.deck = deck;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@60e83cb9_14'/>
+14
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@60e83cb9_14'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@60e83cb9_15'/>
+15
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@60e83cb9_15'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@60e83cb9_16'/>
+16
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@60e83cb9_16'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public void execute(){</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@60e83cb9_17'/>
+17
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@60e83cb9_17'>1</a>
+<span>
+1. execute : removed call to java/util/Collections::shuffle &rarr; SURVIVED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>        Collections.shuffle(deck);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@60e83cb9_18'/>
+18
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@60e83cb9_18'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@60e83cb9_19'/>
+19
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@60e83cb9_19'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>}</span></pre></td></tr>
+
+
+
+<tr><td></td><td></td><td><h2>Mutations</h2></td></tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@60e83cb9_17'>17</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@60e83cb9_17'/> 
+
+<p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>execute<br/><b>Killed by : </b>none</span></span> removed call to java/util/Collections::shuffle &rarr; SURVIVED</p> 
+</td>
+</tr>
+
+</table>
+
+
+<h2>Active mutators</h2>
+<ul>
+<li class='mutator'>BOOLEAN_FALSE_RETURN</li>
+<li class='mutator'>BOOLEAN_TRUE_RETURN</li>
+<li class='mutator'>CONDITIONALS_BOUNDARY_MUTATOR</li>
+<li class='mutator'>EMPTY_RETURN_VALUES</li>
+<li class='mutator'>INCREMENTS_MUTATOR</li>
+<li class='mutator'>INVERT_NEGS_MUTATOR</li>
+<li class='mutator'>MATH_MUTATOR</li>
+<li class='mutator'>NEGATE_CONDITIONALS_MUTATOR</li>
+<li class='mutator'>NULL_RETURN_VALUES</li>
+<li class='mutator'>PRIMITIVE_RETURN_VALS_MUTATOR</li>
+<li class='mutator'>VOID_METHOD_CALL_MUTATOR</li>
+
+</ul>
+
+<h2>Tests examined</h2>
+<ul>
+<li>com.g13.controller.arena.cardactivation.endofturn.AddHpPerTurnTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.cardactivation.endofturn.AddHpPerTurnTest]/[method:activateTest()] (4 ms)</li><li>com.g13.controller.state.GameStateTest.[engine:junit-jupiter]/[class:com.g13.controller.state.GameStateTest]/[method:setStrategyTest()] (7 ms)</li><li>com.g13.controller.arena.command.DrawCardCommandTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.command.DrawCardCommandTest]/[method:testExecuteOverFlow()] (11 ms)</li><li>com.g13.controller.arena.cardactivation.instant.AcStaticModifierTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.cardactivation.instant.AcStaticModifierTest]/[method:checkEnemyPlayTest()] (5 ms)</li><li>com.g13.controller.arena.ParticipantControllerTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.ParticipantControllerTest]/[method:testresetDrawDeck()] (5 ms)</li><li>com.g13.controller.arena.command.PlaySpecialCardCommandTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.command.PlaySpecialCardCommandTest]/[method:testSixCards()] (3 ms)</li><li>com.g13.controller.arena.ArenaControllerTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.ArenaControllerTest]/[method:processPlayerCards()] (4 ms)</li><li>com.g13.controller.arena.cardactivation.endofturn.AcDamageGambleTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.cardactivation.endofturn.AcDamageGambleTest]/[method:checkEnemyPlayTest()] (5 ms)</li><li>com.g13.controller.arena.cardactivation.endofturn.AcOnWinDamageTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.cardactivation.endofturn.AcOnWinDamageTest]/[method:checkEnemyPlayTest()] (5 ms)</li><li>com.g13.controller.arena.command.DrawCardCommandTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.command.DrawCardCommandTest]/[method:testExecuteBothMax()] (4 ms)</li><li>com.g13.controller.arena.cardactivation.AcSpecialCardTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.cardactivation.AcSpecialCardTest]/[method:testCheckPlay()] (11 ms)</li><li>com.g13.controller.arena.cardactivation.endofturn.AcDamageGambleTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.cardactivation.endofturn.AcDamageGambleTest]/[method:activateTest()] (6 ms)</li><li>com.g13.controller.arena.ParticipantControllerTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.ParticipantControllerTest]/[method:testsetDefaultDrawDeck()] (4 ms)</li><li>com.g13.controller.arena.command.SelectCardTest.[engine:jqwik]/[class:com.g13.controller.arena.command.SelectCardTest]/[property:selectCardTest(int)] (8 ms)</li><li>com.g13.controller.arena.cardactivation.instant.AcStaticModifierTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.cardactivation.instant.AcStaticModifierTest]/[method:activateTest()] (11 ms)</li><li>com.g13.controller.arena.ArenaControllerTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.ArenaControllerTest]/[method:testsetPlayerController()] (5 ms)</li><li>com.g13.controller.arena.strategies.PlayStrategyTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.strategies.PlayStrategyTest]/[method:checkOverTimeHealTest()] (2 ms)</li><li>com.g13.controller.arena.strategies.NormalPlayStrategyTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.strategies.NormalPlayStrategyTest]/[method:playTurnTest()] (3 ms)</li><li>com.g13.controller.arena.command.InterstageHandlerTest.[engine:jqwik]/[class:com.g13.controller.arena.command.InterstageHandlerTest]/[property:CombatTest(int, int)] (18 ms)</li><li>com.g13.controller.arena.strategies.PlayStrategyTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.strategies.PlayStrategyTest]/[method:checkStaticModifierTest()] (2 ms)</li><li>com.g13.controller.arena.ArenaControllerTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.ArenaControllerTest]/[method:testsetEnemyontroller()] (4 ms)</li><li>com.g13.controller.state.StartStateTest.[engine:junit-jupiter]/[class:com.g13.controller.state.StartStateTest]/[method:startStateTest()] (7 ms)</li><li>com.g13.controller.arena.strategies.PlayStrategyTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.strategies.PlayStrategyTest]/[method:checkFluxModifierTest()] (3 ms)</li><li>com.g13.controller.arena.cardactivation.endofturn.AcOnWinDamageTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.cardactivation.endofturn.AcOnWinDamageTest]/[method:activateTest()] (8 ms)</li><li>com.g13.controller.arena.ArenaControllerTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.ArenaControllerTest]/[method:testStrategySetting()] (4 ms)</li><li>com.g13.controller.state.LevelStateTest.[engine:junit-jupiter]/[class:com.g13.controller.state.LevelStateTest]/[method:levelStateTest()] (6 ms)</li><li>com.g13.controller.arena.strategies.PlayStrategyTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.strategies.PlayStrategyTest]/[method:getDraw_limit_reachedTest()] (4 ms)</li><li>com.g13.controller.arena.ParticipantControllerTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.ParticipantControllerTest]/[method:testremoveDeckTop()] (5 ms)</li><li>com.g13.controller.arena.command.DrawCardCommandTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.command.DrawCardCommandTest]/[method:testExecuteNegative()] (3 ms)</li><li>com.g13.controller.arena.cardactivation.instant.AcFluxModifierAtoBTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.cardactivation.instant.AcFluxModifierAtoBTest]/[method:activateTest()] (7 ms)</li><li>com.g13.controller.arena.cardactivation.endofturn.AcOnWinDamageTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.cardactivation.endofturn.AcOnWinDamageTest]/[method:activateEndOfTurnTest()] (7 ms)</li><li>com.g13.controller.arena.strategies.CarefulPlayStrategyTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.strategies.CarefulPlayStrategyTest]/[method:playTurnTest()] (4 ms)</li><li>com.g13.controller.state.GameStateTest.[engine:junit-jupiter]/[class:com.g13.controller.state.GameStateTest]/[method:gameStateTest()] (7 ms)</li><li>com.g13.controller.arena.cardactivation.instant.AcInstantDamageTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.cardactivation.instant.AcInstantDamageTest]/[method:activateTest()] (8 ms)</li><li>com.g13.controller.arena.command.InterstageHandlerTest.[engine:jqwik]/[class:com.g13.controller.arena.command.InterstageHandlerTest]/[property:CheckSubtractionPlayer(int)] (7 ms)</li><li>com.g13.controller.arena.creator.ArenaCreatorTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.creator.ArenaCreatorTest]/[method:testCreation()] (4 ms)</li><li>com.g13.controller.arena.ArenaControllerTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.ArenaControllerTest]/[method:testRoundOver()] (4 ms)</li><li>com.g13.controller.arena.cardactivation.AcSpecialCardTest.[engine:jqwik]/[class:com.g13.controller.arena.cardactivation.AcSpecialCardTest]/[property:testRotateCardsSixCards(int)] (12 ms)</li><li>com.g13.controller.arena.command.PlaySpecialCardCommandTest.[engine:jqwik]/[class:com.g13.controller.arena.command.PlaySpecialCardCommandTest]/[property:TestStaticModifier(int)] (5 ms)</li><li>com.g13.controller.arena.cardactivation.instant.AcInstantDamageTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.cardactivation.instant.AcInstantDamageTest]/[method:checkEnemyPlayTest()] (6 ms)</li><li>com.g13.controller.arena.cardactivation.instant.AcFluxModifierAtoBTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.cardactivation.instant.AcFluxModifierAtoBTest]/[method:checkEnemyPlayTest()] (10 ms)</li><li>com.g13.controller.arena.ArenaControllerTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.ArenaControllerTest]/[method:loserWinnerTest()] (9 ms)</li><li>com.g13.controller.arena.cardactivation.endofturn.AddHpPerTurnTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.cardactivation.endofturn.AddHpPerTurnTest]/[method:checkEnemyPlayTest()] (6 ms)</li><li>com.g13.controller.arena.ParticipantControllerTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.ParticipantControllerTest]/[method:resetPlayerTest()] (5 ms)</li>
+</ul>
+
+<br/>
+
+Report generated by <a href='http://pitest.org'>PIT</a> 1.5.1
+
+</body>
+</html>

@@ -1,0 +1,164 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: Level</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.g13.model.menus</a> ]
+</div>
+
+<h1>Coverage Summary for Class: Level (com.g13.model.menus)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Level</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (8/ 8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (16/ 16)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">Level$MockitoMock$485293663</td>
+  </tr>
+  <tr>
+    <td class="name">Level$MockitoMock$485293663$auxiliary$9tZmFVcZ</td>
+  </tr>
+  <tr>
+    <td class="name">Level$MockitoMock$485293663$auxiliary$aZHO0Zul</td>
+  </tr>
+  <tr>
+    <td class="name">Level$MockitoMock$485293663$auxiliary$cpqOPwQe</td>
+  </tr>
+  <tr>
+    <td class="name">Level$MockitoMock$485293663$auxiliary$dNczZxlZ</td>
+  </tr>
+  <tr>
+    <td class="name">Level$MockitoMock$485293663$auxiliary$dNilpGhb</td>
+  </tr>
+  <tr>
+    <td class="name">Level$MockitoMock$485293663$auxiliary$Gg4cuZtj</td>
+  </tr>
+  <tr>
+    <td class="name">Level$MockitoMock$485293663$auxiliary$GiYoNmIU</td>
+  </tr>
+  <tr>
+    <td class="name">Level$MockitoMock$485293663$auxiliary$GvdLJGLT</td>
+  </tr>
+  <tr>
+    <td class="name">Level$MockitoMock$485293663$auxiliary$m6z9xcJP</td>
+  </tr>
+  <tr>
+    <td class="name">Level$MockitoMock$485293663$auxiliary$O4K3voWN</td>
+  </tr>
+  <tr>
+    <td class="name">Level$MockitoMock$485293663$auxiliary$seg5wedY</td>
+  </tr>
+  <tr>
+    <td class="name">Level$MockitoMock$485293663$auxiliary$TDssCVEq</td>
+  </tr>
+  <tr>
+    <td class="name">Level$MockitoMock$485293663$auxiliary$Vpvd1oq6</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (8/ 8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (16/ 16)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.g13.model.menus;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.g13.model.Model;
+<i>4</i>&nbsp;import com.g13.model.menus.button.Stage;
+<i>5</i>&nbsp;
+<i>6</i>&nbsp;import java.util.ArrayList;
+<i>7</i>&nbsp;import java.util.List;
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;public class Level extends Menu implements Model {
+<i>10</i>&nbsp;    private List&lt;Stage&gt; stages;
+<i>11</i>&nbsp;    private int cross;
+<b class="fc"><i>12</i>&nbsp;    private int x = 12;</b>
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;    public Level(){
+<b class="fc"><i>15</i>&nbsp;        super(false);</b>
+<b class="fc"><i>16</i>&nbsp;        stages = new ArrayList&lt;&gt;();</b>
+<b class="fc"><i>17</i>&nbsp;        stages.add(new Stage(x, 12, true));</b>
+<b class="fc"><i>18</i>&nbsp;        stages.add(new Stage(x, 17, true));</b>
+<b class="fc"><i>19</i>&nbsp;        stages.add(new Stage(x, 22, false));</b>
+<b class="fc"><i>20</i>&nbsp;        stages.add(new Stage(x, 27, false));</b>
+<b class="fc"><i>21</i>&nbsp;        cross = 0;</b>
+<b class="fc"><i>22</i>&nbsp;    }</b>
+<i>23</i>&nbsp;
+<b class="fc"><i>24</i>&nbsp;    public void crossMoveDown() {cross++;}</b>
+<b class="fc"><i>25</i>&nbsp;    public void crossMoveUp() {cross--;}</b>
+<b class="fc"><i>26</i>&nbsp;    public int getCross() { return cross; }</b>
+<b class="fc"><i>27</i>&nbsp;    public int getX() { return x; }</b>
+<i>28</i>&nbsp;
+<b class="fc"><i>29</i>&nbsp;    public List&lt;Stage&gt; getStages() { return stages; }</b>
+<b class="fc"><i>30</i>&nbsp;    public boolean getNextCross() { return stages.get(cross+1).isUnlocked(); }</b>
+<b class="fc"><i>31</i>&nbsp;    public void resetCross() { cross = 0; }</b>
+<i>32</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-05-31 23:27</div>
+</div>
+</body>
+</html>

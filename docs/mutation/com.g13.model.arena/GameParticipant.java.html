@@ -1,0 +1,1477 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+<body>
+
+
+<h1>GameParticipant.java</h1>
+
+<table class="src">
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_1'/>
+1
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_1'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>package com.g13.model.arena;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_2'/>
+2
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_2'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_3'/>
+3
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_3'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import com.g13.model.arena.specialcards.SpecialCard;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_4'/>
+4
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_4'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_5'/>
+5
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_5'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.util.ArrayList;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_6'/>
+6
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_6'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.util.List;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_7'/>
+7
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_7'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_8'/>
+8
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_8'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>public class GameParticipant {</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_9'/>
+9
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_9'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    protected List&#60;Card&#62; draw_deck;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_10'/>
+10
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_10'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    protected List&#60;SpecialCard&#62; play_deck;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_11'/>
+11
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_11'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    protected List&#60;Card&#62; default_draw_deck;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_12'/>
+12
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_12'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_13'/>
+13
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_13'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    protected BarSet barSet;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_14'/>
+14
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_14'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_15'/>
+15
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_15'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    protected boolean turn_over;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_16'/>
+16
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_16'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_17'/>
+17
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_17'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    protected List&#60;SpecialCard&#62; activeCards;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_18'/>
+18
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_18'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_19'/>
+19
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_19'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    public GameParticipant(List&#60;SpecialCard&#62; play_deck, BarSet barSet){</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_20'/>
+20
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_20'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        this.play_deck = play_deck;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_21'/>
+21
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_21'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        this.barSet = barSet;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_22'/>
+22
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_22'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        this.turn_over = false;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_23'/>
+23
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_23'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        this.activeCards = new ArrayList&#60;&#62;();</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_24'/>
+24
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_24'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_25'/>
+25
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_25'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_26'/>
+26
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_26'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public void setBothDrawDecks(List&#60;Card&#62; draw_deck) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_27'/>
+27
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_27'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        this.draw_deck = draw_deck;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_28'/>
+28
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_28'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        this.default_draw_deck = draw_deck;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_29'/>
+29
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_29'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_30'/>
+30
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_30'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_31'/>
+31
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_31'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public List&#60;Card&#62; getDefaultDrawDeck() {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_32'/>
+32
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_32'>1</a>
+<span>
+1. getDefaultDrawDeck : replaced return value with Collections.emptyList for com/g13/model/arena/GameParticipant::getDefaultDrawDeck &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return default_draw_deck;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_33'/>
+33
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_33'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_34'/>
+34
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_34'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_35'/>
+35
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_35'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public void setDefaultDrawDeck(List&#60;Card&#62; draw_deck) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_36'/>
+36
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_36'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        this.default_draw_deck = draw_deck;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_37'/>
+37
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_37'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_38'/>
+38
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_38'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_39'/>
+39
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_39'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public List&#60;Card&#62; getDrawDeck() {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_40'/>
+40
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_40'>1</a>
+<span>
+1. getDrawDeck : replaced return value with Collections.emptyList for com/g13/model/arena/GameParticipant::getDrawDeck &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return draw_deck;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_41'/>
+41
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_41'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_42'/>
+42
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_42'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_43'/>
+43
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_43'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public void setDrawDeck(List&#60;Card&#62; draw_deck) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_44'/>
+44
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_44'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        this.draw_deck = draw_deck;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_45'/>
+45
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_45'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_46'/>
+46
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_46'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_47'/>
+47
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_47'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public List&#60;SpecialCard&#62; getPlayDeck() {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_48'/>
+48
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_48'>1</a>
+<span>
+1. getPlayDeck : replaced return value with Collections.emptyList for com/g13/model/arena/GameParticipant::getPlayDeck &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return play_deck;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_49'/>
+49
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_49'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_50'/>
+50
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_50'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_51'/>
+51
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_51'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public int getHealth() {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_52'/>
+52
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_52'>1</a>
+<span>
+1. getHealth : replaced int return with 0 for com/g13/model/arena/GameParticipant::getHealth &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return barSet.getHealth();</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_53'/>
+53
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_53'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_54'/>
+54
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_54'>1</a>
+<span>
+1. setHealth : removed call to com/g13/model/arena/BarSet::setHealth &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    public void setHealth(int health) {barSet.setHealth(health);}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_55'/>
+55
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_55'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public int getMaxHealth(){</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_56'/>
+56
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_56'>1</a>
+<span>
+1. getMaxHealth : replaced int return with 0 for com/g13/model/arena/GameParticipant::getMaxHealth &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return barSet.getMaxHealth();</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_57'/>
+57
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_57'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_58'/>
+58
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_58'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_59'/>
+59
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_59'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public int getMana() {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_60'/>
+60
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_60'>1</a>
+<span>
+1. getMana : replaced int return with 0 for com/g13/model/arena/GameParticipant::getMana &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return barSet.getMana();</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_61'/>
+61
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_61'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_62'/>
+62
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_62'>1</a>
+<span>
+1. setMana : removed call to com/g13/model/arena/BarSet::setMana &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    public void setMana(int mana) { barSet.setMana(mana);}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_63'/>
+63
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_63'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public int getMaxMana(){</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_64'/>
+64
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_64'>1</a>
+<span>
+1. getMaxMana : replaced int return with 0 for com/g13/model/arena/GameParticipant::getMaxMana &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return barSet.getMaxMana();</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_65'/>
+65
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_65'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_66'/>
+66
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_66'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_67'/>
+67
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_67'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public int getPoints() {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_68'/>
+68
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_68'>1</a>
+<span>
+1. getPoints : replaced int return with 0 for com/g13/model/arena/GameParticipant::getPoints &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return barSet.getPoints();</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_69'/>
+69
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_69'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_70'/>
+70
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_70'>1</a>
+<span>
+1. setPoints : removed call to com/g13/model/arena/BarSet::setPoints &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    public void setPoints(int points) { barSet.setPoints(points); }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_71'/>
+71
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_71'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public int getMaxPoints() {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_72'/>
+72
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_72'>1</a>
+<span>
+1. getMaxPoints : replaced int return with 0 for com/g13/model/arena/GameParticipant::getMaxPoints &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return barSet.getMaxPoints();</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_73'/>
+73
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_73'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_74'/>
+74
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_74'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_75'/>
+75
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_75'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public boolean getTurnOver(){</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_76'/>
+76
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_76'>2</a>
+<span>
+1. getTurnOver : replaced boolean return with false for com/g13/model/arena/GameParticipant::getTurnOver &rarr; KILLED<br/>
+2. getTurnOver : replaced boolean return with true for com/g13/model/arena/GameParticipant::getTurnOver &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return turn_over;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_77'/>
+77
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_77'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_78'/>
+78
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_78'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    public void setTurnOver(boolean turn_over){ this.turn_over = turn_over; }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_79'/>
+79
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_79'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_80'/>
+80
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_80'>1</a>
+<span>
+1. getActiveCards : replaced return value with Collections.emptyList for com/g13/model/arena/GameParticipant::getActiveCards &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    public List&#60;SpecialCard&#62; getActiveCards(){return activeCards;}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_81'/>
+81
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_81'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public void setActiveCards(List&#60;SpecialCard&#62; activeCards){</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_82'/>
+82
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_82'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        this.activeCards = activeCards;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_83'/>
+83
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_83'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5da61ee2_84'/>
+84
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_84'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>}</span></pre></td></tr>
+
+
+
+<tr><td></td><td></td><td><h2>Mutations</h2></td></tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5da61ee2_32'>32</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_32'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getDefaultDrawDeck<br/><b>Killed by : </b>com.g13.model.arena.PlayerTest.[engine:junit-jupiter]/[class:com.g13.model.arena.PlayerTest]/[method:listSetterTest()]</span></span> replaced return value with Collections.emptyList for com/g13/model/arena/GameParticipant::getDefaultDrawDeck &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5da61ee2_40'>40</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_40'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getDrawDeck<br/><b>Killed by : </b>com.g13.model.arena.PlayerTest.[engine:junit-jupiter]/[class:com.g13.model.arena.PlayerTest]/[method:listSetterTest()]</span></span> replaced return value with Collections.emptyList for com/g13/model/arena/GameParticipant::getDrawDeck &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5da61ee2_48'>48</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_48'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getPlayDeck<br/><b>Killed by : </b>com.g13.controller.arena.ParticipantControllerTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.ParticipantControllerTest]/[method:getCardTest()]</span></span> replaced return value with Collections.emptyList for com/g13/model/arena/GameParticipant::getPlayDeck &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5da61ee2_52'>52</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_52'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getHealth<br/><b>Killed by : </b>com.g13.model.arena.PlayerTest.[engine:junit-jupiter]/[class:com.g13.model.arena.PlayerTest]/[method:testConstructor()]</span></span> replaced int return with 0 for com/g13/model/arena/GameParticipant::getHealth &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5da61ee2_54'>54</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_54'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>setHealth<br/><b>Killed by : </b>com.g13.model.arena.PlayerTest.[engine:junit-jupiter]/[class:com.g13.model.arena.PlayerTest]/[method:testConstructor()]</span></span> removed call to com/g13/model/arena/BarSet::setHealth &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5da61ee2_56'>56</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_56'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getMaxHealth<br/><b>Killed by : </b>com.g13.model.arena.PlayerTest.[engine:junit-jupiter]/[class:com.g13.model.arena.PlayerTest]/[method:testConstructor()]</span></span> replaced int return with 0 for com/g13/model/arena/GameParticipant::getMaxHealth &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5da61ee2_60'>60</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_60'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getMana<br/><b>Killed by : </b>com.g13.model.arena.PlayerTest.[engine:junit-jupiter]/[class:com.g13.model.arena.PlayerTest]/[method:testConstructor()]</span></span> replaced int return with 0 for com/g13/model/arena/GameParticipant::getMana &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5da61ee2_62'>62</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_62'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>setMana<br/><b>Killed by : </b>com.g13.model.arena.PlayerTest.[engine:junit-jupiter]/[class:com.g13.model.arena.PlayerTest]/[method:testConstructor()]</span></span> removed call to com/g13/model/arena/BarSet::setMana &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5da61ee2_64'>64</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_64'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getMaxMana<br/><b>Killed by : </b>com.g13.model.arena.PlayerTest.[engine:junit-jupiter]/[class:com.g13.model.arena.PlayerTest]/[method:testConstructor()]</span></span> replaced int return with 0 for com/g13/model/arena/GameParticipant::getMaxMana &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5da61ee2_68'>68</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_68'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getPoints<br/><b>Killed by : </b>com.g13.controller.arena.CardControllerTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.CardControllerTest]/[method:testeffect()]</span></span> replaced int return with 0 for com/g13/model/arena/GameParticipant::getPoints &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5da61ee2_70'>70</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_70'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>setPoints<br/><b>Killed by : </b>com.g13.controller.arena.CardControllerTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.CardControllerTest]/[method:testeffect()]</span></span> removed call to com/g13/model/arena/BarSet::setPoints &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5da61ee2_72'>72</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_72'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getMaxPoints<br/><b>Killed by : </b>com.g13.model.arena.PlayerTest.[engine:junit-jupiter]/[class:com.g13.model.arena.PlayerTest]/[method:testConstructor()]</span></span> replaced int return with 0 for com/g13/model/arena/GameParticipant::getMaxPoints &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5da61ee2_76'>76</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_76'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getTurnOver<br/><b>Killed by : </b>com.g13.controller.arena.command.SkipTurnCommandTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.command.SkipTurnCommandTest]/[method:testExecute()]</span></span> replaced boolean return with false for com/g13/model/arena/GameParticipant::getTurnOver &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>getTurnOver<br/><b>Killed by : </b>com.g13.model.arena.PlayerTest.[engine:junit-jupiter]/[class:com.g13.model.arena.PlayerTest]/[method:testConstructor()]</span></span> replaced boolean return with true for com/g13/model/arena/GameParticipant::getTurnOver &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5da61ee2_80'>80</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5da61ee2_80'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getActiveCards<br/><b>Killed by : </b>com.g13.controller.arena.ArenaControllerTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.ArenaControllerTest]/[method:processPlayerCards()]</span></span> replaced return value with Collections.emptyList for com/g13/model/arena/GameParticipant::getActiveCards &rarr; KILLED</p> 
+</td>
+</tr>
+
+</table>
+
+
+<h2>Active mutators</h2>
+<ul>
+<li class='mutator'>BOOLEAN_FALSE_RETURN</li>
+<li class='mutator'>BOOLEAN_TRUE_RETURN</li>
+<li class='mutator'>CONDITIONALS_BOUNDARY_MUTATOR</li>
+<li class='mutator'>EMPTY_RETURN_VALUES</li>
+<li class='mutator'>INCREMENTS_MUTATOR</li>
+<li class='mutator'>INVERT_NEGS_MUTATOR</li>
+<li class='mutator'>MATH_MUTATOR</li>
+<li class='mutator'>NEGATE_CONDITIONALS_MUTATOR</li>
+<li class='mutator'>NULL_RETURN_VALUES</li>
+<li class='mutator'>PRIMITIVE_RETURN_VALS_MUTATOR</li>
+<li class='mutator'>VOID_METHOD_CALL_MUTATOR</li>
+
+</ul>
+
+<h2>Tests examined</h2>
+<ul>
+<li>com.g13.controller.arena.cardactivation.endofturn.AddHpPerTurnTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.cardactivation.endofturn.AddHpPerTurnTest]/[method:activateTest()] (4 ms)</li><li>com.g13.controller.arena.command.DrawCardCommandTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.command.DrawCardCommandTest]/[method:testExecuteOverFlow()] (11 ms)</li><li>com.g13.controller.arena.command.PlaySpecialCardCommandTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.command.PlaySpecialCardCommandTest]/[method:testSixCards()] (3 ms)</li><li>com.g13.controller.arena.ParticipantControllerTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.ParticipantControllerTest]/[method:getCardTest()] (4 ms)</li><li>com.g13.controller.arena.command.SkipTurnCommandTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.command.SkipTurnCommandTest]/[method:testExecute()] (4 ms)</li><li>com.g13.controller.arena.cardactivation.endofturn.AcDamageGambleTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.cardactivation.endofturn.AcDamageGambleTest]/[method:checkEnemyPlayTest()] (5 ms)</li><li>com.g13.controller.arena.command.DrawCardCommandTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.command.DrawCardCommandTest]/[method:testExecuteBothMax()] (4 ms)</li><li>com.g13.controller.arena.ParticipantControllerTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.ParticipantControllerTest]/[method:testsetDefaultDrawDeck()] (4 ms)</li><li>com.g13.controller.arena.cardactivation.instant.AcStaticModifierTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.cardactivation.instant.AcStaticModifierTest]/[method:activateTest()] (11 ms)</li><li>com.g13.controller.arena.command.SelectCardTest.[engine:jqwik]/[class:com.g13.controller.arena.command.SelectCardTest]/[property:selectCardTest(int)] (8 ms)</li><li>com.g13.controller.arena.strategies.PlayStrategyTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.strategies.PlayStrategyTest]/[method:checkOverTimeHealTest()] (2 ms)</li><li>com.g13.controller.arena.cardactivation.endofturn.AcOnWinDamageTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.cardactivation.endofturn.AcOnWinDamageTest]/[method:activateTest()] (8 ms)</li><li>com.g13.controller.arena.strategies.PlayStrategyTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.strategies.PlayStrategyTest]/[method:checkFluxModifierTest()] (3 ms)</li><li>com.g13.model.arena.PlayerTest.[engine:junit-jupiter]/[class:com.g13.model.arena.PlayerTest]/[method:testConstructor()] (3 ms)</li><li>com.g13.controller.arena.ParticipantControllerTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.ParticipantControllerTest]/[method:testremoveDeckTop()] (5 ms)</li><li>com.g13.model.arena.PlayerTest.[engine:junit-jupiter]/[class:com.g13.model.arena.PlayerTest]/[method:listSetterTest()] (3 ms)</li><li>com.g13.controller.arena.command.DrawCardCommandTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.command.DrawCardCommandTest]/[method:testExecuteNegative()] (3 ms)</li><li>com.g13.controller.arena.cardactivation.instant.AcFluxModifierAtoBTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.cardactivation.instant.AcFluxModifierAtoBTest]/[method:activateTest()] (7 ms)</li><li>com.g13.controller.arena.strategies.CarefulPlayStrategyTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.strategies.CarefulPlayStrategyTest]/[method:playTurnTest()] (4 ms)</li><li>com.g13.controller.arena.ParticipantControllerTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.ParticipantControllerTest]/[method:resetOnWinTest()] (5 ms)</li><li>com.g13.controller.arena.ParticipantControllerTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.ParticipantControllerTest]/[method:testSelectedCard()] (5 ms)</li><li>com.g13.controller.arena.command.InterstageHandlerTest.[engine:jqwik]/[class:com.g13.controller.arena.command.InterstageHandlerTest]/[property:CheckSubtractionPlayer(int)] (7 ms)</li><li>com.g13.controller.arena.ArenaControllerTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.ArenaControllerTest]/[method:testRoundOver()] (4 ms)</li><li>com.g13.controller.arena.cardactivation.instant.AcInstantDamageTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.cardactivation.instant.AcInstantDamageTest]/[method:checkEnemyPlayTest()] (6 ms)</li><li>com.g13.controller.arena.cardactivation.endofturn.AddHpPerTurnTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.cardactivation.endofturn.AddHpPerTurnTest]/[method:checkEnemyPlayTest()] (6 ms)</li><li>com.g13.view.arena.PlayerViewerTest.[engine:junit-jupiter]/[class:com.g13.view.arena.PlayerViewerTest]/[method:testDrawPlayer()] (5 ms)</li><li>com.g13.controller.arena.ParticipantControllerTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.ParticipantControllerTest]/[method:resetPlayerTest()] (5 ms)</li><li>com.g13.controller.arena.cardactivation.instant.AcStaticModifierTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.cardactivation.instant.AcStaticModifierTest]/[method:checkEnemyPlayTest()] (5 ms)</li><li>com.g13.controller.arena.ParticipantControllerTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.ParticipantControllerTest]/[method:testresetDrawDeck()] (5 ms)</li><li>com.g13.controller.arena.ArenaControllerTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.ArenaControllerTest]/[method:processPlayerCards()] (4 ms)</li><li>com.g13.controller.arena.cardactivation.endofturn.AcOnWinDamageTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.cardactivation.endofturn.AcOnWinDamageTest]/[method:checkEnemyPlayTest()] (5 ms)</li><li>com.g13.controller.arena.cardactivation.endofturn.AcDamageGambleTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.cardactivation.endofturn.AcDamageGambleTest]/[method:activateTest()] (6 ms)</li><li>com.g13.controller.arena.cardactivation.AcSpecialCardTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.cardactivation.AcSpecialCardTest]/[method:testCheckPlay()] (11 ms)</li><li>com.g13.controller.arena.ArenaControllerTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.ArenaControllerTest]/[method:testsetPlayerController()] (5 ms)</li><li>com.g13.controller.arena.strategies.NormalPlayStrategyTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.strategies.NormalPlayStrategyTest]/[method:playTurnTest()] (3 ms)</li><li>com.g13.controller.arena.command.InterstageHandlerTest.[engine:jqwik]/[class:com.g13.controller.arena.command.InterstageHandlerTest]/[property:CombatTest(int, int)] (18 ms)</li><li>com.g13.controller.arena.strategies.PlayStrategyTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.strategies.PlayStrategyTest]/[method:checkStaticModifierTest()] (2 ms)</li><li>com.g13.controller.arena.ArenaControllerTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.ArenaControllerTest]/[method:testsetEnemyontroller()] (4 ms)</li><li>com.g13.controller.arena.cardactivation.endofturn.AcOnWinDamageTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.cardactivation.endofturn.AcOnWinDamageTest]/[method:activateEndOfTurnTest()] (7 ms)</li><li>com.g13.controller.state.GameStateTest.[engine:junit-jupiter]/[class:com.g13.controller.state.GameStateTest]/[method:gameStateTest()] (7 ms)</li><li>com.g13.controller.arena.cardactivation.instant.AcInstantDamageTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.cardactivation.instant.AcInstantDamageTest]/[method:activateTest()] (8 ms)</li><li>com.g13.controller.arena.creator.ArenaCreatorTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.creator.ArenaCreatorTest]/[method:testCreation()] (4 ms)</li><li>com.g13.controller.arena.cardactivation.AcSpecialCardTest.[engine:jqwik]/[class:com.g13.controller.arena.cardactivation.AcSpecialCardTest]/[property:testRotateCardsSixCards(int)] (12 ms)</li><li>com.g13.controller.arena.CardControllerTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.CardControllerTest]/[method:testeffect()] (3 ms)</li><li>com.g13.view.arena.PlayerViewerTest.[engine:junit-jupiter]/[class:com.g13.view.arena.PlayerViewerTest]/[method:testDrawEnemy()] (5 ms)</li><li>com.g13.controller.arena.command.PlaySpecialCardCommandTest.[engine:jqwik]/[class:com.g13.controller.arena.command.PlaySpecialCardCommandTest]/[property:TestStaticModifier(int)] (5 ms)</li><li>com.g13.controller.arena.ParticipantControllerTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.ParticipantControllerTest]/[method:testSubtractors()] (4 ms)</li><li>com.g13.controller.arena.ParticipantControllerTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.ParticipantControllerTest]/[method:getTurnOverTest()] (4 ms)</li><li>com.g13.controller.arena.ArenaControllerTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.ArenaControllerTest]/[method:loserWinnerTest()] (9 ms)</li><li>com.g13.controller.arena.cardactivation.instant.AcFluxModifierAtoBTest.[engine:junit-jupiter]/[class:com.g13.controller.arena.cardactivation.instant.AcFluxModifierAtoBTest]/[method:checkEnemyPlayTest()] (10 ms)</li>
+</ul>
+
+<br/>
+
+Report generated by <a href='http://pitest.org'>PIT</a> 1.5.1
+
+</body>
+</html>

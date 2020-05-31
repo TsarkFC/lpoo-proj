@@ -1,13 +1,13 @@
 
 # LPOO_13 - VOID TYRANT (card game)
 
-Este projeto tem como inspiração o jogo "Void Tyrant", onde o utilizador tem como objetivo derrotar um inimigo, utilizando as cartas que tem ao seu dispor. 
+Este projeto tem como inspiração o jogo "Void Tyrant", onde o joagdor tem como objetivo derrotar um inimigo, utilizando as cartas que tem ao seu dispor. 
 Ambos os participantes possuem dois baralhos: um baralho de cartas normais e um baralho de cartas especiais cujas habilidades poderão ser ativadas com o decorrer do jogo.
 
-As cartas normais possuem valores entre 1 a 6 e cada jogador tem como objetivo ir tirando cartas do baralho até que o valor somado das cartas retiradas esteja o mais próximo possível de 12.
-Quando ambos os jogadores derem o seu turno por terminado, ataca o jogador com pontuação mais próxima de 12, um número de vezes correspondente à diferença de pontuações.
+As cartas normais possuem valores entre 1 a 6 e cada jogador tem como objetivo ir tirando cartas do baralho até que a soma dos valores das cartas retiradas esteja o mais próximo possível de 12.
+Quando ambos os jogadores derem o seu turno por terminado, o jogador com pontuação mais próxima de 12 ataca um número de vezes correspondente à diferença de pontuações.
 
-As diversas cartas especiais que cada jogador possui ao seu dispor podem ser utilizadas sempre que o jogador possuir mana para tal, sendo que o jogador tem na "mão" apenas as primeiras quatro cartas do baralho.
+As diversas cartas especiais que cada jogador possui ao seu dispor podem ser utilizadas sempre que o jogador possuir mana para tal, sendo que o jogador tem apenas as primeiras quatro cartas do baralho na "mão".
 
 Desenvolvido por [João Cardoso](https://github.com/joaoalc) (up201806531@fe.up.pt) e [João Romão](https://github.com/TsarkFC) (up201806779@fe.up.pt).
 
@@ -21,17 +21,17 @@ Menu inicial | Intruções de jogo
  ![](img/initial_menu.png) | ![](img/instructions.png)
 
  - O computador apresenta, neste momento, três "personalidades" distintas:
-    - Cuidadosa: Faz draw de cartas até ter 6 ou mais pontos;
+    - Cuidadosa: Faz draw de cartas até ter 6 ou mais pontos e não joga cartas especiais;
     - Normal: Faz draw de cartas até ter 7 ou mais pontos;
     - Agressiva: Faz draw de cartas até ter 8 ou mais pontos, também faz draw se o jogador tiver os mesmos ou mais pontos.
  
- - O jogador começa inicialmente por defrontar o enimigo com personalidade cuidadosa encontrando-se os restantes inimigos bloqueados. O jogador tem assim como objetivo derrotar os três inimigos sendo que cada vez que derrota um novo inimigo o próximo é desbloqueado.
+ - O jogador começa inicialmente por defrontar o enimigo com personalidade cuidadosa encontrando-se os restantes inimigos bloqueados. O jogador tem assim como objetivo derrotar os três inimigos, sendo que cada vez que derrota um novo inimigo o próximo é desbloqueado.
 
   Estado inicial do jogo | Estado após o utilizador ter completado o jogo
  :--------------:|:---------------:
  ![](img/begin.png) | ![](img/final.png)
 
- - O jogador e o computador podem fazer draw de cartas do baralho normal, há deteção de overflow do draw.
+ - O jogador e o computador podem fazer draw de cartas do baralho normal; há deteção de overflow do draw.
 
  - O utilizador pode terminar o seu turno premindo ENTER.
  
@@ -39,7 +39,8 @@ Menu inicial | Intruções de jogo
  :--------------:|:---------------:
  ![](img/img1.png) | ![](img/img2.png)
 
- - O utilizador pode obter informação relativa às quatro cartas que tem na "mão" premindo {1, 2, 3, 4}, uma vez selecionada a carta pode ser ativada premindo TAB. Premindo novamente {1, 2, 3, 4} a carta deixa de se encontrar selecionada.
+ - O utilizador pode obter informação relativa às quatro cartas que tem na "mão" premindo {1, 2, 3, 4}. Uma vez selecionada a carta, pode ser ativada premindo TAB. Premindo novamente {1, 2, 3, 4} a carta deixa de se encontrar selecionada.
+Após a implementação de menus, o jogo passou a ter vários loops que se encontravam no ArenaController e no MenuController.
 
  Exemplo de seleção de carta |
  :--------------:|
@@ -119,7 +120,7 @@ Menu inicial | Intruções de jogo
   | :---        |    :----   | 
   | while (true){<br>&nbsp;&nbsp;processInput();<br>&nbsp;&nbsp;update();<br>&nbsp;&nbsp;render();<br>} | ![](img/whileloop.png)
 
-Neste caso o processamento do input do utilizador e a atulização do jogo são ambos realizados pela função start(). Uma vez que o jogo apenas avança com o input do utilizador não foi necessário o controlo da frequência de atualização dos frames da aplicação.
+Neste caso o processamento do input do utilizador e a atulização do jogo são ambos realizados pela função start(). Uma vez que o jogo apenas avança com o input do utilizador, não foi necessário o controlo da frequência de atualização dos frames da aplicação.
 
  #### Command
 
@@ -135,7 +136,7 @@ Neste caso o processamento do input do utilizador e a atulização do jogo são 
  
  <img src="uml/Command_Pattern.png" alt="drawing" width="4000" height="300"/>
 
- Estas classes podem sem encontradas nos seguintes ficheiros:
+ Estas classes podem ser encontradas nos seguintes ficheiros:
   
   - [Command](../src/main/java/com/g13/controller/arena/commands/Command.java)
   
@@ -227,7 +228,7 @@ Neste caso o processamento do input do utilizador e a atulização do jogo são 
 
   **Consequências:**
 
-   Com a aplicação do padrão as diversas classes cliente não precisam de saber qual a carta e respetiva ativação em questão, possibilitando a existência de um baralho de cartas especiais genérico.
+   Com a aplicação do padrão, as diversas classes cliente não precisam de saber qual a carta e respetiva ativação em questão, possibilitando a existência de um baralho de cartas especiais genérico.
 
    **Nota:** Em ambos os casos está presente uma classe abstrata que representa a "strategy" ao invés de uma interface como manda a definição do padrão. Isto aconteceu pois existem métodos comuns a todas as estratégias e para evitar repetição de código foram colocados nestas classes.
 
@@ -301,13 +302,14 @@ Estas classes podem sem encontradas nos seguintes ficheiros:
  
  ### Coverage testing
  
- ![](./tests/coverage.png)
+ ![](./img/testsummary.png)
+ <img src="img/coverage.png" alt="drawing" width="4000" height="400"/>
  
  - Coverage testing [link](./tests).
  
  ### Mutation testing 
  
- ![](./mutation/mutations.png)
+ ![](./img/mutations.png)
  
  - Mutation testing [link](./mutation).
  
