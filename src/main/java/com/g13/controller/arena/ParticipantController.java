@@ -116,7 +116,6 @@ public class ParticipantController {
     }
 
     public int getSelected(){
-        System.out.println(getPlayDeck().size());
         for (int i = 0; i < getPlayDeck().size() && i < 4; i++)
             if (getPlayDeck().get(i).getSelected())
                 return i;

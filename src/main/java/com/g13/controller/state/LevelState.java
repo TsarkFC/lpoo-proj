@@ -40,7 +40,7 @@ public class LevelState implements State{
     }
 
     public void unlockNextStage(){
-        levelController.unlockNextStage();
+        levelController.unlockNextStage(level.getCross());
     }
     public void lockStages() { levelController.lockStages(); }
 }

@@ -1,7 +1,6 @@
 package com.g13.controller.arena.cardactivation.endofturn;
 
 import com.g13.controller.arena.ArenaController;
-import com.g13.controller.arena.cardactivation.instant.AcStaticModifier;
 import com.g13.controller.arena.strategies.PlayStrategy;
 import com.g13.controller.state.StateRecognizer;
 import com.g13.model.arena.*;
@@ -64,7 +63,7 @@ public class AddHpPerTurnTest {
 
         arenaController.setEnemyController(enemy);
         arenaController.setPlayerController(player);
-        Mockito.when(strategy.CheckOverTimeHeal(any(ArenaController.class), Mockito.anyInt())).thenReturn(true);
+        Mockito.when(strategy.checkOverTimeHeal(any(ArenaController.class), Mockito.anyInt())).thenReturn(true);
 
         return arenaController;
     }

@@ -23,12 +23,9 @@ public class LevelController extends MenuController implements Controller {
     @Override
     public void moveUp() { if (model.getCross() > 0) model.crossMoveUp(); }
 
-    public void unlockNextStage(){
-        for (Stage stage : model.getStages())
-            if (!stage.isUnlocked()){
-                stage.setUnlocked(true);
-                break;
-            }
+    public void unlockNextStage(int enemy_position){
+        if (enemy_position == 2 || enemy_position == 1)
+            model.getStages().get(enemy_position+1).setUnlocked(true);
     }
 
     public void lockStages(){

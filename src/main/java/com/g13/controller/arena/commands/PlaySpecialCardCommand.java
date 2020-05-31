@@ -7,7 +7,7 @@ import com.g13.model.arena.specialcards.SpecialCard;
 import java.util.Collections;
 import java.util.List;
 
-public class PlaySpecialCardCommand {
+public class PlaySpecialCardCommand implements Command{
     private ArenaController arenaController;
     private ParticipantController currentController;
     private ParticipantController oppositeController;
@@ -18,6 +18,7 @@ public class PlaySpecialCardCommand {
         this.oppositeController = arenaController.getOpponent();
     }
 
+    @Override
     public void execute() {
         int cardNum = currentController.getSelected();
         if(cardNum == -1)

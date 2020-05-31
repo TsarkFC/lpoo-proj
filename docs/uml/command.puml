@@ -1,0 +1,62 @@
+@startuml strategy
+
+interface Command {
+    void execute()
+}
+
+class CommandParser {
+    + Command parse()
+}
+
+class ArenaController{
+    + void start()
+}
+
+class DoNothing{
+    + void execute()
+}
+class DrawCardCommand{
+    + void execute()
+}
+class InterStageHandler{
+    + void execute()
+}
+class PlayEnemyTurn{
+    + void execute()
+}
+class PlaySpecialCardCommand{
+    + void execute()
+}
+class QuitCommand{
+    + void execute()
+}
+class SelectCard{
+    + void execute()
+}
+class SkipTurnCommand{
+    + void execute()
+}
+
+CommandParser <-right-o ArenaController
+
+DoNothing -down-|> Command
+DrawCardCommand -down-|> Command
+InterStageHandler -down-|> Command
+PlayEnemyTurn -down-|> Command
+PlaySpecialCardCommand -down-|> Command
+QuitCommand -down-|> Command
+SelectCard -down-|> Command
+SkipTurnCommand -down-|> Command
+
+DoNothing -up-> CommandParser
+DrawCardCommand -up-> CommandParser
+InterStageHandler -up-> CommandParser
+PlayEnemyTurn -up-> CommandParser
+PlaySpecialCardCommand -up-> CommandParser
+QuitCommand -up-> CommandParser
+SelectCard -up-> CommandParser
+SkipTurnCommand -up-> CommandParser
+
+ArenaController --> Command
+
+@enduml
