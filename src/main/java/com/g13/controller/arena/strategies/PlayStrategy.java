@@ -10,8 +10,6 @@ abstract public class PlayStrategy {
 
     protected double flux_percentage_accept = 0.75;
 
-    protected double damage_percentage_accept = 0.33; //The higher, the more kill happy the ai is
-
     protected boolean draw_limit_reached = false;
 
     abstract public boolean playTurn(ArenaController arenaController);

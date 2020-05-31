@@ -9,6 +9,7 @@ import com.g13.model.arena.specialcards.instant.InstantDamage;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -111,6 +112,35 @@ public class ParticipantControllerTest {
         assertEquals(0, controller.getParticipant().getHealth());
         assertEquals(-10, controller.getParticipant().getPoints());
     }
+
+    @Test
+    public void getTurnOverTest(){
+        GameParticipant part = createPlayer();
+
+        ParticipantController p = new ParticipantController(part);
+
+        p.setTurnOver(true);
+        assertEquals(p.getTurnOver(), true);
+    }
+
+    @Test
+    public void getCardTest(){
+        GameParticipant part = createPlayer();
+
+        ParticipantController p = new ParticipantController(part);
+
+        SpecialCard s = p.getCard(0);
+        assertEquals(s instanceof InstantDamage, true);
+    }
+
+    /*
+    public boolean getTurnOver() {return gameParticipant.getTurnOver(); }
+
+    public void setDrawDeck(List<Card> deck){ gameParticipant.setDrawDeck(deck); }
+
+    public SpecialCard getCard(int cardno){
+        return gameParticipant.getPlayDeck().get(cardno);
+    }*/
 
     private ParticipantController createController(){
         List<SpecialCard> play_deck = new ArrayList<>();
