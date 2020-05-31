@@ -61,6 +61,7 @@ public class ParticipantControllerTest {
         player.setMana(10);
 
         ParticipantController controller = new ParticipantController(player);
+        assertEquals(false, controller.getTurnOver());
         controller.resetPlayer();
 
         assertEquals(player.getMaxHealth(), player.getHealth());
@@ -110,6 +111,12 @@ public class ParticipantControllerTest {
         assertEquals(0, controller.getParticipant().getMana());
         assertEquals(0, controller.getParticipant().getHealth());
         assertEquals(-10, controller.getParticipant().getPoints());
+    }
+
+    @Test
+    public void testSpecialDeck(){
+        ParticipantController controller = new ParticipantController(createPlayer());
+        assertEquals(controller.getCard(0).getCost(), 3);
     }
 
     private ParticipantController createController(){

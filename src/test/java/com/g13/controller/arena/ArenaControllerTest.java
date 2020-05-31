@@ -1,5 +1,6 @@
 package com.g13.controller.arena;
 
+import com.g13.controller.arena.creator.ArenaCreator;
 import com.g13.controller.arena.strategies.AggressivePlayStrategy;
 import com.g13.controller.arena.strategies.NormalPlayStrategy;
 import com.g13.controller.arena.strategies.PlayStrategy;
@@ -10,6 +11,8 @@ import com.g13.model.arena.specialcards.SpecialCard;
 import com.g13.model.arena.specialcards.endofturn.AddHpPerTurn;
 import com.g13.model.arena.specialcards.endofturn.OnWinDamage;
 import com.g13.view.arena.ArenaViewer;
+import net.jqwik.api.ForAll;
+import net.jqwik.api.Property;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -95,6 +98,27 @@ public class ArenaControllerTest {
         controller.setPlayerController(player);
         controller.processPlayerCards(controller.getPlayerController());
         assertEquals(1, player.getActiveCards().size());
+    }
+
+    @Test
+    public void testRoundOver() throws IOException {
+        ArenaViewer arenaViewer = Mockito.mock(ArenaViewer.class);
+        Arena arena = new Arena(10, 10);
+        StateRecognizer recognizer = Mockito.mock(StateRecognizer.class);
+        ArenaController controller = new ArenaController(arenaViewer, arena, recognizer);
+        ArenaCreator creator = new ArenaCreator();
+        creator.create(controller);
+
+        assertEquals(false, controller.endOfRound());
+        controller.getPlayerController().setTurnOver(true);
+        assertEquals(false, controller.endOfRound());
+        controller.getEnemyController().setTurnOver(true);
+        assertEquals(true, controller.endOfRound());
+        controller.render();
+        Mockito.verify(arenaViewer, Mockito.times(1)).draw();
+        assertEquals(controller.isFinished(), false);
+        controller.getModel().finish();
+        assertEquals(controller.isFinished(), true);
     }
 
     private ArenaController initArena(){
