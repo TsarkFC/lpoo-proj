@@ -38,6 +38,7 @@ public class ArenaController implements Controller {
         activationFactory = new ActivationFactory();
     }
 
+    @Override
     public void start() throws IOException {
         int select = -1;
 
@@ -70,6 +71,16 @@ public class ArenaController implements Controller {
 
         if (command == ArenaViewer.COMMAND.QUIT)
             model.finish();
+    }
+
+    @Override
+    public void render() throws IOException {
+        view.draw();
+    }
+
+    @Override
+    public boolean isFinished() {
+        return model.isFinished();
     }
 
     public GameParticipant getPlayer() {return model.getPlayer();}

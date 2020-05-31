@@ -1,84 +1,127 @@
 
 # LPOO_13 - VOID TYRANT (card game)
 
-Este projeto tem como inspiração o jogo "Void Tyrant", onde o utilizador tem como objetivo derrotar um enimigo, utilizando as cartas que tem ao seu dispor. 
+Este projeto tem como inspiração o jogo "Void Tyrant", onde o utilizador tem como objetivo derrotar um inimigo, utilizando as cartas que tem ao seu dispor. 
 Ambos os participantes possuem dois baralhos: um baralho de cartas normais e um baralho de cartas especiais cujas habilidades poderão ser ativadas com o decorrer do jogo.
 
 As cartas normais possuem valores entre 1 a 6 e cada jogador tem como objetivo ir tirando cartas do baralho até que o valor somado das cartas retiradas esteja o mais próximo possível de 12.
 Quando ambos os jogadores derem o seu turno por terminado, ataca o jogador com pontuação mais próxima de 12, um número de vezes correspondente à diferença de pontuações.
 
-A ser desenvolvido por [João Cardoso](https://github.com/joaoalc) (up201806531@fe.up.pt) e [João Romão](https://github.com/TsarkFC) (up201806779@fe.up.pt).
+As diversas cartas especiais que cada jogador possui ao seu dispor podem ser utilizadas sempre que o jogador possuir mana para tal, sendo que o jogador tem na "mão" apenas as primeiras quatro cartas do baralho.
+
+Desenvolvido por [João Cardoso](https://github.com/joaoalc) (up201806531@fe.up.pt) e [João Romão](https://github.com/TsarkFC) (up201806779@fe.up.pt).
+
+![](img/void-tyrant.gif)
 
 ## Features implementadas
+ - Numa fase incial do jogo o utilizador pode selecionar o menu Instructions onde lhe serão apresentadas instruções iniciais de como jogar o jogo.
 
- - Atualmente, o jogador e o computador podem fazer draw de cartas do baralho normal, há deteção de overflow do draw.
+Menu inicial | Intruções de jogo
+ :--------------:|:---------------:
+ ![](img/initial_menu.png) | ![](img/instructions.png)
+
+ - O computador apresenta, neste momento, três "personalidades" distintas:
+    - Cuidadosa: Faz draw de cartas até ter 6 ou mais pontos;
+    - Normal: Faz draw de cartas até ter 7 ou mais pontos;
+    - Agressiva: Faz draw de cartas até ter 8 ou mais pontos, também faz draw se o jogador tiver os mesmos ou mais pontos.
  
- - O computador pode apresentar, neste momento, três "personalidades" distintas:
-    - Normal: Faz draw de cartas até ter 9 ou mais pontos;
-    - Cuidadosa: Faz draw de cartas até ter 7 ou mais pontos;
-    - Agressiva: Faz draw de cartas até ter 9 ou mais pontos, também faz draw se o jogador tiver os mesmos ou mais pontos.
- 
- - O utilizador pode obter informação relativa às quatro cartas que tem na "mão" premindo {1, 2, 3, 4}.
- 
+ - O jogador começa inicialmente por defrontar o enimigo com personalidade cuidadosa encontrando-se os restantes inimigos bloqueados. O jogador tem assim como objetivo derrotar os três inimigos sendo que cada vez que derrota um novo inimigo o próximo é desbloqueado.
+
+  Estado inicial do jogo | Estado após o utilizador ter completado o jogo
+ :--------------:|:---------------:
+ ![](img/begin.png) | ![](img/final.png)
+
+ - O jogador e o computador podem fazer draw de cartas do baralho normal, há deteção de overflow do draw.
+
  - O utilizador pode terminar o seu turno premindo ENTER.
  
  Início da ronda | Fim de uma ronda
  :--------------:|:---------------:
  ![](img/img1.png) | ![](img/img2.png)
 
-## Features a implementar
+ - O utilizador pode obter informação relativa às quatro cartas que tem na "mão" premindo {1, 2, 3, 4}, uma vez selecionada a carta pode ser ativada premindo TAB. Premindo novamente {1, 2, 3, 4} a carta deixa de se encontrar selecionada.
 
- - Ativação de cartas especiais por parte do utilizador.
+ Exemplo de seleção de carta |
+ :--------------:|
+ ![](img/special_card.png) |
 
- - Ativação de cartas especiais por parte do computador, dependendo da personalidade do mesmo.
 
- - Cálculo do dano feito/recebido no final de cada turno, dependendo dos pontos e cartas do jogador e inimigo.
+## Features que gostaríamos de implementar
 
- - Existência de vários níveis, onde o computador teria diferentes comportamentos a jogar (mais agressivo, equilibrado, passivo, etc.).
+ - Gostaríamos de ter criado um baralho de cartas especiais mais completo com as cartas que constam no jogo real Void Tyrant. No entanto teríamos que introduzir uma nova situação em que o computador jogaria cada carta na estrtégia do inimigo, pelo que optámos por ter um baralho mais simples com oito cartas especiais.
+
+ - Dentro da mesma linha, gostaríamos que o acesso a algumas cartas apenas fosse desbloqueado quando o jogador desbloqueasse uma nova etapa do jogo.
  
- - O jogador vai desbloqueando novas cartas à medida que vai derrotando inimigos.
- 
- - Implementação de menus e de um mapa por onde o utilizador se pode deslocar, escolhendo com qual enimigo quer batalhar.
- Só poderá enfrentar enimigos já derrotados ou o pŕoximo não derrotado.
+ - Uma vez que apenas criámos três inimigos distintos, a criação de um menu dinâmico, anteriormente referido como feature planeada,  onde o utilizador se fosse deslocando num mapa acabou por se demonstrar desnecessário, pelo que optámos por um menu mais simples já anteriormente apresentado.
 
-  Invocação de cartas especiais e atualização das barras de vida e mana | Mapa ilustrativo de como o utilizador se poderia movimentar (baseado no jogo SuperTux)
-  :--------------:|:---------------:
-  ![](img/img3.png) | ![](img/map.png)
+  | Mapa ilustrativo de como o utilizador se poderia movimentar (baseado no jogo SuperTux)
+  :---------------:
+   ![](img/map.png) |
   
 
 ## Design Patterns
 
- ### Observer
- 
+ #### State
+
  **Problema:**
- 
- Uma vez que o jogo apenas sofre alterações uma vez que o utilizador prima teclas do teclado, seria vantajoso apenas desenhar o jogo ([draw()](../src/main/java/com/g13/view/Gui.java))
- caso a modelo da arena sofresse alterações.
- 
- **Design Pattern / Solução**
- 
- Uma possível solução seria aplicar o design pattern Observer. Neste design pattern estão presentes vários observadores que executam uma determinada ação apenas quando notificados 
- para tal. 
- 
- **Implementação**
- 
-  ![](./uml/Observer_Pattern.png)
+
+  Um dos objetivos do trabalho era seguir o padrão arquitetural Model-View-Controller (MVC). Inicialmente a nossa preocupação fundamental foi ter um jogo funcional que seguisse o padrão arquitetural. Uma vez conseguido este objetivo começámos a elaboração do código dos menus, tentando manter ao máximo a estrutura do código já desenvolvido.
+
+  **Design Pattern /solução:**
+
+  Perante este problema decidimos implementar o State design pattern, passsando o programa a ser contituido por três estados essenciais:
+   
+   - [StartState](../src/main/java/com/g13/state/StartState.java): estado inicial do programa em que o utilizador pode ver as instruções de jogo e avançar para o menu de escolha de nível;
+
+   - [LevelState](../src/main/java/com/g13/state/LevelState.java): estado em que o utilizador pode escolher o inimigo contra o qual pretende jogar;
+
+   - [GameState](../src/main/java/com/g13/state/GameState.java): estado em que o utilizador defronta o inimigo sendo redirecionado para o menu de escolha de níveis no final do jogo.
+
+   Uma vez que cada estado tem componentes totalmente distintas assim como formas de as manipular e visualizar, cada estado tem os seus pŕoprios modelo, vista e controlador, sendo que cada um deles implementa uma interface [Model](../src/main/java/com/g13/model/Model.java), [View](../src/main/java/com/g13/view/View.java) e [Controller](../src/main/java/com/g13/controller/Controller.java).
+
+   Como queríamos que cada estado de jogo fosse inicializado uma vez e também de modo a simplificar o código do progama criámos a classe [StateRecognizer](../src/main/java/com/g13/state/StateRecognizer.java) que contém um objeto representativo de cada estado e o estado atual do jogo.
+
+   **Implementação**
+
+  ![](uml/State_Pattern.png)
   
   Estas classes podem sem encontradas nos seguintes ficheiros:
   
-  - [ArenaController](../src/main/java/com/g13/controller/ArenaController.java)
+  - [State](../src/main/java/com/g13/state/State.java)
   
-  - [ArenaObserver](../src/main/java/com/g13/controller/observer/ArenaObserver.java)
+  - [StateRecognizer](../src/main/java/com/g13/state/StateRecognizer.java)
   
-  - [Gui](../src/main/java/com/g13/view/Gui.java)
+  - [StartState](../src/main/java/com/g13/state/StartState.java)
   
- 
- **Consequências**
- 
- Apesar de neste momento apenas termos um observador ([Gui](../src/main/java/com/g13/view/Gui.java)), decidimos implementar o design pattern uma vez que será útil no futuro
- quando o código for simplificado e novas componentes forem introduzidas na Arena, não sendo necessária uma atualização contínua de cada compenente da vista do jogo.
- 
- #### Strategy
+  - [LevelState](../src/main/java/com/g13/state/LevelState.java)
+  
+  - [GameState](../src/main/java/com/g13/state/GameState.java)
+
+  **Máquina de estados**
+
+  ![](uml/statemachine.png)
+
+  **Consequências**
+
+  Ao atribuirmos diversos estados ao jogo permitui-nos, como já foi referido, conservar o código já desenvolvido anteriormente à etapa de desenvolvimento de menus e para além disso facilitou a aplicação do MVC bem como é descrito a seguir.
+
+ #### Conjugação de MVC com State design pattern
+
+ **Problema:**
+
+ Após a implementação de menus o jogo passou a ter vários loops que se encontravam em [ArenaController](../src/main/java/com/g13/controller/arena/ArenaController.java), [MenuController](../src/main/java/com/g13/controller/menus/MenuController.java) . Estes dois loops dificultavam os testes das respetivas classes e podiam facilmente concentrar-se num só.
+
+ **Design Pattern / solução:**
+
+ A solução encontrada apresenta-se associada ao State design pattern e ao MVC e passou por condensar os loops em [Game](../src/main/java/com/g13/Game.java):
+
+  | Loop genérico    | Solução adaptada | 
+  | :---        |    :----   | 
+  | while (true){<br>&nbsp;&nbsp;processInput();<br>&nbsp;&nbsp;update();<br>&nbsp;&nbsp;render();<br>} | ![](img/whileloop.png)
+
+Neste caso o processamento do input do utilizador e a atulização do jogo são ambos realizados pela função start(). Uma vez que o jogo apenas avança com o input do utilizador não foi necessário o controlo da frequência de atualização dos frames da aplicação.
+
+ #### Strategy (mentalidade dos inimigos)
  
  **Problema:**
  
@@ -94,67 +137,138 @@ A ser desenvolvido por [João Cardoso](https://github.com/joaoalc) (up201806531@
   
   **Implementação**
   
-  ![](uml/Strategy_Pattern.png)
+  <img src="uml/Strategy_Pattern.png" alt="drawing" width="4000" height="250"/>
   
   Estas classes podem sem encontradas nos seguintes ficheiros:
   
-  - [NormalPlayStrategy](../src/main/java/com/g13/controller/strategies/NormalPlayStrategy.java)
+  - [NormalPlayStrategy](../src/main/java/com/g13/controller/arena/strategies/NormalPlayStrategy.java)
   
-  - [AggressivePlayStrategy](../src/main/java/com/g13/controller/strategies/AggressivePlayStrategy.java)
+  - [AggressivePlayStrategy](../src/main/java/com/g13/controller/arena/strategies/AggressivePlayStrategy.java)
   
-  - [CarefulPlayStrategy](../src/main/java/com/g13/controller/strategies/CarefulPlayStrategy.java)
+  - [CarefulPlayStrategy](../src/main/java/com/g13/controller/arena/strategies/CarefulPlayStrategy.java)
   
-  - [PlayStrategy](../src/main/java/com/g13/controller/strategies/PlayStrategy.java)
+  - [PlayStrategy](../src/main/java/com/g13/controller/arena/strategies/PlayStrategy.java)
   
-  - [ArenaController](../src/main/java/com/g13/controller/ArenaController.java)
+  - [ArenaController](../src/main/java/com/g13/controller/arena/ArenaController.java)
   
   **Consequências**
   
   Reduzimos exponencialmente o número de classes necessárias para os inimigos. Isto acontece pois já não é necessária uma subclasse do inimigo para cada estratégia diferente por cada tipo de inimigo. O código também fica mais legível e mais facilmente expansível.
+
+  ### Strategy (ativação de cartas especiais)
+
+  **Problema e solução:**
+
+  O problema e respetiva solução são bastante semelhantes ao anteriormente referido, sendo que neste caso aplica-se à forma como carda especial é ativada.
+
+  **Implementação:**
+
+  ![](uml/Strategy_Card_Pattern.png)
+
+  Estas classes podem sem encontradas nos seguintes ficheiros:
+  
+  - [ArenaController](../src/main/java/com/g13/controller/arena/ArenaController.java)
+  
+  - [PlaySpecialCardCommand](../src/main/java/com/g13/controller/arena/commands/PlaySpecialCardCommand.java)
+  
+  - [AcSpecialCard](../src/main/java/com/g13/controller/arena/cardactivation/AcSpecialCard.java)
+
+  - [AcAddHpPerturn](../src/main/java/com/g13/controller/arena/cardactivation/endofturn/AcAddHpPerTurn.java)
+
+  - [AcDamageGamble](../src/main/java/com/g13/controller/arena/cardactivation/endofturn/AcDamageGamble.java)
+
+  - [AcOnWinDamage](../src/main/java/com/g13/controller/arena/cardactivation/endofturn/AcOnWinDamage.java)
+
+  - [AcFluxModifierAtoB](../src/main/java/com/g13/controller/arena/cardactivation/instant/AcFluxModifierAtoB.java)
+
+  - [AcInstantDamage](../src/main/java/com/g13/controller/arena/cardactivation/instant/AcInstantDamage.java)
+
+  - [AcStaticModifier](../src/main/java/com/g13/controller/arena/cardactivation/instant/AcStaticModifier.java)
+
+  **Consequências:**
+
+   Com a aplicação do padrão as diversas classes cliente não precisam de saber qual a carta e respetiva ativação em questão, possibilitando a existência de um baralho de cartas especiais genérico.
+
+   **Nota:** Em ambos os casos está presente uma classe abstrata que representa a "strategy" ao invés de uma interface como manda a definição do padrão. Isto aconteceu pois existem métodos comuns a todas as estratégias e para evitar repetição de código foram colocados nestas classes como métodos protected.
+
+  ### Factory
+
+  **Problema:**
+
+  Inicialmente quando a habilidade de ativação de cartas especiais foi implementada, a forma da carta se ativar encontrava-se dentro do modelo da carta, algo que violava a arquitetura do MVC. Deste modo este código foi extraído para novas classes que controlassem cada carta. No entanto o problema ainda estava presente uma vez que o baralho de cartas é constituido por cartas especiais e não por controladores de cartas especiais e uma vez que certas cartas apenas têm o seu efeito no final da ronda.
+
+  **Design Patttern / Solução:**
+
+  Para contornar este problema optou-se pelo Factory design pattern. A classe [ActivationFactory](../src/main/java/com/g13/controller/arena/activationfactory/ActivationFactory.java) possui dois métodos distintos: um retorna a forma de ativação instantânea da carta (getActivation) e o outro retorna a forma de ativação da carta no final da ronda se for o caso (getEndOfTurnActivation). Sempre que fosse necessário ativar uma determinada carta, antes da ativação era chamado um dos métodos de ActivationFactory que retornava a forma como a carta deve ser ativada, forma essa que seria posteriormente executada.
+
+  **Implementação**
+
+![](uml/factory.png)
+
+![](uml/factory_end.png)
+
+Estas classes podem sem encontradas nos seguintes ficheiros:
+  
+  - [ActivationFactory](../src/main/java/com/g13/controller/arena/activationfactory/ActivationFactory.java)
+  
+  - [ArenaController](../src/main/java/com/g13/controller/arena/ArenaController.java)
+  
+  - [PlaySpecialCardCommand](../src/main/java/com/g13/controller/arena/commands/PlaySpecialCardCommand.java)
+  
+  - [AcSpecialCard](../src/main/java/com/g13/controller/arena/cardactivation/AcSpecialCard.java)
+  
+  - [EndOfTurn](../src/main/java/com/g13/controller/arena/cardactivation/endofturn/EndOfTurn.java)
+
+  - [AcAddHpPerturn](../src/main/java/com/g13/controller/arena/cardactivation/endofturn/AcAddHpPerTurn.java)
+
+  - [AcDamageGamble](../src/main/java/com/g13/controller/arena/cardactivation/endofturn/AcDamageGamble.java)
+
+  - [AcOnWinDamage](../src/main/java/com/g13/controller/arena/cardactivation/endofturn/AcOnWinDamage.java)
+
+  - [AcFluxModifierAtoB](../src/main/java/com/g13/controller/arena/cardactivation/instant/AcFluxModifierAtoB.java)
+
+  - [AcInstantDamage](../src/main/java/com/g13/controller/arena/cardactivation/instant/AcInstantDamage.java)
+
+  - [AcStaticModifier](../src/main/java/com/g13/controller/arena/cardactivation/instant/AcStaticModifier.java)
+
+  **Consequências**
+
+  Possibilitou o cumprimento da arquitetura MVC e permitiu manter o código para o modelo do jogador já desenvolvido, fazendo com que a ativação de cartas em nada interfira com o baralho que possui.
+
   
 ## Code Smells e possíveis Refactorings
 
- ### Long parameter list
- 
- - O [construtor de GameParticipant](../src/main/java/com/g13/model/GameParticipant.java) está neste momento longo comparado com o pretendido. O método de refactoring a utilizar seria *Introduce Parameter Object*, que poderia ser introduzido criando um objeto Bar que contesse os valores atuais e máximos (health e max_health por exemplo).
-   Este objeto faria parte do modelo e no futuro viria a ter um controlador que o manipulasse. Já apresenta uma vista que no entanto é controlada pela vista do GameParticipant.
-
- - O mesmo acontece para alguns métodos presentes em [BarViewer](../src/main/java/com/g13/view/BarViewer.java). Muitos deles devem-se à razão apresentada em cima, mas por outro lado poder-se-ia também resolver recorrendo ao mesmo refactoring,
-   criar uma nova classe Position que evitasse a repetição dos parametros (int x, int y) não só neste momemnto, mas também ao longo de todo o programa.
-
  ### Lazy Class
  
- - [CardController](../src/main/java/com/g13/controller/CardController.java) e [SpecialCardController](../src/main/java/com/g13/controller/SpecialCardController.java)
- não apresentam muita utilidade ao programa neste momento, uma vez que poucas instruções podem ser aplicadas a uma só carta. Deste modo no futuro poder-se-á criar
- um classe DeckController que manipulasse os baralhos dos jogadores, substituindo estas classes e alguns dos métodos de [GameParticipantController](../src/main/java/com/g13/controller/GameParticipantController.java).
+ - Para simplificação de testes e melhor encapsulamento do código, optámos pela criação de várias factories que criam objetos elementares necessários a cada fase do programa. O código das factories limita-se à criação destes elementos nos repetivos contrutores e getters para cada elemento criado.
+ Para resolver este aspeto poder-se-ia incluir este código de criação no local onde os métodos de get são chamados, eliminando as factories envolvidas. No entanto isto dificultaria a fase de teste do código.
+
+ - As classes modelo apresentam o mesmo problema. No entanto isto é resultado do padrão arquitetural adotado (MVC), tendo sido transmitida a ideia de que o modelo deveria ser o mais simples e "estúpido" possível
 
  ### Switch statement
+
+  **Input do utilizador**
  
  - Numa fase inicial do desenvolvimento tínhamos implementado o design pattern Command, numa altura em que a arquitetura
- MVC não era respeitada e o modelo possuía a capacidade de se modelar. A classe [Gui](../src/main/java/com/g13/view/Gui.java) 
- era reponsável por enviar ao [ArenaController](../src/main/java/com/g13/controller/ArenaController.java) um comando 
- dependendo da tecla que o utilizador premisse. 
+ MVC não era respeitada e o modelo possuía a capacidade de se modelar. As classes que implementam [View](../src/main/java/com/g13/view/View.java) 
+ eram reponsáveis por enviar ao respetivo [Controller](../src/main/java/com/g13/model/Model.java) um objeto comando que seria futuramente executado dependendo da tecla que o utilizador premisse. 
  
- - Isto passou a constituir problema quando os métodos que alteram o modelo foram
- tranferidos para controladores, deixando a vista de ter acesso a métodos que moldam o modelo.
+ - Isto passou a constituir problema quando os métodos que alteram o modelo foram tranferidos para controladores, deixando a vista de ter acesso a métodos que moldam o modelo.
  
- - Pensámos em aplicar o design pattern Singleton, numa fase inicial, mas relembrando o que nos foi transmitido
- em diversas aulas, este design pattern poderia provocar mais problemas futuramente.
+ - Pensámos em aplicar o design pattern Singleton, numa fase inicial, mas relembrando o que nos foi transmitido em diversas aulas, este design pattern poderia provocar mais problemas futuramente.
  
- - Optou-se por criar uma enumeração em [Gui](../src/main/java/com/g13/view/Gui.java), onde cada atributo representa
- um comando a ser executado por [start()](../src/main/java/com/g13/controller/CardController.java) em ArenaController.
+ - Optou-se por criar uma enumeração em cada vista, onde cada atributo representa um comando a ser executado por [start()](../src/main/java/com/g13/controller/Controller.java) em Controller (implementação distinta para cada estado).
  Para reconhecer o atributo utiliza-se uma cadeia de ifs.
  
  - Apesar de constituir um code smell, este apresenta-se neste caso como uma solução a um problema encontrado.
 
-## Testes
+  **Relação com o Factory design pattern**
 
- Na realização dos testes focámo-nos mais em classes que à partida sofrerão poucas ou nenhumas alterações (ex. modelo).
- 
- Classes que fazem parte de strategies não possuem testes, uma vez que são features em desenvolvimento e recentemente implementadas.
- 
- ArenaController possui também poucos testes uma vez que irá sofrer algumas alterações
- quando for implementada a transição entre turnos de jogo.
+  - Aquando da implementação deste padrão teve-se também em conta o padrão Visitor, uma que quando uma carta especial fosse "visitada" poder-se-ia retornar o respetivo método de implementação. 
+  
+  - Neste caso em concreto, isto constituiria uma violação ao MVC pelo que se manteve o padrão implementado, com a cadeia de ifs presente a verificar qual a instância da carta especial que estamos perante. 
+
+## Testes
  
  ### Coverage testing
  

@@ -1,0 +1,45 @@
+@startuml factory
+
+class ActivationFactory{
+    + AcSpecialCard getActivation()
+    + EndOfTurn getEndOfTurn()
+}
+
+class ArenaController{
+    - ActivationFactory activationFactory
+    + void processPlayerCards()
+}
+
+ArenaController --> ActivationFactory
+
+package "EndOfTurn"{
+
+    interface EndOfTurn {
+        void activateEndOfTurn()
+    }
+
+    class AcAddHpPerTurn{
+        - AddHpPerTurn card
+        + void activateEndOfTurn()
+    }
+
+    class AcDamageGamble{
+        - DamageGamble card
+        + void activateEndOfTurn()
+    }
+
+    class AcOnWinDamage{
+        - OnWinDamage card
+        + void activateEndOfTurn()
+    }
+
+    AcAddHpPerTurn ..|> EndOfTurn
+    AcDamageGamble..|> EndOfTurn
+    AcOnWinDamage ..|> EndOfTurn
+
+}
+
+ActivationFactory --> EndOfTurn
+
+
+@enduml

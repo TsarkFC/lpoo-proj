@@ -6,12 +6,16 @@ import com.g13.model.menus.Level;
 import com.g13.model.menus.button.Stage;
 import com.g13.view.menus.LevelViewer;
 
+import java.io.IOException;
+
 public class LevelController extends MenuController implements Controller {
     private Level model;
+    private LevelViewer view;
 
     public LevelController(Level model, LevelViewer view, StateRecognizer recognizer){
         super(model, view, recognizer);
         this.model = model;
+        this.view = view;
     }
 
     @Override
@@ -31,5 +35,15 @@ public class LevelController extends MenuController implements Controller {
         model.resetCross();
         model.getStages().get(2).setUnlocked(false);
         model.getStages().get(3).setUnlocked(false);
+    }
+
+    @Override
+    public void render() throws IOException {
+        view.draw();
+    }
+
+    @Override
+    public boolean isFinished() {
+        return model.isFinished();
     }
 }

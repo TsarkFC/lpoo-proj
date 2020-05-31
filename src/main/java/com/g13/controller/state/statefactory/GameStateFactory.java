@@ -18,6 +18,5 @@ public class GameStateFactory {
     }
 
     public Arena getArena() { return arena; }
-    public ArenaViewer getArenaViewer() { return arenaViewer; }
     public ArenaController getArenaController() { return arenaController; }
 }

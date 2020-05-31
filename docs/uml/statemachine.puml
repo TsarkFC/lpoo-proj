@@ -1,0 +1,12 @@
+@startuml statemachine
+[*] --> StartState
+StartState --> [*]
+StartState -left-> LevelState
+
+LevelState --> StartState
+LevelState --> [*]
+LevelState --> GameState
+
+GameState --> LevelState
+GameState --> [*]
+@enduml

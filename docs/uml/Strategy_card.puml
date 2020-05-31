@@ -1,0 +1,58 @@
+@startuml strategy
+
+abstract class AcSpecialCard {
+    + void activate(ArenaController arenaController)
+}
+note bottom 
+Strategy
+end note
+
+class PlaySpecialCardCommand{
+    + void execute();
+}
+note bottom
+Context
+end note
+
+class AcAddHpPerTurn{
+    - AddHpPerTurn card
+    + void activate(ArenaController arenaController)
+}
+
+class AcDamageGamble{
+    - DamageGamble card
+    + void activate(ArenaController arenaController)
+}
+note bottom
+Concrete strategy
+end note
+
+class AcOnWinDamage{
+    - OnWinDamage card
+    + void activate(ArenaController arenaController)
+}
+
+class AcFluxModifierAtoB{
+    - FluxModifierAtoB card
+    + void activate(ArenaController arenaController)
+}
+
+class AcStaticModifier{
+    - StaticModifier card
+    + void activate(ArenaController arenaController)
+}
+
+class AcInstantDamage{
+    - InstantDamage card
+    + void activate(ArenaController arenaController)
+}
+
+AcAddHpPerTurn .right.|> AcSpecialCard
+AcDamageGamble .right.|> AcSpecialCard
+AcOnWinDamage ..|> AcSpecialCard
+AcFluxModifierAtoB ..|> AcSpecialCard
+AcStaticModifier..|> AcSpecialCard
+AcInstantDamage ..|> AcSpecialCard
+
+PlaySpecialCardCommand -left-> AcSpecialCard
+@enduml
