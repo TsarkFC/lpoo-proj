@@ -10,8 +10,6 @@ import com.g13.model.arena.Arena;
 import com.g13.view.View;
 import com.g13.view.arena.ArenaViewer;
 
-import java.io.IOException;
-
 public class GameState implements State{
     private Arena arena;
     private ArenaViewer arenaViewer;

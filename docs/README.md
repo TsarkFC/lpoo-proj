@@ -11,6 +11,8 @@ As diversas cartas especiais que cada jogador possui ao seu dispor podem ser uti
 
 Desenvolvido por [João Cardoso](https://github.com/joaoalc) (up201806531@fe.up.pt) e [João Romão](https://github.com/TsarkFC) (up201806779@fe.up.pt).
 
+<div style="text-align:center"><img src="img/void-tyrant.gif" /></div>
+
 ## Features implementadas
  - Numa fase incial do jogo o utilizador pode selecionar o menu Instructions onde lhe serão apresentadas instruções iniciais de como jogar o jogo.
 
@@ -58,6 +60,46 @@ Menu inicial | Intruções de jogo
   
 
 ## Design Patterns
+
+ #### State
+
+ **Problema:**
+
+  Um dos objetivos do trabalho era seguir o padrão arquitetural Model-View-Controller (MVC). Inicialmente a nossa preocupação fundamental foi ter um jogo funcional que seguisse o padrão arquitetural. Uma vez conseguido este objetivo começámos a elaboração do código dos menus, tentando manter ao máximo a estrutura do código já desenvolvido.
+
+  **Design Pattern /solução:**
+
+  Perante este problema decidimos implementar o State design pattern, passsando o programa a ser contituido por três estados essenciais:
+   
+   - [StartState](../src/main/java/com/g13/state/StartState.java): estado inicial do programa em que o utilizador pode ver as instruções de jogo e avançar para o menu de escolha de nível;
+
+   - [LevelState](../src/main/java/com/g13/state/LevelState.java): estado em que o utilizador pode escolher o inimigo contra o qual pretende jogar;
+
+   - [GameState](../src/main/java/com/g13/state/GameState.java): estado em que o utilizador defronta o inimigo sendo redirecionado para o menu de escolha de níveis no final do jogo.
+
+   Uma vez que cada estado tem componentes totalmente distintas assim como formas de as manipular e visualizar, cada estado tem os seus pŕoprios modelo, vista e controlador, sendo que cada um deles implementa uma interface [Model](../src/main/java/com/g13/model/Model.java), [View](../src/main/java/com/g13/view/View.java) e [Controller](../src/main/java/com/g13/controller/Controller.java).
+
+   Como queríamos que cada estado de jogo fosse inicializado uma vez e também de modo a simplificar o código do progama criámos a classe [StateRecognizer](../src/main/java/com/g13/state/StateRecognizer.java) que contém um objeto representativo de cada estado e o estado atual do jogo.
+
+   **Implementação**
+
+  ![](uml/State_Pattern.png)
+  
+  Estas classes podem sem encontradas nos seguintes ficheiros:
+  
+  - [State](../src/main/java/com/g13/state/State.java)
+  
+  - [StateRecognizer](../src/main/java/com/g13/state/StateRecognizer.java)
+  
+  - [StartState](../src/main/java/com/g13/state/StartState.java)
+  
+  - [LevelState](../src/main/java/com/g13/state/LevelState.java)
+  
+  - [GameState](../src/main/java/com/g13/state/GameState.java)
+
+  **Consequências**
+
+  Ao atribuirmos diversos estados ao jogo permitui-nos, como já foi referido, conservar o código já desenvolvido anteriormente à etapa de desenvolvimento de menus e para além disso facilitou a aplicação do MVC bem como o "Game loop" que será descrito a seguir.
  
  #### Strategy
  
@@ -75,7 +117,7 @@ Menu inicial | Intruções de jogo
   
   **Implementação**
   
-  ![](uml/Strategy_Pattern.png)
+  <img src="uml/Strategy_Pattern.png" alt="drawing" width="4000" height="250"/>
   
   Estas classes podem sem encontradas nos seguintes ficheiros:
   
@@ -95,14 +137,6 @@ Menu inicial | Intruções de jogo
   
 ## Code Smells e possíveis Refactorings
 
- ### Long parameter list
- 
- - O [construtor de GameParticipant](../src/main/java/com/g13/model/GameParticipant.java) está neste momento longo comparado com o pretendido. O método de refactoring a utilizar seria *Introduce Parameter Object*, que poderia ser introduzido criando um objeto Bar que contesse os valores atuais e máximos (health e max_health por exemplo).
-   Este objeto faria parte do modelo e no futuro viria a ter um controlador que o manipulasse. Já apresenta uma vista que no entanto é controlada pela vista do GameParticipant.
-
- - O mesmo acontece para alguns métodos presentes em [BarViewer](../src/main/java/com/g13/view/BarViewer.java). Muitos deles devem-se à razão apresentada em cima, mas por outro lado poder-se-ia também resolver recorrendo ao mesmo refactoring,
-   criar uma nova classe Position que evitasse a repetição dos parametros (int x, int y) não só neste momemnto, mas também ao longo de todo o programa.
-
  ### Lazy Class
  
  - [CardController](../src/main/java/com/g13/controller/CardController.java) e [SpecialCardController](../src/main/java/com/g13/controller/SpecialCardController.java)
@@ -119,23 +153,15 @@ Menu inicial | Intruções de jogo
  - Isto passou a constituir problema quando os métodos que alteram o modelo foram
  tranferidos para controladores, deixando a vista de ter acesso a métodos que moldam o modelo.
  
- - Pensámos em aplicar o design pattern Singleton, numa fase inicial, mas relembrando o que nos foi transmitido
- em diversas aulas, este design pattern poderia provocar mais problemas futuramente.
+ - Pensámos em aplicar o design pattern Singleton, numa fase inicial, mas relembrando o que nos foi transmitido em diversas aulas, este design pattern poderia provocar mais problemas futuramente.
  
  - Optou-se por criar uma enumeração em [Gui](../src/main/java/com/g13/view/Gui.java), onde cada atributo representa
- um comando a ser executado por [start()](../src/main/java/com/g13/controller/CardController.java) em ArenaController.
+ um comando a ser executado por [start()](../src/main/java/com/g13/controller/Controller.java) em Controller (implementação distinta para cada estado).
  Para reconhecer o atributo utiliza-se uma cadeia de ifs.
  
  - Apesar de constituir um code smell, este apresenta-se neste caso como uma solução a um problema encontrado.
 
 ## Testes
-
- Na realização dos testes focámo-nos mais em classes que à partida sofrerão poucas ou nenhumas alterações (ex. modelo).
- 
- Classes que fazem parte de strategies não possuem testes, uma vez que são features em desenvolvimento e recentemente implementadas.
- 
- ArenaController possui também poucos testes uma vez que irá sofrer algumas alterações
- quando for implementada a transição entre turnos de jogo.
  
  ### Coverage testing
  

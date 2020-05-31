@@ -8,8 +8,6 @@ import com.g13.model.menus.Start;
 import com.g13.view.View;
 import com.g13.view.menus.StartViewer;
 
-import java.io.IOException;
-
 public class StartState implements State{
     private Start start;
     private StartViewer startViewer;

@@ -1,0 +1,48 @@
+@startuml state
+
+interface State {
+    Model getModel();
+    View getView();
+    Controller getController();
+    void advance();
+}
+
+class StateRecognizer{
+    - State getCurrentState;
+    - StartState startState;
+    - LevelState LevelState;
+    - GameState gameState;
+    + void getCurrentState();
+    + setStartState(PlayStartegy strategy);
+    + setLevelState();
+    + setGameState();
+}
+
+class StartState{
+    + Model getModel();
+    + View getView();
+    + Controller getController();
+    + void advance();
+}
+class LevelState{
+    + Model getModel();
+    + View getView();
+    + Controller getController();
+    + void advance();
+}
+class GameState{
+    + Model getModel();
+    + View getView();
+    + Controller getController();
+    + void advance();
+}
+
+
+State <-right-o StateRecognizer
+
+skinparam groupInheritance 3
+
+StartState ..|> State
+LevelState..|> State
+GameState ..|> State
+@enduml

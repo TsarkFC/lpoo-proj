@@ -11,8 +11,6 @@ import com.g13.model.menus.Level;
 import com.g13.view.View;
 import com.g13.view.menus.LevelViewer;
 
-import java.io.IOException;
-
 public class LevelState implements State{
     private final Level level;
     private final LevelViewer levelViewer;
